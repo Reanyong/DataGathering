@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6FCABBE5-29B9-4138-BE62-8839C08750A0}</ProjectGuid>
+    <RootNamespace>DataGathering</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>C:\EasyEMS\Bin\</OutDir>
+    <TargetName>EVDataGathering_v2.0</TargetName>
+    <IncludePath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Include;.\DataGathering\Control_List\OdbcControl;C:\work\Xtreme ToolkitPro v19.1.0\Source;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\PostgreSQL\psqlODBC\bin;.\DataGathering\Control_List\OdbcControl;C:\work\Xtreme ToolkitPro v19.1.0\Lib\vc160;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>EVDataGathering_v2.0</TargetName>
+    <OutDir>C:\EasyEMS\Bin\</OutDir>
+    <IncludePath>C:\work\Xtreme ToolkitPro v19.1.0\Source;C:\work\Xtreme ToolkitPro v19.1.0\Bin\vc160;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Work\Xtreme ToolkitPro v19.1.0\Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_USE_32BIT_TIME_T;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Include;C:\Program Files\PostgreSQL\psqlODBC\bin;C:\njh\src\DataGathering-20191230 INI 경로, 쓰레드 생성 예외처리__odbc수정중\DataGathering\Control_List\OdbcControl;C:\njh\src\DataGathering-20191230 INI 경로, 쓰레드 생성 예외처리__odbc수정중\DataGathering\Control_List\AdoControl;.\Control_List\AdoControl;C:\work\Xtreme ToolkitPro v19.1.0\Source</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\..\..\lib\EVILib.lib;C:\work\Xtreme ToolkitPro v19.1.0\Lib\vc160\ToolkitPro1910vc160.lib</AdditionalDependencies>
+      <OutputFile>C:\EasyEMS\Bin\EVDataGathering_v2.0.exe</OutputFile>
+      <AssemblyDebug>
+      </AssemblyDebug>
+      <AdditionalLibraryDirectories>C:\work\XEtc_Driver\DataGathering-20210924 VS2019_최신\DataGathering\Control_List\OdbcControl;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_USE_32BIT_TIME_T;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\Control_List\AdoControl</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\..\..\lib\EVILib.lib;C:\work\Xtreme ToolkitPro v19.1.0\Lib\vc160\ToolkitPro1910vc160.lib</AdditionalDependencies>
+      <OutputFile>C:\EasyEMS\Bin\EVDataGathering_v2.0.exe</OutputFile>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Control_List\AdoControl\msado60_Backcompat_i386.tlb" />
+    <None Include="Control_List\AdoControl\msjro.dll" />
+    <None Include="Control_List\MyResource\bitmap1.bmp" />
+    <None Include="Control_List\MyResource\bmp00001.bmp" />
+    <None Include="Control_List\MyResource\res\bmp00001.bmp" />
+    <None Include="Control_List\MyResource\res\toolbar1.bmp" />
+    <None Include="Control_List\XMLCtrl\msxml3.tlh" />
+    <None Include="Control_List\XMLCtrl\msxml3.tli" />
+    <None Include="ReadMe.txt" />
+    <None Include="res\bitmap1.bmp" />
+    <None Include="res\bitmap2.bmp" />
+    <None Include="res\bmp00001.bmp" />
+    <None Include="res\buttons.bmp" />
+    <None Include="res\DataGathering.ico" />
+    <None Include="res\DataGathering.rc2" />
+    <None Include="res\DataGatheringDoc.ico" />
+    <None Include="res\DBSet_d.bmp" />
+    <None Include="res\DBSet_n.bmp" />
+    <None Include="res\filelarge.bmp" />
+    <None Include="res\filesmall.bmp" />
+    <None Include="res\Gather_d.bmp" />
+    <None Include="res\Gather_n.bmp" />
+    <None Include="res\Gather_Type_d.bmp" />
+    <None Include="res\Gather_Type_n.bmp" />
+    <None Include="res\idr_main.ico" />
+    <None Include="res\info.bmp" />
+    <None Include="res\main.bmp" />
+    <None Include="res\main1.bmp" />
+    <None Include="res\m_1.ico" />
+    <None Include="res\nav_large.bmp" />
+    <None Include="res\nav_large_hc.bmp" />
+    <None Include="res\pages.bmp" />
+    <None Include="res\pages_hc.bmp" />
+    <None Include="res\pages_small.bmp" />
+    <None Include="res\pages_small_hc.bmp" />
+    <None Include="res\ribbon.mfcribbon-ms" />
+    <None Include="res\ribbon1.mfcribbon-ms" />
+    <None Include="res\Toolbar.bmp" />
+    <None Include="res\toolbar1.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="res\writelarge.bmp" />
+    <None Include="res\writesmall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CalendarBar.h" />
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="Control_List\AdoControl\Ado_Control.h" />
+    <ClInclude Include="Control_List\GridCtrl\CellRange.h" />
+    <ClInclude Include="Control_List\GridCtrl\GridCell.h" />
+    <ClInclude Include="Control_List\GridCtrl\GridCellBase.h" />
+    <ClInclude Include="Control_List\GridCtrl\GridCtrl.h" />
+    <ClInclude Include="Control_List\GridCtrl\GridDropTarget.h" />
+    <ClInclude Include="Control_List\GridCtrl\InPlaceEdit.h" />
+    <ClInclude Include="Control_List\GridCtrl\MemDC2.h" />
+    <ClInclude Include="Control_List\GridCtrl\TitleTip.h" />
+    <ClInclude Include="Control_List\InterlockSource\JtFreeStruct.h" />
+    <ClInclude Include="Control_List\InterlockSource\JtInterlockMsg.h" />
+    <ClInclude Include="Control_List\ListBoxControl\CtrlButton.h" />
+    <ClInclude Include="Control_List\ListBoxControl\MyMemDC.h" />
+    <ClInclude Include="Control_List\ListBoxControl\XComboList.h" />
+    <ClInclude Include="Control_List\ListBoxControl\XHeaderCtrl.h" />
+    <ClInclude Include="Control_List\ListBoxControl\XListBox.h" />
+    <ClInclude Include="Control_List\ListBoxControl\XListCtrl.h" />
+    <ClInclude Include="Control_List\MyResource\MyResource.h" />
+    <ClInclude Include="Control_List\OdbcControl\Odbc.h" />
+    <ClInclude Include="Control_List\XMLCtrl\tinystr.h" />
+    <ClInclude Include="Control_List\XMLCtrl\tinyxml.h" />
+    <ClInclude Include="Control_List\XMLCtrl\XmlNodeWrapper.h" />
+    <ClInclude Include="DataGathering.h" />
+    <ClInclude Include="DataGatheringDoc.h" />
+    <ClInclude Include="DataGatheringView.h" />
+    <ClInclude Include="DlgEMSChart.h" />
+    <ClInclude Include="DlgTagDic.h" />
+    <ClInclude Include="DLG_DataBaseNameSet.h" />
+    <ClInclude Include="DLG_DataBaseSetting.h" />
+    <ClInclude Include="DLG_EnergyTag_InitialSet.h" />
+    <ClInclude Include="DLG_GatherInfoSetting.h" />
+    <ClInclude Include="DLG_ISmarAccesstSetting.h" />
+    <ClInclude Include="DLG_ISmartSetting.h" />
+    <ClInclude Include="DLG_ProgramSetting.h" />
+    <ClInclude Include="DLG_SettingMain.h" />
+    <ClInclude Include="DLG_TagMapping.h" />
+    <ClInclude Include="DLG_TagMappingSet.h" />
+    <ClInclude Include="DLG_WeatherSeting.h" />
+    <ClInclude Include="FormView_AlarmFMS.h" />
+    <ClInclude Include="FormView_AlarmTag.h" />
+    <ClInclude Include="FormView_IConnect.h" />
+    <ClInclude Include="FormView_Main.h" />
+    <ClInclude Include="FormView_TAGGather.h" />
+    <ClInclude Include="FormView_TagMapping.h" />
+    <ClInclude Include="FormView_Weather.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Thread_Calibration.h" />
+    <ClInclude Include="Thread_Delete.h" />
+    <ClInclude Include="Thread_FMSAlarmMain.h" />
+    <ClInclude Include="Thread_IConnect.h" />
+    <ClInclude Include="Thread_Main.h" />
+    <ClInclude Include="Thread_MinGatherMain.h" />
+    <ClInclude Include="Thread_MinGatherSub.h" />
+    <ClInclude Include="Thread_TagAlarmMain.h" />
+    <ClInclude Include="Thread_TagAlarmSub.h" />
+    <ClInclude Include="Thread_TAGSearch.h" />
+    <ClInclude Include="Thread_WeatherGather.h" />
+    <ClInclude Include="Thread_XmlTagValue.h" />
+    <ClInclude Include="TreeWnd.h" />
+    <ClInclude Include="ViewTree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CalendarBar.cpp" />
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="Control_List\AdoControl\Ado_Control.cpp" />
+    <ClCompile Include="Control_List\GridCtrl\GridCell.cpp" />
+    <ClCompile Include="Control_List\GridCtrl\GridCellBase.cpp" />
+    <ClCompile Include="Control_List\GridCtrl\GridCtrl.cpp" />
+    <ClCompile Include="Control_List\GridCtrl\GridDropTarget.cpp" />
+    <ClCompile Include="Control_List\GridCtrl\InPlaceEdit.cpp" />
+    <ClCompile Include="Control_List\GridCtrl\TitleTip.cpp" />
+    <ClCompile Include="Control_List\ListBoxControl\CtrlButton.cpp" />
+    <ClCompile Include="Control_List\ListBoxControl\XComboList.cpp" />
+    <ClCompile Include="Control_List\ListBoxControl\XHeaderCtrl.cpp" />
+    <ClCompile Include="Control_List\ListBoxControl\XListBox.cpp" />
+    <ClCompile Include="Control_List\ListBoxControl\XListCtrl.cpp" />
+    <ClCompile Include="Control_List\OdbcControl\Odbc.cpp" />
+    <ClCompile Include="Control_List\XMLCtrl\tinystr.cpp" />
+    <ClCompile Include="Control_List\XMLCtrl\tinyxml.cpp" />
+    <ClCompile Include="Control_List\XMLCtrl\tinyxmlerror.cpp" />
+    <ClCompile Include="Control_List\XMLCtrl\tinyxmlparser.cpp" />
+    <ClCompile Include="Control_List\XMLCtrl\XmlNodeWrapper.cpp" />
+    <ClCompile Include="DataGathering.cpp" />
+    <ClCompile Include="DataGatheringDoc.cpp" />
+    <ClCompile Include="DataGatheringView.cpp" />
+    <ClCompile Include="DlgEMSChart.cpp" />
+    <ClCompile Include="DlgTagDic.cpp" />
+    <ClCompile Include="DLG_DataBaseNameSet.cpp" />
+    <ClCompile Include="DLG_DataBaseSetting.cpp" />
+    <ClCompile Include="DLG_EnergyTag_InitialSet.cpp" />
+    <ClCompile Include="DLG_GatherInfoSetting.cpp" />
+    <ClCompile Include="DLG_ISmarAccesstSetting.cpp" />
+    <ClCompile Include="DLG_ISmartSetting.cpp" />
+    <ClCompile Include="DLG_ProgramSetting.cpp" />
+    <ClCompile Include="DLG_SettingMain.cpp" />
+    <ClCompile Include="DLG_TagMapping.cpp" />
+    <ClCompile Include="DLG_TagMappingSet.cpp" />
+    <ClCompile Include="DLG_WeatherSeting.cpp" />
+    <ClCompile Include="FormView_AlarmFMS.cpp" />
+    <ClCompile Include="FormView_AlarmTag.cpp" />
+    <ClCompile Include="FormView_IConnect.cpp" />
+    <ClCompile Include="FormView_Main.cpp" />
+    <ClCompile Include="FormView_TAGGather.cpp" />
+    <ClCompile Include="FormView_TagMapping.cpp" />
+    <ClCompile Include="FormView_Weather.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Thread_Calibration.cpp" />
+    <ClCompile Include="Thread_Delete.cpp" />
+    <ClCompile Include="Thread_FMSAlarmMain.cpp" />
+    <ClCompile Include="Thread_IConnect.cpp" />
+    <ClCompile Include="Thread_Main.cpp" />
+    <ClCompile Include="Thread_MinGatherMain.cpp" />
+    <ClCompile Include="Thread_MinGatherSub.cpp" />
+    <ClCompile Include="Thread_TagAlarmMain.cpp" />
+    <ClCompile Include="Thread_TagAlarmSub.cpp" />
+    <ClCompile Include="Thread_TAGSearch.cpp" />
+    <ClCompile Include="Thread_WeatherGather.cpp" />
+    <ClCompile Include="Thread_XmlTagValue.cpp" />
+    <ClCompile Include="TreeWnd.cpp" />
+    <ClCompile Include="ViewTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DataGathering.rc" />
+    <ResourceCompile Include="Control_List\MyResource\MyResource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Control_List\XMLCtrl\tinyxml.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="DataGathering.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

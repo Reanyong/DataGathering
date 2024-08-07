@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Control_List">
+      <UniqueIdentifier>{b217fe8b-259a-424a-bd4f-add77b62398f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\ListBoxControl">
+      <UniqueIdentifier>{02ae81b7-a58f-488c-95a6-781f09931f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\MyResource">
+      <UniqueIdentifier>{e5a70cbf-9e90-4fdb-a1ec-6c3cc7530e7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\InterlockSource">
+      <UniqueIdentifier>{84c2cf0f-56b5-44c9-8489-d4cb276a1c68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\AdoControl">
+      <UniqueIdentifier>{375d3cf8-aeeb-4a80-9a24-405d13d2773f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI_SettingView">
+      <UniqueIdentifier>{3d3dcfce-0035-477f-b900-36ff98da38ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\GridCtrl">
+      <UniqueIdentifier>{3205499c-907f-4140-860d-ace76e504143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{581aeabf-c375-4c86-8156-b962f5ee4585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\XMLCtrl">
+      <UniqueIdentifier>{7feb7714-0575-4722-8139-f1c8e59fcf55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI_FormView">
+      <UniqueIdentifier>{b10371a2-3dd1-49f2-8b3f-cf751f4e4f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control_List\OdbcControl">
+      <UniqueIdentifier>{1085dc6c-632e-41f5-989d-eb4faab840b4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\nav_large.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\nav_large_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_small.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_small_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\info.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\buttons.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\filelarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\filesmall.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\main.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\writelarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\writesmall.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\ribbon.mfcribbon-ms">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\DataGathering.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\DataGatheringDoc.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\DataGathering.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\toolbar1.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\bitmap1.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\bmp00001.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Control_List\MyResource\bitmap1.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Control_List\MyResource\bmp00001.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Control_List\MyResource\res\toolbar1.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Control_List\MyResource\res\bmp00001.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Control_List\AdoControl\msado60_Backcompat_i386.tlb">
+      <Filter>Control_List\AdoControl</Filter>
+    </None>
+    <None Include="Control_List\AdoControl\msjro.dll">
+      <Filter>Control_List\AdoControl</Filter>
+    </None>
+    <None Include="res\ribbon1.mfcribbon-ms">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\idr_main.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\m_1.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\main1.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\bitmap2.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="Control_List\XMLCtrl\msxml3.tlh">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </None>
+    <None Include="Control_List\XMLCtrl\msxml3.tli">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </None>
+    <None Include="res\Gather_n.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Gather_d.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\DBSet_n.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\DBSet_d.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Gather_Type_d.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Gather_Type_n.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataGathering.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildFrm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DataGatheringDoc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DataGatheringView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CalendarBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputWnd.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\ListBoxControl\CtrlButton.h">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\ListBoxControl\MyMemDC.h">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\ListBoxControl\XComboList.h">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\ListBoxControl\XHeaderCtrl.h">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\ListBoxControl\XListBox.h">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\ListBoxControl\XListCtrl.h">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeWnd.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewTree.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\MyResource\Myresource.h">
+      <Filter>Control_List\MyResource</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\InterlockSource\JtFreeStruct.h">
+      <Filter>Control_List\InterlockSource</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\InterlockSource\JtInterlockMsg.h">
+      <Filter>Control_List\InterlockSource</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\AdoControl\Ado_Control.h">
+      <Filter>Control_List\AdoControl</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_DataBaseSetting.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_ProgramSetting.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_Main.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\CellRange.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\GridCell.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\GridCellBase.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\GridCtrl.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\GridDropTarget.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\TitleTip.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\MemDC2.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_Main.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_Weather.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_AlarmFMS.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_AlarmTag.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\XMLCtrl\tinystr.h">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\XMLCtrl\tinyxml.h">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\XMLCtrl\XmlNodeWrapper.h">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_TagAlarmMain.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_WeatherGather.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_TagAlarmSub.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_ISmartSetting.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_FMSAlarmMain.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_IConnect.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_IConnect.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_GatherInfoSetting.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_TAGGather.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_MinGatherMain.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_MinGatherSub.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_WeatherSeting.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_SettingMain.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_DataBaseNameSet.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_EnergyTag_InitialSet.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_TagMapping.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_TagMappingSet.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="FormView_TagMapping.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_TAGSearch.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_XmlTagValue.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="DLG_ISmarAccesstSetting.h">
+      <Filter>UI_SettingView</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_Calibration.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\OdbcControl\Odbc.h">
+      <Filter>Control_List\OdbcControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread_Delete.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgTagDic.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Control_List\GridCtrl\InPlaceEdit.h">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgEMSChart.h">
+      <Filter>UI_FormView</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DataGathering.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildFrm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DataGatheringDoc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CalendarBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputWnd.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\ListBoxControl\CtrlButton.cpp">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\ListBoxControl\XComboList.cpp">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\ListBoxControl\XHeaderCtrl.cpp">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\ListBoxControl\XListBox.cpp">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\ListBoxControl\XListCtrl.cpp">
+      <Filter>Control_List\ListBoxControl</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeWnd.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\AdoControl\Ado_Control.cpp">
+      <Filter>Control_List\AdoControl</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_DataBaseSetting.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_ProgramSetting.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_Main.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\GridCtrl\GridCell.cpp">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\GridCtrl\GridCellBase.cpp">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\GridCtrl\GridCtrl.cpp">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\GridCtrl\GridDropTarget.cpp">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\GridCtrl\TitleTip.cpp">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewTree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_Main.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_Weather.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_AlarmFMS.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_AlarmTag.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\XMLCtrl\tinystr.cpp">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\XMLCtrl\tinyxml.cpp">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\XMLCtrl\tinyxmlerror.cpp">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\XMLCtrl\tinyxmlparser.cpp">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\XMLCtrl\XmlNodeWrapper.cpp">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_TagAlarmMain.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_WeatherGather.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_TagAlarmSub.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_ISmartSetting.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_FMSAlarmMain.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_IConnect.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_IConnect.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_GatherInfoSetting.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_TAGGather.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_MinGatherMain.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_MinGatherSub.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_WeatherSeting.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="DataGatheringView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_DataBaseNameSet.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_SettingMain.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_EnergyTag_InitialSet.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_TagMappingSet.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_TagMapping.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="FormView_TagMapping.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_XmlTagValue.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_TAGSearch.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="DLG_ISmarAccesstSetting.cpp">
+      <Filter>UI_SettingView</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_Calibration.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\OdbcControl\Odbc.cpp">
+      <Filter>Control_List\OdbcControl</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_Delete.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgTagDic.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Control_List\GridCtrl\InPlaceEdit.cpp">
+      <Filter>Control_List\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgEMSChart.cpp">
+      <Filter>UI_FormView</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DataGathering.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="Control_List\MyResource\MyResource.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Control_List\XMLCtrl\tinyxml.lib">
+      <Filter>Control_List\XMLCtrl</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
