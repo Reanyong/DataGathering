@@ -149,7 +149,7 @@ int CAdo_Control::Com_Error(const char* szLogName,const _com_error &e)
 	strRunlog_E2.Format("%s- Error Code:[%08lx], Code meaning:[%s], Source:[%s], Description:[%s] ",
 		szLogName, e.Error(), e.ErrorMessage(), (LPCTSTR)bstrSource, (LPCTSTR)bstrDescription);
 #ifdef _DEBUG
-	TRACE("Ado-Contreol(%s) - catch Com Error = %s\n",m_strMsgName, strRunlog_E2);
+	TRACE("Ado-Control(%s) - catch Com Error = %s\n",m_strMsgName, strRunlog_E2);
 #endif
 
 	::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
@@ -229,7 +229,7 @@ BOOL CAdo_Control::DB_Connection()
 				strRunlog_E2.Format("Call Class Name : [%s], DataBase Type : [%s], DBName : [%s], 立加 惑怕 : [沥惑]",m_strMsgName,strDBType,m_stDBInfo.szDB);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 #ifdef _DEBUG
-				TRACE("Ado-Contreol(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				//WriteLog(strRunlog_E2);
 				_WriteLog(m_strLogPath,strRunlog_E2,m_nLogFlag);
@@ -244,7 +244,7 @@ BOOL CAdo_Control::DB_Connection()
 				strRunlog_E2.Format("DataBase Type:[%s], DBName:[%s], 立加 惑怕:[角菩], Call Class Name:[%s]",strDBType,m_stDBInfo.szDB,m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-				TRACE("Ado-Contreol(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 
 				//WriteLog(strRunlog_E2);
@@ -262,7 +262,7 @@ BOOL CAdo_Control::DB_Connection()
 				strRunlog_E2.Format("Call Class Name : [%s], DataBase Type : [%s], DBName : [%s], 立加 惑怕 : [沥惑]",m_strMsgName,strDBType,m_stDBInfo.szDB);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 #ifdef _DEBUG
-				TRACE("ODBC-Contreol(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("ODBC-Control(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				//WriteLog(strRunlog_E2);
 				_WriteLog(m_strLogPath,strRunlog_E2,m_nLogFlag);
@@ -276,7 +276,7 @@ BOOL CAdo_Control::DB_Connection()
 				strRunlog_E2.Format("DataBase Type:[%s], DBName:[%s], 立加 惑怕:[角菩], Call Class Name:[%s]",strDBType,m_stDBInfo.szDB,m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-				TRACE("ODBC-Contreol(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("ODBC-Control(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 
 				//WriteLog(strRunlog_E2);
@@ -342,7 +342,7 @@ BOOL CAdo_Control::DB_Connection()
 		if(m_stDBInfo.unDBTypeID == DB_POSTGRE)
 		{
 #ifdef _DEBUG
-			TRACE("ODBC-Contreol(%s) - %s \n",m_strMsgName,strRunlog_E2);
+			TRACE("ODBC-Control(%s) - %s \n",m_strMsgName,strRunlog_E2);
 #endif
 			try
 			{
@@ -367,7 +367,7 @@ BOOL CAdo_Control::DB_Connection()
 		{
 
 #ifdef _DEBUG
-			TRACE("Ado-Contreol(%s) - %s \n",m_strMsgName,strRunlog_E2);
+			TRACE("Ado-Control(%s) - %s \n",m_strMsgName,strRunlog_E2);
 #endif
 			try
 			{
@@ -442,7 +442,7 @@ BOOL CAdo_Control::DB_Close()
 				{
 					pADO_Connect->Close();
 #ifdef _DEBUG
-					TRACE("Ado-Contreol(%s) - ADO 立加 秦力 棺 家戈 \n",m_strMsgName);
+					TRACE("Ado-Control(%s) - ADO 立加 秦力 棺 家戈 \n",m_strMsgName);
 #endif
 				}
 
@@ -523,7 +523,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 				//WriteLog(strRunlog_E2);
 #ifdef _DEBUG
-				TRACE("Ado-Contreol-Sub(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control-Sub(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				return TRUE;
 			}
@@ -533,7 +533,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 				strRunlog_E2.Format("DB-Sub 立加角菩. Call Class Name : %s",m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-				TRACE("Ado-Contreol-Sub(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control-Sub(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				return FALSE;
 			}
@@ -548,7 +548,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 					::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 					//WriteLog(strRunlog_E2);
 #ifdef _DEBUG
-					TRACE("ODBC-Contreol-Sub(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+					TRACE("ODBC-Control-Sub(%s) - DB 立加己傍. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 					m_isOdbcConnected_sub = true;
 					return TRUE;
@@ -559,7 +559,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 					strRunlog_E2.Format("DB-Sub 立加角菩. Call Class Name : %s",m_strMsgName);
 					::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-					TRACE("ODBC-Contreol-Sub(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+					TRACE("ODBC-Control-Sub(%s) - DB 立加角菩. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 					return FALSE;
 
@@ -771,7 +771,7 @@ BOOL CAdo_Control::DB_Close_Sub()
 				{
 					pADO_Connect->Close();
 #ifdef _DEBUG
-					TRACE("Ado-Contreol_Sub(%s) - ADO 立加 秦力 棺 家戈 \n",m_strMsgName);
+					TRACE("Ado-Control_Sub(%s) - ADO 立加 秦力 棺 家戈 \n",m_strMsgName);
 #endif
 				}
 

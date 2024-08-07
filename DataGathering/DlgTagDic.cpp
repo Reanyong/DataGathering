@@ -54,7 +54,6 @@ BOOL CDlgTagDic::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    // 부모 다이얼로그 비활성화
     if (m_pParent != nullptr)
     {
         m_pParent->EnableWindow(FALSE);
@@ -72,13 +71,11 @@ BOOL CDlgTagDic::OnInitDialog()
     m_DBConnect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, m_strLogTitle, g_stProjectInfo.szDTGatheringLogPath);
     m_DBConnect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
 
-    // DB 연결
     if (!m_DBConnect->DB_Connection())
     {
         AfxMessageBox(_T("DB 연결 실패"));
     }
 
-    // List Control 초기화
     m_ListCtrlInsert.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EDITLABELS);
     m_ListCtrlInsert.InsertColumn(0, _T("태그 이름"), LVCFMT_LEFT, 165);
     m_ListCtrlInsert.InsertColumn(1, _T("태그 설명"), LVCFMT_LEFT, 150);
@@ -88,7 +85,6 @@ BOOL CDlgTagDic::OnInitDialog()
     m_ListCtrlEMS.InsertColumn(0, _T("태그 이름"), LVCFMT_LEFT, 150);
     m_ListCtrlEMS.InsertColumn(1, _T("태그 설명"), LVCFMT_LEFT, 150);
 
-    // Edit Control과 Button Control 초기화
     m_EditSearch.SubclassDlgItem(IDC_EDIT_SEARCH, this);
     m_BtnSearch.SubclassDlgItem(IDC_BTN_SEARCH, this);
 
@@ -100,10 +96,8 @@ BOOL CDlgTagDic::OnInitDialog()
     comboItems.Add(_T("센서"));
     comboItems.Add(_T("적산"));
 
-    // TAG_DIC 테이블 데이터 로드
     LoadTagDic();
 
-    // EView Tag Info Load
     LoadEVTag();
 
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -117,11 +111,10 @@ void CDlgTagDic::OnCancel()
         int result = AfxMessageBox(_T("작업 한 내용은 저장되지 않습니다. 계속 하시겠습니까?"), MB_YESNO | MB_ICONQUESTION);
         if (result == IDNO)
         {
-            return; // 닫기 취소
+            return;
         }
     }
 
-    // 부모 다이얼로그 활성화
     if (m_pParent != nullptr)
     {
         m_pParent->EnableWindow(TRUE);
@@ -130,10 +123,9 @@ void CDlgTagDic::OnCancel()
     CFormView_TAGGather* pParentFormView = dynamic_cast<CFormView_TAGGather*>(m_pParent);
     if (pParentFormView)
     {
-        pParentFormView->LoadTagDic(); // 부모 폼 뷰의 LoadTagDic 함수 호출
+        pParentFormView->LoadTagDic();
     }
 
-    // DB 연결 해제
     m_DBConnect->DB_Close();
 
     CDialog::OnCancel();
@@ -146,23 +138,21 @@ void CDlgTagDic::OnClose()
         int result = AfxMessageBox(_T("작업 한 내용은 저장되지 않습니다. 계속 하시겠습니까?"), MB_YESNO | MB_ICONQUESTION);
         if (result == IDNO)
         {
-            return; // 닫기 취소
+            return;
         }
 
         CFormView_TAGGather* pParentFormView = dynamic_cast<CFormView_TAGGather*>(m_pParent);
         if (pParentFormView)
         {
-            pParentFormView->LoadTagDic(); // 부모 폼 뷰의 LoadTagDic 함수 호출
+            pParentFormView->LoadTagDic();
         }
     }
 
-    // 부모 다이얼로그 활성화
     if (m_pParent != nullptr)
     {
         m_pParent->EnableWindow(TRUE);
     }
 
-    // DB 연결 해제
     m_DBConnect->DB_Close();
 
     CDialog::OnClose();
@@ -183,7 +173,6 @@ void CDlgTagDic::OnBnClickedSave()
         strTruncateQuery = _T("TRUNCATE TABLE easy_hmi.HM_TAG_DIC");
         SQLRETURN retcode;
 
-        // PostgreSQL 연결 상태 확인 및 SQL 실행
         m_DBConnect->codbc->SQLAllocStmtHandle();
 
         retcode = m_DBConnect->SetQueryRun(strTruncateQuery);
@@ -205,7 +194,7 @@ void CDlgTagDic::OnBnClickedSave()
         CString strTagDesc = m_ListCtrlInsert.GetItemText(i, 1);
         CString strDataType = m_ListCtrlInsert.GetItemText(i, 2);
 
-        int nDataType = 0; // 기본값 설정
+        int nDataType = 0;
 
         if (strDataType == _T("순시")) { nDataType = 0; }
         else if (strDataType == _T("가동제어")) { nDataType = 1; }
@@ -220,32 +209,35 @@ void CDlgTagDic::OnBnClickedSave()
         CString strDataTypeAsString;
         strDataTypeAsString.Format(_T("%d"), nDataType);
 
-        // INSERT 쿼리 실행
-        if (m_nDBType == DB_MSSQL) {
-            // MSSQL INSERT 쿼리
+        if (m_nDBType == DB_MSSQL)
+        {
             CString strInsertQuery;
             strInsertQuery.Format(_T("INSERT INTO HM_TAG_DIC (TAG_ID, TAG_NAME, TAG_DESC, TAG_TYPE, TAG_IOMODE, INTERFACE_TYPE, DATA_TYPE, ALARM_YN, GATHER_USE_YN) VALUES ('%s', '%s', '%s', '%d', '%d', '%d', '%s', '%d', '%d')"),
                 strTagID, strTagID, strTagDesc, 3, 0, 0, strDataTypeAsString, 0, 0);
 
-            if (m_DBConnect->SetQueryRun(strInsertQuery) > 0) {
+            if (m_DBConnect->SetQueryRun(strInsertQuery) > 0)
+            {
                 strNewInserts += strTagID + _T("\n");
             }
-            else {
+            else
+            {
                 strAlreadyExists += strTagID + _T("\n");
                 hasErrorOccurred = true;
             }
         }
-        else if (m_nDBType == DB_POSTGRE) {
-            // PostgreSQL INSERT 쿼리
+        else if (m_nDBType == DB_POSTGRE)
+        {
             CString strInsertQuery;
             strInsertQuery.Format(_T("INSERT INTO easy_hmi.HM_TAG_DIC (tag_name, tag_desc, data_type, gather_use_yn) VALUES ('%s', '%s', %d, 0)"),
                 strTagID, strTagDesc, nDataType);
 
             SQLRETURN retcode = m_DBConnect->codbc->SQLExecDirect(strInsertQuery);
-            if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+            if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO)
+            {
                 strNewInserts += strTagID + _T("\n");
             }
-            else {
+            else
+            {
                 strAlreadyExists += strTagID + _T("\n");
                 hasErrorOccurred = true;
             }
@@ -259,7 +251,7 @@ void CDlgTagDic::OnBnClickedSave()
         m_NewTags.clear();              // 추가된 항목 목록 초기화
     }
 
-    LoadTagDic(); // 새로고침
+    LoadTagDic();
 }
 
 void CDlgTagDic::OnBnClickedDelete()
@@ -293,7 +285,6 @@ void CDlgTagDic::OnBnClickedDelete()
 
 void CDlgTagDic::LoadTagDic()
 {
-    // TAG_DIC 테이블에서 데이터 읽어오기
     CString strQuery;
     if (m_nDBType == DB_MSSQL)
     {
@@ -305,10 +296,8 @@ void CDlgTagDic::LoadTagDic()
             AfxMessageBox(_T("HM_TAG_DIC Table 데이터 로드 실패"));
             return;
         }
-        // List Control 초기화
         m_ListCtrlInsert.DeleteAllItems();
 
-        // 레코드셋에서 데이터 읽기
         while (!pRecordset->EndOfFile)
         {
             CString strTagID = (LPCTSTR)(_bstr_t)pRecordset->Fields->Item["TAG_ID"]->Value;
@@ -373,7 +362,7 @@ void CDlgTagDic::LoadTagDic()
         {
             retcode = m_DBConnect->codbc->SQLFetch();
             if (retcode == SQL_NO_DATA) {
-                break; // 더 이상 데이터가 없으면 루프 종료
+                break;
             }
             else if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
                 AfxMessageBox(_T("SQLFetch 에러"));
@@ -420,7 +409,6 @@ void CDlgTagDic::LoadTagDic()
             m_ListCtrlInsert.SetItemText(nItem, 2, strDataType);
             m_ListCtrlInsert.SetComboBox(nItem, 2, TRUE, &comboItems, 4, comboIndex); // 3번째 열을 콤보박스로 설정
         }
-
         //m_DBConnect->codbc->Close();
     }
 }
@@ -436,12 +424,12 @@ void CDlgTagDic::OnBnClickedMoveRight()
 
         int nItem = m_ListCtrlInsert.InsertItem(m_ListCtrlInsert.GetItemCount(), strTagID);
         m_ListCtrlInsert.SetItemText(nItem, 1, strTagDesc);
-        m_ListCtrlInsert.SetItemText(nItem, 2, _T("순시"));  // 기본값 설정
+        m_ListCtrlInsert.SetItemText(nItem, 2, _T("순시"));
 
-        m_ListCtrlInsert.SetComboBox(nItem, 2, TRUE, &comboItems, 4, 0); // 3번째 열을 콤보박스로 설정
+        m_ListCtrlInsert.SetComboBox(nItem, 2, TRUE, &comboItems, 4, 0);
 
-        m_NewTags.insert(strTagID); // 새로 추가된 항목으로 저장
-        m_bIsModified = true; // 항목이 추가되었음을 표시
+        m_NewTags.insert(strTagID);
+        m_bIsModified = true;
     }
 }
 
@@ -454,7 +442,7 @@ void CDlgTagDic::OnBnClickedMoveLeft()
         CString strTagID = m_ListCtrlInsert.GetItemText(nSelected, 0);
         m_ListCtrlInsert.DeleteItem(nSelected);
         m_NewTags.erase(strTagID);
-        m_bIsModified = true; // 항목이 삭제되었음을 표시
+        m_bIsModified = true;
         pos = m_ListCtrlInsert.GetFirstSelectedItemPosition();
     }
 }
@@ -478,7 +466,7 @@ void CDlgTagDic::OnBnClickedSearch()
 {
     CString strSearch;
     m_EditSearch.GetWindowText(strSearch);
-    strSearch.MakeUpper(); // 대소문자 구분 없이 검색하기 위해 대문자로 변환
+    strSearch.MakeUpper();
 
     m_ListCtrlEMS.SetRedraw(FALSE);
     m_ListCtrlEMS.DeleteAllItems();
@@ -493,8 +481,8 @@ void CDlgTagDic::OnBnClickedSearch()
             CString strTagName(pTagInfo->szName);
             CString strTagDesc(pTagInfo->szDesc);
 
-            strTagName.MakeUpper(); // 대소문자 구분 없이 검색하기 위해 대문자로 변환
-            strTagDesc.MakeUpper(); // 대소문자 구분 없이 검색하기 위해 대문자로 변환
+            strTagName.MakeUpper();
+            strTagDesc.MakeUpper();
 
             if (strTagName.Find(strSearch) != -1 || strTagDesc.Find(strSearch) != -1)
             {
@@ -541,10 +529,8 @@ void CDlgTagDic::OnLvnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
         int nItem = pDispInfo->item.iItem;
         int nSubItem = pDispInfo->item.iSubItem;
 
-        // 변경된 값을 리스트 컨트롤에 설정
         m_ListCtrlInsert.SetItemText(nItem, nSubItem, pDispInfo->item.pszText);
 
-        // 수정된 플래그 설정
         m_bIsModified = true;
     }
 

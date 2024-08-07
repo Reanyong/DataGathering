@@ -29,18 +29,30 @@ public:
 	afx_msg void OnBnClickedMoveLeft();					// Left Button
 	afx_msg void OnBnClickedSave();						// Save Button
 	afx_msg void OnClose();
+	afx_msg void OnComboBoxSelectionChange();           // Change ComboBox
 
 private:
 	CAdo_Control* m_DBConnect;		// DB Conneciont ADO Control
 	COdbc* codbc;					// PostgreSQL Connection
+	HWND m_WindHwnd;
 
 	int m_nDBType;					// DB_Type 지정 (MSSQL, PostgreSQL)
 	CString m_strLogTitle;			// DB_Connection Log Title 지정
 
 	CWnd* m_pParent;				// 부모 DLG
 	void LoadTagDic();				// TAGDIC 호출 함수
+	void LoadEMSChart();
+
+	void LoadComboBoxSections();
+
+	std::vector<std::pair<CString, CString>> CDlgEMSChart::GetDataForSection(const CString& section);
+	std::vector<CString> GetIniSections();
+
+	CString GetAppDirectory();       // 애플리케이션 디렉토리 가져오는 함수
+	CString GetIniFilePath();        // INI 파일 경로 가져오는 함수
 
 	CButton m_BtnSave;
+	CComboBox m_ComboSection;
 
 	CXListCtrl m_ListTAGDIC;		// HM_TAG_DIC List Ctrl
 	CXListCtrl m_ListChartSection;	// Chart Section List Ctrl
