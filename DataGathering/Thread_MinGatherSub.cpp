@@ -124,7 +124,6 @@ int CThread_MinGatherSub::Run()
 {
 	// TODO: Add your specialized code here and/or call the base class
 	CString str;
-
 	CTime currentTime;
 	CString strMsgTemp = "";
 	int nTimeTemp = -1;
@@ -138,14 +137,23 @@ int CThread_MinGatherSub::Run()
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
 	int nTotalTagCount = 0;
 
+	int targetDeleteDay = 1; // Delete 실행 날짜
+	currentTime = CTime::GetCurrentTime();
 
 	do
 	{
+		if (currentTime.GetDay() == targetDeleteDay) {
+			if (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, INFINITE) == WAIT_OBJECT_0) {
+				while (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 500) == WAIT_OBJECT_0) {
+					ShowGridDataOutPut(_T("RAW 테이블 삭제 중"), _T("RAW 테이블 데이터 청소 중입니다. 수집 대기 중..."));
+					if (m_bEndThread) break;
+				}
+				if (m_bEndThread) break;
+			}
+		}
+
 		if (m_bEndThread == TRUE)
 			break;
-
-		currentTime = CTime::GetCurrentTime();
-
 
 		if (DB_Connect->GetDB_ConnectionStatus() != 1)
 		{
@@ -863,6 +871,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 	}
 	EnterCriticalSection(&g_cs);
 	int nResult = 0;
+	static bool isTransactionActive = false;
 
 	if (m_nProduct == 1 && nDBType == DB_POSTGRE) // 20210805 ksw DB : PostgreSQL , Key : TAG_ID 예외 처리
 	{
@@ -870,6 +879,17 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 	}
 	else
 	{
+		/*
+		if (!isTransactionActive)
+		{
+			if (!DB_Connect->BeginTrans())
+			{
+				TRACE("트랜잭션 시작 실패!\n");
+				return -1;
+			}
+			isTransactionActive = true;
+		}
+		*/
 		nResult = DB_Connect->SetQueryRun(strQuery);
 	}
 
@@ -891,8 +911,31 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 
 		strRunlog_E2Log.Format("(%s):%s-%s", m_strThreadName, strRunlog_E2, strQuery);
 		SetWriteLogFile(strRunlog_E2Log);
+
+		/*
+		TRACE("쿼리 실행 실패, 롤백!\n");
+		DB_Connect->RollbackTrans();
+		isTransactionActive = false;
+		*/
+
 		Sleep(500);
 	}
+	/*
+	static int batchCount = 0;
+	batchCount++;
+	if (batchCount >= 500)
+	{
+		if (!DB_Connect->CommitTrans())
+		{
+			TRACE("트랜잭션 커밋 실패, 롤백!\n");
+			DB_Connect->RollbackTrans();
+			isTransactionActive = false;
+			return -1;
+		}
+		isTransactionActive = false;
+		batchCount = 0;
+	}
+	*/
 	LeaveCriticalSection(&g_cs);
 	return 0;
 }

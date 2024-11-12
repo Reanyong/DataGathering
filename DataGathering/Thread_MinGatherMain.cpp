@@ -347,7 +347,7 @@ int CThread_MinGatherMain::Run()
 		{
 			StartDeleteThread();
 			if (DeleteThreadCount == 5)
-				DeleteThreadCount = -1;
+				DeleteThreadCount = 0;
 		}
 		DeleteThreadCount++;
 
@@ -409,8 +409,10 @@ void CThread_MinGatherMain::StartSubThread(ST_SUBTHREAD_INFO* stSubTheradInfo, i
 			m_pThread_MinGahterSub[nSubThreadCount]->SetLPVOID(m_pCtrl);
 
 			m_pThread_MinGahterSub[nSubThreadCount]->InitInfo(stSubTheradInfo[nSubThreadCount].nThreadNumber, stSubTheradInfo[nSubThreadCount].szThreadName, stSubTheradInfo[nSubThreadCount].nProduct, stSubTheradInfo[nSubThreadCount].nInterval);
+
 			CString s;
 			int nlistCnt = m_pList_ST_TagDivisionList[nSubThreadCount]->size();
+
 			m_pThread_MinGahterSub[nSubThreadCount]->SetSTListData(m_pList_ST_TagDivisionList[nSubThreadCount]);
 			m_pThread_MinGahterSub[nSubThreadCount]->SetSubThreadPause(FALSE);
 
@@ -1068,10 +1070,6 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 			return ERROR_DB_QUERY_FAIL1;
 		}
 	}
-
-
-
-
 	return 0;
 }
 

@@ -54,4 +54,16 @@ public:
 	CMonthCalCtrl m_mccCalander;
 	afx_msg void OnBnClickedRadioBems();
 	afx_msg void OnBnClickedRadioEms();
+
+	// √ ±‚»≠ SET
+	afx_msg void OnBnClickedBtnTrcMinute();
+	afx_msg void OnBnClickedBtnTrcQuater();
+	afx_msg void OnBnClickedBtnTrcHour();
+	afx_msg void OnBnClickedBtnTrcMonth();
+
+	CAdo_Control* DB_Connect;
+	HWND m_WindHwnd;
+	int m_nDBType;
+
+	void OnTruncateTable(UINT nID);
 };

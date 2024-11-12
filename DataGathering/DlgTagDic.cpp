@@ -81,6 +81,7 @@ BOOL CDlgTagDic::OnInitDialog()
     m_ListCtrlInsert.InsertColumn(1, _T("태그 설명"), LVCFMT_LEFT, 150);
     m_ListCtrlInsert.InsertColumn(2, _T("데이터 타입"), LVCFMT_LEFT, 70);
 
+
     m_ListCtrlEMS.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
     m_ListCtrlEMS.InsertColumn(0, _T("태그 이름"), LVCFMT_LEFT, 150);
     m_ListCtrlEMS.InsertColumn(1, _T("태그 설명"), LVCFMT_LEFT, 150);
@@ -424,9 +425,9 @@ void CDlgTagDic::OnBnClickedMoveRight()
 
         int nItem = m_ListCtrlInsert.InsertItem(m_ListCtrlInsert.GetItemCount(), strTagID);
         m_ListCtrlInsert.SetItemText(nItem, 1, strTagDesc);
-        m_ListCtrlInsert.SetItemText(nItem, 2, _T("순시"));
+        m_ListCtrlInsert.SetItemText(nItem, 2, _T("적산"));
 
-        m_ListCtrlInsert.SetComboBox(nItem, 2, TRUE, &comboItems, 4, 0);
+        m_ListCtrlInsert.SetComboBox(nItem, 2, TRUE, &comboItems, 4, 3);
 
         m_NewTags.insert(strTagID);
         m_bIsModified = true;

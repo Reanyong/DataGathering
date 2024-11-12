@@ -20,7 +20,7 @@ public:
 	BOOL m_bEndThread;
 	CString m_strLogTitle;
 	int m_nDBType;
-	int tryCount;
+	bool b_ThreadTry;
 
 protected:
 	DECLARE_MESSAGE_MAP()

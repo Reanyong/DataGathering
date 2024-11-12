@@ -30,6 +30,8 @@ public:
 	afx_msg void OnBnClickedSave();						// Save Button
 	afx_msg void OnClose();
 	afx_msg void OnComboBoxSelectionChange();           // Change ComboBox
+	afx_msg void OnNMDblclkListChartSection(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnEditKillFocus();
 
 private:
 	CAdo_Control* m_DBConnect;		// DB Conneciont ADO Control
@@ -56,4 +58,11 @@ private:
 
 	CXListCtrl m_ListTAGDIC;		// HM_TAG_DIC List Ctrl
 	CXListCtrl m_ListChartSection;	// Chart Section List Ctrl
+
+	CEdit m_EditControl;
+	int m_nEditItem;
+	int m_nEditSubItem;
+
+	void StartEdit(int nItem, int nSubItem);
+	void EndEdit();
 };

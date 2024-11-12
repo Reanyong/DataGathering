@@ -117,6 +117,12 @@ public:
 	BOOL GetFieldValue(_RecordsetPtr pRecordSet,LPCTSTR lpFieldName, double& dbValue);
 	BOOL GetFieldValue(_RecordsetPtr pRecordSet,LPCTSTR lpFieldName, CString& strValue, CString strDateFormat = _T(""));
 
+	BOOL BeginTrans();
+	BOOL CommitTrans();
+	BOOL RollbackTrans();
+
+	int Truncate(CString tableName);
+
 	BOOL GetRecordCount(const CString& sql, long* count);
 	_RecordsetPtr DB_OpenRecordSet(CString strQuery);
 

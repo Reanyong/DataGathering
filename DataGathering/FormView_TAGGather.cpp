@@ -20,6 +20,7 @@ CFormView_TAGGather::CFormView_TAGGather()
 	m_strTitle = "";
 	m_pThread_MinGatherMain = NULL;
 	m_b50Check = FALSE; // 20210308 ksw 50c초 체크 변수 초기화
+	DB_Connect = NULL;
 }
 
 CFormView_TAGGather::~CFormView_TAGGather()
@@ -102,6 +103,7 @@ void CFormView_TAGGather::OnInitialUpdate()
 
 	GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(FALSE);
 	GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(FALSE);
+	GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(FALSE);
 	m_strTitle = strTitle;
 
 	m_stGatherInfo = _getInfoGatherRead(g_stProjectInfo.szProjectIniPath);
@@ -203,6 +205,7 @@ void CFormView_TAGGather::OnBnClickedButtonGatherStart()
 
 		StartThread();
 		GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(FALSE);
 
 		//SetTimer(1, 100, NULL);
 	}
@@ -214,6 +217,7 @@ void CFormView_TAGGather::OnBnClickedButtonGatherStart()
 		m_bStartRunCheck = TRUE;
 		SetTimer(2, 100, NULL);
 		GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(TRUE);
+		GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(TRUE);
 	}
 
 	Invalidate(TRUE);
@@ -394,6 +398,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 				{
 					GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("수집 정지..");
 					GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(FALSE);
+					GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(FALSE);
 					m_bStartRunCheck = FALSE;
 					StartThread();
 					LoadTagDic();
@@ -409,6 +414,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 				m_bStartRunCheck = TRUE;
 				GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(TRUE);
 				GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(TRUE);
+				GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(TRUE);
 			}
 			Invalidate(TRUE);
 		}
@@ -419,6 +425,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 
 		GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(TRUE);
 		GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(TRUE);
+		GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(TRUE);
 
 		break;
 	case 3: //시스템 자동 정지
@@ -427,6 +434,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 
 		GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(TRUE);
 		GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(TRUE);
+		GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(TRUE);
 		break;
 	case 4: // 자동시작시 다음 정분까지 대기
 
@@ -446,10 +454,12 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 				KillTimer(nIDEvent);
 				SetTimer(1,100,NULL);
 				GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(FALSE);
+				GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(FALSE);
 			}
 			else
 			{
 				GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(FALSE);
+				GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(FALSE);
 				GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText(str);
 			}
 

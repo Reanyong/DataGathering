@@ -102,19 +102,19 @@ int	CAdo_Control::GetDB_ConnectionStatus()
 	return 0;
 }
 
-void CAdo_Control::DB_SetReturnMsg(UINT MsgID,HWND Hwnd, const char* szMegName, const char* szLogPath)
+void CAdo_Control::DB_SetReturnMsg(UINT MsgID, HWND Hwnd, const char* szMegName, const char* szLogPath)
 {
 	m_Message = MsgID;
 	m_MsgHwnd = Hwnd;
 	m_strMsgName = szMegName;
 
-	char path[512] = {0,};
-	if(strlen(szLogPath) != 0)
-		m_strLogPath.Format("%s\\LOG",szLogPath);
+	char path[512] = { 0, };
+	if (strlen(szLogPath) != 0)
+		m_strLogPath.Format("%s\\LOG", szLogPath);
 	else
 	{
 		GetCurrentDirectory(sizeof(path), path);
-		m_strLogPath.Format("%s\\DB_Log",path);
+		m_strLogPath.Format("%s\\DB_Log", path);
 	}
 }
 
@@ -216,8 +216,8 @@ BOOL CAdo_Control::DB_Connection()
 			pADO_Connect->ConnectionString = soracle;
 			pADO_Connect->CursorLocation = adUseClient;
 
-			pADO_Connect->ConnectionTimeout = 5;
-			pADO_Connect->CommandTimeout = 5;
+			pADO_Connect->ConnectionTimeout = 60;
+			pADO_Connect->CommandTimeout = 120;
 
 
 			nResultADO_DB = pADO_Connect->Open(strMissing,strMissing,strMissing,-1);
@@ -512,8 +512,8 @@ BOOL CAdo_Control::DB_Connection_Sub()
 			pADO_Connect->ConnectionString = soracle;
 			pADO_Connect->CursorLocation = adUseClient;
 
-			pADO_Connect->ConnectionTimeout = 5;
-			pADO_Connect->CommandTimeout = 5;
+			pADO_Connect->ConnectionTimeout = 60;
+			pADO_Connect->CommandTimeout = 120;
 
 			nResultADO_DB = pADO_Connect->Open(strMissing,strMissing,strMissing,-1);
 
@@ -1026,7 +1026,9 @@ int CAdo_Control::SetQueryRun(CString strQuery)  //insert / Update 시만 사용
 
 	try
 	{
+
 		pRs = pADO_Connect->Execute((_bstr_t)strQuery, &RecordsAffected, adExecuteNoRecords);
+
 		if (RecordsAffected.iVal == -1)
 		{
 			CString verifyQuery;
@@ -1160,17 +1162,83 @@ BOOL CAdo_Control::GetRecordCount(const CString& sql, long* count)
 		_RecordsetPtr pRs = pADO_Connect->Execute((_bstr_t)sql, NULL, adCmdText);
 		if (!pRs->EndOfFile)
 		{
-			*count = pRs->Fields->Item[(long)0]->Value.lVal;
+			_variant_t varCount = pRs->Fields->Item[(long)0]->Value;
+			varCount.ChangeType(VT_I4); // 값을 `long`으로 변환 시도
+			*count = varCount.lVal;
 		}
 		pRs->Close();
 	}
 	catch (_com_error& e)
 	{
+		CString errorMsg;
+		errorMsg.Format(_T("Error in GetRecordCount: %s"), (LPCTSTR)e.Description());
 		Com_Error("GetRecordCount", e);
 		return FALSE;
 	}
 	return TRUE;
 }
+
+
+BOOL CAdo_Control::BeginTrans()
+{
+	try
+	{
+		if (pADO_Connect != NULL && pADO_Connect->State == adStateOpen)
+		{
+			pADO_Connect->BeginTrans(); // 트랜잭션 시작
+#ifdef _DEBUG
+			TRACE("Ado-Control(%s) - 트랜잭션 시작\n", m_strMsgName);
+#endif
+			return TRUE;
+		}
+	}
+	catch (_com_error& e)
+	{
+		Com_Error("BeginTrans", e);
+	}
+	return FALSE;
+}
+
+BOOL CAdo_Control::CommitTrans()
+{
+	try
+	{
+		if (pADO_Connect != NULL && pADO_Connect->State == adStateOpen)
+		{
+			pADO_Connect->CommitTrans(); // 트랜잭션 커밋
+#ifdef _DEBUG
+			TRACE("Ado-Control(%s) - 트랜잭션 커밋\n", m_strMsgName);
+#endif
+			return TRUE;
+		}
+	}
+	catch (_com_error& e)
+	{
+		Com_Error("CommitTrans", e);
+	}
+	return FALSE;
+}
+
+BOOL CAdo_Control::RollbackTrans()
+{
+	try
+	{
+		if (pADO_Connect != NULL && pADO_Connect->State == adStateOpen)
+		{
+			pADO_Connect->RollbackTrans(); // 트랜잭션 롤백
+#ifdef _DEBUG
+			TRACE("Ado-Control(%s) - 트랜잭션 롤백\n", m_strMsgName);
+#endif
+			return TRUE;
+		}
+	}
+	catch (_com_error& e)
+	{
+		Com_Error("RollbackTrans", e);
+	}
+	return FALSE;
+}
+
 
 _RecordsetPtr CAdo_Control::DB_OpenRecordSet(CString strQuery)
 {
@@ -1189,6 +1257,74 @@ _RecordsetPtr CAdo_Control::DB_OpenRecordSet(CString strQuery)
 		return NULL;
 	}
 }
+
+int CAdo_Control::Truncate(CString tableName)
+{
+	_CommandPtr pCommand = NULL;
+	CString strRunlog_E2 = "";
+
+	if (pADO_Connect == NULL || pADO_Connect->State != adStateOpen)
+	{
+		if (!DB_Connection())  // 연결 시도
+		{
+			AfxMessageBox("데이터베이스 연결 실패");
+			return -1;
+		}
+	}
+
+
+	try
+	{
+		// Command 객체 생성
+		HRESULT hr = pCommand.CreateInstance(__uuidof(Command));
+		if (FAILED(hr))
+		{
+			AfxMessageBox("Command 객체 생성 실패");
+			return -1;
+		}
+
+		// Connection 설정
+		pCommand->ActiveConnection = pADO_Connect;
+
+		// 트랜잭션 시작
+		if (!BeginTrans())
+		{
+			AfxMessageBox("트랜잭션 시작 실패");
+			return -1;
+		}
+
+		// TRUNCATE TABLE 쿼리 설정
+		CString truncateQuery;
+		truncateQuery.Format("TRUNCATE TABLE %s", tableName);
+		pCommand->CommandText = (_bstr_t)truncateQuery;
+		pCommand->CommandType = adCmdText;
+
+		// 쿼리 실행
+		pCommand->Execute(NULL, NULL, adExecuteNoRecords);
+
+		// 트랜잭션 커밋
+		if (!CommitTrans())
+		{
+			AfxMessageBox("트랜잭션 커밋 실패");
+			return -1;
+		}
+
+		return 1;  // 성공 시 1 반환
+	}
+	catch (_com_error& e)
+	{
+		RollbackTrans();  // 오류 시 트랜잭션 롤백
+		return Com_Error("TruncateTable", e);
+	}
+	catch (...)
+	{
+		RollbackTrans();  // 오류 시 트랜잭션 롤백
+		strRunlog_E2.Format("TRUNCATE TABLE Event Error : %s", tableName);
+		::SendMessage(m_MsgHwnd, m_Message, (long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()), DB_ERROR);
+		return -1;
+	}
+}
+
 
 CString IntToStr(int nVal)
 {

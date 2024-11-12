@@ -17,7 +17,7 @@ protected:
 public:
 	void SetOwner(CWnd* hWnd) {
 		m_pOwner = hWnd;
-	}	
+	}
 	void SetWnd(HWND hWnd) {
 		m_WindHwnd = hWnd;
 	}
@@ -47,7 +47,7 @@ protected:
 	int SetCreateXMLTagInfo(CTime currentTime,const char *szXmlSavePthe);
 protected:
 	CWnd* m_pOwner;
-	LPVOID m_pCtrl;	
+	LPVOID m_pCtrl;
 	BOOL m_bEndThread;
 	HWND m_WindHwnd;
 	int m_nTagListCount;
@@ -57,12 +57,12 @@ protected:
 	CAdo_Control *DB_Connect;
 	ST_ALLTAGValue *m_stTagValueList;
 	int m_nTagInfoListCheck;
-	
+
 	ST_ALLTAGLIST *m_pstAllTagInfoList;
-	
+
 protected:
 	virtual int Run();
-	DECLARE_MESSAGE_MAP()	
+	DECLARE_MESSAGE_MAP()
 };
 
 

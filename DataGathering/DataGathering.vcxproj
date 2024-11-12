@@ -47,8 +47,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>C:\EasyEMS\Bin\</OutDir>
     <TargetName>EVDataGathering_v2.0</TargetName>
-    <IncludePath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Include;.\DataGathering\Control_List\OdbcControl;C:\work\Xtreme ToolkitPro v19.1.0\Source;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\PostgreSQL\psqlODBC\bin;.\DataGathering\Control_List\OdbcControl;C:\work\Xtreme ToolkitPro v19.1.0\Lib\vc160;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Include;.\DataGathering\Control_List\OdbcControl;C:\work\Xtreme ToolkitPro v19.1.0\Source;C:\Program Files (x86)\Visual Leak Detector\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\PostgreSQL\psqlODBC\bin;.\DataGathering\Control_List\OdbcControl;C:\work\Xtreme ToolkitPro v19.1.0\Lib\vc160;C:\Program Files (x86)\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

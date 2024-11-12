@@ -33,12 +33,13 @@ void CDlgEMSChart::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CB_CHARTLIST, m_ComboSection);
 }
 
-
 BEGIN_MESSAGE_MAP(CDlgEMSChart, CDialog)
 	ON_BN_CLICKED(IDC_BTN_SAVE, &CDlgEMSChart::OnBnClickedSave)
 	ON_BN_CLICKED(IDC_BTN_CHART_MB_LEFT, &CDlgEMSChart::OnBnClickedMoveLeft)
 	ON_BN_CLICKED(IDC_BTN_CHART_MB_RIGHT, &CDlgEMSChart::OnBnClickedMoveRight)
 	ON_CBN_SELCHANGE(IDC_CB_CHARTLIST, &CDlgEMSChart::OnComboBoxSelectionChange)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST_CHART_SECTION, &CDlgEMSChart::OnNMDblclkListChartSection)
+	ON_EN_KILLFOCUS(1, &CDlgEMSChart::OnEditKillFocus)
 	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
@@ -50,6 +51,9 @@ BOOL CDlgEMSChart::OnInitDialog()
 	{
 		m_pParent->EnableWindow(FALSE);
 	}
+
+	m_EditControl.Create(WS_CHILD | WS_BORDER | ES_AUTOHSCROLL, CRect(0, 0, 0, 0), this, 1);
+	m_EditControl.ShowWindow(SW_HIDE);
 
 	m_strLogTitle = "EMS Chart Config";
 
@@ -69,15 +73,95 @@ BOOL CDlgEMSChart::OnInitDialog()
 	m_ListTAGDIC.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
 	m_ListTAGDIC.InsertColumn(0, _T("태그 이름"), LVCFMT_LEFT, 150);
 	m_ListTAGDIC.InsertColumn(1, _T("태그 설명"), LVCFMT_LEFT, 150);
+	m_ListTAGDIC.SetColumnWidth(1, LVSCW_AUTOSIZE_USEHEADER);
 
 	m_ListChartSection.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
 	m_ListChartSection.InsertColumn(0, _T("태그 이름"), LVCFMT_LEFT, 130);
-	m_ListChartSection.InsertColumn(1, _T("차트 설명"), LVCFMT_LEFT, 80);
+	m_ListChartSection.InsertColumn(1, _T("차트 설명"), LVCFMT_LEFT , 80);
+	m_ListChartSection.SetColumnWidth(1, LVSCW_AUTOSIZE_USEHEADER);
 
 	LoadTagDic();
 	LoadComboBoxSections();
 
 	return TRUE;
+}
+
+void CDlgEMSChart::OnNMDblclkListChartSection(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+
+	int nItem = pNMItemActivate->iItem;
+	int nSubItem = pNMItemActivate->iSubItem;
+
+	if (nItem != -1 && nSubItem == 1)
+	{
+		StartEdit(nItem, nSubItem);
+	}
+
+	*pResult = 0;
+}
+
+void CDlgEMSChart::StartEdit(int nItem, int nSubItem)
+{
+	if (nItem < 0 || nSubItem < 0) return;
+
+	m_nEditItem = nItem;
+	m_nEditSubItem = nSubItem;
+
+	CString strText = m_ListChartSection.GetItemText(nItem, nSubItem);
+
+	CRect rect;
+	m_ListChartSection.GetSubItemRect(nItem, nSubItem, LVIR_BOUNDS, rect);
+
+	CRect listRect;
+	m_ListChartSection.GetClientRect(&listRect);
+	m_ListChartSection.ClientToScreen(&rect);
+	this->ScreenToClient(&rect);
+
+	m_EditControl.SetWindowText(strText);
+	m_EditControl.MoveWindow(&rect);
+	m_EditControl.ShowWindow(SW_SHOW);
+	m_EditControl.SetFocus();
+	m_EditControl.SetSel(0, -1);
+}
+
+void CDlgEMSChart::EndEdit()
+{
+	CString strText;
+	m_EditControl.GetWindowText(strText);
+
+	m_ListChartSection.SetItemText(m_nEditItem, m_nEditSubItem, strText);
+
+	m_ListChartSection.SetItemState(m_nEditItem, 0, LVIS_SELECTED | LVIS_FOCUSED);
+
+	m_ListChartSection.SetSelectionMark(-1);
+	m_ListChartSection.RedrawItems(m_nEditItem, m_nEditItem);
+	m_ListChartSection.UpdateWindow();
+
+	m_EditControl.ShowWindow(SW_HIDE);
+
+	this->SetFocus();
+}
+
+void CDlgEMSChart::OnEditKillFocus()
+{
+	EndEdit();
+}
+
+BOOL CDlgEMSChart::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
+	{
+		EndEdit();  // Enter 입력 시 편집 종료
+		return TRUE;
+	}
+	else if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_ESCAPE)
+	{
+		m_EditControl.ShowWindow(SW_HIDE);  // Esc 입력 시 편집 취소
+		return TRUE;
+	}
+
+	return CDialog::PreTranslateMessage(pMsg);
 }
 
 void CDlgEMSChart::OnCancel()
@@ -112,7 +196,47 @@ void CDlgEMSChart::OnClose()
 
 void CDlgEMSChart::OnBnClickedSave()
 {
+	CString selectedSection;
+	m_ComboSection.GetLBText(m_ComboSection.GetCurSel(), selectedSection);
 
+	CString iniFilePath = GetIniFilePath();
+
+	for (int i = 1; ; ++i)
+	{
+		CString key;
+		key.Format(_T("%d"), i);
+
+		TCHAR buffer[256];
+		DWORD result = GetPrivateProfileString(selectedSection, key, NULL, buffer, sizeof(buffer), iniFilePath);
+
+		if (result == 0)
+		{
+			break;
+		}
+
+		WritePrivateProfileString(selectedSection, key, NULL, iniFilePath);
+	}
+
+	int itemCount = m_ListChartSection.GetItemCount();
+
+	CString cntValue;
+	cntValue.Format(_T("%d"), itemCount);
+	WritePrivateProfileString(selectedSection, _T("CNT"), cntValue, iniFilePath);
+
+	for (int i = 0; i < itemCount; ++i)
+	{
+		CString tagName = m_ListChartSection.GetItemText(i, 0);
+		CString tagDesc = m_ListChartSection.GetItemText(i, 1);
+
+		//CString value = tagName + _T(";") + tagDesc;
+		CString value;
+		value.Format(_T("'%s';%s"), tagName, tagDesc);
+
+		CString key;
+		key.Format(_T("%d"), i + 1);
+
+		WritePrivateProfileString(selectedSection, key, value, iniFilePath);
+	}
 }
 
 void CDlgEMSChart::LoadTagDic()
@@ -310,11 +434,33 @@ void CDlgEMSChart::OnBnClickedMoveRight()
 	while (pos)
 	{
 		int nSelected = m_ListTAGDIC.GetNextSelectedItem(pos);
-		CString strTagID = m_ListTAGDIC.GetItemText(nSelected, 0);
+		CString strTag = m_ListTAGDIC.GetItemText(nSelected, 0);
+		CString strTagDesc = m_ListTAGDIC.GetItemText(nSelected, 1);
 
-		int nItem = m_ListChartSection.InsertItem(m_ListChartSection.GetItemCount(), strTagID);
+		bool isDuplicate = false;
+		int itemCount = m_ListChartSection.GetItemCount();
 
-		// bool type 활용 추가 예정
+		for (int i = 0; i < itemCount; ++i)
+		{
+			CString existingTag = m_ListChartSection.GetItemText(i, 0);
+			if (strTag.CompareNoCase(existingTag) == 0)
+			{
+				isDuplicate = true;
+				break;
+			}
+		}
+
+		if (isDuplicate)
+		{
+			AfxMessageBox(_T("이미 선언되어있습니다."));
+		}
+		else
+		{
+			int nItem = m_ListChartSection.InsertItem(m_ListChartSection.GetItemCount(), strTag);	// TagID Add
+			m_ListChartSection.SetItemText(nItem, 1, strTagDesc);									// TagDesc Add
+		}
+
+
 	}
 }
 
@@ -333,9 +479,4 @@ void CDlgEMSChart::OnBnClickedMoveLeft()
 
 		// bool type 활용 추가 예정
 	}
-}
-
-BOOL CDlgEMSChart::PreTranslateMessage(MSG* pMsg)
-{
-	return CDialog::PreTranslateMessage(pMsg);
 }

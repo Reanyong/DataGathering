@@ -74,6 +74,10 @@ public:
 
 // Attributes
 public:
+	CEdit* m_pEdit;  // Edit control 포인터
+	int m_nEditItem; // 편집중인 아이템
+	int m_nEditSubItem; // 편집중인 서브 아이템
+
 
 // Operations
 public:
@@ -205,7 +209,6 @@ protected:
 	//}}AFX_MSG
 	afx_msg LRESULT OnSetFont(WPARAM hFont, LPARAM lParam);
 	afx_msg void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
-
 
 	DECLARE_MESSAGE_MAP()
 };

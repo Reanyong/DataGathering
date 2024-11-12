@@ -54,6 +54,10 @@ BEGIN_MESSAGE_MAP(CDLG_ProgramSetting, CDialogEx)
 	ON_MESSAGE(WM_ENABLECONTROL, OnEnableControl)
 	ON_BN_CLICKED(IDC_RADIO_BEMS, &CDLG_ProgramSetting::OnBnClickedRadioBems)
 	ON_BN_CLICKED(IDC_RADIO_EMS, &CDLG_ProgramSetting::OnBnClickedRadioEms)
+	ON_BN_CLICKED(IDC_BTN_TRC_MINUTE, &CDLG_ProgramSetting::OnBnClickedBtnTrcMinute)
+	ON_BN_CLICKED(IDC_BTN_TRC_QUATER, &CDLG_ProgramSetting::OnBnClickedBtnTrcQuater)
+	ON_BN_CLICKED(IDC_BTN_TRC_HOUR, &CDLG_ProgramSetting::OnBnClickedBtnTrcHour)
+	ON_BN_CLICKED(IDC_BTN_TRC_MONTH, &CDLG_ProgramSetting::OnBnClickedBtnTrcMonth)
 END_MESSAGE_MAP()
 
 
@@ -103,8 +107,9 @@ BOOL CDLG_ProgramSetting::PreTranslateMessage(MSG* pMsg)
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	if(pMsg->message == WM_KEYDOWN)
 	{
-		if(pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)
-			return TRUE;
+		if (pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)			return TRUE;
+		if (pMsg->wParam == VK_ESCAPE)										return TRUE;
+
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
@@ -122,7 +127,7 @@ void CDLG_ProgramSetting::GetGatherSetting()
 	//m_Combo_DeleteInterval.AddString("2일 유지");
 	//m_Combo_DeleteInterval.AddString("5일 유지");
 	//m_Combo_DeleteInterval.AddString("1개월 유지");
-	m_Combo_DeleteInterval.AddString("2개월 유지");
+	m_Combo_DeleteInterval.AddString("3개월 유지");
 
 	ST_GATHERINFO stGatherInfo = _getInfoGatherRead(g_stProjectInfo.szProjectIniPath);
 
@@ -561,4 +566,102 @@ LRESULT CDLG_ProgramSetting::OnEnableControl(WPARAM wParm, LPARAM lParm) //20210
 {
 	GetDlgItem(wParm)->EnableWindow(lParm);
 	return 0;
+}
+
+void CDLG_ProgramSetting::OnBnClickedBtnTrcMinute() { OnTruncateTable(IDC_BTN_TRC_MINUTE); }
+void CDLG_ProgramSetting::OnBnClickedBtnTrcQuater() { OnTruncateTable(IDC_BTN_TRC_QUATER); }
+void CDLG_ProgramSetting::OnBnClickedBtnTrcHour()   { OnTruncateTable(IDC_BTN_TRC_HOUR);   }
+void CDLG_ProgramSetting::OnBnClickedBtnTrcMonth()  { OnTruncateTable(IDC_BTN_TRC_MONTH);  }
+
+void CDLG_ProgramSetting::OnTruncateTable(UINT nID)
+{
+	CString message;
+	int result;
+
+	//DB 연결 셋팅
+	ST_DBINFO stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
+
+	m_nDBType = stDBInfo.unDBType;
+	DB_Connect = new CAdo_Control();
+	//DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, "TagMapping 설정", g_stProjectInfo.szDTGatheringLogPath);
+	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
+
+	//Source DB 정보 셋팅
+	CString TruncateTable;
+	ST_DATABASENAME  stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
+
+	switch (nID)
+	{
+	case IDC_BTN_TRC_MINUTE:
+		message = "분 테이블 데이터를 전체 초기화하시겠습니까?";
+		break;
+	case IDC_BTN_TRC_QUATER:
+		message = "15분 테이블 데이터를 전체 초기화하시겠습니까?";
+		break;
+	case IDC_BTN_TRC_HOUR:
+		message = "시간 테이블 데이터를 전체 초기화하시겠습니까?";
+		break;
+	case IDC_BTN_TRC_MONTH:
+		message = "월 테이블 데이터를 전체 초기화하시겠습니까?";
+		break;
+	default:
+		return;
+	}
+
+	result = AfxMessageBox(message, MB_YESNO | MB_ICONQUESTION);
+
+	if (result == IDYES)
+	{
+		if (stDBInfo.unDBType == DB_MSSQL) {
+			switch (nID)
+			{
+			case IDC_BTN_TRC_MINUTE:
+				TruncateTable.Format("HM_MINUTE_TREND_HISTORY");
+                message = "분 테이블이 초기화되었습니다.";
+                break;
+            case IDC_BTN_TRC_QUATER:
+				TruncateTable.Format("%s.dbo.HM_QUATER_TREND_HISTORY", stDBName.szHMIDBName);
+                message = "15분 테이블이 초기화되었습니다.";
+                break;
+            case IDC_BTN_TRC_HOUR:
+				TruncateTable.Format("%s.dbo.HM_HOUR_TREND_HISTORY", stDBName.szHMIDBName);
+                message = "시간 테이블이 초기화되었습니다.";
+                break;
+            case IDC_BTN_TRC_MONTH:
+				TruncateTable.Format("%s.dbo.HM_MONTH_TREND_HISTORY", stDBName.szHMIDBName);
+                message = "월 테이블이 초기화되었습니다.";
+				break;
+			default:
+				return;
+			}
+		}
+		else if (stDBInfo.unDBType == DB_POSTGRE) {
+			switch (nID) {
+			case IDC_BTN_TRC_MINUTE:
+				TruncateTable.Format("%s.HM_MINUTE_TREND_HISTORY", stDBName.szHMIDBName);
+				message = "분 테이블이 초기화되었습니다.";
+				break;
+			case IDC_BTN_TRC_QUATER:
+				TruncateTable.Format("%s.HM_QUATER_TREND_HISTORY", stDBName.szHMIDBName);
+				message = "15분 테이블이 초기화되었습니다.";
+				break;
+			case IDC_BTN_TRC_HOUR:
+				TruncateTable.Format("%s.HM_HOUR_TREND_HISTORY", stDBName.szHMIDBName);
+				message = "시간 테이블이 초기화되었습니다.";
+				break;
+			case IDC_BTN_TRC_MONTH:
+				TruncateTable.Format("%s.HM_MONTH_TREND_HISTORY", stDBName.szHMIDBName);
+				message = "월 테이블이 초기화되었습니다.";
+				break;
+			default:
+				return;
+			}
+		}
+
+		result = DB_Connect->Truncate(TruncateTable);
+
+		if (result > 0) { AfxMessageBox(message, MB_OK); }
+		else			{ AfxMessageBox("테이블 초기화에 실패하였습니다"); }
+	}
+	delete DB_Connect;
 }
