@@ -497,7 +497,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 			//soracle = "Provider=PGNP.1;Password="+(_bstr_t)m_stDBInfo.szPW +";Persist Security Info=True;User ID=" + (_bstr_t)m_stDBInfo.szID +
 			//	";Initial Catalog=" + (_bstr_t)m_stDBInfo.szDB+ ";Data Source=" +(_bstr_t)m_stDBInfo.szServer+ ";Extended Properties=\"SSL=prefer;\"";
 
-			soracle = "postgres";//; SERVER=192.168.123.75; PORT=5432";//; UID=postgres; PWD=ver30;";
+			soracle = "postgres";
 			pCodbc_Sub = new COdbc(soracle,(_bstr_t)m_stDBInfo.szID,(_bstr_t)m_stDBInfo.szPW);
 
 			strDBType = "POSTGRE";

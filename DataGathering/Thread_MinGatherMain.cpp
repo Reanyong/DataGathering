@@ -70,8 +70,6 @@ int CThread_MinGatherMain::ExitInstance()
 #ifdef _DEBUG
 	TRACE("ADO 立加 秦力 棺 家戈 \n");
 #endif
-
-
 	CoUninitialize();
 
 	Release_List_ST_DB_Tag(ST_LIST_RELEASE);

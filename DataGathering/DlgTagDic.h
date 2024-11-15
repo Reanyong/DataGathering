@@ -2,6 +2,7 @@
 // CDlgTagDic 대화 상자
 #include <set>
 #include "Control_List/ListBoxControl/XListCtrl.h"
+#include <thread>
 
 class CDlgTagDic : public CDialog
 {
@@ -30,13 +31,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	afx_msg void OnBnClickedMoveRight();				// Right Button
-	afx_msg void OnBnClickedMoveLeft();					// Left Button
-	afx_msg void OnBnClickedSave();					// Insert Button
-	afx_msg void OnBnClickedDelete();					// Delete Button
-	afx_msg void OnBnClickedSearch();					// Search Button
-	afx_msg void OnEnChangeEditSearch();				// Edit Ctrl 변경
+	afx_msg void OnBnClickedMoveRight();						// Right Button
+	afx_msg void OnBnClickedMoveLeft();							// Left Button
+	afx_msg void OnBnClickedSave();								// Insert Button
+	afx_msg void OnBnClickedSearchTagGroup();					// Search Button
+	afx_msg void OnEnChangeEditSearchTagGroup();				// Edit Ctrl 변경
 	afx_msg void OnLvnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnBnClickedBtnSearchDbtaggroup();				// Search DB TagGroup 기능
 	//afx_msg void OnLvnBeginlabeleditListInsert(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnClose();
 
