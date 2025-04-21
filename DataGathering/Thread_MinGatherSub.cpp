@@ -155,6 +155,8 @@ int CThread_MinGatherSub::Run()
 		if (m_bEndThread == TRUE)
 			break;
 
+		currentTime = CTime::GetCurrentTime();
+
 		if (DB_Connect->GetDB_ConnectionStatus() != 1)
 		{
 			BOOL bConnectCheck = DB_Connect->DB_Connection();

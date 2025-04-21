@@ -273,7 +273,7 @@ void CDlgEMSChart::LoadTagDic()
 	{
 		SQLRETURN retcode;
 
-		strQuery = _T("SELECT tag_name, tag_desc FROM easy_hmi.hm_tag_dic");
+		strQuery = _T("SELECT tag_name, tag_desc FROM easy_hmi.hm_tag_dic order by 1");
 
 		m_DBConnect->codbc->SQLAllocStmtHandle();
 		retcode = m_DBConnect->SetQueryRun(strQuery);

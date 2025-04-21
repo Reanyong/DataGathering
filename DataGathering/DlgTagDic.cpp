@@ -328,7 +328,7 @@ void CDlgTagDic::LoadTagDic()
     {
         SQLRETURN retcode;
 
-        strQuery = _T("SELECT tag_name, tag_desc, data_type FROM easy_hmi.hm_tag_dic");
+        strQuery = _T("SELECT tag_name, tag_desc, data_type FROM easy_hmi.hm_tag_dic ORDER BY 1");
 
         m_DBConnect->codbc->SQLAllocStmtHandle();
         retcode = m_DBConnect->SetQueryRun(strQuery);
@@ -573,7 +573,7 @@ void CDlgTagDic::OnBnClickedBtnSearchDbtaggroup()
     else if (m_nDBType == DB_POSTGRE)
     {
         SQLRETURN retcode;
-        strQuery.Format(_T("SELECT tag_name, tag_desc, data_type FROM easy_hmi.hm_tag_dic WHERE UPPER(tag_name) LIKE '%%%s%%' OR UPPER(tag_desc) LIKE '%%%s%%'"), strSearch, strSearch);
+        strQuery.Format(_T("SELECT tag_name, tag_desc, data_type FROM easy_hmi.hm_tag_dic WHERE UPPER(tag_name) LIKE '%%%s%%' OR UPPER(tag_desc) LIKE '%%%s%%' ORDER BY 1"), strSearch, strSearch);
 
         m_DBConnect->codbc->SQLAllocStmtHandle();
         retcode = m_DBConnect->SetQueryRun(strQuery);
