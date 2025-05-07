@@ -89,15 +89,17 @@ int Thread_Delete::Run()
                 dbInfoInitialized = true;
             }
 
+            /*
             // 현재 날짜 확인
             time_t now = time(0);
             tm* ltm = localtime(&now);
 
             // 매월 1일이면 자동 삭제 플래그 설정
-            if (ltm->tm_mday == 1 && !m_bDeleting && b_ThreadTry) {
+            if (ltm->tm_mday == 7 && !m_bDeleting && b_ThreadTry) {
                 m_bRequestDelete = true;
                 SysLogOutPut(m_strLogTitle, _T("매월 정기 데이터 정리 예약됨"), LOG_COLOR_BLUE);
             }
+            */
         }
 
         // 삭제 작업 요청이 있거나 자동 실행 조건이 충족되면 실행

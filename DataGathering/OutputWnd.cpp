@@ -116,7 +116,7 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		}
 		m_wndTabs.AddTab(&m_OutputList[iList], strTabName, (UINT)0);
 	}
-		
+
 	SelectTabView(0);
 
 	return 0;
@@ -162,7 +162,7 @@ void COutputWnd::InitListCtrl_SysTime(CXListCtrl &list)
 			break;
 
 		lvcolumn.mask = LVCF_FMT | LVCF_SUBITEM;
-		
+
 		/*
 		if (i == 1)
 			lvcolumn.fmt = LVCFMT_LEFT;
@@ -217,7 +217,7 @@ void COutputWnd::InitListCtrl_Common(CXListCtrl &list)
 			break;
 
 		lvcolumn.mask = LVCF_FMT | LVCF_SUBITEM;
-		
+
 		/*
 		if (i == 1)
 			lvcolumn.fmt = LVCFMT_LEFT;

@@ -137,23 +137,19 @@ int CThread_MinGatherSub::Run()
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
 	int nTotalTagCount = 0;
 
-	int targetDeleteDay = 1; // Delete 실행 날짜
-	currentTime = CTime::GetCurrentTime();
-
 	do
 	{
-		if (currentTime.GetDay() == targetDeleteDay) {
-			if (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, INFINITE) == WAIT_OBJECT_0) {
-				while (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 500) == WAIT_OBJECT_0) {
-					ShowGridDataOutPut(_T("RAW 테이블 삭제 중"), _T("RAW 테이블 데이터 청소 중입니다. 수집 대기 중..."));
-					if (m_bEndThread) break;
-				}
-				if (m_bEndThread) break;
-			}
-		}
-
 		if (m_bEndThread == TRUE)
 			break;
+
+		if (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0) == WAIT_TIMEOUT) {
+			// 이벤트가 신호 없음 상태이므로 삭제가 진행 중
+			ShowGridDataOutPut(_T("RAW 테이블 삭제 중"), _T("RAW 테이블 데이터 청소 중입니다. 수집 대기 중..."));
+
+			// 삭제 작업이 완료될 때까지 대기 (이벤트가 신호 상태가 될 때까지)
+			WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, INFINITE);
+			if (m_bEndThread) break;
+		}
 
 		currentTime = CTime::GetCurrentTime();
 

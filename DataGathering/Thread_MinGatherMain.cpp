@@ -129,6 +129,10 @@ int CThread_MinGatherMain::Run()
 	// TODO: Add your specialized code here and/or call the base class
 	int nErrorCheck = 0;
 	int nTimeTemp = -1;
+
+	int lastCheckedDay = -1;
+	int targetDeleteDay = 1;  // 매월 1일에 삭제 수행
+
 	CTime currentTime;
 
 	BOOL bSubThreadStartCheck = TRUE;
@@ -209,6 +213,32 @@ int CThread_MinGatherMain::Run()
 				break;
 
 			currentTime = CTime::GetCurrentTime();
+
+			// 매월 1일인지 확인 (하루에 한 번만 체크하도록)
+			if (currentTime.GetDay() == targetDeleteDay && lastCheckedDay != targetDeleteDay) {
+				lastCheckedDay = targetDeleteDay;
+
+				// Delete 스레드가 실행 중인지 확인
+				if (m_pThread_Delete != NULL) {
+					// 이미 생성되어 있다면 삭제 요청
+					m_pThread_Delete->RequestDeleteData();
+					SysLogOutPut(m_strLogTitle, _T("매월 정기 데이터 삭제 요청됨"), LOG_COLOR_BLUE);
+				}
+				else {
+					// Delete 스레드 생성 및 시작
+					StartDeleteThread();
+					if (m_pThread_Delete != NULL) {
+						m_pThread_Delete->RequestDeleteData();
+						SysLogOutPut(m_strLogTitle, _T("매월 정기 데이터 삭제 요청됨"), LOG_COLOR_BLUE);
+					}
+				}
+			}
+			else if (currentTime.GetDay() != targetDeleteDay) {
+				// 1일이 아닌 경우 다시 체크할 수 있도록 설정
+				lastCheckedDay = -1;
+			}
+
+
 
 			if ((currentTime.GetMinute() % 1) != 0 || nTimeTemp == currentTime.GetMinute()) // 20210831 ksw
 			{
@@ -341,6 +371,7 @@ int CThread_MinGatherMain::Run()
 		TRACE("Delete Thread Check...\n");
 #endif
 
+		/*
 		if (DeleteThreadCount == 0 || DeleteThreadCount == 5)
 		{
 			StartDeleteThread();
@@ -348,6 +379,7 @@ int CThread_MinGatherMain::Run()
 				DeleteThreadCount = 0;
 		}
 		DeleteThreadCount++;
+		*/
 
 	} while (!m_bEndThread);
 
