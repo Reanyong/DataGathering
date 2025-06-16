@@ -1,4 +1,4 @@
-// Thread_MinData.cpp : implementation file
+ï»¿// Thread_MinData.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -7,12 +7,12 @@
 #include "FormView_TAGGather.h"
 
 /*
-//20200225 ³ªÁ¤È£ ¸Ş¸ğ¸® ´©¼ö Å×½ºÆ®
+//20200225 ë‚˜ì •í˜¸ ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ í…ŒìŠ¤íŠ¸
 #include <crtdbg.h>
 #if _DEBUG
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #define malloc(s) _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
-#endif // ¸îÇà¿¡¼­ ¸Ş¸ğ¸® ´©¼ö°¡ ³ª´ÂÁö ¾Ë·ÁÁÜ.
+#endif // ëª‡í–‰ì—ì„œ ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ê°€ ë‚˜ëŠ”ì§€ ì•Œë ¤ì¤Œ.
 */
 
 #ifdef _DEBUG
@@ -32,7 +32,7 @@ CThread_MinGatherSub::CThread_MinGatherSub()
 	DB_Connect = NULL;
 
 	m_List_ST_Tag = NULL;
-	//m_List_ST_Tag = new std::list<ST_TagInfoList>;// 20210310 ksw ÁÖ¼®
+	//m_List_ST_Tag = new std::list<ST_TagInfoList>;// 20210310 ksw ì£¼ì„
 
 	m_bSubThreadPause = TRUE;
 	m_bButtonStop = FALSE;
@@ -42,9 +42,9 @@ CThread_MinGatherSub::CThread_MinGatherSub()
 
 CThread_MinGatherSub::~CThread_MinGatherSub()
 {
-	//20200225 ³ªÁ¤È£ ¼öÁ¤ ¸Ş¸ğ¸® ´©¼ö Ã¼Å©
+	//20200225 ë‚˜ì •í˜¸ ìˆ˜ì • ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ì²´í¬
 	//_CrtSetBreakAlloc(24496);
-	//_CrtDumpMemoryLeaks(); // ¸Ş¸ğ¸® ´©¼ö Ã¼Å©
+	//_CrtDumpMemoryLeaks(); // ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ì²´í¬
 
 
 }
@@ -52,14 +52,14 @@ CThread_MinGatherSub::~CThread_MinGatherSub()
 BOOL CThread_MinGatherSub::InitInstance()
 {
 	// TODO:  perform and per-thread initialization here
-	//CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	//CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_MinGatherSub::ExitInstance()
 {
 	// TODO:  perform any per-thread cleanup here
-	//_WriteLogFile(g_stProjectInfo.szDTGatheringLogPath,"¸Ş¸ğ¸®´©¼öLog","SubTread ExitInstance");
+	//_WriteLogFile(g_stProjectInfo.szDTGatheringLogPath,"ë©”ëª¨ë¦¬ëˆ„ìˆ˜Log","SubTread ExitInstance");
 	if (DB_Connect != NULL)
 	{
 		if (DB_Connect->GetDB_ConnectionStatus() == 1)
@@ -137,19 +137,48 @@ int CThread_MinGatherSub::Run()
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
 	int nTotalTagCount = 0;
 
-	do
-	{
-		if (m_bEndThread == TRUE)
-			break;
+    do
+    {
+        if (m_bEndThread == TRUE)
+            break;
 
-		if (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0) == WAIT_TIMEOUT) {
-			// ÀÌº¥Æ®°¡ ½ÅÈ£ ¾øÀ½ »óÅÂÀÌ¹Ç·Î »èÁ¦°¡ ÁøÇà Áß
-			ShowGridDataOutPut(_T("RAW Å×ÀÌºí »èÁ¦ Áß"), _T("RAW Å×ÀÌºí µ¥ÀÌÅÍ Ã»¼Ò ÁßÀÔ´Ï´Ù. ¼öÁı ´ë±â Áß..."));
+        // ì´ë²¤íŠ¸ ëŒ€ê¸° ì‹œê°„ ì œí•œ - INFINITE ëŒ€ì‹  íƒ€ì„ì•„ì›ƒ ì‚¬ìš©
+        DWORD waitResult = WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0);
+        if (waitResult == WAIT_TIMEOUT) {
+            // ì‚­ì œ ì‘ì—…ì´ ì§„í–‰ ì¤‘ì„
+            ShowGridDataOutPut(_T("RAW í…Œì´ë¸” ì‚­ì œ ì¤‘"), _T("RAW í…Œì´ë¸” ë°ì´í„° ì²­ì†Œ ì¤‘ì…ë‹ˆë‹¤. ìˆ˜ì§‘ ëŒ€ê¸° ì¤‘..."));
 
-			// »èÁ¦ ÀÛ¾÷ÀÌ ¿Ï·áµÉ ¶§±îÁö ´ë±â (ÀÌº¥Æ®°¡ ½ÅÈ£ »óÅÂ°¡ µÉ ¶§±îÁö)
-			WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, INFINITE);
-			if (m_bEndThread) break;
-		}
+            // ë¬´í•œ ëŒ€ê¸° ëŒ€ì‹  ìµœëŒ€ 30ì´ˆê¹Œì§€ë§Œ ëŒ€ê¸°
+            DWORD maxWaitTime = 30000; // 30ì´ˆ
+            DWORD startTime = GetTickCount();
+
+            while ((GetTickCount() - startTime) < maxWaitTime) {
+                if (m_bEndThread) break;
+
+                // 100msë§ˆë‹¤ ì´ë²¤íŠ¸ ìƒíƒœ í™•ì¸
+                DWORD eventStatus = WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 100);
+                if (eventStatus == WAIT_OBJECT_0) {
+                    // ì‚­ì œ ì‘ì—… ì™„ë£Œë¨
+                    break;
+                }
+
+                // ìŠ¤ë ˆë“œ ì¢…ë£Œ ì‹ í˜¸ í™•ì¸
+                if (m_bEndThread) break;
+            }
+
+            // 30ì´ˆ ê²½ê³¼ í›„ì—ë„ ì´ë²¤íŠ¸ê°€ ì‹ í˜¸ ìƒíƒœê°€ ë˜ì§€ ì•Šìœ¼ë©´ ê°•ì œë¡œ ì§„í–‰
+            if ((GetTickCount() - startTime) >= maxWaitTime) {
+                CString timeoutMsg = _T("ì‚­ì œ ëŒ€ê¸° ì‹œê°„ ì´ˆê³¼ - ê°•ì œë¡œ ìˆ˜ì§‘ ì‘ì—… ì¬ê°œ");
+                ShowGridDataOutPut(_T("ëŒ€ê¸° ì‹œê°„ ì´ˆê³¼"), timeoutMsg);
+                SetWriteLogFile(timeoutMsg + " - " + m_strThreadName);
+
+                // ì´ë²¤íŠ¸ ìƒíƒœë¥¼ ê°•ì œë¡œ ì‹ í˜¸ ìƒíƒœë¡œ ì„¤ì •
+                g_DeleteInProgressEvent.SetEvent();
+            }
+
+            if (m_bEndThread) break;
+        }
+
 
 		currentTime = CTime::GetCurrentTime();
 
@@ -173,7 +202,7 @@ int CThread_MinGatherSub::Run()
 			//if((currentTime.GetMinute() % 1) != 0 || nTimeTemp == currentTime.GetMinute())
 			if (currentTime.GetMinute() - nTimeTemp < 0) nTimeTemp = -1;
 
-			if ((currentTime.GetMinute() - nTimeTemp) < (m_nInterval + 1) || nTimeTemp == currentTime.GetMinute()) // 20210831 ksw ÁÖ±â Á¶Àı ¿É¼Ç Ãß°¡
+			if ((currentTime.GetMinute() - nTimeTemp) < (m_nInterval + 1) || nTimeTemp == currentTime.GetMinute()) // 20210831 ksw ì£¼ê¸° ì¡°ì ˆ ì˜µì…˜ ì¶”ê°€
 			{
 				Sleep(500);
 				continue;
@@ -209,7 +238,7 @@ int CThread_MinGatherSub::Run()
 					continue;
 				}
 
-				if (strValue.Find("[Lower Val!!]", 0) > -1) // 2020830 ksw ³Ê¹« ³·Àº À½¼ö°ª ¿¹¿Ü
+				if (strValue.Find("[Lower Val!!]", 0) > -1) // 2020830 ksw ë„ˆë¬´ ë‚®ì€ ìŒìˆ˜ê°’ ì˜ˆì™¸
 				{
 					strValue.Replace("[Lower Val!!] ", "");
 					strMsgTemp.Format("TagName : %s / Value : %s", iter->szTAG_Name, strValue);
@@ -228,7 +257,7 @@ int CThread_MinGatherSub::Run()
 
 				if (strValue != "-")
 				{
-					int nRowCount; //20210407 ksw Á¦Ç°ºĞ±â
+					int nRowCount; //20210407 ksw ì œí’ˆë¶„ê¸°
 
 					if (m_nProduct == 0)
 						nRowCount = GetMinRegCheck(iter->szTAG_Name, currentTime, stDBName.szHMIDBName, stDBInfo.unDBType);
@@ -255,10 +284,10 @@ int CThread_MinGatherSub::Run()
 			CTime NowTime = CTime::GetCurrentTime();
 			strMsgTemp.Format("Update Time : End Time (%s : %s)", currentTime.Format("%H:%M:%S"), NowTime.Format("%H:%M:%S"));
 #ifdef _DEBUG
-			TRACE("MSG(%s) - Ã³¸® °æ°ú (%s) \n", m_strThreadName, strMsgTemp);
+			TRACE("MSG(%s) - ì²˜ë¦¬ ê²½ê³¼ (%s) \n", m_strThreadName, strMsgTemp);
 #endif
-			//LogHistory("ºĞµ¥ÀÌÅÍ Ã³¸®", strMsgTemp, LOG_COLOR_RED);
-			ShowGridDataOutPut("Á¤»ó", strMsgTemp);
+			//LogHistory("ë¶„ë°ì´í„° ì²˜ë¦¬", strMsgTemp, LOG_COLOR_RED);
+			ShowGridDataOutPut("ì •ìƒ", strMsgTemp);
 
 		}
 		catch (int exp)
@@ -273,7 +302,7 @@ int CThread_MinGatherSub::Run()
 			{
 				LogHistory("Lower Value!!", strMsgTemp, LOG_COLOR_RED);
 
-				ShowGridDataOutPut("À½¼ö ¹üÀ§ Warnning", "¹üÀ§ Warnning!!");
+				ShowGridDataOutPut("ìŒìˆ˜ ë²”ìœ„ Warnning", "ë²”ìœ„ Warnning!!");
 				_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strLogTitle, LOG_COLOR_RED, m_strThreadName + " -> " + strMsgTemp);
 				CString strRunlog_E2Log;
 				strRunlog_E2Log.Format("(%s):%s", m_strThreadName, strMsgTemp);
@@ -299,7 +328,7 @@ int CThread_MinGatherSub::Run()
 	TRACE("MSG(%s) - Thread End.. \n", m_strThreadName);
 #endif
 	if (m_bButtonStop == TRUE)
-		_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strThreadName, USER_COLOR_BLUE, "Message : [ÇÁ·Î¼¼¼­ Á¾·á]");
+		_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strThreadName, USER_COLOR_BLUE, "Message : [í”„ë¡œì„¸ì„œ ì¢…ë£Œ]");
 
 	PostThreadMessage(WM_QUIT, 0, 0);
 	return CWinThread::Run();
@@ -328,23 +357,23 @@ CString CThread_MinGatherSub::GetTagValue(CString strTagName, int nTagTyp)
 
 	if (TYPE_DI == pTagInfo->nTagType)
 	{
-		EV_GetDiData(pTagInfo->nStnPos, pTagInfo->nTagPos, &byValue); //ÅÂ±× ±×·ì À§Ä¡, DIÅÂ±× À§Ä¡·Î Data°ª ÃßÃâ
+		EV_GetDiData(pTagInfo->nStnPos, pTagInfo->nTagPos, &byValue); //íƒœê·¸ ê·¸ë£¹ ìœ„ì¹˜, DIíƒœê·¸ ìœ„ì¹˜ë¡œ Dataê°’ ì¶”ì¶œ
 		strValue.Format("%d", byValue);
 		if ((atoi(strValue) != 0) && (atoi(strValue) != 1))
 			strValue = "-";
 	}
 	else if (TYPE_AI == pTagInfo->nTagType)
 	{
-		EV_GetAiData(pTagInfo->nStnPos, pTagInfo->nTagPos, &dValue); //ÅÂ±× ±×·ì À§Ä¡, AIÅÂ±× À§Ä¡·Î Data°ª ÃßÃâ
+		EV_GetAiData(pTagInfo->nStnPos, pTagInfo->nTagPos, &dValue); //íƒœê·¸ ê·¸ë£¹ ìœ„ì¹˜, AIíƒœê·¸ ìœ„ì¹˜ë¡œ Dataê°’ ì¶”ì¶œ
 		strValue.Format("%0.4f", dValue);
 		if (strValue == "1.#INF")
 			strValue = "0";
 
-		if (strValue.Find("-", 0) > -1)// 20210830 ksw 9ÀÚ¸® ÀÌ»ó À½¼ö°ª Á¦ÇÑ
+		if (strValue.Find("-", 0) > -1)// 20210830 ksw 9ìë¦¬ ì´ìƒ ìŒìˆ˜ê°’ ì œí•œ
 		{
 			CString strTmp = strValue;
 			strTmp = strTmp.Mid(1, strTmp.GetLength());
-			int nFind = strTmp.Find('.', 0); // 20210924 ksw ¼Ò¼öÁ¡ Ã³¸®..
+			int nFind = strTmp.Find('.', 0); // 20210924 ksw ì†Œìˆ˜ì  ì²˜ë¦¬..
 
 			if (nFind > -1)
 				strTmp = strTmp.Left(nFind);
@@ -393,8 +422,8 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 		else
 			strDBName.Format("HM_MINUTE_TREND_HISTORY");
 	}
-	//20200212 jsh : postgre Ãß°¡
-	else if (nDBType == DB_POSTGRE) //20210702 ksw Á¶È¸ Å×ÀÌºí ¼öÁ¤
+	//20200212 jsh : postgre ì¶”ê°€
+	else if (nDBType == DB_POSTGRE) //20210702 ksw ì¡°íšŒ í…Œì´ë¸” ìˆ˜ì •
 	{
 		if (strlen(szDBName) > 1)
 			strDBName.Format("%s.HM_MINUTE_TREND_HISTORY", szDBName);
@@ -410,8 +439,8 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 	}
 
 
-	//20200220 ³ªÁ¤È£ ¼öÁ¤ TAG_ID -> TAG_NAME º¯°æ
-	//20210407 ksw Á¦Ç°ºĞ±â
+	//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • TAG_ID -> TAG_NAME ë³€ê²½
+	//20210407 ksw ì œí’ˆë¶„ê¸°
 	if (m_nProduct == 1)
 	{
 		strQuery.Format("SELECT COUNT(TAG_ID) as cnt FROM %s WHERE RECORD_DATE ='%s' AND RECORD_TIME =%s AND TAG_ID ='%s'",
@@ -427,7 +456,7 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 
 	//SetWriteLogFile(strQuery); // ksw
 
-	//20200220 ³ªÁ¤È£ ¼öÁ¤ PostgreSQL odbc ºÎºĞ Ãß°¡
+	//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • PostgreSQL odbc ë¶€ë¶„ ì¶”ê°€
 	if (nDBType == DB_POSTGRE)
 	{
 		try
@@ -497,7 +526,7 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 				int nResult = DB_Connect->DB_ReConnection();
 				if (nResult == 0)
 				{
-					strRunlog_E2.Format("ESS-Schedule - DB Á¢¼Ó ½ÇÆĞ!");
+					strRunlog_E2.Format("ESS-Schedule - DB ì ‘ì† ì‹¤íŒ¨!");
 					LogHistory(strMSGTitle, strRunlog_E2, LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetSchedule()/catch com error - %s\n", strRunlog_E2);
@@ -521,11 +550,11 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 				pRs = NULL;
 			}
 
-			strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s", strQuery);
+			strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s", strQuery);
 			LogHistory(strMSGTitle, strRunlog_E2, LOG_COLOR_RED);
 			ShowGridDataOutPut("catch", strRunlog_E2);
 
-			strRunlog_E2.Format("%s:%s - SELECT ½ÇÆĞ Event Error : %s", m_strThreadName, strMSGTitle, strQuery);
+			strRunlog_E2.Format("%s:%s - SELECT ì‹¤íŒ¨ Event Error : %s", m_strThreadName, strMSGTitle, strQuery);
 			SetWriteLogFile(strRunlog_E2);
 			return ERROR_DB_QUERY_FAIL1;
 		}
@@ -579,7 +608,7 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 				int nResult = DB_Connect->DB_ReConnection();
 				if (nResult == 0)
 				{
-					strRunlog_E2.Format("ESS-Schedule - DB Á¢¼Ó ½ÇÆĞ!");
+					strRunlog_E2.Format("ESS-Schedule - DB ì ‘ì† ì‹¤íŒ¨!");
 					LogHistory(strMSGTitle, strRunlog_E2, LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetSchedule()/catch com error - %s\n", strRunlog_E2);
@@ -598,11 +627,11 @@ int CThread_MinGatherSub::GetMinRegCheck(CString strTagName, CTime currentTime, 
 				pRs = NULL;
 			}
 
-			strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s", strQuery);
+			strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s", strQuery);
 			LogHistory(strMSGTitle, strRunlog_E2, LOG_COLOR_RED);
 			ShowGridDataOutPut("catch", strRunlog_E2);
 
-			strRunlog_E2.Format("%s:%s - SELECT ½ÇÆĞ Event Error : %s", m_strThreadName, strMSGTitle, strQuery);
+			strRunlog_E2.Format("%s:%s - SELECT ì‹¤íŒ¨ Event Error : %s", m_strThreadName, strMSGTitle, strQuery);
 			SetWriteLogFile(strRunlog_E2);
 			return ERROR_DB_QUERY_FAIL1;
 		}
@@ -633,8 +662,8 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 		else
 			strDBName.Format("HM_MINUTE_TREND_HISTORY");
 	}
-	//20200212 jsh : postgre Ãß°¡
-	else if (nDBType == DB_POSTGRE) //20210702 ksw Á¶È¸ Å×ÀÌºí ¼öÁ¤
+	//20200212 jsh : postgre ì¶”ê°€
+	else if (nDBType == DB_POSTGRE) //20210702 ksw ì¡°íšŒ í…Œì´ë¸” ìˆ˜ì •
 	{
 		if (strlen(szDBName) > 1)
 			strDBName.Format("%s.HM_MINUTE_TREND_HISTORY", szDBName);
@@ -648,11 +677,11 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 		else
 			strDBName.Format("HM_MINUTE_TREND_HISTORY");
 	}
-	// 20210407 ksw Á¦Ç° ºĞ±â
+	// 20210407 ksw ì œí’ˆ ë¶„ê¸°
 	////////////////////
 	if (nQueryType == QUERY_TYPE_INSERT)
 	{
-		if (nDBType == DB_POSTGRE) //20210310 ksw DBºĞ±â
+		if (nDBType == DB_POSTGRE) //20210310 ksw DBë¶„ê¸°
 		{
 			strQuery.Format("INSERT INTO %s(GROUP_NAME, TAG_NAME, RECORD_DATE, RECORD_TIME,T%s ) "
 				" VALUES ('%s','%s','%s',%s,%s)",
@@ -662,8 +691,8 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 			TRACE("MSG(%s) %s(INSERT)  = %s\n", m_strThreadName, strDBName, strQuery);
 #endif
 		}
-		else //20210310 ksw DBºĞ±â
-		{//20210310 ksw Á¦Ç° ºĞ±â Ãß°¡
+		else //20210310 ksw DBë¶„ê¸°
+		{//20210310 ksw ì œí’ˆ ë¶„ê¸° ì¶”ê°€
 			if (m_nProduct == 0) //BEMS
 			{
 				strQuery.Format("INSERT INTO %s(TAG_NAME, RECORD_DATE, RECORD_TIME,T%s ) "
@@ -684,8 +713,8 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 	}
 	else
 	{
-		// 20210407 ksw Á¦Ç° ºĞ±â
-		if (nDBType == DB_POSTGRE) //20210310 ksw DBºĞ±â
+		// 20210407 ksw ì œí’ˆ ë¶„ê¸°
+		if (nDBType == DB_POSTGRE) //20210310 ksw DBë¶„ê¸°
 		{
 			strQuery.Format("UPDATE %s SET T%s = %s "
 				" WHERE TAG_NAME = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %s",
@@ -695,7 +724,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 			TRACE("MSG(%s) %s(UPDATE)  = %s\n", m_strThreadName, strDBName, strQuery);
 #endif
 		}
-		else //20210310 ksw DBºĞ±â
+		else //20210310 ksw DBë¶„ê¸°
 		{
 			if (m_nProduct == 0)
 			{
@@ -720,7 +749,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 
 //	if(nQueryType == QUERY_TYPE_INSERT)
 //	{
-//		//20200220 ³ªÁ¤È£ ¼öÁ¤ Coloum º¯°æÀ¸·Î ÀÎÇÑ TAG_ID »èÁ¦
+//		//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • Coloum ë³€ê²½ìœ¼ë¡œ ì¸í•œ TAG_ID ì‚­ì œ
 //		strQuery.Format("INSERT INTO %s(GROUP_NAME, TAG_NAME, RECORD_DATE, RECORD_TIME,T%s ) "
 //			" VALUES ('%s','%s','%s',%s,%s)",
 //			strDBName,strMin,
@@ -748,15 +777,15 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, ST_TagInfoLis
 #ifdef _DEBUG
 		TRACE("MSG(%s) %s Query-Error (%s) \n", m_strThreadName, strDBName, strQuery);
 #endif
-		strRunlog_E2.Format("»ı¼º ½ÇÆĞ (%s)", strQuery);
+		strRunlog_E2.Format("ìƒì„± ì‹¤íŒ¨ (%s)", strQuery);
 
 		LogHistory("SetTagValue", strRunlog_E2, LOG_COLOR_RED);
 		if (nQueryType == QUERY_TYPE_INSERT)
-			strRunlog_E2.Format("Insert ½ÇÆĞ Log ÀúÀå");
+			strRunlog_E2.Format("Insert ì‹¤íŒ¨ Log ì €ì¥");
 		else
-			strRunlog_E2.Format("Update ½ÇÆĞ Log ÀúÀå");
+			strRunlog_E2.Format("Update ì‹¤íŒ¨ Log ì €ì¥");
 
-		ShowGridDataOutPut("»ı¼º Error", strRunlog_E2);
+		ShowGridDataOutPut("ìƒì„± Error", strRunlog_E2);
 
 		strRunlog_E2Log.Format("(%s):%s-%s", m_strThreadName, strRunlog_E2, strQuery);
 		SetWriteLogFile(strRunlog_E2Log);
@@ -802,7 +831,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 
 	if (nQueryType == QUERY_TYPE_INSERT)
 	{
-		if (nDBType == DB_POSTGRE) //20210310 ksw DBºĞ±â
+		if (nDBType == DB_POSTGRE) //20210310 ksw DBë¶„ê¸°
 		{
 			strQuery.Format("INSERT INTO %s(GROUP_NAME, TAG_NAME, RECORD_DATE, RECORD_TIME,T%s ) "
 				" VALUES ('%s','%s','%s',%s,%s)",
@@ -812,8 +841,8 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 			TRACE("MSG(%s) %s(INSERT)  = %s\n", m_strThreadName, strDBName, strQuery);
 #endif
 		}
-		else //20210310 ksw DBºĞ±â
-		{//20210310 ksw Á¦Ç° ºĞ±â Ãß°¡
+		else //20210310 ksw DBë¶„ê¸°
+		{//20210310 ksw ì œí’ˆ ë¶„ê¸° ì¶”ê°€
 			if (m_nProduct == 0) //BEMS
 			{
 				strQuery.Format("INSERT INTO %s(TAG_NAME, RECORD_DATE, RECORD_TIME,T%s ) "
@@ -835,8 +864,8 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 
 	else
 	{
-		// 20210407 ksw Á¦Ç° ºĞ±â
-		if (nDBType == DB_POSTGRE) //20210310 ksw DBºĞ±â
+		// 20210407 ksw ì œí’ˆ ë¶„ê¸°
+		if (nDBType == DB_POSTGRE) //20210310 ksw DBë¶„ê¸°
 		{
 			strQuery.Format("UPDATE %s SET T%s = %s "
 				" WHERE TAG_NAME = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %s",
@@ -846,7 +875,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 			TRACE("MSG(%s) %s(UPDATE)  = %s\n", m_strThreadName, strDBName, strQuery);
 #endif
 		}
-		else //20210310 ksw DBºĞ±â
+		else //20210310 ksw DBë¶„ê¸°
 		{
 			if (m_nProduct == 0)
 			{
@@ -871,7 +900,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 	int nResult = 0;
 	static bool isTransactionActive = false;
 
-	if (m_nProduct == 1 && nDBType == DB_POSTGRE) // 20210805 ksw DB : PostgreSQL , Key : TAG_ID ¿¹¿Ü Ã³¸®
+	if (m_nProduct == 1 && nDBType == DB_POSTGRE) // 20210805 ksw DB : PostgreSQL , Key : TAG_ID ì˜ˆì™¸ ì²˜ë¦¬
 	{
 		nResult = -1;
 	}
@@ -882,7 +911,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 		{
 			if (!DB_Connect->BeginTrans())
 			{
-				TRACE("Æ®·£Àè¼Ç ½ÃÀÛ ½ÇÆĞ!\n");
+				TRACE("íŠ¸ëœì­ì…˜ ì‹œì‘ ì‹¤íŒ¨!\n");
 				return -1;
 			}
 			isTransactionActive = true;
@@ -897,21 +926,21 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 #ifdef _DEBUG
 		TRACE("MSG(%s) %s Query-Error (%s) \n", m_strThreadName, strDBName, strQuery);
 #endif
-		strRunlog_E2.Format("»ı¼º ½ÇÆĞ (%s)", strQuery);
+		strRunlog_E2.Format("ìƒì„± ì‹¤íŒ¨ (%s)", strQuery);
 
 		LogHistory("SetTagValue", strRunlog_E2, LOG_COLOR_RED);
 		if (nQueryType == QUERY_TYPE_INSERT)
-			strRunlog_E2.Format("Insert ½ÇÆĞ Log ÀúÀå");
+			strRunlog_E2.Format("Insert ì‹¤íŒ¨ Log ì €ì¥");
 		else
-			strRunlog_E2.Format("Update ½ÇÆĞ Log ÀúÀå");
+			strRunlog_E2.Format("Update ì‹¤íŒ¨ Log ì €ì¥");
 
-		ShowGridDataOutPut("»ı¼º Error", strRunlog_E2);
+		ShowGridDataOutPut("ìƒì„± Error", strRunlog_E2);
 
 		strRunlog_E2Log.Format("(%s):%s-%s", m_strThreadName, strRunlog_E2, strQuery);
 		SetWriteLogFile(strRunlog_E2Log);
 
 		/*
-		TRACE("Äõ¸® ½ÇÇà ½ÇÆĞ, ·Ñ¹é!\n");
+		TRACE("ì¿¼ë¦¬ ì‹¤í–‰ ì‹¤íŒ¨, ë¡¤ë°±!\n");
 		DB_Connect->RollbackTrans();
 		isTransactionActive = false;
 		*/
@@ -925,7 +954,7 @@ int CThread_MinGatherSub::SetTagValue(int nQueryType, int nDBType, CString strTa
 	{
 		if (!DB_Connect->CommitTrans())
 		{
-			TRACE("Æ®·£Àè¼Ç Ä¿¹Ô ½ÇÆĞ, ·Ñ¹é!\n");
+			TRACE("íŠ¸ëœì­ì…˜ ì»¤ë°‹ ì‹¤íŒ¨, ë¡¤ë°±!\n");
 			DB_Connect->RollbackTrans();
 			isTransactionActive = false;
 			return -1;

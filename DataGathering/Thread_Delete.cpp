@@ -56,6 +56,9 @@ Thread_Delete::~Thread_Delete()
 BOOL Thread_Delete::InitInstance()
 {
     CoInitialize(NULL);
+
+    g_DeleteInProgressEvent.SetEvent();
+
     // 로그 초기화
     CString logMessage = _T("Delete Thread 초기화됨");
     _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "DeleteLog", logMessage);
@@ -87,25 +90,33 @@ int Thread_Delete::ExitInstance()
 BEGIN_MESSAGE_MAP(Thread_Delete, CWinThread)
 END_MESSAGE_MAP()
 
+// Thread_Delete.cpp의 Run() 메서드에서 이벤트 관리 부분 수정
+
 int Thread_Delete::Run()
 {
-    // 초기 이벤트 상태는 신호 상태로 설정 (다른 스레드가 대기하지 않도록)
+    // 초기 이벤트 상태 확인 및 설정
+    DWORD eventStatus = WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0);
+    if (eventStatus == WAIT_TIMEOUT) {
+        g_DeleteInProgressEvent.SetEvent();
+        WriteLog(_T("시작 시 이벤트 신호 없음 상태 발견 - 신호 상태로 복구"));
+    }
+
     SysLogOutPut(m_strLogTitle, _T("정기 데이터 삭제 스레드 시작됨"), LOG_COLOR_BLUE);
 
-    // DB 연결 정보 미리 준비
     ST_DBINFO stDBInfo;
     ST_DATABASENAME stDBName;
     bool dbInfoInitialized = false;
 
-    int lastCheckedDay = -1;  // 마지막으로 확인한 날짜 (초기값 -1)
-    int targetDeleteDay = 1;  // 매월 20일에 삭제 실행
+    int lastCheckedDay = -1;
+    int lastExecutedMonth = -1;  // 마지막으로 삭제 작업을 실행한 월 추가
+    int targetDeleteDay = 1;     // 매월 1일에 삭제 실행
 
     DWORD checkInterval = 60000; // 1분마다 정기 검사
     DWORD lastPeriodicCheck = GetTickCount();
 
     while (!m_bEndThread)
     {
-        Sleep(1000); // 1초 대기
+        Sleep(1000);
 
         DWORD currentTime = GetTickCount();
 
@@ -117,24 +128,39 @@ int Thread_Delete::Run()
             time_t now = time(0);
             tm* ltm = localtime(&now);
 
+            // 매월 자동 실행을 위한 플래그 관리
+            // 1. 새로운 달이 되었고, 아직 이번 달에 삭제 작업을 하지 않았다면 b_ThreadTry = true
+            if (lastExecutedMonth != ltm->tm_mon) {
+                if (!b_ThreadTry) {
+                    b_ThreadTry = true;
+                    CString resetMsg;
+                    resetMsg.Format(_T("새로운 달 시작 - 삭제 실행 플래그 활성화 (현재월: %d, 마지막실행월: %d)"),
+                        ltm->tm_mon + 1, lastExecutedMonth + 1);
+                    WriteLog(resetMsg);
+                    SysLogOutPut(m_strLogTitle, resetMsg, LOG_COLOR_BLUE);
+                }
+            }
+
             // 로그 남기기 - 매일 한 번만 기록
             if (lastCheckedDay != ltm->tm_mday) {
                 CString dayCheckMsg;
-                dayCheckMsg.Format(_T("현재 날짜: %d일, 삭제 예정일: %d일, 이벤트 상태: %s"),
-                    ltm->tm_mday, targetDeleteDay,
-                    (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0) == WAIT_OBJECT_0) ? _T("신호 상태") : _T("신호 없음 상태"));
+                dayCheckMsg.Format(_T("현재: %d년 %d월 %d일, 삭제예정일: %d일, ThreadTry: %s, Deleting: %s, 마지막실행월: %d월"),
+                    ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday, targetDeleteDay,
+                    b_ThreadTry ? _T("True") : _T("False"),
+                    m_bDeleting ? _T("True") : _T("False"),
+                    lastExecutedMonth + 1);
                 _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "DeleteLog", dayCheckMsg);
                 lastCheckedDay = ltm->tm_mday;
             }
 
-            // 매월 지정된 날짜이면 자동 삭제 플래그 설정
-            if (ltm->tm_mday == targetDeleteDay && !m_bDeleting && b_ThreadTry) {
+            // 매월 지정된 날짜이면서 아직 이번 달에 실행하지 않았다면 자동 삭제 플래그 설정
+            if (ltm->tm_mday == targetDeleteDay && !m_bDeleting && b_ThreadTry && lastExecutedMonth != ltm->tm_mon) {
                 m_bRequestDelete = true;
                 SysLogOutPut(m_strLogTitle, _T("매월 정기 데이터 정리 예약됨"), LOG_COLOR_BLUE);
 
                 CString logMsg;
-                logMsg.Format(_T("삭제 작업 요청 - 현재일: %d, 목표일: %d, 삭제 진행중: %s, 실행 가능: %s"),
-                    ltm->tm_mday, targetDeleteDay,
+                logMsg.Format(_T("삭제 작업 요청 - 현재: %d년 %d월 %d일, 목표일: %d일, 삭제진행중: %s, 실행가능: %s"),
+                    ltm->tm_year + 1900, ltm->tm_mon + 1, ltm->tm_mday, targetDeleteDay,
                     m_bDeleting ? _T("예") : _T("아니오"),
                     b_ThreadTry ? _T("예") : _T("아니오"));
                 WriteLog(logMsg);
@@ -146,29 +172,31 @@ int Thread_Delete::Run()
             m_bRequestDelete = false;  // 요청 플래그 초기화
             m_bDeleting = true;        // 삭제 작업 진행 중 설정
 
-            // 삭제 작업 시작을 다른 스레드에게 알림
-            CString statusMsg = _T("RAW 테이블 데이터 정리 시작 - 다른 스레드 일시 정지");
-            WriteLog(statusMsg);
-            g_DeleteInProgressEvent.ResetEvent();
+            bool deleteSuccess = false;
 
-            // DB 연결 정보 로드 (필요시)
-            if (!dbInfoInitialized) {
-                stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
-                stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
-                m_nDBType = stDBInfo.unDBType;
-                dbInfoInitialized = true;
-            }
+            try {
+                // 삭제 작업 시작을 다른 스레드에게 알림
+                CString statusMsg = _T("RAW 테이블 데이터 정리 시작 - 다른 스레드 일시 정지");
+                WriteLog(statusMsg);
+                g_DeleteInProgressEvent.ResetEvent();
 
-            // DB 연결 객체 생성 (없으면)
-            if (DB_Connect == NULL) {
-                DB_Connect = new CAdo_Control();
-                DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, m_strLogTitle, g_stProjectInfo.szDTGatheringLogPath);
-                DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
-            }
+                // DB 연결 정보 로드 (필요시)
+                if (!dbInfoInitialized) {
+                    stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
+                    stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
+                    m_nDBType = stDBInfo.unDBType;
+                    dbInfoInitialized = true;
+                }
 
-            // DB 연결
-            if (EnsureDBConnection()) {
-                try {
+                // DB 연결 객체 생성 (없으면)
+                if (DB_Connect == NULL) {
+                    DB_Connect = new CAdo_Control();
+                    DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, m_strLogTitle, g_stProjectInfo.szDTGatheringLogPath);
+                    DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
+                }
+
+                // DB 연결
+                if (EnsureDBConnection()) {
                     // 기준 날짜 계산
                     COleDateTime today = COleDateTime::GetCurrentTime();
                     COleDateTime cutoffDate = today - COleDateTimeSpan(m_nDaysToKeep, 0, 0, 0);
@@ -210,11 +238,9 @@ int Thread_Delete::Run()
                             }
                             else {
                                 WriteLog(_T("배치 삭제 실패, 다음 배치 시도"));
-                                // 오류 발생 시 지연 후 재시도
                                 Sleep(2000);
                             }
 
-                            // 과도한 부하 방지를 위한 지연
                             Sleep(500);
                         }
 
@@ -223,6 +249,7 @@ int Thread_Delete::Run()
                         if (totalRecordCount <= 0) {
                             completionMsg.Format(_T("데이터 삭제 완료. 총 %d 배치 성공적으로 처리됨"), successfulBatches);
                             SysLogOutPut(m_strLogTitle, completionMsg, LOG_COLOR_BLUE);
+                            deleteSuccess = true;
                         }
                         else {
                             completionMsg.Format(_T("데이터 삭제 중단됨. %ld 레코드 남음"), totalRecordCount);
@@ -231,40 +258,63 @@ int Thread_Delete::Run()
                         WriteLog(completionMsg);
                     }
                     else {
-                        SysLogOutPut(m_strLogTitle, _T("삭제할 데이터가 없거나 카운트 쿼리 실패"), LOG_COLOR_BLUE);
+                        SysLogOutPut(m_strLogTitle, _T("삭제할 데이터가 없음"), LOG_COLOR_BLUE);
+                        deleteSuccess = true;  // 삭제할 데이터가 없는 것도 성공으로 간주
                     }
                 }
-                catch (CDBException* e) {
-                    CString strError = e->m_strError;
-                    e->ReportError();
-                    e->Delete();
-
-                    CString errorMsg;
-                    errorMsg.Format(_T("DB 예외 발생: %s"), strError);
-                    WriteLog(errorMsg);
-                    SysLogOutPut(m_strLogTitle, errorMsg, LOG_COLOR_RED);
-                }
-                catch (...) {
-                    WriteLog(_T("알 수 없는 예외 발생"));
-                    SysLogOutPut(m_strLogTitle, _T("알 수 없는 예외 발생"), LOG_COLOR_RED);
+                else {
+                    WriteLog(_T("DB 연결 실패로 삭제 작업 취소"));
+                    SysLogOutPut(m_strLogTitle, _T("DB 연결 실패"), LOG_COLOR_RED);
                 }
 
-                // DB 연결 닫기 (리소스 절약)
+                // DB 연결 닫기
                 if (DB_Connect != NULL) {
-                    DB_Connect->DB_Close();
+                    if (DB_Connect->GetDB_ConnectionStatus() == 1)
+                        DB_Connect->DB_Close();
                     delete DB_Connect;
                     DB_Connect = NULL;
                 }
+
+            }
+            catch (CDBException* e) {
+                CString strError = e->m_strError;
+                e->ReportError();
+                e->Delete();
+
+                CString errorMsg;
+                errorMsg.Format(_T("DB 예외 발생: %s"), strError);
+                WriteLog(errorMsg);
+                SysLogOutPut(m_strLogTitle, errorMsg, LOG_COLOR_RED);
+
+            }
+            catch (...) {
+                WriteLog(_T("알 수 없는 예외 발생"));
+                SysLogOutPut(m_strLogTitle, _T("알 수 없는 예외 발생"), LOG_COLOR_RED);
             }
 
             // 삭제 작업 완료 상태 설정
             m_bDeleting = false;
-            b_ThreadTry = false;  // 다음 날에 다시 자동 실행 방지
 
-            // 다른 스레드에게 삭제 작업 완료 알림
+            if (deleteSuccess) {
+                // 현재 월을 기록하여 이번 달에는 더 이상 실행하지 않도록 함
+                time_t now = time(0);
+                tm* ltm = localtime(&now);
+                lastExecutedMonth = ltm->tm_mon;
+                b_ThreadTry = false;  // 이번 달 실행 완료됨
+
+                CString successMsg;
+                successMsg.Format(_T("이번 달(%d월) 삭제 작업 완료 - 다음 달까지 대기"), ltm->tm_mon + 1);
+                WriteLog(successMsg);
+            }
+            else {
+                WriteLog(_T("삭제 작업 실패 - ThreadTry 플래그 유지하여 재시도 가능"));
+                // 실패한 경우 lastExecutedMonth를 업데이트하지 않아서 재시도 가능
+            }
+
+            // 다른 스레드에게 삭제 작업 완료 알림 - 반드시 호출
+            g_DeleteInProgressEvent.SetEvent();
             CString resumeMsg = _T("데이터 정리 완료 - 분 수집 스레드 재개");
             WriteLog(resumeMsg);
-            g_DeleteInProgressEvent.SetEvent();
 
             SysLogOutPut(m_strLogTitle, _T("Delete Thread 작업 완료"), LOG_COLOR_BLUE);
         }
@@ -275,10 +325,8 @@ int Thread_Delete::Run()
     }
 
     // 스레드 종료 시 이벤트 신호 상태로 설정하여 다른 스레드가 계속 작동하도록 함
-    if (!g_DeleteInProgressEvent.Lock(0)) {
-        g_DeleteInProgressEvent.SetEvent();
-        WriteLog(_T("스레드 종료 시 이벤트 신호 상태로 설정"));
-    }
+    g_DeleteInProgressEvent.SetEvent();
+    WriteLog(_T("스레드 종료 시 이벤트 신호 상태로 설정"));
 
     // 메시지 큐 종료
     PostThreadMessage(WM_QUIT, 0, 0);

@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-// Thread_Delete Å¬·¡½º °³¼±¾È
+// Thread_Delete í´ë˜ìŠ¤ ê°œì„ ì•ˆ
 class Thread_Delete : public CWinThread
 {
 	DECLARE_DYNCREATE(Thread_Delete)
@@ -12,34 +12,34 @@ public:
 	virtual int ExitInstance();
 	virtual int Run();
 
-	// ½º·¹µå Á¦¾î ÇÔ¼öµé
-	void StopThread();														// ½º·¹µå ÁßÁö ¸í·É
-	void RequestDeleteData(int daysToKeep = 90);							// Æ¯Á¤ ÀÏ¼ö ÀÌÀü µ¥ÀÌÅÍ »èÁ¦ ¿äÃ»
+	// ìŠ¤ë ˆë“œ ì œì–´ í•¨ìˆ˜ë“¤
+	void StopThread();														// ìŠ¤ë ˆë“œ ì¤‘ì§€ ëª…ë ¹
+	void RequestDeleteData(int daysToKeep = 90);							// íŠ¹ì • ì¼ìˆ˜ ì´ì „ ë°ì´í„° ì‚­ì œ ìš”ì²­
 	void SysLogOutPut(CString strLogName, CString strMsg, COLORREF crBody);
 
-	// ¼Ó¼º
+	// ì†ì„±
 	CAdo_Control* DB_Connect;
 	HWND m_WindHwnd;
 
-	// »óÅÂ ÇÃ·¡±×
-	BOOL m_bEndThread;         // ½º·¹µå Á¾·á ÇÃ·¡±×
-	CString m_strLogTitle;     // ·Î±× Å¸ÀÌÆ²
-	int m_nDBType;             // DB Å¸ÀÔ
-	bool b_ThreadTry;          // ½º·¹µå µ¿ÀÛ ÇÃ·¡±×
+	// ìƒíƒœ í”Œë˜ê·¸
+	BOOL m_bEndThread;         // ìŠ¤ë ˆë“œ ì¢…ë£Œ í”Œë˜ê·¸
+	CString m_strLogTitle;     // ë¡œê·¸ íƒ€ì´í‹€
+	int m_nDBType;             // DB íƒ€ì…
+	bool b_ThreadTry;          // ìŠ¤ë ˆë“œ ë™ì‘ í”Œë˜ê·¸
 
 private:
-	// ³»ºÎ »óÅÂ °ü¸®
-	bool m_bDeleting;          // ÇöÀç »èÁ¦ ÀÛ¾÷ ¼öÇà Áß ¿©ºÎ
-	int m_nDaysToKeep;         // º¸Á¸ÇÒ ÀÏ¼ö (±âº» 90ÀÏ)
-	bool m_bRequestDelete;     // »èÁ¦ ÀÛ¾÷ ¿äÃ» ÇÃ·¡±×
-	DWORD m_lastDBCheckTime;   // ¸¶Áö¸· DB ¿¬°á È®ÀÎ ½Ã°£
+	// ë‚´ë¶€ ìƒíƒœ ê´€ë¦¬
+	bool m_bDeleting;          // í˜„ì¬ ì‚­ì œ ì‘ì—… ìˆ˜í–‰ ì¤‘ ì—¬ë¶€
+	int m_nDaysToKeep;         // ë³´ì¡´í•  ì¼ìˆ˜ (ê¸°ë³¸ 90ì¼)
+	bool m_bRequestDelete;     // ì‚­ì œ ì‘ì—… ìš”ì²­ í”Œë˜ê·¸
+	DWORD m_lastDBCheckTime;   // ë§ˆì§€ë§‰ DB ì—°ê²° í™•ì¸ ì‹œê°„
 
-	// ³»ºÎ ÇïÆÛ ¸Ş¼­µå
-	bool EnsureDBConnection();													// DB ¿¬°á È®ÀÎ ¹× Àç¿¬°á
-	bool PerformBatchDelete(int batchSize, const COleDateTime& cutoffDate);		// ¹èÄ¡ »èÁ¦ ¼öÇà
-	CString GetDeleteQuery(int batchSize, const COleDateTime& cutoffDate);		// »èÁ¦ Äõ¸® »ı¼º
-	CString GetRecordCountQuery(const COleDateTime& cutoffDate);				// ·¹ÄÚµå Ä«¿îÆ® Äõ¸® »ı¼º
-	void WriteLog(const CString& message);										// ·Î±× ÆÄÀÏ ±â·Ï
+	// ë‚´ë¶€ í—¬í¼ ë©”ì„œë“œ
+	bool EnsureDBConnection();													// DB ì—°ê²° í™•ì¸ ë° ì¬ì—°ê²°
+	bool PerformBatchDelete(int batchSize, const COleDateTime& cutoffDate);		// ë°°ì¹˜ ì‚­ì œ ìˆ˜í–‰
+	CString GetDeleteQuery(int batchSize, const COleDateTime& cutoffDate);		// ì‚­ì œ ì¿¼ë¦¬ ìƒì„±
+	CString GetRecordCountQuery(const COleDateTime& cutoffDate);				// ë ˆì½”ë“œ ì¹´ìš´íŠ¸ ì¿¼ë¦¬ ìƒì„±
+	void WriteLog(const CString& message);										// ë¡œê·¸ íŒŒì¼ ê¸°ë¡
 
 protected:
 	DECLARE_MESSAGE_MAP()

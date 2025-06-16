@@ -37,22 +37,22 @@ CThread_MinGatherMain::~CThread_MinGatherMain()
 BOOL CThread_MinGatherMain::InitInstance()
 {
 	// TODO:  perform and per-thread initialization here
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	CoInitialize(NULL); //DB-ADO ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	return TRUE;
 }
 
 int CThread_MinGatherMain::ExitInstance()
 {
 	// TODO:  perform any per-thread cleanup here
-	//_WriteLogFile(g_stProjectInfo.szDTGatheringLogPath,"¸Þ¸ð¸®´©¼öLog","MainTread ExitInstance");
+	//_WriteLogFile(g_stProjectInfo.szDTGatheringLogPath,"ï¿½Þ¸ð¸®´ï¿½ï¿½ï¿½Log","MainTread ExitInstance");
 	if (m_bButtonStop == TRUE)
 	{
-		_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strLogTitle, USER_COLOR_BLUE, "Message : [»ç¿ëÀÚ Á¤Áö]");
+		_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strLogTitle, USER_COLOR_BLUE, "Message : [ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½]");
 	}
-	StopSubThread();		// SubThread »èÁ¦
-	StopDeleteThread();		// DeleteThread »èÁ¦
+	StopSubThread();		// SubThread ï¿½ï¿½ï¿½ï¿½
+	StopDeleteThread();		// DeleteThread ï¿½ï¿½ï¿½ï¿½
 #ifdef _DEBUG
-	TRACE("Stop - ¸ÞÀÎ½º·¹µå sub ½º·¹µå  Á¾·á \n");
+	TRACE("Stop - ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ sub ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ \n");
 #endif
 
 	if (DB_Connect != NULL)
@@ -65,16 +65,16 @@ int CThread_MinGatherMain::ExitInstance()
 	}
 	if (m_bButtonStop == TRUE)
 	{
-		_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strLogTitle, USER_COLOR_BLUE, "Message : [ADO Á¢¼Ó ÇØÁ¦ ¹× ¼Ò¸ê]");
+		_addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strLogTitle, USER_COLOR_BLUE, "Message : [ADO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò¸ï¿½]");
 	}
 #ifdef _DEBUG
-	TRACE("ADO Á¢¼Ó ÇØÁ¦ ¹× ¼Ò¸ê \n");
+	TRACE("ADO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò¸ï¿½ \n");
 #endif
 	CoUninitialize();
 
 	Release_List_ST_DB_Tag(ST_LIST_RELEASE);
 #ifdef _DEBUG
-	TRACE("Stop - ¸®½ºÆ® »èÁ¦ \n");
+	TRACE("Stop - ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ \n");
 #endif
 
 	return CWinThread::ExitInstance();
@@ -131,7 +131,7 @@ int CThread_MinGatherMain::Run()
 	int nTimeTemp = -1;
 
 	int lastCheckedDay = -1;
-	int targetDeleteDay = 1;  // ¸Å¿ù 1ÀÏ¿¡ »èÁ¦ ¼öÇà
+	int targetDeleteDay = 1;  // ï¿½Å¿ï¿½ 1ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	CTime currentTime;
 
@@ -181,7 +181,7 @@ int CThread_MinGatherMain::Run()
 		stSubTherdInfo[nI].init();
 	}
 
-	((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("¼öÁýÁß....");
+	((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½....");
 
 	do
 	{
@@ -190,7 +190,7 @@ int CThread_MinGatherMain::Run()
 			BOOL bConnectCheck = DB_Connect->DB_Connection();
 			if (bConnectCheck != TRUE)
 			{
-				((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("Á¢¼Ó ¿À·ù : 10ÃÊÈÄ ÀçÁ¢¼Ó½Ãµµ..");
+				((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : 10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó½Ãµï¿½..");
 				((CFormView_TAGGather*)(m_pCtrl))->ShowText_Count("-");
 				((CFormView_TAGGather*)(m_pCtrl))->ShowText_Processor("-");
 				Sleep(10000);
@@ -200,7 +200,7 @@ int CThread_MinGatherMain::Run()
 
 		if (nErrorCheck == ERROR_DB_QUERY_FAIL1)
 		{
-			((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("SELECT Äõ¸® ¿À·ù");
+			((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("SELECT ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			((CFormView_TAGGather*)(m_pCtrl))->ShowText_Count("-");
 			((CFormView_TAGGather*)(m_pCtrl))->ShowText_Processor("-");
 			Sleep(1000);
@@ -214,27 +214,27 @@ int CThread_MinGatherMain::Run()
 
 			currentTime = CTime::GetCurrentTime();
 
-			// ¸Å¿ù 1ÀÏÀÎÁö È®ÀÎ (ÇÏ·ç¿¡ ÇÑ ¹ø¸¸ Ã¼Å©ÇÏµµ·Ï)
+			// ï¿½Å¿ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ (ï¿½Ï·ç¿¡ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ïµï¿½ï¿½ï¿½)
 			if (currentTime.GetDay() == targetDeleteDay && lastCheckedDay != targetDeleteDay) {
 				lastCheckedDay = targetDeleteDay;
 
-				// Delete ½º·¹µå°¡ ½ÇÇà ÁßÀÎÁö È®ÀÎ
+				// Delete ï¿½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 				if (m_pThread_Delete != NULL) {
-					// ÀÌ¹Ì »ý¼ºµÇ¾î ÀÖ´Ù¸é »èÁ¦ ¿äÃ»
+					// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 					m_pThread_Delete->RequestDeleteData();
-					SysLogOutPut(m_strLogTitle, _T("¸Å¿ù Á¤±â µ¥ÀÌÅÍ »èÁ¦ ¿äÃ»µÊ"), LOG_COLOR_BLUE);
+					SysLogOutPut(m_strLogTitle, _T("ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½"), LOG_COLOR_BLUE);
 				}
 				else {
-					// Delete ½º·¹µå »ý¼º ¹× ½ÃÀÛ
+					// Delete ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					StartDeleteThread();
 					if (m_pThread_Delete != NULL) {
 						m_pThread_Delete->RequestDeleteData();
-						SysLogOutPut(m_strLogTitle, _T("¸Å¿ù Á¤±â µ¥ÀÌÅÍ »èÁ¦ ¿äÃ»µÊ"), LOG_COLOR_BLUE);
+						SysLogOutPut(m_strLogTitle, _T("ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½"), LOG_COLOR_BLUE);
 					}
 				}
 			}
 			else if (currentTime.GetDay() != targetDeleteDay) {
-				// 1ÀÏÀÌ ¾Æ´Ñ °æ¿ì ´Ù½Ã Ã¼Å©ÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤
+				// 1ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				lastCheckedDay = -1;
 			}
 
@@ -276,7 +276,7 @@ int CThread_MinGatherMain::Run()
 
 				if (bSubThreadStartCheck == FALSE)
 				{
-					((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("TAG º¯°æ Àç¼öÁý");
+					((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("TAG ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
 					((CFormView_TAGGather*)(m_pCtrl))->ShowText_Count("-");
 					((CFormView_TAGGather*)(m_pCtrl))->ShowText_Processor("-");
 					StopSubThread();
@@ -285,7 +285,7 @@ int CThread_MinGatherMain::Run()
 
 				char szTempBuffer[24];
 				memset(szTempBuffer, 0x00, sizeof(szTempBuffer));
-				((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("¼öÁýÁß...");
+				((CFormView_TAGGather*)(m_pCtrl))->ShowText_State("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...");
 				sprintf_s(szTempBuffer, "%d", nTagToalCount);
 				((CFormView_TAGGather*)(m_pCtrl))->ShowText_Count(szTempBuffer);
 				sprintf_s(szTempBuffer, "%d", nTheradCount);
@@ -297,7 +297,7 @@ int CThread_MinGatherMain::Run()
 				else if (nErrorCheck == THREAD_END)
 					break;
 				else if (nErrorCheck > 0)
-					g_nCheckTagThreadRun = 1; // 20210301 ksw Ä¶¸®ºê·¹ÀÌ¼Ç ¹öÆ° È°¼ºÈ­ ÇÃ·¡±×
+					g_nCheckTagThreadRun = 1; // 20210301 ksw Ä¶ï¿½ï¿½ï¿½ê·¹ï¿½Ì¼ï¿½ ï¿½ï¿½Æ° È°ï¿½ï¿½È­ ï¿½Ã·ï¿½ï¿½ï¿½
 
 				m_nTagListCount = nTagToalCount;
 
@@ -312,14 +312,14 @@ int CThread_MinGatherMain::Run()
 				for (int nI = 0; nI < nTheradCount; nI++)
 				{
 					nTagCount = m_pList_ST_TagDivisionList[nI]->size();
-					//if(stSubTherdInfo[nI].nThreadDataCount != nTagCount) //ÀÌ°Å ÇÊ¿ä¾ø´Â°Å °°À½..
+					//if(stSubTherdInfo[nI].nThreadDataCount != nTagCount) //ï¿½Ì°ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					{
 						if (m_bEndThread == TRUE)
 							break;
 
 						strCount.Format("%d", nTagCount);
 						strProcessorName.Format("Processor_%02d", nI + 1);
-						((CFormView_TAGGather*)(m_pCtrl))->ShowListData(strProcessorName, "½ÃÀÛÁß", strCount, "¸®½ºÆ® ¼öÁý Áß..");
+						((CFormView_TAGGather*)(m_pCtrl))->ShowListData(strProcessorName, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", strCount, "ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..");
 
 						stSubTherdInfo[nI].bDataChangeCheck = TRUE;
 						if (stSubTherdInfo[nI].nThreadNumber == -1)
@@ -349,7 +349,7 @@ int CThread_MinGatherMain::Run()
 				else
 				{
 #ifdef _DEBUG
-					TRACE("Main Thead ÃÊ´ÜÀ§TAG Ç×¸ñ º¯°æ %d \n", nTagToalCount);
+					TRACE("Main Thead ï¿½Ê´ï¿½ï¿½ï¿½TAG ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ %d \n", nTagToalCount);
 #endif
 					SetReSTListItem();
 				}
@@ -363,7 +363,7 @@ int CThread_MinGatherMain::Run()
 		catch (...)
 		{
 #ifdef _DEBUG
-			TRACE("¸ÞÀÎ ½º·¹µå catch ....\n");
+			TRACE("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ catch ....\n");
 #endif
 		}
 
@@ -400,7 +400,7 @@ void CThread_MinGatherMain::SetReSTListItem()
 	m_pThread_SecData[nThreadCnt]->NewStListInfo(m_pList_ST_DBSecTag[nThreadCnt],TRUE);
 	}
 	#ifdef DEBUG
-	TRACE("Thread-%d ±âµ¿ Item Count %d \n",nThreadCnt,nStListCnt);
+	TRACE("Thread-%d ï¿½âµ¿ Item Count %d \n",nThreadCnt,nStListCnt);
 	#endif
 	}
 	}*/
@@ -450,7 +450,7 @@ void CThread_MinGatherMain::StartSubThread(ST_SUBTHREAD_INFO* stSubTheradInfo, i
 
 			stSubTheradInfo[nSubThreadCount].bDataChangeCheck = FALSE;
 #ifdef DEBUG
-			TRACE("%s ±âµ¿\n", stSubTheradInfo[nSubThreadCount].szThreadName, nSubThreadCount);
+			TRACE("%s ï¿½âµ¿\n", stSubTheradInfo[nSubThreadCount].szThreadName, nSubThreadCount);
 #endif
 		}
 	}//*/
@@ -549,7 +549,7 @@ void CThread_MinGatherMain::Release_List_ST_DB_Tag(int nMode)
 			}
 		}
 	}
-	if (nMode == ST_LIST_RELEASE) // ksw 20210316 ÀÌÁß¹è¿­ list µ¿ÀûÇÒ´ç ÇØÁ¦
+	if (nMode == ST_LIST_RELEASE) // ksw 20210316 ï¿½ï¿½ï¿½ß¹è¿­ list ï¿½ï¿½ï¿½ï¿½ï¿½Ò´ï¿½ ï¿½ï¿½ï¿½ï¿½
 	{
 		delete[]  m_pList_ST_TagDivisionList;
 		m_pList_ST_TagDivisionList = NULL;
@@ -574,10 +574,10 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 		else
 			strDBName.Format("HM_TAG_DIC");
 	}
-	//2020-02-12 jsh : postgre Ãß°¡
+	//2020-02-12 jsh : postgre ï¿½ß°ï¿½
 	else if (nDBType == DB_POSTGRE)
 	{
-		if (strlen(szDBName) > 1) //20210702 ksw ¼öÁ¤
+		if (strlen(szDBName) > 1) //20210702 ksw ï¿½ï¿½ï¿½ï¿½
 			strDBName.Format("%s.HM_TAG_DIC", szDBName);
 		else
 			strDBName.Format("easy_hmi.HM_TAG_DIC");
@@ -590,17 +590,17 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 			strDBName.Format("HM_TAG_DIC");
 	}
 
-	//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
-	//20200225 ³ªÁ¤È£ ¼öÁ¤ group_name Á¦°Å
-	//strQuery.Format("SELECT TAG_ID,TAG_NAME,GROUP_NAME,TAG_TYPE FROM %s %s AND GATHER_USE_YN = 0 and TAG_ID = '°­¿øµµÃ»»ç ½º¸¶Æ®±×¸®µå.½º¸¶Æ®±×¸®µåDB¿¬µ¿.AI.PCS_AC_ACTIVE_POWER'",strDBName,szDeviceItem);
+	//20200220 ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ tag id -> tag name
+	//20200225 ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ group_name ï¿½ï¿½ï¿½ï¿½
+	//strQuery.Format("SELECT TAG_ID,TAG_NAME,GROUP_NAME,TAG_TYPE FROM %s %s AND GATHER_USE_YN = 0 and TAG_ID = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½×¸ï¿½ï¿½ï¿½.ï¿½ï¿½ï¿½ï¿½Æ®ï¿½×¸ï¿½ï¿½ï¿½DBï¿½ï¿½ï¿½ï¿½.AI.PCS_AC_ACTIVE_POWER'",strDBName,szDeviceItem);
 	//strQuery.Format("SELECT TAG_NAME,GROUP_NAME,TAG_TYPE FROM %s %s GATHER_USE_YN = 0 or GATHER_USE_YN IS NULL ",strDBName,szDeviceItem);
 
 
 	//strQuery.Format("SELECT TAG_NAME,TAG_TYPE FROM %s %s GATHER_USE_YN = 0 or GATHER_USE_YN IS NULL ",strDBName,szDeviceItem);
-	if (nDBType == DB_POSTGRE)  //20210302 ksw POSTGRE ºÐ±â
+	if (nDBType == DB_POSTGRE)  //20210302 ksw POSTGRE ï¿½Ð±ï¿½
 	{//DB_POSTGRE
 		strQuery.Format("SELECT TAG_NAME,TAG_TYPE FROM %s %s GATHER_USE_YN = 0 or GATHER_USE_YN IS NULL ", strDBName, szDeviceItem);
-		//20200220 ³ªÁ¤È£ ¼öÁ¤ PostgreSQL odbc ºÎºÐ select Ãß°¡
+		//20200220 ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ PostgreSQL odbc ï¿½Îºï¿½ select ï¿½ß°ï¿½
 		try
 		{
 			Release_List_ST_DB_Tag(ST_LIST_CLEAR);
@@ -609,7 +609,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 
 			SQLRETURN retcode;
 			retcode = DB_Connect->SetQueryRun(strQuery);
-			if (retcode < 0)	//20210309 ksw Select ¹® ¿¹¿ÜÃ³¸®
+			if (retcode < 0)	//20210309 ksw Select ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 				throw retcode;
 			SQLINTEGER sqlRqwCount;
 
@@ -643,7 +643,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 						retcode = DB_Connect->codbc->COdbc::SQLFetch();
 						if (isSqlOk(retcode))
 						{
-							/*20200219 ³ªÁ¤È£ ¼öÁ¤Áß*/
+							/*20200219 ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 							//SQLINTEGER cbTagId=0;
 							SQLINTEGER cbTagName = 0;
 							SQLINTEGER cbTagTypeTemp = 0;
@@ -733,7 +733,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 				int nResult = DB_Connect->DB_ReConnection();
 				if (nResult == 0)
 				{
-					strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!", strMSGTitle);
+					strRunlog_E2.Format("%s - DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!", strMSGTitle);
 					SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetTagList()/catch com error - %s\n", strRunlog_E2);
@@ -745,10 +745,10 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 				return ERROR_DB_COM_ERROR;
 
 		}
-		catch (SQLRETURN rt) //20210305 ksw  njh ·ÎÁ÷ ¿¹¿ÜÃ³¸®
+		catch (SQLRETURN rt) //20210305 ksw  njh ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		{
 			if (rt != SQL_SUCCESS_WITH_INFO || rt != SQL_SUCCESS) {
-				strRunlog_E2.Format("SELECT ½ÇÆÐ Event Error : %s", strMSGTitle);
+				strRunlog_E2.Format("SELECT ï¿½ï¿½ï¿½ï¿½ Event Error : %s", strMSGTitle);
 				SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 			}
 
@@ -764,7 +764,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 				pRs->Close();
 				pRs = NULL;
 			}
-			strRunlog_E2.Format("SELECT ½ÇÆÐ Event Error : %s",strMSGTitle);
+			strRunlog_E2.Format("SELECT ï¿½ï¿½ï¿½ï¿½ Event Error : %s",strMSGTitle);
 			SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -774,9 +774,9 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 		}*/
 		return nCountRow;
 	}
-	else if (nDBType == DB_MSSQL) //20210302 ksw MSSQL ºÐ±â
+	else if (nDBType == DB_MSSQL) //20210302 ksw MSSQL ï¿½Ð±ï¿½
 	{
-		if (m_nProduct == 0) //20210310 ksw SELECT¹® ºÐ±â
+		if (m_nProduct == 0) //20210310 ksw SELECTï¿½ï¿½ ï¿½Ð±ï¿½
 			strQuery.Format("SELECT TAG_NAME,TAG_TYPE FROM %s %s GATHER_USE_YN = 0 or GATHER_USE_YN IS NULL ", strDBName, szDeviceItem);
 		else
 			strQuery.Format("SELECT TAG_ID,TAG_NAME,GROUP_NAME,TAG_TYPE FROM %s %s GATHER_USE_YN = 0 or GATHER_USE_YN IS NULL ", strDBName, szDeviceItem);
@@ -809,7 +809,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 
 						while (1)
 						{
-							if (m_nProduct != 0) //20210310 ksw ºÐ±â Ãß°¡
+							if (m_nProduct != 0) //20210310 ksw ï¿½Ð±ï¿½ ï¿½ß°ï¿½
 							{
 								DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);
 								DB_Connect->GetFieldValue(pRs, "GROUP_NAME", strGroupName);
@@ -820,7 +820,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 							ST_TagInfoList stNewTagInfo;
 							memset(&stNewTagInfo, 0x00, sizeof(ST_TagInfoList));
 
-							if (m_nProduct != 0) //20210310 ksw ºÐ±â Ãß°¡
+							if (m_nProduct != 0) //20210310 ksw ï¿½Ð±ï¿½ ï¿½ß°ï¿½
 							{
 								strcpy_s(stNewTagInfo.szTAG_Id, strTagId);
 								strcpy_s(stNewTagInfo.szGroupName, strGroupName);
@@ -880,7 +880,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 				int nResult = DB_Connect->DB_ReConnection();
 				if (nResult == 0)
 				{
-					strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!", strMSGTitle);
+					strRunlog_E2.Format("%s - DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!", strMSGTitle);
 					SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetTagList()/catch com error - %s\n", strRunlog_E2);
@@ -898,7 +898,7 @@ int CThread_MinGatherMain::GetTagList(const char* szDeviceItem, int nTheradCount
 				pRs->Close();
 				pRs = NULL;
 			}
-			strRunlog_E2.Format("SELECT ½ÇÆÐ Event Error : %s", strMSGTitle);
+			strRunlog_E2.Format("SELECT ï¿½ï¿½ï¿½ï¿½ Event Error : %s", strMSGTitle);
 			SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -926,7 +926,7 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 		else
 			strDBName.Format("HM_TAG_DIC");
 	}
-	//2020-02-12 jsh : postgre Ãß°¡
+	//2020-02-12 jsh : postgre ï¿½ß°ï¿½
 	else if (nDBType == DB_POSTGRE)
 	{
 		if (strlen(szDBName) > 1)
@@ -943,8 +943,8 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 	}
 
 
-	//20200219 ³ªÁ¤È£ PostgreSQL odbc select ºÎºÐ Ãß°¡
-	//	strQuery.Format("SELECT COUNT(TAG_NAME) as cnt FROM %s %s AND GATHER_USE_YN = 0 AND sTAG_ID = '°­¿øµµÃ»»ç ½º¸¶Æ®±×¸®µå.½º¸¶Æ®±×¸®µåDB¿¬µ¿.AI.PCS_AC_ACTIVE_POWER'",strDBName,szDeviceItem);
+	//20200219 ï¿½ï¿½ï¿½ï¿½È£ PostgreSQL odbc select ï¿½Îºï¿½ ï¿½ß°ï¿½
+	//	strQuery.Format("SELECT COUNT(TAG_NAME) as cnt FROM %s %s AND GATHER_USE_YN = 0 AND sTAG_ID = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½×¸ï¿½ï¿½ï¿½.ï¿½ï¿½ï¿½ï¿½Æ®ï¿½×¸ï¿½ï¿½ï¿½DBï¿½ï¿½ï¿½ï¿½.AI.PCS_AC_ACTIVE_POWER'",strDBName,szDeviceItem);
 	strQuery.Format("SELECT COUNT(TAG_NAME) as cnt FROM %s %s (GATHER_USE_YN = 0 or GATHER_USE_YN  is null)", strDBName, szDeviceItem);
 	if (nDBType == DB_POSTGRE)
 	{
@@ -1006,7 +1006,7 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 				int nResult = DB_Connect->DB_ReConnection();
 				if (nResult == 0)
 				{
-					strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!", strMSGTitle);
+					strRunlog_E2.Format("%s - DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!", strMSGTitle);
 					SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetTagList()/catch com error - %s\n", strRunlog_E2);
@@ -1026,7 +1026,7 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 				pRs = NULL;
 			}
 
-			strRunlog_E2.Format("Äõ¸® ½ÇÆÐ Event Error : %s", strQuery);
+			strRunlog_E2.Format("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Event Error : %s", strQuery);
 			SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 			return ERROR_DB_QUERY_FAIL1;
 		}
@@ -1048,7 +1048,7 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 					DB_Connect->GetFieldValue(pRs, "cnt", dbValue);
 					nCountRow = (int)dbValue;
 				}
-				// ·¹ÄÚµå°¡ ¾øÀ»°æ¿ì DB Äõ¸® ¹®Á¦ ¹ß»ýÀÔ´Ï´Ù.
+				// ï¿½ï¿½ï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ô´Ï´ï¿½.
 				if (pRs != NULL)
 				{
 					pRs->Close();
@@ -1076,7 +1076,7 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 				int nResult = DB_Connect->DB_ReConnection();
 				if (nResult == 0)
 				{
-					strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!", strMSGTitle);
+					strRunlog_E2.Format("%s - DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!", strMSGTitle);
 					SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetTagList()/catch com error - %s\n", strRunlog_E2);
@@ -1095,7 +1095,7 @@ int CThread_MinGatherMain::GetTagTotalCountCheck(const char* szDeviceItem, int n
 				pRs = NULL;
 			}
 
-			strRunlog_E2.Format("Äõ¸® ½ÇÆÐ Event Error : %s", strQuery);
+			strRunlog_E2.Format("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Event Error : %s", strQuery);
 			SysLogOutPut(m_strLogTitle, strRunlog_E2, LOG_COLOR_RED);
 			return ERROR_DB_QUERY_FAIL1;
 		}
