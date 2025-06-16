@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDLG_DataBaseSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_DataBaseSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_DataBaseSetting : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_DataBaseSetting)
 
 public:
-	CDLG_DataBaseSetting(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_DataBaseSetting(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_DataBaseSetting();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_DBSETTING_SAVE };
 protected:
 	CAdo_Control *DB_Connect;
@@ -25,7 +25,7 @@ protected:
 public:
 	void SetSettingSave() {SetDBInfoSetting();}
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedBtConnectionTest();
 	afx_msg LRESULT OnUserMsgDBSetting(WPARAM wParam, LPARAM lParam);

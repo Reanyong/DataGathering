@@ -1,4 +1,4 @@
-// FormView_AlarmFMS.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_AlarmFMS.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CFormView_AlarmFMS, CFormView)
 END_MESSAGE_MAP()
 
 
-// CFormView_AlarmFMS Áø´ÜÀÔ´Ï´Ù.
+// CFormView_AlarmFMS ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_AlarmFMS::AssertValid() const
@@ -52,15 +52,15 @@ void CFormView_AlarmFMS::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CFormView_AlarmFMS ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
-TCHAR*	_lpszSiteFMS_Column[] = {"»çÀÌÆ®¸í","¾Ë¶÷ °¹¼ö","ÇöÀç »óÅÂ"};
-TCHAR*	_lpszFMSAlarm_Check[] = {"¾Ë¶÷Á¤º¸","¹ß»ı½Ã°£","°üÁ¦Á¡ ¸í","UMSÃ³¸®°á°ú","¹ß»ı ¸Ş½ÃÁö"};
+// CFormView_AlarmFMS ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
+TCHAR*	_lpszSiteFMS_Column[] = {"ì‚¬ì´íŠ¸ëª…","ì•ŒëŒ ê°¯ìˆ˜","í˜„ì¬ ìƒíƒœ"};
+TCHAR*	_lpszFMSAlarm_Check[] = {"ì•ŒëŒì •ë³´","ë°œìƒì‹œê°„","ê´€ì œì  ëª…","UMSì²˜ë¦¬ê²°ê³¼","ë°œìƒ ë©”ì‹œì§€"};
 
 void CFormView_AlarmFMS::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	g_nActivateDocCheck = FORM_VIEW_ID_6;
 	m_strTitle.LoadString(IDS_MY_TREE_VIEW_6);
 	GetDocument()->SetTitle(m_strTitle);
@@ -89,8 +89,8 @@ void CFormView_AlarmFMS::OnInitialUpdate()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ·¯ »ı¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬ ìƒì„±
 -BOOL ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
 */
 //////////////////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ BOOL CFormView_AlarmFMS::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nP
 
 BOOL CFormView_AlarmFMS::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_F4 || pMsg->wParam == VK_CONTROL)
@@ -158,7 +158,7 @@ BOOL CFormView_AlarmFMS::PreTranslateMessage(MSG* pMsg)
 
 void CFormView_AlarmFMS::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 
 	switch(nIDEvent)
@@ -168,27 +168,27 @@ void CFormView_AlarmFMS::OnTimer(UINT_PTR nIDEvent)
 			int nStartRun = m_stGatherInfo.nAutoRun_Check;
 			if(nStartRun == 1)
 			{
-				GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+				GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 				m_bStartRunCheck = FALSE;
 
 				StartThread();
 			}
 			else
 			{
-				GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+				GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 				m_bStartRunCheck = TRUE;
 				GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
 			}			
 			Invalidate(TRUE);
 		}
 		break;
-	case ID_STOP_THREAD: //¹öÆ°À¸·Î Á¤Áö
+	case ID_STOP_THREAD: //ë²„íŠ¼ìœ¼ë¡œ ì •ì§€
 		StopThread(TRUE);
 
 		GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(TRUE);
 
 		break;
-	case ID_AUTO_STOP_THREAD: //½Ã½ºÅÛ ÀÚµ¿ Á¤Áö
+	case ID_AUTO_STOP_THREAD: //ì‹œìŠ¤í…œ ìë™ ì •ì§€
 		StopThread(FALSE);
 
 		GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(TRUE);
@@ -200,26 +200,26 @@ void CFormView_AlarmFMS::OnTimer(UINT_PTR nIDEvent)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : ¹öÆ° ÀÌº¥Æ® 
-- ½ÃÀÛ ¹öÆ° Å¬¸¯½Ã ÀÌº¥Æ®
+- í˜¸ì¶œ ë°©ë²• : ë²„íŠ¼ ì´ë²¤íŠ¸ 
+- ì‹œì‘ ë²„íŠ¼ í´ë¦­ì‹œ ì´ë²¤íŠ¸
 -void OnBnClickedButtonStart()
 */
 //////////////////////////////////////////////////////////////////////////
 void CFormView_AlarmFMS::OnBnClickedButtonStart()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	GetDlgItem(IDC_BUTTON_START)->EnableWindow(FALSE);
 
 	if(m_bStartRunCheck == TRUE)
 	{
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 		StartThread();
 		m_bStartRunCheck = FALSE;
 	}
 	else
 	{
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 		m_bStartRunCheck = TRUE;
 		SetTimer(ID_AUTO_STOP_THREAD, 100, NULL);
 	}
@@ -227,8 +227,8 @@ void CFormView_AlarmFMS::OnBnClickedButtonStart()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ÇÑÀü¸Á µ¥ÀÌÅÍ ¼öÁı ½ÃÀÛ ¾²·¹µå »ı¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- í•œì „ë§ ë°ì´í„° ìˆ˜ì§‘ ì‹œì‘ ì“°ë ˆë“œ ìƒì„±
 -BOOL StartThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -249,8 +249,8 @@ BOOL CFormView_AlarmFMS::StartThread()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ½º·¹µå Á¾·á/¼öÁı Á¾·á
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ìŠ¤ë ˆë“œ ì¢…ë£Œ/ìˆ˜ì§‘ ì¢…ë£Œ
 -void StopThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -294,8 +294,8 @@ LRESULT CFormView_AlarmFMS::OnUserMessage(WPARAM wParam, LPARAM lParam)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ¸®½ºÆ® ÄÁÆ®·Ñ Ãâ·ÂÁ¤º¸ »èÁ¦
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ì¶œë ¥ì •ë³´ ì‚­ì œ
 -void ListRemoveItem_Site()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -311,8 +311,8 @@ void CFormView_AlarmFMS::ListRemoveItem_Site()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ¸®½ºÆ® ÄÁÆ®·Ñ »çÀÌÆ® Á¤º¸ Ãâ·Â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ì‚¬ì´íŠ¸ ì •ë³´ ì¶œë ¥
 -int ListInsertItem_Site(const char *szData1,const char *szData2,const char *szData3)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -333,5 +333,5 @@ void CFormView_AlarmFMS::OnDestroy()
 {
 	CFormView::OnDestroy();
 	StopThread(FALSE);
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }

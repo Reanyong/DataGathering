@@ -1,4 +1,4 @@
-// DLG_IsSmartAccessSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_IsSmartAccessSetting.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// CDLG_IsSmartAccessSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_IsSmartAccessSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_IsSmartAccessSetting, CDialog)
 
@@ -31,4 +31,4 @@ BEGIN_MESSAGE_MAP(CDLG_IsSmartAccessSetting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_IsSmartAccessSetting ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_IsSmartAccessSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

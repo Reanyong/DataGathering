@@ -1,15 +1,15 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦
-// »ç¿ëÇÏ´Â ¹æ¹ıÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿ş¾î¿¡ Æ÷ÇÔµÈ
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤("Fluent UI")ë¥¼
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ì ë¬¸ì„œì— ëŒ€í•´
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤.
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ìì„¸í•œ ë‚´ìš©ì€
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ğµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// DataGatheringView.h : CDataGatheringView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// DataGatheringView.h : CDataGatheringView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 #pragma once
@@ -17,27 +17,27 @@
 
 class CDataGatheringView : public CView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CDataGatheringView();
 	DECLARE_DYNCREATE(CDataGatheringView)
 
-// Æ¯¼ºÀÔ´Ï´Ù.
+// íŠ¹ì„±ì…ë‹ˆë‹¤.
 public:
 	CDataGatheringDoc* GetDocument() const;
 
-// ÀÛ¾÷ÀÔ´Ï´Ù.
+// ì‘ì—…ì…ë‹ˆë‹¤.
 public:
 
-// ÀçÁ¤ÀÇÀÔ´Ï´Ù.
+// ì¬ì •ì˜ì…ë‹ˆë‹¤.
 public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 public:
 	virtual ~CDataGatheringView();
 #ifdef _DEBUG
@@ -47,7 +47,7 @@ public:
 
 protected:
 
-// »ı¼ºµÈ ¸Ş½ÃÁö ¸Ê ÇÔ¼ö
+// ìƒì„±ëœ ë©”ì‹œì§€ ë§µ í•¨ìˆ˜
 protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
@@ -55,7 +55,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-#ifndef _DEBUG  // DataGatheringView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // DataGatheringView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CDataGatheringDoc* CDataGatheringView::GetDocument() const
    { return reinterpret_cast<CDataGatheringDoc*>(m_pDocument); }
 #endif

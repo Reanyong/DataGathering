@@ -1,4 +1,4 @@
-// FormView_Weather.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_Weather.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CFormView_Weather, CFormView)
 END_MESSAGE_MAP()
 
 
-// CFormView_Weather Áø´ÜÀÔ´Ï´Ù.
+// CFormView_Weather ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_Weather::AssertValid() const
@@ -51,11 +51,11 @@ void CFormView_Weather::Dump(CDumpContext& dc) const
 #endif
 #endif //_DEBUG
 
-TCHAR*	_lpszLiveGrid[] = {"Site","½Ã°£","¿Âµµ","°­¼ö·®","ÇÏ´ÃÄÚµå","½Àµµ","°­¼öÄÚµå","Ç³¼Ó"};
-TCHAR*	_lpszForecastGrid[] = {"Site","½Ã°£","¿Âµµ","½Àµµ","ÃÖ°í¿Âµµ","ÃÖÀú¿Âµµ","³¯¾¾","Ç³Çâ"};
+TCHAR*	_lpszLiveGrid[] = {"Site","ì‹œê°„","ì˜¨ë„","ê°•ìˆ˜ëŸ‰","í•˜ëŠ˜ì½”ë“œ","ìŠµë„","ê°•ìˆ˜ì½”ë“œ","í’ì†"};
+TCHAR*	_lpszForecastGrid[] = {"Site","ì‹œê°„","ì˜¨ë„","ìŠµë„","ìµœê³ ì˜¨ë„","ìµœì €ì˜¨ë„","ë‚ ì”¨","í’í–¥"};
 
 
-// CFormView_Weather ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFormView_Weather ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 void CFormView_Weather::OnInitialUpdate()
 {
@@ -93,32 +93,32 @@ void CFormView_Weather::OnInitialUpdate()
 	{
 		if(nGatherUse_YN == 1)
 		{
-			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Weather Gather Use Check", USER_COLOR_RED, "¼öÁý Çã¿ë »óÅÂÀÔ´Ï´Ù.");
+			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Weather Gather Use Check", USER_COLOR_RED, "ìˆ˜ì§‘ í—ˆìš© ìƒíƒœìž…ë‹ˆë‹¤.");
 			if(stGatherInfo.nAutoRun_Check == 1)
 			{
-				GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý Á¤Áö..");
+				GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 				SetTimer(1,500,0);
 				m_bThreadStart = FALSE;
-				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁý »óÅÂ : [ÀÚµ¿ ¼öÁý]");
-				//_addCurrentstateMsg(0,0, m_strTitle, "ÀÚµ¿ ¼öÁý");
+				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìžë™ ìˆ˜ì§‘]");
+				//_addCurrentstateMsg(0,0, m_strTitle, "ìžë™ ìˆ˜ì§‘");
 			}
 			else
 			{
-				GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý ½ÃÀÛ..");
+				GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œìž‘..");
 				GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
-				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁý »óÅÂ : [¼öµ¿ ¼öÁý]");
-				//_addCurrentstateMsg(0,0, m_strTitle, "¼öµ¿ ¼öÁý");
+				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìˆ˜ë™ ìˆ˜ì§‘]");
+				//_addCurrentstateMsg(0,0, m_strTitle, "ìˆ˜ë™ ìˆ˜ì§‘");
 			}
 		}
 		else
-			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Weather Gather Use Check", USER_COLOR_RED, "¼öÁý ¹ÌÇã¿ë »óÅÂÀÔ´Ï´Ù.");
+			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Weather Gather Use Check", USER_COLOR_RED, "ìˆ˜ì§‘ ë¯¸í—ˆìš© ìƒíƒœìž…ë‹ˆë‹¤.");
 	}
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ·¯ »ý¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬ ìƒì„±
 -BOOL ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
 */
 //////////////////////////////////////////////////////////////////////////
@@ -174,7 +174,7 @@ BOOL CFormView_Weather::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPo
 
 BOOL CFormView_Weather::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_F4 || pMsg->wParam == VK_CONTROL)
@@ -187,7 +187,7 @@ void CFormView_Weather::OnDestroy()
 {
 	CFormView::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_pThreadWeather != NULL)
 		m_pThreadWeather->EndCheck();
 	StopThread();
@@ -195,7 +195,7 @@ void CFormView_Weather::OnDestroy()
 
 void CFormView_Weather::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 	switch(nIDEvent)
 	{
@@ -210,8 +210,8 @@ void CFormView_Weather::OnTimer(UINT_PTR nIDEvent)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
--¹®±¸ Ç¥½Ã ¼öÁý ½ÃÀÛ/Á¤Áö Ç¥½Ã
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¬¸êµ¬ í‘œì‹œ ìˆ˜ì§‘ ì‹œìž‘/ì •ì§€ í‘œì‹œ
 -void ShowRun_State(int nState)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -228,8 +228,8 @@ void CFormView_Weather::ShowRun_State(int nState)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ¿¡ Ãâ·ÂÇÒ Á¤º¸
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì— ì¶œë ¥í•  ì •ë³´
 -int OutputWeatherHistory(CXListCtrl &listCtrl,const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5,const char *szData6,const char *szData7,const char *szData8)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -263,8 +263,8 @@ int CFormView_Weather::OutputWeatherHistory(CXListCtrl &listCtrl,const char *szD
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ¿¡ Ãâ·ÂÇÒ Á¤º¸
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì— ì¶œë ¥í•  ì •ë³´
 -int OutputWeatherLiveHistory(const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5,const char *szData6,const char *szData7,const char *szData8)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -276,8 +276,8 @@ void CFormView_Weather::OutputWeatherLiveHistory(const char *szData1,const char 
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ¿¡ Ãâ·ÂÇÒ Á¤º¸
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì— ì¶œë ¥í•  ì •ë³´
 -int OutputWeatherForecastHistory(const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5,const char *szData6,const char *szData7,const char *szData8)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -290,8 +290,8 @@ void CFormView_Weather::OutputWeatherForecastHistory(const char *szData1,const c
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ³¯¾¾ µ¥ÀÌÅÍ ¼öÁý ½ÃÀÛ ½º·¹µå »ý¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë‚ ì”¨ ë°ì´í„° ìˆ˜ì§‘ ì‹œìž‘ ìŠ¤ë ˆë“œ ìƒì„±
 -BOOL StartThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -312,14 +312,14 @@ BOOL CFormView_Weather::StartThread()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : ¹öÆ° ÀÌº¥Æ®
-- ½ÃÀÛ ¹öÆ° Å¬¸¯½Ã ÀÌº¥Æ®
+- í˜¸ì¶œ ë°©ë²• : ë²„íŠ¼ ì´ë²¤íŠ¸
+- ì‹œìž‘ ë²„íŠ¼ í´ë¦­ì‹œ ì´ë²¤íŠ¸
 -void OnBnClickedButtonStart()
 */
 //////////////////////////////////////////////////////////////////////////
 void CFormView_Weather::OnBnClickedButtonStart()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	ST_WEATHER_INFO stWeatherInfo;
 	stWeatherInfo = _getInfoWeatherRead(g_stProjectInfo.szProjectIniPath);
@@ -336,33 +336,33 @@ void CFormView_Weather::OnBnClickedButtonStart()
 		{
 			m_bThreadStart = FALSE;
 			StartThread();
-			GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý Á¤Áö");
+			GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€");
 
-			_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý ½ÃÀÛ");
-			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý ½ÃÀÛ]");
+			_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì‹œìž‘");
+			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì‹œìž‘]");
 		}
 		else
 		{
 			m_bThreadStart = TRUE;
 			StopThread();
-			GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý ½ÃÀÛ");
+			GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œìž‘");
 			GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
 
-			_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý Á¤Áö");
-			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý Á¤Áö]");
+			_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€");
+			_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€]");
 		}
 	}
 	else
 	{
-		AfxMessageBox("¼öÁý ¹ÌÇã¿ë »óÅÂÀÔ´Ï´Ù.");
-		_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Weather Gather Use Check", USER_COLOR_RED, "È¯°æ¼³Á¤ Æ®¸® '±â»óÃ»¿¬µ¿¼³Á¤' ¿¡¼­ ¼öÁýÇã¿ë ¼³Á¤ÀÌ °¡´ÉÇÕ´Ï´Ù.");
+		AfxMessageBox("ìˆ˜ì§‘ ë¯¸í—ˆìš© ìƒíƒœìž…ë‹ˆë‹¤.");
+		_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Weather Gather Use Check", USER_COLOR_RED, "í™˜ê²½ì„¤ì • íŠ¸ë¦¬ 'ê¸°ìƒì²­ì—°ë™ì„¤ì •' ì—ì„œ ìˆ˜ì§‘í—ˆìš© ì„¤ì •ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 	}
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ½º·¹µå Á¾·á/¼öÁý Á¾·á
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ìŠ¤ë ˆë“œ ì¢…ë£Œ/ìˆ˜ì§‘ ì¢…ë£Œ
 -void StopThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -383,8 +383,8 @@ void CFormView_Weather::StopThread()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : ÀÌº¥Æ®
-- »ç¿ëÀÚ ÀÌº¥Æ® ¸Þ½ÃÁö
+- í˜¸ì¶œ ë°©ë²• : ì´ë²¤íŠ¸
+- ì‚¬ìš©ìž ì´ë²¤íŠ¸ ë©”ì‹œì§€
 -LRESULT OnUserMessage(WPARAM wParam, LPARAM lParam)
 */
 //////////////////////////////////////////////////////////////////////////

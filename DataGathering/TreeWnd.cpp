@@ -1,4 +1,4 @@
-// TreeWnd.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// TreeWnd.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -18,7 +18,7 @@ CTreeWnd::CTreeWnd()
 	VERIFY(::SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
 		sizeof(NONCLIENTMETRICS), &ncm, 0));
 	//_tcscpy( ncm.lfMessageFont.lfFaceName, _T("Courier"));
-	_tcscpy_s( ncm.lfMessageFont.lfFaceName,12, _T("¸¼Àº °íµñ"));
+	_tcscpy_s( ncm.lfMessageFont.lfFaceName,12, _T("ë§‘ì€ ê³ ë”•"));
 	m_Font.CreateFontIndirect(&ncm.lfMessageFont);
 }
 
@@ -36,30 +36,30 @@ END_MESSAGE_MAP()
 
 
 
-// CTreeWnd ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTreeWnd ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CTreeWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CDockablePane::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
 
-	// ºä¸¦ ¸¸µì´Ï´Ù.
+	// ë·°ë¥¼ ë§Œë“­ë‹ˆë‹¤.
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS;
 	if (!m_wndTreeView.Create(dwViewStyle, rectDummy, this, ID_MY_VIEW_TREE_CONTROL))
 	{
-		TRACE0("ÆÄÀÏ ºä¸¦ ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
+		TRACE0("íŒŒì¼ ë·°ë¥¼ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
 		return -1;    
 	}
 
-	// ºä ÀÌ¹ÌÁö¸¦ ·ÎµåÇÕ´Ï´Ù.
+	// ë·° ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•©ë‹ˆë‹¤.
 	m_TreeViewImages.Create(IDB_TREE_IMAGE, 16, 0, RGB(0, 255, 0));
 	m_wndTreeView.SetImageList(&m_TreeViewImages, TVSIL_NORMAL);
 
 	m_wndToolBar.Create(this, AFX_DEFAULT_TOOLBAR_STYLE, IDR_EXPLORER);
-	m_wndToolBar.LoadToolBar(IDR_EXPLORER, 0, 0, TRUE /* Àá±İ */);
+	m_wndToolBar.LoadToolBar(IDR_EXPLORER, 0, 0, TRUE /* ì ê¸ˆ */);
 
 	//OnChangeVisualStyle();
 
@@ -69,10 +69,10 @@ int CTreeWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndToolBar.SetOwner(this);
 
-	// ¸ğµç ¸í·ÉÀº ºÎ¸ğ ÇÁ·¹ÀÓÀÌ ¾Æ´Ñ ÀÌ ÄÁÆ®·ÑÀ» ÅëÇØ ¶ó¿ìÆÃµË´Ï´Ù.
+	// ëª¨ë“  ëª…ë ¹ì€ ë¶€ëª¨ í”„ë ˆì„ì´ ì•„ë‹Œ ì´ ì»¨íŠ¸ë¡¤ì„ í†µí•´ ë¼ìš°íŒ…ë©ë‹ˆë‹¤.
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
-	// Á¤Àû Æ®¸® ºä µ¥ÀÌÅÍ¸¦ ´õ¹Ì ÄÚµå·Î Ã¤¿ó´Ï´Ù.
+	// ì •ì  íŠ¸ë¦¬ ë·° ë°ì´í„°ë¥¼ ë”ë¯¸ ì½”ë“œë¡œ ì±„ì›ë‹ˆë‹¤.
 	SetTreeItem();
 	AdjustLayout();
 
@@ -84,7 +84,7 @@ void CTreeWnd::OnSize(UINT nType, int cx, int cy)
 {
 	CDockablePane::OnSize(nType, cx, cy);
 	AdjustLayout();
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
@@ -92,13 +92,13 @@ void CTreeWnd::OnSetFocus(CWnd* pOldWnd)
 {
 	CDockablePane::OnSetFocus(pOldWnd);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
 BOOL CTreeWnd::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDockablePane::PreTranslateMessage(pMsg);
 }
@@ -109,20 +109,20 @@ void CTreeWnd::SetTreeItem()
 {
 	BOOL bNameValid;
 	CString strTitle = "";
-	//È¯°æ¼³Á¤
+	//í™˜ê²½ì„¤ì •
 	m_wndTreeView.SetFont(&m_Font);
 	bNameValid = strTitle.LoadString(IDS_MY_TREE_ROOT_SETTING);
 	ASSERT(bNameValid);
 	HTREEITEM hSettingRoot = m_wndTreeView.InsertItem(strTitle, 11, 11);
 	m_wndTreeView.SetItemState(hSettingRoot, TVIS_BOLD, TVIS_BOLD);
-	//dataGathering ¼³Á¤
+	//dataGathering ì„¤ì •
 	bNameValid = strTitle.LoadString(IDS_MY_TREE_PROGRAM_SETTING_1);
 	ASSERT(bNameValid);
 	HTREEITEM hSettingDepth_1 = m_wndTreeView.InsertItem(strTitle, 12, 12, hSettingRoot);
-	m_wndTreeView.InsertItem("¼³Á¤", 1, 18, hSettingDepth_1);
+	m_wndTreeView.InsertItem("ì„¤ì •", 1, 18, hSettingDepth_1);
 	
 
-	//ÇÁ·Î±×·¥ Ç×¸ñ ¸®½ºÆ®
+	//í”„ë¡œê·¸ë¨ í•­ëª© ë¦¬ìŠ¤íŠ¸
 	bNameValid = strTitle.LoadString(IDS_MY_TREE_ROOT_PROGRAM);
 	ASSERT(bNameValid);
 	HTREEITEM hProgramRoot = m_wndTreeView.InsertItem(strTitle, 11, 11);
@@ -137,7 +137,7 @@ void CTreeWnd::SetTreeItem()
 	m_wndTreeView.InsertItem(strTitle, 0, 18, hProgramRoot);
 	
 
-	//20200227	³ªÁ¤È£ ¼öÁ¤	ÇöÀç »ç¿ëÇÏÁö ¾Ê´Â ±â´É º¸ÀÌÁö ¾Êµµ·Ï ¼öÁ¤
+	//20200227	ë‚˜ì •í˜¸ ìˆ˜ì •	í˜„ì¬ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê¸°ëŠ¥ ë³´ì´ì§€ ì•Šë„ë¡ ìˆ˜ì •
 	/*
 	bNameValid = strTitle.LoadString(IDS_MY_TREE_VIEW_2);
 	ASSERT(bNameValid);
@@ -215,7 +215,7 @@ BOOL CTreeWnd::OnNotifyDblclk(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 	if(strRootTitle == strLoadString || strRootTitle == "")
 		return -1;
 
-	bNameValid = strSetting.LoadString(IDS_MY_TREE_PROGRAM_SETTING_1); //DBÈ¯°æ¼³Á¤
+	bNameValid = strSetting.LoadString(IDS_MY_TREE_PROGRAM_SETTING_1); //DBí™˜ê²½ì„¤ì •
 	ASSERT(bNameValid);
 
 	
@@ -224,7 +224,7 @@ BOOL CTreeWnd::OnNotifyDblclk(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 	
 
 #ifdef _DEBUG
-	TRACE("¼±ÅÃ %s/%s \n",strRootTitle,strDepthTitle);
+	TRACE("ì„ íƒ %s/%s \n",strRootTitle,strDepthTitle);
 #endif
 
 	if (strRootTitle == strSetting)

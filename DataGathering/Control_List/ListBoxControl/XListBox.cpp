@@ -1,4 +1,4 @@
-// XListBox.cpp : implementation file
+ï»¿// XListBox.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -87,7 +87,7 @@ void CXListBox::MeasureItem(LPMEASUREITEMSTRUCT lpMIS)
 //
 //  CXListBox :: DrawItem()
 //
-//  Purpose: °íÀ¯ÀÇ DC¸¦ ÀÌ¿ëÇÏ¿© ItemµéÀ» DrawingÇÑ´Ù.
+//  Purpose: ê³ ìœ ì˜ DCë¥¼ ì´ìš©í•˜ì—¬ Itemë“¤ì„ Drawingí•œë‹¤.
 //          
 //  Parameters: LPDRAWITEMSTRUCT lpDIS
 //

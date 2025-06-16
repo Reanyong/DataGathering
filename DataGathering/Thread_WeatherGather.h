@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Control_List/XMLCtrl/tinyxml.h"
 #include "Control_List/XMLCtrl/XmlNodeWrapper.h"
@@ -13,7 +13,7 @@ class CThread_WeatherGather : public CWinThread
 	DECLARE_DYNCREATE(CThread_WeatherGather)
 
 protected:
-	CThread_WeatherGather();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_WeatherGather();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 public:
 	virtual ~CThread_WeatherGather();
 
@@ -30,7 +30,7 @@ public:
 		m_strThreadName = szName;
 	}
 	void Stop() {
-		//_addCurrentstateMsg(0,0, m_strThreadName, "Processor Á¾·á");
+		//_addCurrentstateMsg(0,0, m_strThreadName, "Processor ì¢…ë£Œ");
 		m_bEndThread = TRUE;
 	}
 	void EndCheck() {

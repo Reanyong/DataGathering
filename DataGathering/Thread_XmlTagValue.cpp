@@ -1,4 +1,4 @@
-// Thread_XmlTagValue.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_XmlTagValue.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ CThread_XmlTagValue::~CThread_XmlTagValue()
 
 BOOL CThread_XmlTagValue::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	CoInitialize(NULL);
 
 	return TRUE;
@@ -43,7 +43,7 @@ BOOL CThread_XmlTagValue::InitInstance()
 
 int CThread_XmlTagValue::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	return CWinThread::ExitInstance();
 }
 
@@ -84,14 +84,14 @@ CString CThread_XmlTagValue::Com_Error(const char *szLogName,_com_error *e)
 
 void CThread_XmlTagValue::SysLogOutPut(CString strLogName,CString strMsg, COLORREF crBody)
 {
-	_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "Processor-log : [Xml Data »ı¼º]", crBody, strMsg);
+	_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "Processor-log : [Xml Data ìƒì„±]", crBody, strMsg);
 }
 
 
-// CThread_XmlTagValue ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_XmlTagValue ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CThread_XmlTagValue::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	int nTimeTemp = -1;
 	CTime currentTime;
 	BOOL bStartCheck = FALSE;
@@ -100,13 +100,13 @@ int CThread_XmlTagValue::Run()
 	ST_DBINFO stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
 	strXmlSavePath = _getXmlPath(g_stProjectInfo.szProjectIniPath);
 
-	m_strLogTitle= "VPN Data »ı¼º";
-	strMsg.Format("¼³Á¤µÈ ÀúÀåÀ§Ä¡ : %s",strXmlSavePath);
+	m_strLogTitle= "VPN Data ìƒì„±";
+	strMsg.Format("ì„¤ì •ëœ ì €ì¥ìœ„ì¹˜ : %s",strXmlSavePath);
 	SysLogOutPut(m_strLogTitle,strMsg,USER_COLOR_BLACK);
 
 	m_nDBType = stDBInfo.unDBType;
 	DB_Connect = new CAdo_Control();
-	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE,m_WindHwnd,"TagMapping ¼³Á¤",g_stProjectInfo.szDTGatheringLogPath);	
+	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE,m_WindHwnd,"TagMapping ì„¤ì •",g_stProjectInfo.szDTGatheringLogPath);	
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer,stDBInfo.szDB,stDBInfo.szID,stDBInfo.szPW,stDBInfo.unDBType);
 	
 	do 
@@ -130,7 +130,7 @@ int CThread_XmlTagValue::Run()
 			
 			if(m_nTagInfoListCheck == 10)
 			{
-				strMsg.Format("TAGInfo ¸ñ·Ï : [%d]°Ç ¸®½ºÆ® Àç»ı¼º(TAGInfovo.xml)",m_nTagListCount);
+				strMsg.Format("TAGInfo ëª©ë¡ : [%d]ê±´ ë¦¬ìŠ¤íŠ¸ ì¬ìƒì„±(TAGInfovo.xml)",m_nTagListCount);
 				((CFormView_TagMapping *)(m_pCtrl))->OutputHistory(currentTime.Format("%Y-%m-%d %H:%M"),strMsg);
 
 				int nRet = SetCreateXMLTagInfo(currentTime,strXmlSavePath);
@@ -162,13 +162,13 @@ int CThread_XmlTagValue::Run()
 			{
 				if(bStartCheck == FALSE)
 				{
-					strMsg.Format("¼öÁıµÈ TAG ¸ñ·Ï : [%d]°Ç",nTagToalCount);
+					strMsg.Format("ìˆ˜ì§‘ëœ TAG ëª©ë¡ : [%d]ê±´",nTagToalCount);
 					((CFormView_TagMapping *)(m_pCtrl))->OutputHistory(currentTime.Format("%Y-%m-%d %H:%M"),strMsg);
 					bStartCheck = TRUE;
 				}
 				else
 				{
-					strMsg.Format("¼öÁıµÈ TAG ¸ñ·Ï : [%d]°Ç->%d°Ç º¯°æ",m_nTagListCount,nTagToalCount);
+					strMsg.Format("ìˆ˜ì§‘ëœ TAG ëª©ë¡ : [%d]ê±´->%dê±´ ë³€ê²½",m_nTagListCount,nTagToalCount);
 					((CFormView_TagMapping *)(m_pCtrl))->OutputHistory(currentTime.Format("%Y-%m-%d %H:%M"),strMsg);
 				}
 
@@ -201,7 +201,7 @@ int CThread_XmlTagValue::Run()
 				int nRet = SetCreateXMLValue(currentTime,nTagToalCount,strXmlSavePath);
 				if(nRet == THREAD_END)
 					break;
-				strMsg.Format("Tag ¸ñ·Ï : [%d],ValueVo »ı¼º ¿Ï·á",m_nTagListCount);
+				strMsg.Format("Tag ëª©ë¡ : [%d],ValueVo ìƒì„± ì™„ë£Œ",m_nTagListCount);
 				((CFormView_TagMapping *)(m_pCtrl))->OutputHistory(currentTime.Format("%Y-%m-%d %H:%M"),strMsg);
 			}
 			
@@ -210,7 +210,7 @@ int CThread_XmlTagValue::Run()
 		}
 		catch (...)
 		{
-			strMsg.Format("Run ½º·¹µå ³»ºÎ ¿À·ù");
+			strMsg.Format("Run ìŠ¤ë ˆë“œ ë‚´ë¶€ ì˜¤ë¥˜");
 			SysLogOutPut(m_strLogTitle,strMsg,USER_COLOR_RED);
 		}
 
@@ -242,7 +242,7 @@ int CThread_XmlTagValue::GetTagTotalCountCheck()
 				DB_Connect->GetFieldValue(pRs, "cnt", dbValue);
 				nCountRow = (int)dbValue;
 			}
-			// ·¹ÄÚµå°¡ ¾øÀ»°æ¿ì DB Äõ¸® ¹®Á¦ ¹ß»ıÀÔ´Ï´Ù.
+			// ë ˆì½”ë“œê°€ ì—†ì„ê²½ìš° DB ì¿¼ë¦¬ ë¬¸ì œ ë°œìƒì…ë‹ˆë‹¤.
 			if(pRs != NULL)
 			{
 				pRs->Close();
@@ -270,7 +270,7 @@ int CThread_XmlTagValue::GetTagTotalCountCheck()
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -289,7 +289,7 @@ int CThread_XmlTagValue::GetTagTotalCountCheck()
 			pRs = NULL;
 		}
 
-		strRunlog_E2.Format("Äõ¸® ½ÇÆĞ Event Error : %s",strQuery);
+		strRunlog_E2.Format("ì¿¼ë¦¬ ì‹¤íŒ¨ Event Error : %s",strQuery);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 		return ERROR_DB_QUERY_FAIL1;
 	}
@@ -328,10 +328,10 @@ int CThread_XmlTagValue::GetRegisterTagList()
 				{
 					DB_Connect->GetFieldValue(pRs, "HMI_TAG_ID", strhmiTagId);				//TAG id
 					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "DV_ID", strDvid);		//TAG ±×·ì¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ¼³¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG Å¸ÀÔ
+					DB_Connect->GetFieldValue(pRs, "DV_ID", strDvid);		//TAG ê·¸ë£¹ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ì„¤ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG íƒ€ì…
 
 					ST_TAG_VALUE_LIST stTagInfo;
 					memset(&stTagInfo,0x00,sizeof(ST_TAG_VALUE_LIST));
@@ -374,7 +374,7 @@ int CThread_XmlTagValue::GetRegisterTagList()
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetRegisterTagList()/catch com error - %s\n",strRunlog_E2);
@@ -392,7 +392,7 @@ int CThread_XmlTagValue::GetRegisterTagList()
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -424,15 +424,15 @@ int CThread_XmlTagValue::SetCreateXMLValue(CTime currentTime,int nTagCount,const
 
 	TiXmlElement* pItem = new TiXmlElement( "BEMS_ID" );  
 	pHeader->LinkEndChild( pItem ); 
-	pItem ->LinkEndChild( new TiXmlText("BEMS0017")); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+	pItem ->LinkEndChild( new TiXmlText("BEMS0017")); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 	TiXmlElement* pItem2 = new TiXmlElement( "BLD_ID" );  
 	pHeader->LinkEndChild( pItem2 ); 
-	pItem2 ->LinkEndChild( new TiXmlText("B000000001")); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+	pItem2 ->LinkEndChild( new TiXmlText("B000000001")); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 	TiXmlElement* pItem3 = new TiXmlElement( "SEND_DTM" );  
 	pHeader->LinkEndChild( pItem3 );
-	pItem3 ->LinkEndChild( new TiXmlText(strCurrentTime)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+	pItem3 ->LinkEndChild( new TiXmlText(strCurrentTime)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 	if(m_bEndThread == TRUE)
 		return  THREAD_END;
@@ -457,16 +457,16 @@ int CThread_XmlTagValue::SetCreateXMLValue(CTime currentTime,int nTagCount,const
 
 		TiXmlElement* pDvIdItem = new TiXmlElement( "DV_ID" );  
 		pValueRoot->LinkEndChild( pDvIdItem );
-		pDvIdItem ->LinkEndChild( new TiXmlText(stTag.szDV_ID)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pDvIdItem ->LinkEndChild( new TiXmlText(stTag.szDV_ID)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pTagIdItem = new TiXmlElement( "TAG_ID" );  
 		pValueRoot->LinkEndChild( pTagIdItem );
-		pTagIdItem ->LinkEndChild( new TiXmlText(stTag.szTAG_ID)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pTagIdItem ->LinkEndChild( new TiXmlText(stTag.szTAG_ID)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pValueItem = new TiXmlElement( "GATH_VALUE" );  
 		pValueRoot->LinkEndChild( pValueItem );
 
-		pValueItem ->LinkEndChild( new TiXmlText(strValue)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pValueItem ->LinkEndChild( new TiXmlText(strValue)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 	}
 	
 	doc.SaveFile(strFileName);
@@ -487,12 +487,12 @@ CString CThread_XmlTagValue::GetTagValue(CString strTagName,int nTagTyp)
 
 	if(TYPE_DI == pTagInfo->nTagType)
 	{
-		EV_GetDiData(pTagInfo->nStnPos , pTagInfo->nTagPos, &byValue); //ÅÂ±× ±×·ì À§Ä¡, DIÅÂ±× À§Ä¡·Î Data°ª ÃßÃâ
+		EV_GetDiData(pTagInfo->nStnPos , pTagInfo->nTagPos, &byValue); //íƒœê·¸ ê·¸ë£¹ ìœ„ì¹˜, DIíƒœê·¸ ìœ„ì¹˜ë¡œ Dataê°’ ì¶”ì¶œ
 		strValue.Format("%d",byValue);
 	}
 	else if(TYPE_AI == pTagInfo->nTagType)
 	{
-		EV_GetAiData(pTagInfo->nStnPos , pTagInfo->nTagPos, &dValue); //ÅÂ±× ±×·ì À§Ä¡, AIÅÂ±× À§Ä¡·Î Data°ª ÃßÃâ
+		EV_GetAiData(pTagInfo->nStnPos , pTagInfo->nTagPos, &dValue); //íƒœê·¸ ê·¸ë£¹ ìœ„ì¹˜, AIíƒœê·¸ ìœ„ì¹˜ë¡œ Dataê°’ ì¶”ì¶œ
 		strValue.Format("%0.4f",dValue);	
 	}
 	else
@@ -560,8 +560,8 @@ int CThread_XmlTagValue::GetRegisterTagInfoList()
 				for(int nSTListCnt = 0; nSTListCnt < nCountRow ; nSTListCnt++)
 				{
 					DB_Connect->GetFieldValue(pRs, "HMI_TAG_ID", strHmiTagId);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "DV_ID", strDvId);			//TAG ¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);		//TAG ±×·ì¸í
+					DB_Connect->GetFieldValue(pRs, "DV_ID", strDvId);			//TAG ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);		//TAG ê·¸ë£¹ëª…
 					DB_Connect->GetFieldValue(pRs, "NEW_TAG_TP_GRP", strNEW_TAG_TP_GRP_Code);
 					DB_Connect->GetFieldValue(pRs, "NEW_TAG_TP", strNEW_TAG_TP_Code);
 					DB_Connect->GetFieldValue(pRs, "NEW_MTAL", strNEW_MTAL_Code);
@@ -575,9 +575,9 @@ int CThread_XmlTagValue::GetRegisterTagInfoList()
 					DB_Connect->GetFieldValue(pRs, "NEW_MEAU_CYCLE", strNEW_MEAU_CYCLE_Code);
 					DB_Connect->GetFieldValue(pRs, "NEW_MEAU_CYCLE_UNIT", strNEW_MEAU_CYCLE_UNIT_Code);
 					DB_Connect->GetFieldValue(pRs, "NEW_BLD_BUND", strBld_Bund);
-					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ¼³¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG Å¸ÀÔ
+					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ì„¤ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG íƒ€ì…
 
 					ST_TAG_LIST stTagInfo;
 					memset(&stTagInfo,0x00,sizeof(ST_TAG_LIST));
@@ -634,7 +634,7 @@ int CThread_XmlTagValue::GetRegisterTagInfoList()
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetRegisterTagInfoList()/catch com error - %s\n",strRunlog_E2);
@@ -652,7 +652,7 @@ int CThread_XmlTagValue::GetRegisterTagInfoList()
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -686,15 +686,15 @@ int CThread_XmlTagValue::SetCreateXMLTagInfo(CTime currentTime,const char *szXml
 
 	TiXmlElement* pItem = new TiXmlElement( "BEMS_ID" );  
 	pHeader->LinkEndChild( pItem ); 
-	pItem ->LinkEndChild( new TiXmlText("BEMS0017")); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+	pItem ->LinkEndChild( new TiXmlText("BEMS0017")); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 	TiXmlElement* pItem2 = new TiXmlElement( "BLD_ID" );  
 	pHeader->LinkEndChild( pItem2 ); 
-	pItem2 ->LinkEndChild( new TiXmlText("B000000001")); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+	pItem2 ->LinkEndChild( new TiXmlText("B000000001")); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 	TiXmlElement* pItem3 = new TiXmlElement( "SEND_DTM" );  
 	pHeader->LinkEndChild( pItem3 );
-	pItem3 ->LinkEndChild( new TiXmlText(strCurrentTime)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+	pItem3 ->LinkEndChild( new TiXmlText(strCurrentTime)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 	if(m_bEndThread == TRUE)
 		return  THREAD_END;
@@ -712,85 +712,85 @@ int CThread_XmlTagValue::SetCreateXMLTagInfo(CTime currentTime,const char *szXml
 
 		TiXmlElement* pDvIdItem = new TiXmlElement( "DV_ID" );  
 		pTagInfoRoot->LinkEndChild( pDvIdItem );
-		pDvIdItem ->LinkEndChild( new TiXmlText(stTagInfo.szDV_ID)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pDvIdItem ->LinkEndChild( new TiXmlText(stTagInfo.szDV_ID)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pTagIdItem = new TiXmlElement( "TAG_ID" );  
 		pTagInfoRoot->LinkEndChild( pTagIdItem );
-		pTagIdItem ->LinkEndChild( new TiXmlText(stTagInfo.szTAG_ID)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pTagIdItem ->LinkEndChild( new TiXmlText(stTagInfo.szTAG_ID)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pTPGRPItem = new TiXmlElement( "NEW_TAG_TP_GRP" );  
 		pTagInfoRoot->LinkEndChild( pTPGRPItem );
-		pTPGRPItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_TAG_TP_GRP_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pTPGRPItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_TAG_TP_GRP_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pTPItem = new TiXmlElement( "NEW_TAG_TP" );  
 		pTagInfoRoot->LinkEndChild( pTPItem );
-		pTPItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_TAG_TP_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pTPItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_TAG_TP_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pMTALItem = new TiXmlElement( "NEW_MTAL" );  
 		pTagInfoRoot->LinkEndChild( pMTALItem );
-		pMTALItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_MTAL_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pMTALItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_MTAL_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pUNITItem = new TiXmlElement( "NEW_UNIT" );  
 		pTagInfoRoot->LinkEndChild( pUNITItem );
-		pUNITItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_UNIT_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pUNITItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_UNIT_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pFLRItem = new TiXmlElement( "NEW_LOC_FLR" );  
 		pTagInfoRoot->LinkEndChild( pFLRItem );
-		pFLRItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_LOC_FLR_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pFLRItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_LOC_FLR_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pCLSF_01Item = new TiXmlElement( "NEW_DV_CLSF_01" );  
 		pTagInfoRoot->LinkEndChild( pCLSF_01Item );
-		pCLSF_01Item ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_02_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pCLSF_01Item ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_02_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pCLSF_02Item = new TiXmlElement( "NEW_DV_CLSF_02" );  
 		pTagInfoRoot->LinkEndChild( pCLSF_02Item );
-		pCLSF_02Item ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_02_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pCLSF_02Item ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_02_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pCLSF_03Item = new TiXmlElement( "NEW_DV_CLSF_03" );  
 		pTagInfoRoot->LinkEndChild( pCLSF_03Item );
-		pCLSF_03Item ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_03_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pCLSF_03Item ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_03_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pCLSF_LOCItem = new TiXmlElement( "NEW_DV_CLSF_LOC" );  
 		pTagInfoRoot->LinkEndChild( pCLSF_LOCItem );
-		pCLSF_LOCItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_LOC_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pCLSF_LOCItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_DV_CLSF_LOC_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pVITRItem = new TiXmlElement( "NEW_VIRT_TAG" );  
 		pTagInfoRoot->LinkEndChild( pVITRItem );
-		pVITRItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_VIRT_TAG_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pVITRItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_VIRT_TAG_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pCYCLEItem = new TiXmlElement( "NEW_MEAU_CYCLE" );  
 		pTagInfoRoot->LinkEndChild( pCYCLEItem );
-		pCYCLEItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_MEAU_CYCLE_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pCYCLEItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_MEAU_CYCLE_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pCYCLE_UNITItem = new TiXmlElement( "NEW_MEAU_CYCLE_UNIT" );  
 		pTagInfoRoot->LinkEndChild( pCYCLE_UNITItem );
-		pCYCLE_UNITItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_MEAU_CYCLE_UNIT_code)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pCYCLE_UNITItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_MEAU_CYCLE_UNIT_code)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pBUNDTItem = new TiXmlElement( "NEW_BLD_BUND" );  
 		pTagInfoRoot->LinkEndChild( pBUNDTItem );
-		pBUNDTItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_BLD_BUND_NM)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pBUNDTItem ->LinkEndChild( new TiXmlText(stTagInfo.szNEW_BLD_BUND_NM)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pTAG_NMItem = new TiXmlElement( "TAG_NM" );  
 		pTagInfoRoot->LinkEndChild( pTAG_NMItem );
 		UTF8_CONVERSION;
 		LPSTR utf8_1 = T2UTF8(stTagInfo.szTAG_NAME);
 
-		pTAG_NMItem ->LinkEndChild( new TiXmlText(utf8_1)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pTAG_NMItem ->LinkEndChild( new TiXmlText(utf8_1)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 		
 
 		TiXmlElement* pTAG_DESCItem = new TiXmlElement( "TAG_DESC" );  
 		pTagInfoRoot->LinkEndChild( pTAG_DESCItem );
 
 		LPSTR utf8_2 = T2UTF8(stTagInfo.szTAG_DESC);
-		pTAG_DESCItem ->LinkEndChild( new TiXmlText(utf8_2)); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pTAG_DESCItem ->LinkEndChild( new TiXmlText(utf8_2)); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pH_LIMIT_VALUEItem = new TiXmlElement( "HIGH_LIMIT_VALUE" );  
 		pTagInfoRoot->LinkEndChild( pH_LIMIT_VALUEItem );
-		pH_LIMIT_VALUEItem ->LinkEndChild( new TiXmlText("")); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pH_LIMIT_VALUEItem ->LinkEndChild( new TiXmlText("")); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 
 		TiXmlElement* pL_LIMIT_VALUEItem = new TiXmlElement( "LOW_LIMIT_VALUE" );  
 		pTagInfoRoot->LinkEndChild( pL_LIMIT_VALUEItem );
-		pL_LIMIT_VALUEItem ->LinkEndChild( new TiXmlText("")); // Text¸¦ »ı¼ºÇØ¼­ ¸µÅ©ÇÕ´Ï´Ù.
+		pL_LIMIT_VALUEItem ->LinkEndChild( new TiXmlText("")); // Textë¥¼ ìƒì„±í•´ì„œ ë§í¬í•©ë‹ˆë‹¤.
 	}
 
 	doc.SaveFile(strFileName);

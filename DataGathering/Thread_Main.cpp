@@ -1,4 +1,4 @@
-// Thread_Main.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_Main.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -22,13 +22,13 @@ CThread_Main::~CThread_Main()
 
 BOOL CThread_Main::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	return TRUE;
 }
 
 int CThread_Main::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	return CWinThread::ExitInstance();
 }
 
@@ -50,10 +50,10 @@ void CThread_Main::SetWriteLogFile(CString strLogMsg)
 	LeaveCriticalSection(&g_cs);
 }
 
-// CThread_Main ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_Main ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CThread_Main::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CTime currentTime =  CTime::GetCurrentTime();
 	BOOL bStartCheck  = FALSE;
 	do
@@ -61,7 +61,7 @@ int CThread_Main::Run()
 		if(m_bEndThread == TRUE)
 			break;
 
-		Sleep(1000); //¸Å 5ÃÊ ¸¶´Ù È®ÀÎ
+		Sleep(1000); //ë§¤ 5ì´ˆ ë§ˆë‹¤ í™•ì¸
 
 		BOOL bFileCheck = GetFileAttributeCheck(currentTime, g_stProjectInfo.szProjectIniPath);
 		if(bFileCheck == TRUE)
@@ -69,9 +69,9 @@ int CThread_Main::Run()
 			//GetSettingRead(g_stProjectInfo.szDTGatheringIniPath);
 			((CFormView_Main *)(m_pCtrl))->ShowSettingInfo(g_stProjectInfo.szProjectIniPath);
 			if(bStartCheck == TRUE)
-				SetOutPutMsg("DataGathering - Main", "Main : [¼³Á¤ Á¤º¸ Refresh], »óÅÂ : [¼öÁ¤ Á¤º¸ Read]", USER_COLOR_PINK);
+				SetOutPutMsg("DataGathering - Main", "Main : [ì„¤ì • ì •ë³´ Refresh], ìƒíƒœ : [ìˆ˜ì • ì •ë³´ Read]", USER_COLOR_PINK);
 			else
-				SetOutPutMsg("DataGathering - Main", "Main : [¼³Á¤ Á¤º¸ Read...], »óÅÂ : [Á¤»ó]", USER_COLOR_PINK);
+				SetOutPutMsg("DataGathering - Main", "Main : [ì„¤ì • ì •ë³´ Read...], ìƒíƒœ : [ì •ìƒ]", USER_COLOR_PINK);
 		}
 
 		GetCurrentStateMsg();
@@ -105,19 +105,19 @@ BOOL CThread_Main::GetFileAttributeCheck(CTime currentTime,CString strPathName)
 {
 	CString strDataTime = "";
 	CTime date_Time;
-	// ÆÄÀÏÀÇ Å¸ÀÔ°ú ¾ÆÀÌÄÜ Á¤º¸¸¦ ¾ò±âÀ§ÇÑ ±¸Á¶Ã¼¸¦ ¼±¾ğÇÑ´Ù.
+	// íŒŒì¼ì˜ íƒ€ì…ê³¼ ì•„ì´ì½˜ ì •ë³´ë¥¼ ì–»ê¸°ìœ„í•œ êµ¬ì¡°ì²´ë¥¼ ì„ ì–¸í•œë‹¤.
 	SHFILEINFO shfile_info;
 
 	struct _finddata_t shfile_data;
 	_findfirst(strPathName, &shfile_data);
 
-	// ¼±ÅÃµÈ ÆÄÀÏÀÇ ¾ÆÀÌÄÜ°ú Å¸ÀÔ Á¤º¸¸¦ ¾ò´Â´Ù.
+	// ì„ íƒëœ íŒŒì¼ì˜ ì•„ì´ì½˜ê³¼ íƒ€ì… ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
 	SHGetFileInfo((char*)(LPCTSTR)strPathName, 0, &shfile_info,
 		sizeof(SHFILEINFO), SHGFI_ICON | SHGFI_LARGEICON | SHGFI_TYPENAME);
 
-	//¼öÁ¤ ³¯Â¥Á¤º¸
+	//ìˆ˜ì • ë‚ ì§œì •ë³´
 	date_Time = CTime(shfile_data.time_write);
-	//strDataTime.Format("%s", date_Time->Format("%H:%M:%S, %B, %d, %Y"));//Data Type Çü½Ä 16:18:31, September, 07, 2015
+	//strDataTime.Format("%s", date_Time->Format("%H:%M:%S, %B, %d, %Y"));//Data Type í˜•ì‹ 16:18:31, September, 07, 2015
 	strDataTime.Format("%s", date_Time.Format("%Y-%m-%d %H:%M:%S"));
 
 	if(m_DatawriteTimeCheck != date_Time)

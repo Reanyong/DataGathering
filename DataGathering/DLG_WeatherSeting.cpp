@@ -1,4 +1,4 @@
-// DLG_WeatherSeting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_WeatherSeting.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// CDLG_WeatherSeting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_WeatherSeting ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_WeatherSeting, CDialog)
 
@@ -36,22 +36,22 @@ BEGIN_MESSAGE_MAP(CDLG_WeatherSeting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_WeatherSeting ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_WeatherSeting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CDLG_WeatherSeting::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ShowSettingData();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹ÝÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± íŽ˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CDLG_WeatherSeting::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strBuffer = "";
 	ST_WEATHER_INFO stWeatherInfo;
 	memset(&stWeatherInfo,0x00,sizeof(stWeatherInfo));
@@ -100,7 +100,7 @@ void CDLG_WeatherSeting::ShowSettingData()
 		GetDlgItem(IDC_EDIT_SERVICES_KEY)->EnableWindow(FALSE);
 		GetDlgItem(IDC_EDIT_LIVE_LAT)->EnableWindow(FALSE);
 		GetDlgItem(IDC_EDIT_LIVE_LON)->EnableWindow(FALSE);
-		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("½Ç½Ã°£ ¼öÁý ¹Ì»ç¿ë");
+		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("ì‹¤ì‹œê°„ ìˆ˜ì§‘ ë¯¸ì‚¬ìš©");
 	}
 	else
 	{
@@ -108,7 +108,7 @@ void CDLG_WeatherSeting::ShowSettingData()
 		GetDlgItem(IDC_EDIT_SERVICES_KEY)->EnableWindow(TRUE);
 		GetDlgItem(IDC_EDIT_LIVE_LAT)->EnableWindow(TRUE);
 		GetDlgItem(IDC_EDIT_LIVE_LON)->EnableWindow(TRUE);
-		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("½Ç½Ã°£ ¼öÁý »ç¿ë");
+		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("ì‹¤ì‹œê°„ ìˆ˜ì§‘ ì‚¬ìš©");
 	}
 
 	
@@ -122,7 +122,7 @@ void CDLG_WeatherSeting::ShowSettingData()
 		btUseYN->SetCheck(0);
 		GetDlgItem(IDC_EDIT_FORECAST_LAT)->EnableWindow(FALSE);
 		GetDlgItem(IDC_EDIT_FORECAST_LON)->EnableWindow(FALSE);
-		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("¿¹º¸ ¼öÁý ¹Ì»ç¿ë");
+		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("ì˜ˆë³´ ìˆ˜ì§‘ ë¯¸ì‚¬ìš©");
 		GetDlgItem(IDC_BUTTON_LIVE_LAT_COPY)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON_LIVE_LON_COPY)->EnableWindow(FALSE);
 	}
@@ -131,7 +131,7 @@ void CDLG_WeatherSeting::ShowSettingData()
 		btUseYN->SetCheck(1);
 		GetDlgItem(IDC_EDIT_FORECAST_LAT)->EnableWindow(TRUE);
 		GetDlgItem(IDC_EDIT_FORECAST_LON)->EnableWindow(TRUE);
-		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("¿¹º¸ ¼öÁý »ç¿ë");
+		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("ì˜ˆë³´ ìˆ˜ì§‘ ì‚¬ìš©");
 		GetDlgItem(IDC_BUTTON_LIVE_LAT_COPY)->EnableWindow(TRUE);
 		GetDlgItem(IDC_BUTTON_LIVE_LON_COPY)->EnableWindow(TRUE);
 	}
@@ -140,21 +140,21 @@ void CDLG_WeatherSeting::ShowSettingData()
 
 void CDLG_WeatherSeting::OnBnClickedCheckUseYn()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btUseYN = (CButton*)GetDlgItem(IDC_CHECK_LIVE_USE_YN);
 	if(btUseYN->GetCheck())
 	{
 		GetDlgItem(IDC_EDIT_SERVICES_KEY)->EnableWindow(TRUE);
 		GetDlgItem(IDC_EDIT_LIVE_LAT)->EnableWindow(TRUE);
 		GetDlgItem(IDC_EDIT_LIVE_LON)->EnableWindow(TRUE);
-		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("½Ç½Ã°£ ¼öÁý »ç¿ë");
+		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("ì‹¤ì‹œê°„ ìˆ˜ì§‘ ì‚¬ìš©");
 	}
 	else
 	{
 		GetDlgItem(IDC_EDIT_SERVICES_KEY)->EnableWindow(FALSE);
 		GetDlgItem(IDC_EDIT_LIVE_LAT)->EnableWindow(FALSE);
 		GetDlgItem(IDC_EDIT_LIVE_LON)->EnableWindow(FALSE);
-		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("½Ç½Ã°£ ¼öÁý ¹Ì»ç¿ë");
+		GetDlgItem(IDC_CHECK_LIVE_USE_YN)->SetWindowText("ì‹¤ì‹œê°„ ìˆ˜ì§‘ ë¯¸ì‚¬ìš©");
 	}
 }
 
@@ -162,13 +162,13 @@ void CDLG_WeatherSeting::OnBnClickedCheckUseYn()
 
 void CDLG_WeatherSeting::OnBnClickedCheckForecastUseYn()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btUseYN = (CButton*)GetDlgItem(IDC_CHECK_FORECAST_USE_YN);
 	if(btUseYN->GetCheck())
 	{
 		GetDlgItem(IDC_EDIT_FORECAST_LAT)->EnableWindow(TRUE);
 		GetDlgItem(IDC_EDIT_FORECAST_LON)->EnableWindow(TRUE);
-		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("¿¹º¸ ¼öÁý »ç¿ë");
+		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("ì˜ˆë³´ ìˆ˜ì§‘ ì‚¬ìš©");
 		GetDlgItem(IDC_BUTTON_LIVE_LAT_COPY)->EnableWindow(TRUE);
 		GetDlgItem(IDC_BUTTON_LIVE_LON_COPY)->EnableWindow(TRUE);
 
@@ -177,7 +177,7 @@ void CDLG_WeatherSeting::OnBnClickedCheckForecastUseYn()
 	{
 		GetDlgItem(IDC_EDIT_FORECAST_LAT)->EnableWindow(FALSE);
 		GetDlgItem(IDC_EDIT_FORECAST_LON)->EnableWindow(FALSE);
-		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("¿¹º¸ ¼öÁý ¹Ì»ç¿ë");
+		GetDlgItem(IDC_CHECK_FORECAST_USE_YN)->SetWindowText("ì˜ˆë³´ ìˆ˜ì§‘ ë¯¸ì‚¬ìš©");
 		GetDlgItem(IDC_BUTTON_LIVE_LAT_COPY)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON_LIVE_LON_COPY)->EnableWindow(FALSE);
 	}
@@ -186,11 +186,11 @@ void CDLG_WeatherSeting::OnBnClickedCheckForecastUseYn()
 
 void CDLG_WeatherSeting::OnBnClickedButtonLiveLatCopy()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strBuffer;
 	GetDlgItem(IDC_EDIT_LIVE_LAT)->GetWindowText(strBuffer);
 	if(strBuffer.IsEmpty() == TRUE)
-		AfxMessageBox("ÀÔ·ÂÇÑ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+		AfxMessageBox("ìž…ë ¥í•œ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	else
 		GetDlgItem(IDC_EDIT_FORECAST_LAT)->SetWindowText(strBuffer);
 
@@ -199,11 +199,11 @@ void CDLG_WeatherSeting::OnBnClickedButtonLiveLatCopy()
 
 void CDLG_WeatherSeting::OnBnClickedButtonLiveLonCopy()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strBuffer;
 	GetDlgItem(IDC_EDIT_LIVE_LON)->GetWindowText(strBuffer);
 	if(strBuffer.IsEmpty() == TRUE)
-		AfxMessageBox("ÀÔ·ÂÇÑ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+		AfxMessageBox("ìž…ë ¥í•œ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	else
 		GetDlgItem(IDC_EDIT_FORECAST_LON)->SetWindowText(strBuffer);
 }
@@ -211,7 +211,7 @@ void CDLG_WeatherSeting::OnBnClickedButtonLiveLonCopy()
 
 BOOL CDLG_WeatherSeting::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)

@@ -1,4 +1,4 @@
-
+ï»¿
 #include ".\Control_List/MyResource/MyResource.h"
 #include "JtInterlockMsg.h"
 
@@ -6,19 +6,19 @@
 #include <list>
 
 //////////////////////////////////////////////////////////////////////////
-//Ã¢Å©±â °íÁ¤
+//ì°½í¬ê¸° ê³ ì •
 //2015-09-08
 #define USER_WINDOWS_SIZE_CX		1300
 #define USER_WINDOWS_SIZE_CY		850
 //////////////////////////////////////////////////////////////////////////
-//°íÁ¤
+//ê³ ì •
 #define PRO_TITLE_NAME				"DataAgent"
 #define PRO_RUN						1
 #define PRO_STOP					2
 //////////////////////////////////////////////////////////////////////////
 //output MSG Color
 //2015-09-08
-#define USER_COLOR_BLUE				RGB(0,	84,	255) //Á¦¸ñ
+#define USER_COLOR_BLUE				RGB(0,	84,	255) //ì œëª©
 #define USER_COLOR_RED				RGB(255,0,	0)
 #define USER_COLOR_PINK				RGB(255,0,	255)
 #define USER_COLOR_BLACK			RGB(0,	0,	0)
@@ -35,7 +35,7 @@
 #define USER_CONTROL_LIST2		(WM_USER + 1200)
 
 //////////////////////////////////////////////////////////////////////////
-//Processor º° Ã³¸®ÇÒ TAG°¹¼ö ´ÜÀ§
+//Processor ë³„ ì²˜ë¦¬í•  TAGê°¯ìˆ˜ ë‹¨ìœ„
 #define PROCESSOR_NO1_LIMIT				500
 #define PROCESSOR_NO2_LIMIT				1000
 #define PROCESSOR_NO3_LIMIT				1500
@@ -70,7 +70,7 @@
 #define  THREAD_LEVEL_5_LIMIT		4800
 #define  THREAD_LEVEL_6_LIMIT		6000
 
-//FormView ID °ü¸®
+//FormView ID ê´€ë¦¬
 #define FORM_VIEW_ID_SYSTEM				0
 #define FORM_VIEW_ID_1					1
 #define FORM_VIEW_ID_2					2
@@ -89,13 +89,13 @@
 #define LOG_MESSAGE_7					6
 
 //////////////////////////////////////////////////////////////////////////
-//°øÅë ID
+//ê³µí†µ ID
 #define RETURN_SUCCESS				(WM_USER + 1000)
 #define RETURN_FAIL					(WM_USER + 1001)
 
 //////////////////////////////////////////////////////////////////////////
 //ADO MSG ID
-#define ADO_CONNECT_ERR				-1000 //ADO Á¢¼Ó ²÷°åÀ»¶§
+#define ADO_CONNECT_ERR				-1000 //ADO ì ‘ì† ëŠê²¼ì„ë•Œ
 #define WM_USER_LOG_MESSAGE			(WM_USER + 2000)
 
 #define ADO_CONNECTION				(WM_USER + 2100)
@@ -108,7 +108,7 @@
 #define ID_STOP_THREAD				(WM_USER + 1101)
 #define ID_AUTO_STOP_THREAD			(WM_USER + 1102)
 
-//½º·¹µå º° »ç¿ëÀÚ ¸Ş¼¼Áö
+//ìŠ¤ë ˆë“œ ë³„ ì‚¬ìš©ì ë©”ì„¸ì§€
 #define WM_USER_TAGINFO_MESSAGE			(WM_USER + 2010)
 #define WM_USER_DATAGATHERING_MESSAGE	(WM_USER + 2011)
 #define WM_USER_BACKUPDATA_MESSAGE		(WM_USER + 2012)
@@ -120,38 +120,38 @@
 #define WM_USER_WEATHER_MESSAGE		(WM_USER + 2024)
 #define WM_USER_ALARM_MESSAGE		(WM_USER + 2025)
 
-#define USER_ID_MIN_SYSLOG			(WM_USER + 2030) //ºĞÃ³¸® °á°ú USER ID
-#define USER_ID_HOUR_SYSLOG			(WM_USER + 2031) //½ÃÃ³¸® °á°ú USER ID
-#define USER_ID_DAY_SYSLOG			(WM_USER + 2032) //ÀÏÃ³¸® °á°ú USER ID
-#define USER_ID_WEATHER_SYSLOG		(WM_USER + 2033) //³¯¾¾Ã³¸® °á°ú USER ID
+#define USER_ID_MIN_SYSLOG			(WM_USER + 2030) //ë¶„ì²˜ë¦¬ ê²°ê³¼ USER ID
+#define USER_ID_HOUR_SYSLOG			(WM_USER + 2031) //ì‹œì²˜ë¦¬ ê²°ê³¼ USER ID
+#define USER_ID_DAY_SYSLOG			(WM_USER + 2032) //ì¼ì²˜ë¦¬ ê²°ê³¼ USER ID
+#define USER_ID_WEATHER_SYSLOG		(WM_USER + 2033) //ë‚ ì”¨ì²˜ë¦¬ ê²°ê³¼ USER ID
 
-#define ERROR_DB_RECONNECTION	 	-100 //ÀçÁ¢¼Ó ¿À·ù
-#define ERROR_DB_COM_ERROR			-2 //ÄÄ¿À·ù(Àß¸øµÈ Äõ¸® ¿À·ù)
-#define ERROR_DB_QUERY_FAIL1		-3 //±×¿Ü Äõ¸® ¿À·ù
-#define ERROR_DB_QUERY_FAIL2		-4 //±×¿Ü Äõ¸® ¿À·ù
-#define ERROR_DB_NO_TABLE			-5 //Å×ÀÌºíÀÌ ¾øÀ»¶§
-#define THREAD_END					-10 //±×¿Ü Äõ¸® ¿À·ù
+#define ERROR_DB_RECONNECTION	 	-100 //ì¬ì ‘ì† ì˜¤ë¥˜
+#define ERROR_DB_COM_ERROR			-2 //ì»´ì˜¤ë¥˜(ì˜ëª»ëœ ì¿¼ë¦¬ ì˜¤ë¥˜)
+#define ERROR_DB_QUERY_FAIL1		-3 //ê·¸ì™¸ ì¿¼ë¦¬ ì˜¤ë¥˜
+#define ERROR_DB_QUERY_FAIL2		-4 //ê·¸ì™¸ ì¿¼ë¦¬ ì˜¤ë¥˜
+#define ERROR_DB_NO_TABLE			-5 //í…Œì´ë¸”ì´ ì—†ì„ë•Œ
+#define THREAD_END					-10 //ê·¸ì™¸ ì¿¼ë¦¬ ì˜¤ë¥˜
 
 #define  ST_LIST_CLEAR				0
 #define  ST_LIST_RELEASE			1
 #define  ST_LIST_INITIAL			2
 #define  ST_LIST_DELETE				5
 
-//±×¸®µå ID °ü¸®
+//ê·¸ë¦¬ë“œ ID ê´€ë¦¬
 #define  ID_GRID_PROCESSOR			(WM_USER + 1010)
 #define  ID_GRID_TAG_INFO			(WM_USER + 1011)
 #define  ID_GRID_BACKUP_TIME		(WM_USER + 1012)
 #define  ID_GRID_TAG_LIST			(WM_USER + 1013)
 #define  ID_GRID_TAG_DBLIST			(WM_USER + 1014)
 
-//Äõ¸® ¸®ÅÏ Å¸ÀÔ
+//ì¿¼ë¦¬ ë¦¬í„´ íƒ€ì…
 #define  QUERY_TYPE_INSERT			0
 #define  QUERY_TYPE_UPDATE			1
 #define  QUERY_TYPE_UPDATEORINSERT	2
 
 #define TIMEWAIT_FILELOG			500
 
-//·Î±× ÀÛ¼º½Ã »ö»ó
+//ë¡œê·¸ ì‘ì„±ì‹œ ìƒ‰ìƒ
 #define LOG_COLOR_BLUE				0
 #define LOG_COLOR_RED				1
 #define LOG_COLOR_PINK				2
@@ -162,7 +162,7 @@
 #define VIEW_TAG					1
 
 //////////////////////////////////////////////////////////////////////////
-//URL Á¢¼Ó °ü·Ã ID
+//URL ì ‘ì† ê´€ë ¨ ID
 #define URL_CONNECT_FAIL_1			1
 #define URL_CONNECT_FAIL_2			2
 #define URL_CONNECT_FAIL_3			3
@@ -173,9 +173,9 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-//±¸Á¶Ã¼ Á¤¸®
+//êµ¬ì¡°ì²´ ì •ë¦¬
 
-//ÇÁ·ÎÁ§Æ® Á¤º¸
+//í”„ë¡œì íŠ¸ ì •ë³´
 typedef struct _stProjectInfo_ {
 	char szProjectName[128];
 	char szProjectPath[256];
@@ -192,7 +192,7 @@ typedef struct _stProjectInfo_ {
 	char szProjectTAGLogPath[256];
 }ST_PROJECT_INFO;//connection
 
-//DB Á¢¼Ó Á¤º¸
+//DB ì ‘ì† ì •ë³´
 typedef struct _stDBInfo_ {
 	char szServer[64];
 	char szDB[64];
@@ -208,7 +208,7 @@ typedef struct _stDBInfo_ {
 	char szSub_PW[64];
 }ST_DBINFO;//connection
 
-//2016-11-28 »ı¼º
+//2016-11-28 ìƒì„±
 typedef struct _stDataBesaName_ {
 	char szHMIDBName[64]; //HMI DB
 	char szWTDBName[64];  //Weather DB
@@ -222,30 +222,30 @@ typedef struct _stDataBesaName_ {
 typedef struct ST_GatherInfo_{
 	int nGathe_Interval;
 	int nGathe_IntervalPos;
-	int nDemp_Check;  //´ıÇÁ »ı¼º/¹Ì»ı¼º ¿©ºÎ
-	int nDemp_AutoCheck; //´ıÇÁ µ¥ÀÌÅÍ ÀÚµ¿ »ı¼º
-	int nAutoRun_Check; // µ¥ÀÌÅÍ ÀÚµ¿/¼öµ¿ ¼öÁı
-	int nProduct_Check; //20210305 ksw Á¦Ç° ¼±ÅÃ 0: BEMS, 1: EMS
-	int nDelete_Interval; //µ¥ÀÌÅÍ »èÁ¦ »ç¿ë
-	int nDelete_IntervalPos; //µ¥ÀÌÅÍ »èÁ¦ »ç¿ë
+	int nDemp_Check;  //ë¤í”„ ìƒì„±/ë¯¸ìƒì„± ì—¬ë¶€
+	int nDemp_AutoCheck; //ë¤í”„ ë°ì´í„° ìë™ ìƒì„±
+	int nAutoRun_Check; // ë°ì´í„° ìë™/ìˆ˜ë™ ìˆ˜ì§‘
+	int nProduct_Check; //20210305 ksw ì œí’ˆ ì„ íƒ 0: BEMS, 1: EMS
+	int nDelete_Interval; //ë°ì´í„° ì‚­ì œ ì‚¬ìš©
+	int nDelete_IntervalPos; //ë°ì´í„° ì‚­ì œ ì‚¬ìš©
 	int nDetailsLogCheck;
-	int nWeather_GatherType; //0:Á÷Á¢ ¼³Á¤,1:Web¿¡¼­ ¼³Á¤,2:»ç¿ë¾ÈÇÔ //2016-11-28 Ãß°¡
-	int nISmart_GatherType; //0:Á÷Á¢ ¼³Á¤,1:Web¿¡¼­ ¼³Á¤,2:»ç¿ë¾ÈÇÔ //2016-11-28 Ãß°¡
-	int nEngMng_GatherType; //0:Á÷Á¢ ¼³Á¤,1:Web¿¡¼­ ¼³Á¤,2:»ç¿ë¾ÈÇÔ //2016-11-28 Ãß°¡
+	int nWeather_GatherType; //0:ì§ì ‘ ì„¤ì •,1:Webì—ì„œ ì„¤ì •,2:ì‚¬ìš©ì•ˆí•¨ //2016-11-28 ì¶”ê°€
+	int nISmart_GatherType; //0:ì§ì ‘ ì„¤ì •,1:Webì—ì„œ ì„¤ì •,2:ì‚¬ìš©ì•ˆí•¨ //2016-11-28 ì¶”ê°€
+	int nEngMng_GatherType; //0:ì§ì ‘ ì„¤ì •,1:Webì—ì„œ ì„¤ì •,2:ì‚¬ìš©ì•ˆí•¨ //2016-11-28 ì¶”ê°€
 	char szUrlLive[128];
 	char szUrlForecast[128];
 }ST_GATHERINFO;
 
-//»çÀÌÆ® Á¤º¸
+//ì‚¬ì´íŠ¸ ì •ë³´
 typedef struct ST_SiteWeatherList_{
 	char szSiteId[48];
 	char szSiteName[48];
 	char szLiveSeviceKey[128];
-	float fLat; //À§µµ
-	float fLon; //°æµµ
+	float fLat; //ìœ„ë„
+	float fLon; //ê²½ë„
 }ST_WEATHER_LIST;
 //////////////////////////////////////////////////////////////////////////
-//ÇÑÀü¿¬µ¿ »ç¿ëÀÚ Á¢¼Ó Á¤º¸
+//í•œì „ì—°ë™ ì‚¬ìš©ì ì ‘ì† ì •ë³´
 typedef struct _stFileISmartAccess_ {
 	char szSiteID[64];
 	char szSiteName[64];
@@ -253,7 +253,7 @@ typedef struct _stFileISmartAccess_ {
 	char szPW[48];
 }ST_FILE_ISMARTACCESS;
 
-//ÇÑÀü¿¬µ¿ »ç¿ëÇÒ Á¤º¸
+//í•œì „ì—°ë™ ì‚¬ìš©í•  ì •ë³´
 typedef struct ST_SiteInterlockInfo_{
 	char szSiteId[48];
 	char szSiteName[48];
@@ -265,7 +265,7 @@ typedef struct ST_SiteInterlockInfo_{
 	int nConnectFailCount;
 }ST_SITE_INTERLOCK;
 
-//ÇÑÀüµ¥ÀÌÅÍ ÆÄ½Ìµ¥ÀÌÅÍ Á¤º¸
+//í•œì „ë°ì´í„° íŒŒì‹±ë°ì´í„° ì •ë³´
 typedef struct _stIConnectData_ {
 	char szSiteId[64];
 	int nMin[4];
@@ -297,12 +297,12 @@ typedef struct ST_GatherUseList_{
 	short nUse_YN;
 }ST_GATHER_USE_LIST;
 typedef struct ST_GatherInfoType_{
-	short nGatherType; //1:TAG ¸®½ºÆ® Á¤ºÎ ¼öÁı 2:»çÀÌÆ® µğ¹ÙÀÌ½ºº° ¼öÁı
+	short nGatherType; //1:TAG ë¦¬ìŠ¤íŠ¸ ì •ë¶€ ìˆ˜ì§‘ 2:ì‚¬ì´íŠ¸ ë””ë°”ì´ìŠ¤ë³„ ìˆ˜ì§‘
 	short nCount;
 	ST_GATHER_USE_LIST stGatherUseList[12];
 }ST_GATHERINFO_TYPE;
 //////////////////////////////////////////////////////////////////////////
-//¾Ë¶÷ - °üÁ¦Á¡ ¾Ë¶÷ ¸®½ºÆ® Ã³¸®½Ã
+//ì•ŒëŒ - ê´€ì œì  ì•ŒëŒ ë¦¬ìŠ¤íŠ¸ ì²˜ë¦¬ì‹œ
 typedef struct _stDeviceListInfo_{
 	char szSite_Id[48];
 	char szSite_Name[48];
@@ -313,7 +313,7 @@ typedef struct _stDeviceListInfo_{
 
 typedef struct _stSubThreadInfo_ {
 	int nInterval;
-	int nProduct;			// 20210308 Á¦Ç° ¹öÀü
+	int nProduct;			// 20210308 ì œí’ˆ ë²„ì „
 	int nThreadNumber;
 	char szThreadName[28];
 	int nThreadDataCount;
@@ -329,11 +329,11 @@ typedef struct _stSubThreadInfo_ {
 //////////////////////////////////////////////////////////////////////////
 struct ST_TagAlarmList
 {
-	char szStartTime[20];	//¾Ë¶÷ ¹ß»ı ½Ã°£
-	char szAlarmId[48];		//¾Ë¶÷ ID
-	int nAlarmKind;			//¾Ë¶÷ Å¸ÀÔ
-	char szAlarmLevel[48];	//¾Ë¶÷·¹º§
-	char szAlarmTypeTxt[12]; //DI Á¶°Ç½Ã »ç¿ë
+	char szStartTime[20];	//ì•ŒëŒ ë°œìƒ ì‹œê°„
+	char szAlarmId[48];		//ì•ŒëŒ ID
+	int nAlarmKind;			//ì•ŒëŒ íƒ€ì…
+	char szAlarmLevel[48];	//ì•ŒëŒë ˆë²¨
+	char szAlarmTypeTxt[12]; //DI ì¡°ê±´ì‹œ ì‚¬ìš©
 	int nAlarmType;
 	float fHIHIVal;			//HIHI
 	float fHIGHVal;			//High
@@ -346,10 +346,10 @@ struct ST_TagAlarmList
 	char szTagId[128];		//TagID
 	char szTagName[64];		//TagName
 	int nTagType;			//TagType
-	float fCurrentValue;	//ÇöÀç °ª
+	float fCurrentValue;	//í˜„ì¬ ê°’
 	float fLastValue;
-	float fAckValue;		//¹ß»ı°ª
-	int nAlarmSt;			//¾Ë¶÷
+	float fAckValue;		//ë°œìƒê°’
+	int nAlarmSt;			//ì•ŒëŒ
 	int nOldAlarmAckType;
 };
 
@@ -360,14 +360,14 @@ typedef struct _stAlarmCheck_{
 }ST_ALARMCHECK;
 
 //////////////////////////////////////////////////////////////////////////
-//¾Ë¶÷ - ½Ã¼³¹° ¾Ë¶÷ ±¸Á¶
+//ì•ŒëŒ - ì‹œì„¤ë¬¼ ì•ŒëŒ êµ¬ì¡°
 struct ST_FMSAlarmList{
 	char szSite_Id[48];
 	char szSite_Name[48];
 	char szFCT_ID[48];
 	char szFCT_Name[48];
 	char szAlarmId[48];
-	char szAlarmLevel[48];	//¾Ë¶÷·¹º§
+	char szAlarmLevel[48];	//ì•ŒëŒë ˆë²¨
 	CTime timeExptChangeDate;
 	int nChangeAlarmDate;
 };
@@ -383,7 +383,7 @@ struct ST_UMSSend_UserList
 };
 
 //////////////////////////////////////////////////////////////////////////
-//¿¡³ÊÁö°ü¸®°ø´Ü ¿¬µ¿ ±¸Á¶
+//ì—ë„ˆì§€ê´€ë¦¬ê³µë‹¨ ì—°ë™ êµ¬ì¡°
 typedef struct _st_siteinfo_{
 	char szSiteName[24];
 	char szBEMS_ID[12];
@@ -394,30 +394,30 @@ typedef struct _ST_TagDetailsList_{
 	char szHmiTag_ID[128];
 	char szDV_ID[12];
 	char szTAG_ID[12];
-	char szNEW_TAG_TP_GRP_code[4];	//°üÁ¦Á¡±×·ì
+	char szNEW_TAG_TP_GRP_code[4];	//ê´€ì œì ê·¸ë£¹
 	char szNEW_TAG_TP_GRP_NM[24];
 	char szNEW_TAG_TP_code[4];
-	char szNEW_TAG_TP_NM[24];		//°üÁ¦Á¡ À¯Çü
+	char szNEW_TAG_TP_NM[24];		//ê´€ì œì  ìœ í˜•
 	char szNEW_MTAL_code[4];
-	char szNEW_MTAL_NM[24];			//¹°Áú
+	char szNEW_MTAL_NM[24];			//ë¬¼ì§ˆ
 	char szNEW_UNIT_code[4];
-	char szNEW_UNIT_NM[24];			//´ÜÀ§
+	char szNEW_UNIT_NM[24];			//ë‹¨ìœ„
 	char szNEW_LOC_FLR_code[4];
-	char szNEW_LOC_FLR_NM[24];		//Ãş
+	char szNEW_LOC_FLR_NM[24];		//ì¸µ
 	char szNEW_DV_CLSF_01_code[4];
-	char szNEW_DV_CLSF_01_NM[24];	//ÀåºñºĞ·ù-´ë
+	char szNEW_DV_CLSF_01_NM[24];	//ì¥ë¹„ë¶„ë¥˜-ëŒ€
 	char szNEW_DV_CLSF_02_code[4];
-	char szNEW_DV_CLSF_02_NM[24];	//ÀåºñºĞ·ù-Áß
+	char szNEW_DV_CLSF_02_NM[24];	//ì¥ë¹„ë¶„ë¥˜-ì¤‘
 	char szNEW_DV_CLSF_03_code[4];
-	char szNEW_DV_CLSF_03_NM[24];	//ÀåºñºĞ·ù-¼Ò
+	char szNEW_DV_CLSF_03_NM[24];	//ì¥ë¹„ë¶„ë¥˜-ì†Œ
 	char szNEW_DV_CLSF_LOC_code[4];
-	char szNEW_DV_CLSF_LOC_NM[24];	//¼¼ºÎºĞ·ù
+	char szNEW_DV_CLSF_LOC_NM[24];	//ì„¸ë¶€ë¶„ë¥˜
 	char szNEW_VIRT_TAG_code[4];
-	char szNEW_VIRT_TAG_NM[24];		//°¡»ó°üÁ¦Á¡¿©ºÎ
+	char szNEW_VIRT_TAG_NM[24];		//ê°€ìƒê´€ì œì ì—¬ë¶€
 	char szNEW_MEAU_CYCLE_code[4];
-	char szNEW_MEAU_CYCLE_NM[24];	//ÃøÁ¤ÁÖ±â
+	char szNEW_MEAU_CYCLE_NM[24];	//ì¸¡ì •ì£¼ê¸°
 	char szNEW_MEAU_CYCLE_UNIT_code[4];
-	char szNEW_MEAU_CYCLE_UNIT_NM[24];	//ÁÖ±â´ÜÀ§
+	char szNEW_MEAU_CYCLE_UNIT_NM[24];	//ì£¼ê¸°ë‹¨ìœ„
 	char szNEW_BLD_BUND_code[4];
 	char szNEW_BLD_BUND_NM[24];
 	char szTAG_NAME[64];
@@ -531,22 +531,22 @@ public:
 
 
 //////////////////////////////////////////////////////////////////////////
-//À§µµ,°æµµ / X, Y º¯°æ½Ã Á¤º¸
-#define  RE (6371.00877) // Áö±¸ ¹İ°æ(km)
-#define  GRID (5.0) // °İÀÚ °£°İ(km)
-#define  SLAT1 (30.0) // Åõ¿µ À§µµ1(degree)
-#define  SLAT2 (60.0) // Åõ¿µ À§µµ2(degree)
-#define  OLON (126.0) // ±âÁØÁ¡ °æµµ(degree)
-#define  OLAT  (38.0) // ±âÁØÁ¡ À§µµ(degree)
-#define  XO (43) // ±âÁØÁ¡ XÁÂÇ¥(GRID)
-#define  YO (136) // ±â1ÁØÁ¡ YÁÂÇ¥(GRID)
+//ìœ„ë„,ê²½ë„ / X, Y ë³€ê²½ì‹œ ì •ë³´
+#define  RE (6371.00877) // ì§€êµ¬ ë°˜ê²½(km)
+#define  GRID (5.0) // ê²©ì ê°„ê²©(km)
+#define  SLAT1 (30.0) // íˆ¬ì˜ ìœ„ë„1(degree)
+#define  SLAT2 (60.0) // íˆ¬ì˜ ìœ„ë„2(degree)
+#define  OLON (126.0) // ê¸°ì¤€ì  ê²½ë„(degree)
+#define  OLAT  (38.0) // ê¸°ì¤€ì  ìœ„ë„(degree)
+#define  XO (43) // ê¸°ì¤€ì  Xì¢Œí‘œ(GRID)
+#define  YO (136) // ê¸°1ì¤€ì  Yì¢Œí‘œ(GRID)
 
-//³¯¾¾ API URL Á¤º¸
+//ë‚ ì”¨ API URL ì •ë³´
 typedef struct _stWeatherConnectInfo_ {
 	char szURL[128];
 	char szServiceKey[128];
-	int nX; //ÁÂÇ¥
-	int nY; //ÁÂÇ¥
+	int nX; //ì¢Œí‘œ
+	int nY; //ì¢Œí‘œ
 }ST_WEATHERCONNECT_INFO;//connection
 
 typedef struct _stWeatherInfoData_ {
@@ -554,11 +554,11 @@ typedef struct _stWeatherInfoData_ {
 	char szSite_Name[32];
 	char szLiveUSE_YN[2];
 	char szServiceKey[128];
-	char szLiveLat[24]; //À§µµ
-	char szLiveLon[24]; //°æµµ
+	char szLiveLat[24]; //ìœ„ë„
+	char szLiveLon[24]; //ê²½ë„
 	char szForecastUSE_YN[2];
-	char szForecastLat[24]; //À§µµ
-	char szForecastLon[24]; //°æµµ
+	char szForecastLat[24]; //ìœ„ë„
+	char szForecastLon[24]; //ê²½ë„
 }ST_WEATHER_INFO;//connection
 
 struct ST_AlarmOccurs
@@ -568,15 +568,15 @@ struct ST_AlarmOccurs
 	int nAlarmSt;
 };
 
-//³¯¾¾ Á¤º¸ ÄÃ·³ Å¸ÀÔ »ç¿ë
+//ë‚ ì”¨ ì •ë³´ ì»¬ëŸ¼ íƒ€ì… ì‚¬ìš©
 struct ST_DB_WeatherColumn {
-	char szColumnName[64]; //ÄÃ·³ ¸íÄª
+	char szColumnName[64]; //ì»¬ëŸ¼ ëª…ì¹­
 	char szCategory[24];
-	char szValue[24];  //ÄÃ·³¿¡ ÇØ´çÇÏ´Â °ª
+	char szValue[24];  //ì»¬ëŸ¼ì— í•´ë‹¹í•˜ëŠ” ê°’
 };
 
 
-//³¯¾¾ »ç¿ë
+//ë‚ ì”¨ ì‚¬ìš©
 #define FRC_SPACEDATA	0
 #define FRC_GRID		1
 #define FRC_TIMEDATA	2
@@ -585,8 +585,8 @@ typedef struct _stWeatherInfo_ {
 	char szAddress[128];
 	char szServiceKey[128];
 
-	//	nPTY_TYPE = 0 : °­¼ö·®
-	//	nPTY_TYPE = 1 : Àû¼³·®
+	//	nPTY_TYPE = 0 : ê°•ìˆ˜ëŸ‰
+	//	nPTY_TYPE = 1 : ì ì„¤ëŸ‰
 	int nPTY_TYPE;
 
 	void init()
@@ -604,7 +604,7 @@ typedef struct _stWeatherInfo_ {
 			strTyp = "ForecastSpaceData";
 			break;
 		case  FRC_GRID:
-			strTyp = "ForecastGrib";  //½ÇÈ²
+			strTyp = "ForecastGrib";  //ì‹¤í™©
 			//strUrl.Format("%s/service/SecndSrtpdFrcstInfoService/%s?ServiceKey=%s&base_date=%04d%02d%02d&base_time=%02d00&nx=%d&ny=%d",szAddress,strTyp,szKey,
 			strUrl.Format("%s/service/SecndSrtpdFrcstInfoService2/%s?ServiceKey=%s&base_date=%04d%02d%02d&base_time=%02d00&nx=%d&ny=%d",szAddress,strTyp,szKey,
 				time.GetYear(),time.GetMonth(),time.GetDay(),time.GetHour(), nX, nY);
@@ -620,7 +620,7 @@ typedef struct _stWeatherInfo_ {
 		return strUrl;
 	}
 
-	/*T1H:±â¿Â 	RN1:1½Ã°£ °­¼ö·®	SKY:ÇÏ´Ã»óÅÂ	UUU:µ¿¼­¹Ù¶÷¼ººĞ	VVV:³²ºÏ¹Ù¶÷¼ººĞ	REH:½Àµµ	PTY:°­¼öÇüÅÂ	LGT:³«·Ú	VEC:Ç³Çâ	WSD:Ç³¼Ó*/
+	/*T1H:ê¸°ì˜¨ 	RN1:1ì‹œê°„ ê°•ìˆ˜ëŸ‰	SKY:í•˜ëŠ˜ìƒíƒœ	UUU:ë™ì„œë°”ëŒì„±ë¶„	VVV:ë‚¨ë¶ë°”ëŒì„±ë¶„	REH:ìŠµë„	PTY:ê°•ìˆ˜í˜•íƒœ	LGT:ë‚™ë¢°	VEC:í’í–¥	WSD:í’ì†*/
 	CString GetForecastGrib_TYP(CString strName,CString strValue)
 	{
 		CString strRetBuff ="";
@@ -628,31 +628,31 @@ typedef struct _stWeatherInfo_ {
 			return strValue;
 		else if (strName == "RN1")
 		{
-			if(nPTY_TYPE == 0) //±âº» °­¼ö·®
+			if(nPTY_TYPE == 0) //ê¸°ë³¸ ê°•ìˆ˜ëŸ‰
 			{
 				switch(atoi(strValue))
 				{
 				case 0: strRetBuff = "0 mm";		break;
-				case 1: strRetBuff = "1 mm ¹Ì¸¸";	break;
+				case 1: strRetBuff = "1 mm ë¯¸ë§Œ";	break;
 				case 5: strRetBuff = "1 ~ 4 mm";	break;
 				case 10: strRetBuff = "5 ~ 9 mm";	break;
 				case 20: strRetBuff = "10 ~ 19 mm"; break;
 				case 40: strRetBuff = "20 ~ 39 mm"; break;
 				case 70: strRetBuff = "40 ~ 69 mm";	break;
-				case 100: strRetBuff = "70 mm ÀÌ»ó";	break;
+				case 100: strRetBuff = "70 mm ì´ìƒ";	break;
 				default: strRetBuff = "0";	break;
 				}
 			}
-			else //Àû¼³·®
+			else //ì ì„¤ëŸ‰
 			{
 				switch(atoi(strValue))
 				{
 				case 0: strRetBuff = "0 Cm";		break;
-				case 1: strRetBuff = "1 Cm ¹Ì¸¸";	break;
+				case 1: strRetBuff = "1 Cm ë¯¸ë§Œ";	break;
 				case 5: strRetBuff = "1 ~ 4 Cm";	break;
 				case 10: strRetBuff = "5 ~ 9 Cm";	break;
 				case 20: strRetBuff = "10 ~ 19 Cm"; break;
-				case 100: strRetBuff = "20 Cm ÀÌ»ó";	break;
+				case 100: strRetBuff = "20 Cm ì´ìƒ";	break;
 				default: strRetBuff = "0";	break;
 				}
 			}
@@ -669,11 +669,11 @@ typedef struct _stWeatherInfo_ {
 			if(fBuffer == 0)
 				strRetBuff.Format("0");
 			else if(fBuffer > 0)
-				strRetBuff.Format("µ¿ - %0.2f m/s",fBuffer);
+				strRetBuff.Format("ë™ - %0.2f m/s",fBuffer);
 			else
 			{
 				fBuffer = 0 - (fBuffer);
-				strRetBuff.Format("¼­ - %0.2f m/s",fBuffer);
+				strRetBuff.Format("ì„œ - %0.2f m/s",fBuffer);
 			}
 			return strRetBuff;
 		}
@@ -684,11 +684,11 @@ typedef struct _stWeatherInfo_ {
 			if(fBuffer == 0)
 				strRetBuff.Format("0");
 			else if(fBuffer > 0)
-				strRetBuff.Format("ºÏ - %0.2f m/s",fBuffer);
+				strRetBuff.Format("ë¶ - %0.2f m/s",fBuffer);
 			else
 			{
 				fBuffer = 0 - (fBuffer);
-				strRetBuff.Format("³² - %0.2f m/s",fBuffer);
+				strRetBuff.Format("ë‚¨ - %0.2f m/s",fBuffer);
 			}
 			return strRetBuff;
 		}
@@ -696,7 +696,7 @@ typedef struct _stWeatherInfo_ {
 			return strValue;
 		else if (strName == "PTY")
 		{
-			//°­¼ö ÇüÅÂ - 0:¾øÀ½,1:ºñ,2:ºñ/´«,3:´«(´«ÀÏ¶§¸¸ nPTY_TYP È°¼ºÈ­ 1)
+			//ê°•ìˆ˜ í˜•íƒœ - 0:ì—†ìŒ,1:ë¹„,2:ë¹„/ëˆˆ,3:ëˆˆ(ëˆˆì¼ë•Œë§Œ nPTY_TYP í™œì„±í™” 1)
 			if(strValue == "3")
 				nPTY_TYPE = 1;
 			else
@@ -719,7 +719,7 @@ typedef struct _stWeatherInfo_ {
 		return "Error";
 	}
 
-	//À§µµ/°æµµ¸¦ X/Y·Î º¯È¯
+	//ìœ„ë„/ê²½ë„ë¥¼ X/Yë¡œ ë³€í™˜
 	void XY_Conv(double dLat, double dLon, double *drsX,double *drsY)
 	{
 		static double PI,DEGRAD,RADDEG;
@@ -743,7 +743,7 @@ typedef struct _stWeatherInfo_ {
 		ro = re * sf / pow(ro, sn);
 
 		//////////////////////////////////////////////////////////////////////////
-		//À§/°æµµ -> X Y ÁÂÇ¥·Î º¯È¯
+		//ìœ„/ê²½ë„ -> X Y ì¢Œí‘œë¡œ ë³€í™˜
 		ra = tan(PI * 0.25 + (dLat) * DEGRAD * 0.5);
 		ra = re * sf / pow(ra, sn);
 		theta = dLon * DEGRAD - olon;
@@ -762,19 +762,19 @@ typedef struct _stWeatherInfo_ {
 
 
 typedef struct _stWeatherForecast_{
-	int nHour; //¿¹º¸ ½Ã°£
-	int nDay; //(¿À´Ã/³»ÀÏ/¸ğ·¹ Áß ¾ğÁ¦)
-	float fTemp; //¿¹º¸ ½Ã°£ÀÇ ¿Âµµ
-	float fTempMx; //ÃÖ°í¿Âµµ
-	float fTempMn; //ÃÖÀú¿Âµµ
-	int nSky;//ÇÏ´Ã »óÅÂ(1:¸¼À½,2:±¸¸§Á¶±İ,3:±¸¸§¸¹À½,4:Èå¸²
-	int nPty;//°­¼ö»óÅÂ(0:¾øÀ½,1:ºñ,2:ºñ/´«,3:´«/ºñ,4:´«)
-	char szWfkor[12]; //typ:¸¼À½,±¸¸§ Á¶±İ,±¸¸§ ¸¹À½, Èå¸², ºñ, ´«/ºñ, ´«
-	int nPop;//°­¼ö È®·ü
-	int nWs;//Ç³¼Ó(m/s)
-	int nWd;//Ç³Çâ 0~7 (ºÏ, ºÏµ¿, µ¿, ³²µ¿, ³², ³²¼­, ¼­, ºÏ¼­)
-	char szWdkor[12];  //Ç³Çâ µ¿,ºÏ,ºÏµ¿,ºÏ¼­,³²,³²µ¿,³²¼­,¼­
-	int nReh;//½Àµµ(%)
+	int nHour; //ì˜ˆë³´ ì‹œê°„
+	int nDay; //(ì˜¤ëŠ˜/ë‚´ì¼/ëª¨ë ˆ ì¤‘ ì–¸ì œ)
+	float fTemp; //ì˜ˆë³´ ì‹œê°„ì˜ ì˜¨ë„
+	float fTempMx; //ìµœê³ ì˜¨ë„
+	float fTempMn; //ìµœì €ì˜¨ë„
+	int nSky;//í•˜ëŠ˜ ìƒíƒœ(1:ë§‘ìŒ,2:êµ¬ë¦„ì¡°ê¸ˆ,3:êµ¬ë¦„ë§ìŒ,4:íë¦¼
+	int nPty;//ê°•ìˆ˜ìƒíƒœ(0:ì—†ìŒ,1:ë¹„,2:ë¹„/ëˆˆ,3:ëˆˆ/ë¹„,4:ëˆˆ)
+	char szWfkor[12]; //typ:ë§‘ìŒ,êµ¬ë¦„ ì¡°ê¸ˆ,êµ¬ë¦„ ë§ìŒ, íë¦¼, ë¹„, ëˆˆ/ë¹„, ëˆˆ
+	int nPop;//ê°•ìˆ˜ í™•ë¥ 
+	int nWs;//í’ì†(m/s)
+	int nWd;//í’í–¥ 0~7 (ë¶, ë¶ë™, ë™, ë‚¨ë™, ë‚¨, ë‚¨ì„œ, ì„œ, ë¶ì„œ)
+	char szWdkor[12];  //í’í–¥ ë™,ë¶,ë¶ë™,ë¶ì„œ,ë‚¨,ë‚¨ë™,ë‚¨ì„œ,ì„œ
+	int nReh;//ìŠµë„(%)
 }ST_WT_FROECAST,*pST_WT_FROECAST;
 
 typedef struct __stWeatherForecast__{

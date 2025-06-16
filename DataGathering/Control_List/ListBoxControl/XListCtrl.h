@@ -1,4 +1,4 @@
-#ifndef XLISTCTRL_H
+ï»¿#ifndef XLISTCTRL_H
 #define XLISTCTRL_H
 
 #include "XHeaderCtrl.h"
@@ -74,9 +74,9 @@ public:
 
 // Attributes
 public:
-	CEdit* m_pEdit;  // Edit control Æ÷ÀÎÅÍ
-	int m_nEditItem; // ÆíÁıÁßÀÎ ¾ÆÀÌÅÛ
-	int m_nEditSubItem; // ÆíÁıÁßÀÎ ¼­ºê ¾ÆÀÌÅÛ
+	CEdit* m_pEdit;  // Edit control í¬ì¸í„°
+	int m_nEditItem; // í¸ì§‘ì¤‘ì¸ ì•„ì´í…œ
+	int m_nEditSubItem; // í¸ì§‘ì¤‘ì¸ ì„œë¸Œ ì•„ì´í…œ
 
 
 // Operations

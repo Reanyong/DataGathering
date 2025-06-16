@@ -1,4 +1,4 @@
-// Thread_Calibration.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_Calibration.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,7 +30,7 @@ CThread_Calibration::~CThread_Calibration()
 
 BOOL CThread_Calibration::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	return TRUE;
 }
 
@@ -55,24 +55,24 @@ void CThread_Calibration::SysLogOutPut(CString strLogName,CString strMsg, COLORR
 	_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "Title", crBody, strMsg);
 }
 
-// CThread_Calibration ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_Calibration ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CThread_Calibration::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
-	//HM_TAG_DIC Å×ÀÌºí Á¤º¸
+	//HM_TAG_DIC í…Œì´ë¸” ì •ë³´
 	m_nListCnt = g_pList_ST_TagDivisionListCnt;
 	m_pList_ST_TagDivisionList = g_pList_ST_TagDivisionList;
 
-	//DB ¿¬°á ¼ÂÆÃ
+	//DB ì—°ê²° ì…‹íŒ…
 	ST_DBINFO stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
 
 	m_nDBType = stDBInfo.unDBType;
 	DB_Connect = new CAdo_Control();
-	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, "TagMapping ¼³Á¤", g_stProjectInfo.szDTGatheringLogPath);
+	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, "TagMapping ì„¤ì •", g_stProjectInfo.szDTGatheringLogPath);
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
 
-	//Source DB Á¤º¸ ¼ÂÆÃ
+	//Source DB ì •ë³´ ì…‹íŒ…
 	CString strDBName = "";
 	ST_DATABASENAME  stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
 	if (stDBInfo.unDBType == DB_MSSQL)
@@ -82,8 +82,8 @@ int CThread_Calibration::Run()
 		else
 			strDBName.Format("HM_MINUTE_TREND_HISTORY");
 	}
-	//20200211 jsh : postgres Ãß°¡ÀÎÇØ Á¶°Ç¹® Ãß°¡
-	else if (stDBInfo.unDBType == DB_POSTGRE) //20210702 ksw Á¶È¸ Å×ÀÌºí ¼öÁ¤
+	//20200211 jsh : postgres ì¶”ê°€ì¸í•´ ì¡°ê±´ë¬¸ ì¶”ê°€
+	else if (stDBInfo.unDBType == DB_POSTGRE) //20210702 ksw ì¡°íšŒ í…Œì´ë¸” ìˆ˜ì •
 	{
 		if (strlen(stDBName.szHMIDBName) > 1)
 			strDBName.Format("%s.HM_MINUTE_TREND_HISTORY", stDBName.szHMIDBName);
@@ -101,8 +101,8 @@ int CThread_Calibration::Run()
 	_RecordsetPtr pRs = NULL;
 	std::vector<CDataAi> vtVals_AI;
 
-	//20200225 ³ªÁ¤È£ ¼öÁ¤ tag id Á¦°Å
-	//20210308 ksw BEMS EMS ¹öÀü ¶§¹®¿¡ ´Ù½Ã »ì¸²
+	//20200225 ë‚˜ì •í˜¸ ìˆ˜ì • tag id ì œê±°
+	//20210308 ksw BEMS EMS ë²„ì „ ë•Œë¬¸ì— ë‹¤ì‹œ ì‚´ë¦¼
 	CString strTagId = "", strTagName = "", strRecordDate = "", strRecordTime = "", strTData = "", strGroupName = "";
 	//CString strTagName ="",strRecordDate ="",strRecordTime ="",strTData ="",strGroupName ="";
 	CString strQuery, strMsg, sTDataColName, sCur_vtVals_AI_DateTime, sDBDateTime, sValue, sTmp, sInsertTColNames;
@@ -111,12 +111,12 @@ int CThread_Calibration::Run()
 	int nQueryType = 0, nFailCnt = 0;
 	char szProgress[100] = { 0, };
 
-	strMsg.Format("Start Thread_Calibration ( %s ~ ÇöÀç )", m_ctSelTime.Format("%Y/%m/%d 00"));
-	_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "Calibration ½ÃÀÛ", USER_COLOR_BLACK, strMsg);
+	strMsg.Format("Start Thread_Calibration ( %s ~ í˜„ì¬ )", m_ctSelTime.Format("%Y/%m/%d 00"));
+	_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "Calibration ì‹œì‘", USER_COLOR_BLACK, strMsg);
 
 	while (!m_bEndThread)
 	{
-		//DB ¿¬°á / Àç¿¬°á
+		//DB ì—°ê²° / ì¬ì—°ê²°
 		if (DB_Connect->GetDB_ConnectionStatus() != 1)
 		{
 			BOOL bConnectCheck = DB_Connect->DB_Connection();
@@ -127,8 +127,8 @@ int CThread_Calibration::Run()
 			}
 		}
 
-		//CThread_MinGatherMain::GetTagList ¿¡¼­ HM_TAG_DIC Á¤º¸¸¦ °¡Á®¿À¹Ç·Î µû·Î ´Ù½Ã °¡Á®¿ÀÁö ¾Ê°í ±×´ë·Î È°¿ë
-		//È¤½Ã Å¸ÀÌ¹Ö»ó ¸ø°¡Á®¿À¸é ´Ù½Ã °¡Á®¿Â´Ù
+		//CThread_MinGatherMain::GetTagList ì—ì„œ HM_TAG_DIC ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ë¯€ë¡œ ë”°ë¡œ ë‹¤ì‹œ ê°€ì ¸ì˜¤ì§€ ì•Šê³  ê·¸ëŒ€ë¡œ í™œìš©
+		//í˜¹ì‹œ íƒ€ì´ë°ìƒ ëª»ê°€ì ¸ì˜¤ë©´ ë‹¤ì‹œ ê°€ì ¸ì˜¨ë‹¤
 		if (m_nListCnt == 0)
 		{
 			m_nListCnt = g_pList_ST_TagDivisionListCnt;
@@ -140,7 +140,7 @@ int CThread_Calibration::Run()
 
 		try
 		{
-			//ÁøÇà»óÈ² Ç¥½Ã¸¦ À§ÇØ ÀüÃ¼ Ä«¿îÆ®
+			//ì§„í–‰ìƒí™© í‘œì‹œë¥¼ ìœ„í•´ ì „ì²´ ì¹´ìš´íŠ¸
 			unsigned int nTotalCnt = 0, nGroupCnt = 0;
 			for (int nI = 0; nI < m_nListCnt; nI++)
 			{
@@ -151,17 +151,17 @@ int CThread_Calibration::Run()
 
 
 
-			//CThread_MinGatherMain::GetTagList ¿¡¼­ HM_TAG_DIC Å×ÀÌºí ÅÂ±× ±Ü¾î´Ù°¡ m_nListCnt °³·Î ºĞÇÒÇØ ³ùÀ½
-			//ÇÑ¸¶µğ·Î ÀüÃ¼ ÅÂ±×°¡ m_nListCnt°³ÀÇ ±×·ìÀ¸·Î ³ª´µ¾îÁ® ÀÖÀ½
+			//CThread_MinGatherMain::GetTagList ì—ì„œ HM_TAG_DIC í…Œì´ë¸” íƒœê·¸ ê¸ì–´ë‹¤ê°€ m_nListCnt ê°œë¡œ ë¶„í• í•´ ë†¨ìŒ
+			//í•œë§ˆë””ë¡œ ì „ì²´ íƒœê·¸ê°€ m_nListCntê°œì˜ ê·¸ë£¹ìœ¼ë¡œ ë‚˜ë‰˜ì–´ì ¸ ìˆìŒ
 			for (int nI = 0; nI < m_nListCnt; nI++)
 			{
 				std::list<ST_TagInfoList>::iterator iter = m_pList_ST_TagDivisionList[nI]->begin();
 
-				//°¢ ±×·ìº°·Î º¸À¯ÇÏ°í ÀÖ´Â ÅÂ±×¸¸Å­
-				//HM_MINUTE_TREND_HISTORY Å×ÀÌºí¿¡ ÅÂ±× ¹× ½Ã°£º°·Î ÀúÀåÇÑ µ¥ÀÌÅÍ º¸Á¤
+				//ê° ê·¸ë£¹ë³„ë¡œ ë³´ìœ í•˜ê³  ìˆëŠ” íƒœê·¸ë§Œí¼
+				//HM_MINUTE_TREND_HISTORY í…Œì´ë¸”ì— íƒœê·¸ ë° ì‹œê°„ë³„ë¡œ ì €ì¥í•œ ë°ì´í„° ë³´ì •
 				while (iter != m_pList_ST_TagDivisionList[nI]->end())
 				{
-					//ÁøÇà»óÈ² Ç¥½Ã
+					//ì§„í–‰ìƒí™© í‘œì‹œ
 					nGroupCnt++;
 					sprintf_s(szProgress, "%u / %u ( %d%% )", nGroupCnt, nTotalCnt, (nGroupCnt * 100) / (nTotalCnt));
 					::PostMessage(m_pOwner->m_hWnd, WM_ADDLIST, NULL, (LPARAM)szProgress);
@@ -177,13 +177,13 @@ int CThread_Calibration::Run()
 					//strMsg.Format("Before query ( %s )",iter->szTAG_Id);
 					//SetWriteLogFile(strMsg);
 
-					//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
-					//RECORD_DATE´Â stringÀÌ°í RECORD_TIMEÀº int... ¶õ´Ù. RECORD_TIMEÀÌ ½Ã°£ÀÎµ¥ 1ÀÚ¸® ½Ã°£ÀÏ¶§ ºñ±³¿Í Á¤·ÄÀÌ Á».. ºñ±³¿Í Á¤·ÄÀ» À§ÇØ º¯È¯ÇØ¼­ SELECT
+					//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
+					//RECORD_DATEëŠ” stringì´ê³  RECORD_TIMEì€ int... ë€ë‹¤. RECORD_TIMEì´ ì‹œê°„ì¸ë° 1ìë¦¬ ì‹œê°„ì¼ë•Œ ë¹„êµì™€ ì •ë ¬ì´ ì¢€.. ë¹„êµì™€ ì •ë ¬ì„ ìœ„í•´ ë³€í™˜í•´ì„œ SELECT
 					//strQuery.Format("SELECT * FROM %s WHERE TAG_ID = '%s' AND RECORD_DATE+RIGHT('00' + CONVERT(NVARCHAR, LTRIM(str(RECORD_TIME))), 2) >= '%s' ORDER BY RECORD_DATE+RIGHT('00' + CONVERT(NVARCHAR, LTRIM(str(RECORD_TIME))), 2)"
 					//	,strDBName, iter->szTAG_Id, m_ctSelTime.Format("%Y%m%d00"));
 					if (m_nProduct == 0)
 					{
-						if (stDBInfo.unDBType == DB_POSTGRE)	//20200219 ³ªÁ¤È£ ¼öÁ¤ PostgreSQL Å×ÀÌºí µ¥ÀÌÅÍ ¼öÁı
+						if (stDBInfo.unDBType == DB_POSTGRE)	//20200219 ë‚˜ì •í˜¸ ìˆ˜ì • PostgreSQL í…Œì´ë¸” ë°ì´í„° ìˆ˜ì§‘
 						{
 							strQuery.Format("SELECT * FROM %s WHERE TAG_NAME = '%s' AND RECORD_DATE || to_char(RECORD_TIME,'FM00') >= '%s' ORDER BY RECORD_DATE || TO_CHAR(RECORD_TIME,'FM00')"
 								, strDBName, iter->szTAG_Name, m_ctSelTime.Format("%Y%m%d00"));
@@ -201,7 +201,7 @@ int CThread_Calibration::Run()
 					}
 					try
 					{
-						//ÅÂ±×º° HM_MINUTE_TREND_HISTORY Å×ÀÌºí µ¥ÀÌÅÍ
+						//íƒœê·¸ë³„ HM_MINUTE_TREND_HISTORY í…Œì´ë¸” ë°ì´í„°
 
 						/*if (stDBInfo.unDBType == DB_POSTGRE)
 						const char* szSerVer = DB_Connect->m_stDBInfo.szServer;
@@ -213,14 +213,14 @@ int CThread_Calibration::Run()
 						*/
 
 
-						if (stDBInfo.unDBType == DB_POSTGRE)	//20200219 ³ªÁ¤È£ ¼öÁ¤ PostgreSQL Å×ÀÌºí µ¥ÀÌÅÍ ¼öÁı
+						if (stDBInfo.unDBType == DB_POSTGRE)	//20200219 ë‚˜ì •í˜¸ ìˆ˜ì • PostgreSQL í…Œì´ë¸” ë°ì´í„° ìˆ˜ì§‘
 						{
 							vtVals_AI.clear();
 							//GetHistoricalTagValues( iter->szTAG_Name, CTime::GetCurrentTime() - CTimeSpan( 2, 0, 0, 0 ), CTime::GetCurrentTime(), vtVals_AI );
 							GetHistoricalTagValues(iter->szTAG_Name, m_ctSelTime, CTime::GetCurrentTime(), vtVals_AI);
 
-							//ÇØ´ç ÅÂ±×ÀÇ ÇöÁ¸ÇÏ´Â HM_MINUTE_TREND_HISTORY Å×ÀÌºí ·¹ÄÚµå ÇÏ³ª¾¿ »©¿Í¼­ ÇØ´ç ·¹ÄÚµå±îÁöÀÇ µ¥ÀÌÅÍ Ã¤¿ò
-							//1½Ã°£ ´ÜÀ§·Î Á¸ÀçÇÏ´Â HM_MINUTE_TREND_HISTORY Å×ÀÌºí Row ÇÏ³ª¾¿
+							//í•´ë‹¹ íƒœê·¸ì˜ í˜„ì¡´í•˜ëŠ” HM_MINUTE_TREND_HISTORY í…Œì´ë¸” ë ˆì½”ë“œ í•˜ë‚˜ì”© ë¹¼ì™€ì„œ í•´ë‹¹ ë ˆì½”ë“œê¹Œì§€ì˜ ë°ì´í„° ì±„ì›€
+							//1ì‹œê°„ ë‹¨ìœ„ë¡œ ì¡´ì¬í•˜ëŠ” HM_MINUTE_TREND_HISTORY í…Œì´ë¸” Row í•˜ë‚˜ì”©
 							int vtVals_AICnt = 0;
 
 							//pRs = DB_Connect->codbc->SQLGetData();
@@ -304,36 +304,36 @@ int CThread_Calibration::Run()
 											break;
 										}
 
-										//Easyview Historical µ¥ÀÌÅÍ ÀÌ¿ë, ÇöÀç ·¹ÄÚµå(pRs) ±îÁö º¸Á¤
+										//Easyview Historical ë°ì´í„° ì´ìš©, í˜„ì¬ ë ˆì½”ë“œ(pRs) ê¹Œì§€ ë³´ì •
 										for (; vtVals_AICnt < vtVals_AI.size(); vtVals_AICnt++)
 										{
 											sprintf_s(szProgress, "%d / %d ( %d%% )", vtVals_AICnt, vtVals_AI.size(), (vtVals_AICnt * 100) / (vtVals_AI.size()));
 											::PostMessage(m_pOwner->m_hWnd, WM_ADDLIST, 1, (LPARAM)szProgress);
 
-											if (vtVals_AICnt % 60 != 0)	continue;	//60°³ (1½Ã°£) Historical µ¥ÀÌÅÍ ´ÜÀ§ = ·¹ÄÚµå 1°³ (1½Ã°£ µ¥ÀÌÅÍ)
+											if (vtVals_AICnt % 60 != 0)	continue;	//60ê°œ (1ì‹œê°„) Historical ë°ì´í„° ë‹¨ìœ„ = ë ˆì½”ë“œ 1ê°œ (1ì‹œê°„ ë°ì´í„°)
 
-											sCur_vtVals_AI_DateTime = vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d%H"); //ÅÂ±×ÀÇ ³â¿ùÀÏ½Ã°£
-											if (sCur_vtVals_AI_DateTime == sDBDateTime)	//ÇöÀç ·¹ÄÚµå¿Í ÀÏÄ¡ -> Historical µ¥ÀÌÅÍ È°¿ë Update ÈÄ Break
+											sCur_vtVals_AI_DateTime = vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d%H"); //íƒœê·¸ì˜ ë…„ì›”ì¼ì‹œê°„
+											if (sCur_vtVals_AI_DateTime == sDBDateTime)	//í˜„ì¬ ë ˆì½”ë“œì™€ ì¼ì¹˜ -> Historical ë°ì´í„° í™œìš© Update í›„ Break
 											{
 												nQueryType = QUERY_TYPE_UPDATE;
 
 												sValue = "";
 												for (int n1HCnt = vtVals_AICnt; n1HCnt < vtVals_AICnt + 60; n1HCnt++)
 												{
-													if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyµ¥ÀÌÅÍ ³¡ÀÌ¸é °Å±â±îÁö¸¸
+													if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyë°ì´í„° ëì´ë©´ ê±°ê¸°ê¹Œì§€ë§Œ
 
 													sTDataColName.Format("T%02d", n1HCnt - vtVals_AICnt);
 													DB_Connect->GetFieldValue(pRs, sTDataColName, strTData);
 
-													if (strTData.GetLength() > 0)	continue;	//T00~T59 Áß °ªÀÌ ÀÖ´Â°Ç ±×´ë·ÎµĞ´Ù
-													if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//Historyµ¥ÀÌÅÍµµ ¾øÀ¸¸é ±×´ë·ÎµĞ´Ù	////¾ø´Â °ªÀÏ°æ¿ì -3.4028234663852886e+038 ·Î ³ª¿Â´Ù
-													if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyµ¥ÀÌÅÍ ³¡ÀÌ¸é °Å±â±îÁö¸¸
+													if (strTData.GetLength() > 0)	continue;	//T00~T59 ì¤‘ ê°’ì´ ìˆëŠ”ê±´ ê·¸ëŒ€ë¡œë‘”ë‹¤
+													if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//Historyë°ì´í„°ë„ ì—†ìœ¼ë©´ ê·¸ëŒ€ë¡œë‘”ë‹¤	////ì—†ëŠ” ê°’ì¼ê²½ìš° -3.4028234663852886e+038 ë¡œ ë‚˜ì˜¨ë‹¤
+													if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyë°ì´í„° ëì´ë©´ ê±°ê¸°ê¹Œì§€ë§Œ
 
 													sTmp.Format("%s%s='%.4f'", sValue.GetLength() > 0 ? "," : "", sTDataColName, vtVals_AI[n1HCnt].dbVal);
 													sValue += sTmp;
 												}
 
-												//UpdateÇÒ µ¥ÀÌÅÍ°¡ ÇÏ³ªµµ ¾øÀ»¶§ ÇÏÁö ¾Êµµ·Ï
+												//Updateí•  ë°ì´í„°ê°€ í•˜ë‚˜ë„ ì—†ì„ë•Œ í•˜ì§€ ì•Šë„ë¡
 												if (sValue.GetLength() == 0)
 												{
 													vtVals_AICnt += 60;
@@ -342,7 +342,7 @@ int CThread_Calibration::Run()
 												if (sInsertTColNames != "")
 												{
 
-													//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+													//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 													//strQuery.Format("UPDATE %s SET %s WHERE TAG_ID = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %d"
 													//	, strDBName, sValue, iter->szTAG_Id, vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d"), vtVals_AI[vtVals_AICnt].tLogTime.GetHour());
 													strQuery.Format("UPDATE %s SET %s WHERE TAG_NAME = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %d"
@@ -355,17 +355,17 @@ int CThread_Calibration::Run()
 													strQuery = "";
 												}
 											}
-											//Record(Row)°¡ ¾øÀ»°æ¿ì °¡Á®¿Â Historical °ª vtVals_AI À¸·Î INSERT
-											else	//ÇöÀç ·¹ÄÚµå¿Í ºÒÀÏÄ¡ -> ·¹ÄÚµå ¾øÀ½, Historical µ¥ÀÌÅÍ È°¿ë Insert ÈÄ °è¼Ó ·¹ÄÚµå¿¡ ¸Â´Â µ¥ÀÌÅÍ Ã£±â
+											//Record(Row)ê°€ ì—†ì„ê²½ìš° ê°€ì ¸ì˜¨ Historical ê°’ vtVals_AI ìœ¼ë¡œ INSERT
+											else	//í˜„ì¬ ë ˆì½”ë“œì™€ ë¶ˆì¼ì¹˜ -> ë ˆì½”ë“œ ì—†ìŒ, Historical ë°ì´í„° í™œìš© Insert í›„ ê³„ì† ë ˆì½”ë“œì— ë§ëŠ” ë°ì´í„° ì°¾ê¸°
 											{
 												nQueryType = QUERY_TYPE_INSERT;
 
 												sValue = "", sInsertTColNames = "";
 												for (int n1HCnt = vtVals_AICnt; n1HCnt < vtVals_AICnt + 60; n1HCnt++)
 												{
-													if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyµ¥ÀÌÅÍ ³¡ÀÌ¸é °Å±â±îÁö¸¸
+													if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyë°ì´í„° ëì´ë©´ ê±°ê¸°ê¹Œì§€ë§Œ
 
-													if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//¾ø´Â °ªÀÏ°æ¿ì -3.4028234663852886e+038 ·Î ³ª¿Â´Ù
+													if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//ì—†ëŠ” ê°’ì¼ê²½ìš° -3.4028234663852886e+038 ë¡œ ë‚˜ì˜¨ë‹¤
 
 													sTmp.Format(",'%.4f'", vtVals_AI[n1HCnt].dbVal);
 													sValue += sTmp;
@@ -377,7 +377,7 @@ int CThread_Calibration::Run()
 
 												if (sInsertTColNames != "")
 												{
-													//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+													//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 													//strQuery.Format("INSERT INTO %s(TAG_ID, GROUP_NAME, TAG_NAME, RECORD_DATE, RECORD_TIME, T00 ,T01 ,T02 ,T03 ,T04 ,T05 ,T06 ,T07 ,T08 ,T09 ,T10 ,T11 ,T12 ,T13 ,T14 ,T15 ,T16 ,T17 ,T18 ,T19 ,T20 ,T21 ,T22 ,T23 ,T24 ,T25 ,T26 ,T27 ,T28 ,T29 ,T30 ,T31 ,T32 ,T33 ,T34 ,T35 ,T36 ,T37 ,T38 ,T39 ,T40 ,T41 ,T42 ,T43 ,T44 ,T45 ,T46 ,T47 ,T48 ,T49 ,T50 ,T51 ,T52 ,T53 ,T54 ,T55 ,T56 ,T57 ,T58 ,T59 ) "
 													//	CString text;
 													//	text.Format("%s%d %s",vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d"),vtVals_AI[vtVals_AICnt].tLogTime.GetHour(),sValue);
@@ -430,11 +430,11 @@ int CThread_Calibration::Run()
 													nFailCnt++;
 
 													if (nQueryType == QUERY_TYPE_INSERT)
-														sTmp.Format("[%s] Insert ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+														sTmp.Format("[%s] Insert ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 													else
-														sTmp.Format("[%s] Update ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+														sTmp.Format("[%s] Update ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 
-													//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "»ı¼º Error", USER_COLOR_BLACK, sTmp);
+													//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "ìƒì„± Error", USER_COLOR_BLACK, sTmp);
 
 													strMsg.Format("(%s):%s-%s", m_strThreadName, sTmp, strRealExcuteQuery);
 													SetWriteLogFile(strMsg);
@@ -444,7 +444,7 @@ int CThread_Calibration::Run()
 
 											vtVals_AICnt += 59;
 
-											//UPDATE´Â ·¹ÄÚµå¸¦ Ã£¾Ò´Ù´Â ¶æÀÌ´Ï ´ÙÀ½·¹ÄÚµå·Î..
+											//UPDATEëŠ” ë ˆì½”ë“œë¥¼ ì°¾ì•˜ë‹¤ëŠ” ëœ»ì´ë‹ˆ ë‹¤ìŒë ˆì½”ë“œë¡œ..
 											if (nQueryType == QUERY_TYPE_UPDATE)
 											{
 
@@ -468,11 +468,11 @@ int CThread_Calibration::Run()
 												nFailCnt++;
 
 												if (nQueryType == QUERY_TYPE_INSERT)
-													sTmp.Format("[%s] Insert ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+													sTmp.Format("[%s] Insert ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 												else
-													sTmp.Format("[%s] Update ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+													sTmp.Format("[%s] Update ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 
-												//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "»ı¼º Error", USER_COLOR_BLACK, sTmp);
+												//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "ìƒì„± Error", USER_COLOR_BLACK, sTmp);
 
 												strMsg.Format("(%s):%s-%s", m_strThreadName, sTmp, strRealExcuteQuery);
 												SetWriteLogFile(strMsg);
@@ -485,14 +485,14 @@ int CThread_Calibration::Run()
 										if(!pRs->GetEndOfFile())
 										pRs->MoveNext();
 
-										if(pRs->GetEndOfFile() && vtVals_AICnt >= vtVals_AI.size())	break;	//·¹ÄÚµå¿Í vtVals_AI(Historical µ¥ÀÌÅÍ)°¡ ´õÀÌ»ó ¾øÀ»¶§
+										if(pRs->GetEndOfFile() && vtVals_AICnt >= vtVals_AI.size())	break;	//ë ˆì½”ë“œì™€ vtVals_AI(Historical ë°ì´í„°)ê°€ ë”ì´ìƒ ì—†ì„ë•Œ
 										*/
 
 									}
 								}
 								else
 								{
-									sDBDateTime = "";	//if( sCur_vtVals_AI_DateTime == sDBDateTime ) ¿¡¼­ Update·Î ºüÁöÁö ¾Êµµ·Ï
+									sDBDateTime = "";	//if( sCur_vtVals_AI_DateTime == sDBDateTime ) ì—ì„œ Updateë¡œ ë¹ ì§€ì§€ ì•Šë„ë¡
 								}
 							}
 
@@ -506,21 +506,21 @@ int CThread_Calibration::Run()
 
 							//if(pRs == NULL)	continue;
 
-							//ÅÂ±×º° Easyview Historical µ¥ÀÌÅÍ, ÁöÁ¤ÇÑ ³¯Â¥ 0½Ã ~ ÇöÀç±îÁö ¸ğµÎ °¡Á®¿È
+							//íƒœê·¸ë³„ Easyview Historical ë°ì´í„°, ì§€ì •í•œ ë‚ ì§œ 0ì‹œ ~ í˜„ì¬ê¹Œì§€ ëª¨ë‘ ê°€ì ¸ì˜´
 							vtVals_AI.clear();
 							//GetHistoricalTagValues( iter->szTAG_Name, CTime::GetCurrentTime() - CTimeSpan( 2, 0, 0, 0 ), CTime::GetCurrentTime(), vtVals_AI );
 							GetHistoricalTagValues(iter->szTAG_Name, m_ctSelTime, CTime::GetCurrentTime(), vtVals_AI);
 
-							//ÇØ´ç ÅÂ±×ÀÇ ÇöÁ¸ÇÏ´Â HM_MINUTE_TREND_HISTORY Å×ÀÌºí ·¹ÄÚµå ÇÏ³ª¾¿ »©¿Í¼­ ÇØ´ç ·¹ÄÚµå±îÁöÀÇ µ¥ÀÌÅÍ Ã¤¿ò
-							//1½Ã°£ ´ÜÀ§·Î Á¸ÀçÇÏ´Â HM_MINUTE_TREND_HISTORY Å×ÀÌºí Row ÇÏ³ª¾¿
+							//í•´ë‹¹ íƒœê·¸ì˜ í˜„ì¡´í•˜ëŠ” HM_MINUTE_TREND_HISTORY í…Œì´ë¸” ë ˆì½”ë“œ í•˜ë‚˜ì”© ë¹¼ì™€ì„œ í•´ë‹¹ ë ˆì½”ë“œê¹Œì§€ì˜ ë°ì´í„° ì±„ì›€
+							//1ì‹œê°„ ë‹¨ìœ„ë¡œ ì¡´ì¬í•˜ëŠ” HM_MINUTE_TREND_HISTORY í…Œì´ë¸” Row í•˜ë‚˜ì”©
 							int vtVals_AICnt = 0;
 							while (1)
 							{
-								//DB¿¡´Â ´õÀÌ»ó ·¹ÄÚµå°¡ ¾øÁö¸¸ vtVals_AI(Historical µ¥ÀÌÅÍ)´Â ÀÖÀ¸¸é vtVals_AI ¸¸Å­ °è¼Ó º¸Á¤
+								//DBì—ëŠ” ë”ì´ìƒ ë ˆì½”ë“œê°€ ì—†ì§€ë§Œ vtVals_AI(Historical ë°ì´í„°)ëŠ” ìˆìœ¼ë©´ vtVals_AI ë§Œí¼ ê³„ì† ë³´ì •
 								if (!pRs->GetEndOfFile() && pRs->RecordCount > 0)
 								{
-									//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
-									//20210308 ksw Á¦Ç° ºĞ±â
+									//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
+									//20210308 ksw ì œí’ˆ ë¶„ê¸°
 									if (m_nProduct == 1) {
 										DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);
 										DB_Connect->GetFieldValue(pRs, "GROUP_NAME", strGroupName);
@@ -532,49 +532,49 @@ int CThread_Calibration::Run()
 									sDBDateTime.Format("%s%02d", strRecordDate, atoi(strRecordTime));
 								}
 								else
-									sDBDateTime = "";	//if( sCur_vtVals_AI_DateTime == sDBDateTime ) ¿¡¼­ Update·Î ºüÁöÁö ¾Êµµ·Ï
+									sDBDateTime = "";	//if( sCur_vtVals_AI_DateTime == sDBDateTime ) ì—ì„œ Updateë¡œ ë¹ ì§€ì§€ ì•Šë„ë¡
 
-								//¿©·¯°³¾¿ ¹­¾î¼­ Query ½ÇÇà
+								//ì—¬ëŸ¬ê°œì”© ë¬¶ì–´ì„œ Query ì‹¤í–‰
 								int nExcuteCheck = 0;
 								CString strRealExcuteQuery = "";
 
-								//Easyview Historical µ¥ÀÌÅÍ ÀÌ¿ë, ÇöÀç ·¹ÄÚµå(pRs) ±îÁö º¸Á¤
+								//Easyview Historical ë°ì´í„° ì´ìš©, í˜„ì¬ ë ˆì½”ë“œ(pRs) ê¹Œì§€ ë³´ì •
 								for (; vtVals_AICnt < vtVals_AI.size(); vtVals_AICnt++)
 								{
 									//sprintf(szProgress, "%d / %d ( %d%% )", vtVals_AICnt, vtVals_AI.size()-1, (vtVals_AICnt*100)/(vtVals_AI.size()-1));
 									//::PostMessage(m_pOwner->m_hWnd, WM_ADDLIST, 1, (LPARAM)szProgress);
 
-									if (vtVals_AICnt % 60 != 0)	continue;	//60°³ (1½Ã°£) Historical µ¥ÀÌÅÍ ´ÜÀ§ = ·¹ÄÚµå 1°³ (1½Ã°£ µ¥ÀÌÅÍ)
+									if (vtVals_AICnt % 60 != 0)	continue;	//60ê°œ (1ì‹œê°„) Historical ë°ì´í„° ë‹¨ìœ„ = ë ˆì½”ë“œ 1ê°œ (1ì‹œê°„ ë°ì´í„°)
 
 									sCur_vtVals_AI_DateTime = vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d%H");
-									if (sCur_vtVals_AI_DateTime == sDBDateTime)	//ÇöÀç ·¹ÄÚµå¿Í ÀÏÄ¡ -> Historical µ¥ÀÌÅÍ È°¿ë Update ÈÄ Break
+									if (sCur_vtVals_AI_DateTime == sDBDateTime)	//í˜„ì¬ ë ˆì½”ë“œì™€ ì¼ì¹˜ -> Historical ë°ì´í„° í™œìš© Update í›„ Break
 									{
 										nQueryType = QUERY_TYPE_UPDATE;
 
 										sValue = "";
 										for (int n1HCnt = vtVals_AICnt; n1HCnt < vtVals_AICnt + 60; n1HCnt++)
 										{
-											if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyµ¥ÀÌÅÍ ³¡ÀÌ¸é °Å±â±îÁö¸¸
+											if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyë°ì´í„° ëì´ë©´ ê±°ê¸°ê¹Œì§€ë§Œ
 
 											sTDataColName.Format("T%02d", n1HCnt - vtVals_AICnt);
 											DB_Connect->GetFieldValue(pRs, sTDataColName, strTData);
 
-											if (strTData.GetLength() > 0)	continue;	//T00~T59 Áß °ªÀÌ ÀÖ´Â°Ç ±×´ë·ÎµĞ´Ù
-											if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//Historyµ¥ÀÌÅÍµµ ¾øÀ¸¸é ±×´ë·ÎµĞ´Ù	////¾ø´Â °ªÀÏ°æ¿ì -3.4028234663852886e+038 ·Î ³ª¿Â´Ù
-											if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyµ¥ÀÌÅÍ ³¡ÀÌ¸é °Å±â±îÁö¸¸
+											if (strTData.GetLength() > 0)	continue;	//T00~T59 ì¤‘ ê°’ì´ ìˆëŠ”ê±´ ê·¸ëŒ€ë¡œë‘”ë‹¤
+											if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//Historyë°ì´í„°ë„ ì—†ìœ¼ë©´ ê·¸ëŒ€ë¡œë‘”ë‹¤	////ì—†ëŠ” ê°’ì¼ê²½ìš° -3.4028234663852886e+038 ë¡œ ë‚˜ì˜¨ë‹¤
+											if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyë°ì´í„° ëì´ë©´ ê±°ê¸°ê¹Œì§€ë§Œ
 
 											sTmp.Format("%s%s='%.4f'", sValue.GetLength() > 0 ? "," : "", sTDataColName, vtVals_AI[n1HCnt].dbVal);
 											sValue += sTmp;
 										}
 
-										//UpdateÇÒ µ¥ÀÌÅÍ°¡ ÇÏ³ªµµ ¾øÀ»¶§ ÇÏÁö ¾Êµµ·Ï
+										//Updateí•  ë°ì´í„°ê°€ í•˜ë‚˜ë„ ì—†ì„ë•Œ í•˜ì§€ ì•Šë„ë¡
 										if (sValue.GetLength() == 0)
 										{
 											vtVals_AICnt += 60;
 											break;
 										}
 
-										//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+										//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 										//strQuery.Format("UPDATE %s SET %s WHERE TAG_ID = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %d"
 										//	, strDBName, sValue, iter->szTAG_Id, vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d"), vtVals_AI[vtVals_AICnt].tLogTime.GetHour());
 										if (m_nProduct == 0)
@@ -582,23 +582,23 @@ int CThread_Calibration::Run()
 											strQuery.Format("UPDATE %s SET %s WHERE TAG_NAME = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %d"
 												, strDBName, sValue, iter->szTAG_Name, vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d"), vtVals_AI[vtVals_AICnt].tLogTime.GetHour());
 										}
-										else //20210308 ksw Á¦Ç° ºĞ±â
+										else //20210308 ksw ì œí’ˆ ë¶„ê¸°
 										{
 											strQuery.Format("UPDATE %s SET %s WHERE TAG_ID = '%s' AND RECORD_DATE = '%s' and RECORD_TIME = %d"
 												, strDBName, sValue, iter->szTAG_Id, vtVals_AI[vtVals_AICnt].tLogTime.Format("%Y%m%d"), vtVals_AI[vtVals_AICnt].tLogTime.GetHour());
 										}
 									}
-									//Record(Row)°¡ ¾øÀ»°æ¿ì °¡Á®¿Â Historical °ª vtVals_AI À¸·Î INSERT
-									else	//ÇöÀç ·¹ÄÚµå¿Í ºÒÀÏÄ¡ -> ·¹ÄÚµå ¾øÀ½, Historical µ¥ÀÌÅÍ È°¿ë Insert ÈÄ °è¼Ó ·¹ÄÚµå¿¡ ¸Â´Â µ¥ÀÌÅÍ Ã£±â
+									//Record(Row)ê°€ ì—†ì„ê²½ìš° ê°€ì ¸ì˜¨ Historical ê°’ vtVals_AI ìœ¼ë¡œ INSERT
+									else	//í˜„ì¬ ë ˆì½”ë“œì™€ ë¶ˆì¼ì¹˜ -> ë ˆì½”ë“œ ì—†ìŒ, Historical ë°ì´í„° í™œìš© Insert í›„ ê³„ì† ë ˆì½”ë“œì— ë§ëŠ” ë°ì´í„° ì°¾ê¸°
 									{
 										nQueryType = QUERY_TYPE_INSERT;
 
 										sValue = "", sInsertTColNames = "";
 										for (int n1HCnt = vtVals_AICnt; n1HCnt < vtVals_AICnt + 60; n1HCnt++)
 										{
-											if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyµ¥ÀÌÅÍ ³¡ÀÌ¸é °Å±â±îÁö¸¸
+											if (vtVals_AICnt + (n1HCnt - vtVals_AICnt) >= vtVals_AI.size())	break;	//Historyë°ì´í„° ëì´ë©´ ê±°ê¸°ê¹Œì§€ë§Œ
 
-											if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//¾ø´Â °ªÀÏ°æ¿ì -3.4028234663852886e+038 ·Î ³ª¿Â´Ù
+											if (vtVals_AI[n1HCnt].dbVal < -1000000000.0)	continue;	//ì—†ëŠ” ê°’ì¼ê²½ìš° -3.4028234663852886e+038 ë¡œ ë‚˜ì˜¨ë‹¤
 
 											sTmp.Format(",'%.4f'", vtVals_AI[n1HCnt].dbVal);
 											sValue += sTmp;
@@ -609,8 +609,8 @@ int CThread_Calibration::Run()
 
 
 
-										//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
-										//20210308 ksw Á¦Ç° ºĞ±â
+										//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
+										//20210308 ksw ì œí’ˆ ë¶„ê¸°
 										//strQuery.Format("INSERT INTO %s(TAG_ID, GROUP_NAME, TAG_NAME, RECORD_DATE, RECORD_TIME, T00 ,T01 ,T02 ,T03 ,T04 ,T05 ,T06 ,T07 ,T08 ,T09 ,T10 ,T11 ,T12 ,T13 ,T14 ,T15 ,T16 ,T17 ,T18 ,T19 ,T20 ,T21 ,T22 ,T23 ,T24 ,T25 ,T26 ,T27 ,T28 ,T29 ,T30 ,T31 ,T32 ,T33 ,T34 ,T35 ,T36 ,T37 ,T38 ,T39 ,T40 ,T41 ,T42 ,T43 ,T44 ,T45 ,T46 ,T47 ,T48 ,T49 ,T50 ,T51 ,T52 ,T53 ,T54 ,T55 ,T56 ,T57 ,T58 ,T59 ) "
 										if (m_nProduct == 0)
 										{
@@ -648,11 +648,11 @@ int CThread_Calibration::Run()
 											nFailCnt++;
 
 											if (nQueryType == QUERY_TYPE_INSERT)
-												sTmp.Format("[%s] Insert ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+												sTmp.Format("[%s] Insert ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 											else
-												sTmp.Format("[%s] Update ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+												sTmp.Format("[%s] Update ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 
-											//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "»ı¼º Error", USER_COLOR_BLACK, sTmp);
+											//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "ìƒì„± Error", USER_COLOR_BLACK, sTmp);
 
 											strMsg.Format("(%s):%s-%s", m_strThreadName, sTmp, strRealExcuteQuery);
 											SetWriteLogFile(strMsg);
@@ -662,7 +662,7 @@ int CThread_Calibration::Run()
 
 									vtVals_AICnt += 59;
 
-									//UPDATE´Â ·¹ÄÚµå¸¦ Ã£¾Ò´Ù´Â ¶æÀÌ´Ï ´ÙÀ½·¹ÄÚµå·Î..
+									//UPDATEëŠ” ë ˆì½”ë“œë¥¼ ì°¾ì•˜ë‹¤ëŠ” ëœ»ì´ë‹ˆ ë‹¤ìŒë ˆì½”ë“œë¡œ..
 									if (nQueryType == QUERY_TYPE_UPDATE)
 									{
 										vtVals_AICnt++;
@@ -685,11 +685,11 @@ int CThread_Calibration::Run()
 										nFailCnt++;
 
 										if (nQueryType == QUERY_TYPE_INSERT)
-											sTmp.Format("[%s] Insert ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+											sTmp.Format("[%s] Insert ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 										else
-											sTmp.Format("[%s] Update ½ÇÆĞ Log ÀúÀå (ErrorCode : %d)", m_strThreadName, nResult);
+											sTmp.Format("[%s] Update ì‹¤íŒ¨ Log ì €ì¥ (ErrorCode : %d)", m_strThreadName, nResult);
 
-										//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "»ı¼º Error", USER_COLOR_BLACK, sTmp);
+										//_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "ìƒì„± Error", USER_COLOR_BLACK, sTmp);
 
 										strMsg.Format("(%s):%s-%s", m_strThreadName, sTmp, strRealExcuteQuery);
 										SetWriteLogFile(strMsg);
@@ -698,10 +698,10 @@ int CThread_Calibration::Run()
 								}
 
 								//sprintf(szProgress, "%d / %d ( %d%% )", vtVals_AI.size(), vtVals_AI.size(), 100);
-								//::PostMessage(m_pOwner->m_hWnd, WM_ADDLIST, 1, (LPARAM)szProgress); 20210308 ksw ÁÖ¼®
+								//::PostMessage(m_pOwner->m_hWnd, WM_ADDLIST, 1, (LPARAM)szProgress); 20210308 ksw ì£¼ì„
 								if (!pRs->GetEndOfFile())	pRs->MoveNext();
 
-								if (pRs->GetEndOfFile() && vtVals_AICnt >= vtVals_AI.size())	break;	//·¹ÄÚµå¿Í vtVals_AI(Historical µ¥ÀÌÅÍ)°¡ ´õÀÌ»ó ¾øÀ»¶§
+								if (pRs->GetEndOfFile() && vtVals_AICnt >= vtVals_AI.size())	break;	//ë ˆì½”ë“œì™€ vtVals_AI(Historical ë°ì´í„°)ê°€ ë”ì´ìƒ ì—†ì„ë•Œ
 							}
 						}
 
@@ -734,18 +734,18 @@ int CThread_Calibration::Run()
 		}
 		catch (...)
 		{
-			strMsg.Format("Run ½º·¹µå ³»ºÎ ¿À·ù");
+			strMsg.Format("Run ìŠ¤ë ˆë“œ ë‚´ë¶€ ì˜¤ë¥˜");
 			SysLogOutPut(m_strLogTitle, strMsg, USER_COLOR_RED);
 		}
 		if (nFailCnt > 0)
 		{
 			strMsg.Format("Fail to INSERT/UPDATE (%d) item(s)", nFailCnt);
-			_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "»ı¼º Error", USER_COLOR_BLACK, strMsg);
+			_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_RED, "ìƒì„± Error", USER_COLOR_BLACK, strMsg);
 		}
-		_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "Calibration Á¾·á", USER_COLOR_BLACK, "Thread_Calibration Finished");
-		break;	//¿äÃ»½Ã 1È¸¸¸ ¼öÇà
+		_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "Calibration ì¢…ë£Œ", USER_COLOR_BLACK, "Thread_Calibration Finished");
+		break;	//ìš”ì²­ì‹œ 1íšŒë§Œ ìˆ˜í–‰
 	}
-	::PostMessage(m_pOwner->m_hWnd, WM_ENABLECONTROL, IDC_BUTTON_CALIBRATION, 1);//20210308 ksw ÄÁÆ®·Ñ Enable
+	::PostMessage(m_pOwner->m_hWnd, WM_ENABLECONTROL, IDC_BUTTON_CALIBRATION, 1);//20210308 ksw ì»¨íŠ¸ë¡¤ Enable
 	PostThreadMessage(WM_QUIT, 0, 0);
 	return CWinThread::Run();
 }

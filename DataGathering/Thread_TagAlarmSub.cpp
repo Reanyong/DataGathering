@@ -1,4 +1,4 @@
-// Thread_TagAlarmSub.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_TagAlarmSub.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,14 +30,14 @@ CThread_TagAlarmSub::~CThread_TagAlarmSub()
 
 BOOL CThread_TagAlarmSub::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_TagAlarmSub::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	if(DB_Connect != NULL)
 	{
 		if(DB_Connect->GetDB_ConnectionStatus() == 1)
@@ -58,7 +58,7 @@ END_MESSAGE_MAP()
 
 
 
-// CThread_TagAlarmSub ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_TagAlarmSub ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CThread_TagAlarmSub::Release_ST_List(int nMode)
 {
@@ -124,7 +124,7 @@ void CThread_TagAlarmSub::ShowAlarmOccursMsg(const char *szData1,const char *szD
 
 int CThread_TagAlarmSub::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CTime currentTime;// CTime::GetCurrentTime();
 	int nMinuteCheck = -1;
@@ -141,8 +141,8 @@ int CThread_TagAlarmSub::Run()
 	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE,m_WindHwnd,m_strThreadName,g_stProjectInfo.szProjectLogPath);
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer,stDBInfo.szDB,stDBInfo.szID,stDBInfo.szPW,stDBInfo.unDBType);
 	
-	strLogMsg.Format("ProcessorName : [%s], Tag Count : [%d],»óÅÂ : [Ã³¸® ½ÃÀÛ..]",m_stSubInfo.szThreadName,m_stSubInfo.stDeviceInfo.nTagTotalNumber);
-	_addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, "½ÃÀÛ");
+	strLogMsg.Format("ProcessorName : [%s], Tag Count : [%d],ìƒíƒœ : [ì²˜ë¦¬ ì‹œì‘..]",m_stSubInfo.szThreadName,m_stSubInfo.stDeviceInfo.nTagTotalNumber);
+	_addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, "ì‹œì‘");
 
 	do 
 	{
@@ -201,7 +201,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListAI_DB(const char *szDeviceId)
 	float fCurrentValue,fHihi,fHigh,fLow,fLolo;
 	BOOL bHihiCheck = FALSE,bHighCheck = FALSE,bLowCheck = FALSE,bLoloCheck = FALSE;
 
-	//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+	//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 	strQuery.Format("SELECT alarmList.ALARM_ID "
 		",alarmList.TAG_ID "
 		",alarmList.ALARM_KIND "
@@ -256,7 +256,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListAI_DB(const char *szDeviceId)
 				double dbValue;
 				for(int nI = 0; nI < nCountRow ; nI++)
 				{
-					//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+					//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 					DB_Connect->GetFieldValue(pRs, "ALARM_ID", strAlarmId);
 					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);
 					DB_Connect->GetFieldValue(pRs, "ALARM_KIND", dbValue);
@@ -350,13 +350,13 @@ int CThread_TagAlarmSub::GetAlarmRegisterListAI_DB(const char *szDeviceId)
 
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -392,7 +392,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 	float fCurrentValue;
 	BOOL bHihiCheck = FALSE,bHighCheck = FALSE,bLowCheck = FALSE,bLoloCheck = FALSE;
 	
-	//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+	//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 	strQuery.Format("SELECT alarmList.ALARM_ID "
 							",alarmList.TAG_ID "
 							",alarmList.ALARM_KIND "
@@ -429,7 +429,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 				double dbValue;
 				for(int nI = 0; nI < nCountRow ; nI++)
 				{
-					//20200220 ³ªÁ¤È£ ¼öÁ¤ tag id -> tag name
+					//20200220 ë‚˜ì •í˜¸ ìˆ˜ì • tag id -> tag name
 					DB_Connect->GetFieldValue(pRs, "ALARM_ID", strAlarmId);
 					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);
 					DB_Connect->GetFieldValue(pRs, "ALARM_KIND", dbValue);
@@ -502,13 +502,13 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -696,13 +696,13 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 			 switch(iter->nAlarmKind)
 			 {
 			 case 0:
-				 strAlarmKind = "°æº¸";
+				 strAlarmKind = "ê²½ë³´";
 				 break;
 			 case 1:
-				 strAlarmKind = "Àå¾Ö";
+				 strAlarmKind = "ì¥ì• ";
 				 break;
 			 default:
-				 strAlarmKind = "½Ã¼³¹° ±³Ã¼ ½Ã±â";
+				 strAlarmKind = "ì‹œì„¤ë¬¼ êµì²´ ì‹œê¸°";
 				 break;
 			 }
 			 
@@ -711,7 +711,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 			 if(iter->nAlarmSt == 0)
 			 {
-				 strAlarmMsg.Format("¾Ë¶÷ Á¾·ù : [%s][%s(%0.2f)], ¹ß»ı°ª : [%f]",strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
+				 strAlarmMsg.Format("ì•ŒëŒ ì¢…ë¥˜ : [%s][%s(%0.2f)], ë°œìƒê°’ : [%f]",strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
 				 strQuery.Format("INSERT INTO EASY_COMMON.dbo.CM_ALARM_HISTORY "
 					 "(ALARM_ID,START_TIME,ALARM_OCCURRENCE_INFO,STATION_NAME,ALARM_CHECK_USE_YN,ALARM_KIND,ALARM_TYPE,ALARM_VALUE,ALARM_MESSAGE)"
 					 " VALUES "
@@ -720,10 +720,10 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 					 SetAlarmOccursAI_File(szDeviceId,iter->szAlarmId,nAlarmType,currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->fCurrentValue);
 					 SetQueryValue(strQuery,"TagAlarm Insert",iter->szTagName);
 					 
-					 strAlarmMsg.Format("¾Ë¶÷:[¹ß»ı],ÅÂ±×¸í:[%s],¾Ë¶÷ Á¾·ù:[%s][%s(%0.2f)],¹ß»ı°ª:[%f]",iter->szTagName,strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
+					 strAlarmMsg.Format("ì•ŒëŒ:[ë°œìƒ],íƒœê·¸ëª…:[%s],ì•ŒëŒ ì¢…ë¥˜:[%s][%s(%0.2f)],ë°œìƒê°’:[%f]",iter->szTagName,strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
 					 _addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, strAlarmMsg);
 
-					 ShowAlarmOccursMsg("¾Ë¶÷¹ß»ı",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+					 ShowAlarmOccursMsg("ì•ŒëŒë°œìƒ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 
 					 int nRetLen = strlen(iter->szAlarmLevel);
 					 if(nRetLen != 0)
@@ -749,7 +749,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 				 if(m_bEndThread == TRUE)
 					 return THREAD_END;
 
-				 int nRet = GetAlarmOccurs_DB(iter->szAlarmId,iter->szStartTime); //1:ÇöÀç ÀÖÀ½,0:¾øÀ½
+				 int nRet = GetAlarmOccurs_DB(iter->szAlarmId,iter->szStartTime); //1:í˜„ì¬ ìˆìŒ,0:ì—†ìŒ
 
 				 if(iter->nOldAlarmAckType != nAlarmType)
 				 {
@@ -762,22 +762,22 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 						 SetQueryValue(strQuery,"TagAlarm Update",iter->szTagName);
 
-						 strAlarmMsg.Format("¾Ë¶÷:[ÀÚµ¿ ÇØÁ¦],ÅÂ±×¸í:[%s]",iter->szTagName);
+						 strAlarmMsg.Format("ì•ŒëŒ:[ìë™ í•´ì œ],íƒœê·¸ëª…:[%s]",iter->szTagName);
 						 _addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, strAlarmMsg);
-						 ShowAlarmOccursMsg("ÀÚµ¿ÇØÁ¦",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+						 ShowAlarmOccursMsg("ìë™í•´ì œ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 
-						 strAlarmMsg.Format("¾Ë¶÷ Á¾·ù : [%s][%s(%0.2f)], ¹ß»ı°ª : [%f]",strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
+						 strAlarmMsg.Format("ì•ŒëŒ ì¢…ë¥˜ : [%s][%s(%0.2f)], ë°œìƒê°’ : [%f]",strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
 						 strQuery.Format("INSERT INTO EASY_COMMON.dbo.CM_ALARM_HISTORY "
 							 "(ALARM_ID,START_TIME,ALARM_OCCURRENCE_INFO,STATION_NAME,ALARM_CHECK_USE_YN,ALARM_KIND,ALARM_TYPE,ALARM_VALUE,ALARM_MESSAGE)"
 							 " VALUES "
 							 " ('%s','%s',1,'%s',0,%d,%d,%f,'%s')",iter->szAlarmId,currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,iter->nAlarmKind,nAlarmType,iter->fCurrentValue,strAlarmMsg);
 
 						 SetAlarmOccursAI_File(szDeviceId,iter->szAlarmId,nAlarmType,currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->fCurrentValue);
-						 strAlarmMsg.Format("¾Ë¶÷:[¹ß»ı],ÅÂ±×¸í:[%s],¾Ë¶÷ Á¾·ù:[%s][%s(%0.2f)],¹ß»ı°ª:[%f]",iter->szTagName,strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
+						 strAlarmMsg.Format("ì•ŒëŒ:[ë°œìƒ],íƒœê·¸ëª…:[%s],ì•ŒëŒ ì¢…ë¥˜:[%s][%s(%0.2f)],ë°œìƒê°’:[%f]",iter->szTagName,strAlarmKind,strAlarmKindType,fAlarmScale,iter->fCurrentValue);
 						 _addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, strAlarmMsg);
 
 						 SetQueryValue(strQuery,"TagAlarm Insert",iter->szTagName);
-						 ShowAlarmOccursMsg("¾Ë¶÷¹ß»ı",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+						 ShowAlarmOccursMsg("ì•ŒëŒë°œìƒ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 
 						 int nRetLen = strlen(iter->szAlarmLevel);
 						 if(nRetLen != 0)
@@ -803,9 +803,9 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 					// if(nRet == 0)
 					// {
 					//	 SetAlarmOccurs_Clear(iter->szAlarmId);
-					//	 ShowAlarmOccursMsg("ÀÚµ¿ÇØÁ¦",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+					//	 ShowAlarmOccursMsg("ìë™í•´ì œ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 					// }
-					// _addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, "Sub Processor-log : [Sub..]", USER_COLOR_PINK, "¿©±â µé¾î°£´Ù ");
+					// _addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, "Sub Processor-log : [Sub..]", USER_COLOR_PINK, "ì—¬ê¸° ë“¤ì–´ê°„ë‹¤ ");
 				 }*/
 			 }
 			 if(m_bEndThread == TRUE)
@@ -815,11 +815,11 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 		 {
 			 if(iter->nAlarmSt == 1)
 			 {
-				 int nRet = GetAlarmOccurs_DB(iter->szAlarmId,iter->szStartTime); //1:ÇöÀç ÀÖÀ½,0:¾øÀ½
+				 int nRet = GetAlarmOccurs_DB(iter->szAlarmId,iter->szStartTime); //1:í˜„ì¬ ìˆìŒ,0:ì—†ìŒ
 
 				 if(nRet == 1)
 				 {
-					 if(iter->nAlarmSt == 1) //¾Ë¶÷ ÇØÁ¦
+					 if(iter->nAlarmSt == 1) //ì•ŒëŒ í•´ì œ
 					 {
 						 strQuery.Format(" UPDATE EASY_COMMON.dbo.CM_ALARM_HISTORY SET ALARM_OCCURRENCE_INFO = 2, END_TIME = '%s' "
 							 " WHERE ALARM_ID = '%s' AND START_TIME='%s'",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szAlarmId,iter->szStartTime);
@@ -827,8 +827,8 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 						 SetAlarmOccursAI_ClearFile(szDeviceId,iter->szAlarmId);
 						 
 						 SetQueryValue(strQuery,"TagAlarm Update",iter->szTagName);
-						 strAlarmMsg.Format("¾Ë¶÷:[ÀÚµ¿ ÇØÁ¦],ÅÂ±×¸í:[%s]",iter->szTagName);
-						 ShowAlarmOccursMsg("ÀÚµ¿ÇØÁ¦",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+						 strAlarmMsg.Format("ì•ŒëŒ:[ìë™ í•´ì œ],íƒœê·¸ëª…:[%s]",iter->szTagName);
+						 ShowAlarmOccursMsg("ìë™í•´ì œ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 
 						 //_addCurrentstateMsg(1,0, m_strThreadName, strAlarmMsg);
 					 }
@@ -923,13 +923,13 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 			 switch(iter->nAlarmKind)
 			 {
 			 case 0:
-				 strAlarmKind = "°æº¸";
+				 strAlarmKind = "ê²½ë³´";
 				 break;
 			 case 1:
-				 strAlarmKind = "Àå¾Ö";
+				 strAlarmKind = "ì¥ì• ";
 				 break;
 			 default:
-				 strAlarmKind = "½Ã¼³¹° ±³Ã¼ ½Ã±â";
+				 strAlarmKind = "ì‹œì„¤ë¬¼ êµì²´ ì‹œê¸°";
 				 break;
 			 }
 
@@ -944,7 +944,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 			
 			 if(nMakeType == QUERY_TYPE_INSERT)
 			 {
-				 strAlarmMsg.Format("¾Ë¶÷ Á¾·ù : [%s][%s], ¹ß»ı°ª : [%s]",strAlarmKind,strAlarmKindType,strValueText);
+				 strAlarmMsg.Format("ì•ŒëŒ ì¢…ë¥˜ : [%s][%s], ë°œìƒê°’ : [%s]",strAlarmKind,strAlarmKindType,strValueText);
 				 strQuery.Format("INSERT INTO EASY_COMMON.dbo.CM_ALARM_HISTORY "
 					 "(ALARM_ID,START_TIME,ALARM_OCCURRENCE_INFO,STATION_NAME,ALARM_CHECK_USE_YN,ALARM_KIND,ALARM_TYPE,ALARM_VALUE,ALARM_MESSAGE)"
 					 " VALUES "
@@ -952,7 +952,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 				 SetAlarmOccursDI_File(szDeviceId,iter->szAlarmId,nAlarmType,currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->fCurrentValue);
 				 SetQueryValue(strQuery,"TagAlarm Insert",iter->szTagName);
-				 ShowAlarmOccursMsg("¾Ë¶÷¹ß»ı",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+				 ShowAlarmOccursMsg("ì•ŒëŒë°œìƒ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 
 				 int nRetLen = strlen(iter->szAlarmLevel);
 				 if(nRetLen != 0)
@@ -972,12 +972,12 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 			 }
 			 else if(nMakeType == QUERY_TYPE_UPDATE)
 			 {
-				 int nRet = GetAlarmOccurs_DB(iter->szAlarmId,iter->szStartTime); //1:ÇöÀç ÀÖÀ½,0:¾øÀ½
+				 int nRet = GetAlarmOccurs_DB(iter->szAlarmId,iter->szStartTime); //1:í˜„ì¬ ìˆìŒ,0:ì—†ìŒ
 
 				 if(nRet == 0) 
 				 {
 					 SetAlarmOccursDI_ClearFile(szDeviceId,iter->szAlarmId);
-					 ShowAlarmOccursMsg("»ç¿ëÀÚ ÇØÁ¦",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ","¾Ë¶÷ »óÅÂ:[»ç¿ëÀÚ ÇØÁ¦]");
+					 ShowAlarmOccursMsg("ì‚¬ìš©ì í•´ì œ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ","ì•ŒëŒ ìƒíƒœ:[ì‚¬ìš©ì í•´ì œ]");
 				 }
 				 else
 				 {
@@ -987,9 +987,9 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 					 SetAlarmOccursDI_ClearFile(szDeviceId,iter->szAlarmId);
 					 SetQueryValue(strQuery,"TagAlarm Update",iter->szTagName);
 
-					 strAlarmMsg.Format("¾Ë¶÷:[ÀÚµ¿ ÇØÁ¦],ÅÂ±×¸í:[%s]",iter->szTagName);
+					 strAlarmMsg.Format("ì•ŒëŒ:[ìë™ í•´ì œ],íƒœê·¸ëª…:[%s]",iter->szTagName);
 					 _addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, strAlarmMsg);
-					 ShowAlarmOccursMsg("ÀÚµ¿ÇØÁ¦",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS Ã³¸® »óÅÂ",strAlarmMsg);
+					 ShowAlarmOccursMsg("ìë™í•´ì œ",currentTime.Format("%Y-%m-%d %H:%M:%S"),iter->szTagName,"UMS ì²˜ë¦¬ ìƒíƒœ",strAlarmMsg);
 				 }
 			 }
 		 }
@@ -1044,13 +1044,13 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 		 if(0x80004005 == e.Error())
 		 {
-			 strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			 strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			 SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 			 int nResult = DB_Connect->DB_ReConnection();
 			 if(nResult == 0)
 			 {
-				 strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				 strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				 SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 				 return ERROR_DB_RECONNECTION;
@@ -1184,13 +1184,13 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 		 if(0x80004005 == e.Error())
 		 {
-			 strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			 strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			 SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 			 int nResult = DB_Connect->DB_ReConnection();
 			 if(nResult == 0)
 			 {
-				 strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				 strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				 SetWriteLogFile(": [_com_error..],",strRunlog_E2);
 
 				 return ERROR_DB_RECONNECTION;
@@ -1235,7 +1235,7 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 	 else
 		 strSendValue.Format("%0.4f",stTagAlrmInfo.fCurrentValue);
 
-	  strMsg.Format("¾Ë¶÷¹ß»ı:[%s/%s],[%s],Á¶°Ç:[%s],°ª:[%s]",stTagAlrmInfo.szAlarmLevel,stUmsSend.szAlarmleveldesc,stTagAlrmInfo.szTagName,szAlarmKind,strSendValue);
+	  strMsg.Format("ì•ŒëŒë°œìƒ:[%s/%s],[%s],ì¡°ê±´:[%s],ê°’:[%s]",stTagAlrmInfo.szAlarmLevel,stUmsSend.szAlarmleveldesc,stTagAlrmInfo.szTagName,szAlarmKind,strSendValue);
 
 	 if((stUmsSend.nSMS_SendCheck == 1) && (stUmsSend.nEmail_SendCheck == 1))
 	 {
@@ -1265,8 +1265,8 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 	 "SMS_NUMBER_LIST, SMS_TARGET_NAME_LIST,"
 	 "EMAIL_ADDRESS_LIST, EMAIL_TARGET_NAME_LIST, SMS_MSG, "
 	 "EMAIL_MSG, REQUIRE_RESPONSE_YN, MSG_DELETE_POLICY, UMS_READ_YN) "
-	 //"VALUES (%s, 'MBMS½Ã½ºÅÛ', %s,"
-	 "VALUES (%s, 'BICMS½Ã½ºÅÛ', '%s','%s',"
+	 //"VALUES (%s, 'MBMSì‹œìŠ¤í…œ', %s,"
+	 "VALUES (%s, 'BICMSì‹œìŠ¤í…œ', '%s','%s',"
 	 "'%s', '%s','%s', '%s',"
 	 "'%s', '%s', 'N', 0, 'N')",
 	 //strId,strSMSEmailSend_UseYN,
@@ -1276,10 +1276,10 @@ int CThread_TagAlarmSub::GetAlarmRegisterListDI_DB(const char *szDeviceId)
 
 	 int nRet = SetQueryValue(strQuery,"TAG Alarm UMS Send",stTagAlrmInfo.szTagName);
 	 if(nRet == 0)
-		 strAlarmMsg.Format("UMS Àü¼Û:[¼º°ø],[%s],ÅÂ±×¸í:[%s],¾Ë¶÷Å¸ÀÔ:[%s],»ç¿ëÀÚ:[%s],SMS/Email:[%s/%s],"
+		 strAlarmMsg.Format("UMS ì „ì†¡:[ì„±ê³µ],[%s],íƒœê·¸ëª…:[%s],ì•ŒëŒíƒ€ì…:[%s],ì‚¬ìš©ì:[%s],SMS/Email:[%s/%s],"
 		 ,stTagAlrmInfo.szAlarmLevel,stTagAlrmInfo.szTagName,szAlarmKind,stUmsSend.szUserName,strSMSSendUseYN,strEmailSendUseYN);
 	 else	
-		 strAlarmMsg.Format("UMS Àü¼Û:[½ÇÆĞ][%s],ÅÂ±×¸í:[%s],¾Ë¶÷Å¸ÀÔ:[%s],»ç¿ëÀÚ:[%s],SMS/Email:[%s/%s],"
+		 strAlarmMsg.Format("UMS ì „ì†¡:[ì‹¤íŒ¨][%s],íƒœê·¸ëª…:[%s],ì•ŒëŒíƒ€ì…:[%s],ì‚¬ìš©ì:[%s],SMS/Email:[%s/%s],"
 		,stTagAlrmInfo.szAlarmLevel,stTagAlrmInfo.szTagName,szAlarmKind,stUmsSend.szUserName,strSMSSendUseYN,strEmailSendUseYN);
 
 	_addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, m_strProcessorTitle, USER_COLOR_PINK, strAlarmMsg);

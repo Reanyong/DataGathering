@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Thread_TagAlarmSub.h"
 
@@ -10,7 +10,7 @@ class CThread_TagAlarmMain : public CWinThread
 	DECLARE_DYNCREATE(CThread_TagAlarmMain)
 
 protected:
-	CThread_TagAlarmMain();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_TagAlarmMain();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_TagAlarmMain();
 
 public:

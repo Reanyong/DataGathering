@@ -1,4 +1,4 @@
-// FormView_Main.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_Main.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CFormView_Main, CFormView)
 END_MESSAGE_MAP()
 
 
-// CFormView_Main Áø´ÜÀÔ´Ï´Ù.
+// CFormView_Main ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_Main::AssertValid() const
@@ -52,8 +52,8 @@ void CFormView_Main::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CFormView_Main ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
-char *szColumn_Info[]={"Processor Name","¿î¿µ Message"};
+// CFormView_Main ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
+char *szColumn_Info[]={"Processor Name","ìš´ì˜ Message"};
 char *szColumn_SubInfo[]={"Num","Processor Name","Message"};
 
 void CFormView_Main::OnInitialUpdate()
@@ -72,7 +72,7 @@ void CFormView_Main::OnInitialUpdate()
 	pWnd->RecalcLayout();
 	pWnd->MDIRestore();
 	pWnd->SetMenu(NULL);
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	/*CString strName = "";
 	strName.Format("EVDataGathering-D");
@@ -88,7 +88,7 @@ void CFormView_Main::OnInitialUpdate()
 
 	ShowSettingInfo(g_stProjectInfo.szProjectIniPath);
 	/*
-	»óÅÂ Á¤º¸°ª Ã³¸® ÇÊ¿ä
+	ìƒíƒœ ì •ë³´ê°’ ì²˜ë¦¬ í•„ìš”
 	*/
 	SetTimer(1, 500, NULL);
 }
@@ -214,7 +214,7 @@ int CFormView_Main::ListInsertItem_Msg(const char *szData1,const char *szData2,c
 
 BOOL CFormView_Main::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	if(pMsg->message == WM_KEYDOWN)
 	{
@@ -227,7 +227,7 @@ BOOL CFormView_Main::PreTranslateMessage(MSG* pMsg)
 
 void CFormView_Main::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CWnd *pWnd_1 = AfxGetMainWnd();
 	KillTimer(nIDEvent);
@@ -235,7 +235,7 @@ void CFormView_Main::OnTimer(UINT_PTR nIDEvent)
 	switch(nIDEvent)
 	{
 	case 1:
-		//½º·¹µå µ¿ÀÛ
+		//ìŠ¤ë ˆë“œ ë™ìž‘
 		//StartThread();
 		SetTimer(2, 100, NULL);
 		//SetTimer(6, 100, NULL);
@@ -245,26 +245,26 @@ void CFormView_Main::OnTimer(UINT_PTR nIDEvent)
 		SetTimer(3, 100, NULL);
 		break;
 
-		//20200227 ³ªÁ¤È£ ¼öÁ¤ »ç¿ëÇÏÁö ¾Ê´Â ±â´É º¸ÀÌÁö ¾Ê°Ô ¼öÁ¤
+		//20200227 ë‚˜ì •í˜¸ ìˆ˜ì • ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê¸°ëŠ¥ ë³´ì´ì§€ ì•Šê²Œ ìˆ˜ì •
 		/*
 	case 3:
 		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_2); //Weather Gathering
 		SetTimer(4, 100, NULL);
 		break;
 	case 4:
-		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_4);//ÇÑÀü¸Áµ¥ÀÌÅÍ¼öÁý
+		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_4);//í•œì „ë§ë°ì´í„°ìˆ˜ì§‘
 		SetTimer(5, 100, NULL);
 		break;
 	case 5:
-		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_5);//¿¡³ÊÁö°ü¸®°ø´Ü ¿¬µ¿
+		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_5);//ì—ë„ˆì§€ê´€ë¦¬ê³µë‹¨ ì—°ë™
 		SetTimer(6, 100, NULL);
 		break;
 	case 6:
-		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_6);//¼³ºñ±³Ã¼¾Ë¶÷Ã¼Å©
+		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_6);//ì„¤ë¹„êµì²´ì•ŒëžŒì²´í¬
 		SetTimer(7, 100, NULL);
 		break;
 	case 7:
-		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_7);//¼³ºñ±³Ã¼¾Ë¶÷Ã¼Å©
+		pWnd_1->PostMessage(WM_USER_OPEN_FRAME, 0, (LPARAM)IDS_MY_TREE_VIEW_7);//ì„¤ë¹„êµì²´ì•ŒëžŒì²´í¬
 		//SetTimer(5, 100, NULL);
 		break;
 		*/
@@ -281,7 +281,7 @@ void CFormView_Main::StartThread()
 		m_pThreadMain->SetLPVOID(this);
 		m_pThreadMain->SetWnd(m_hWnd);
 		m_pThreadMain->ResumeThread();
-		//GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý Á¤Áö");
+		//GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€");
 	}
 }
 
@@ -326,42 +326,42 @@ void CFormView_Main::ShowSettingInfo(CString strIniPath)
 	CString strTemp = "";
 	GetDlgItem(IDC_STATIC_PROJECT_NAME)->SetWindowText(g_stProjectInfo.szProjectName);
 	if(stGatherInfo.nDemp_Check == 1)
-		strTemp.Format("»ç¿ë");
+		strTemp.Format("ì‚¬ìš©");
 	else
-		strTemp.Format("»ç¿ë ¾ÈÇÔ");
+		strTemp.Format("ì‚¬ìš© ì•ˆí•¨");
 	GetDlgItem(IDC_STATIC_DEMP_USE)->SetWindowText(strTemp);
 
 	if(stGatherInfo.nAutoRun_Check == 1)
-		strTemp.Format("ÀÚµ¿ ¼öÁý");
+		strTemp.Format("ìžë™ ìˆ˜ì§‘");
 	else
-		strTemp.Format("¼öµ¿ ¼öÁý");
+		strTemp.Format("ìˆ˜ë™ ìˆ˜ì§‘");
 	GetDlgItem(IDC_STATIC_GATHE_USE)->SetWindowText(strTemp);
 
 	if(stGatherInfo.nGathe_Interval == 0)
-		strTemp.Format("¼öÁý 1ºÐ");
+		strTemp.Format("ìˆ˜ì§‘ 1ë¶„");
 	else if(stGatherInfo.nGathe_Interval == 1)
-		strTemp.Format("¼öÁý 5ºÐ");
+		strTemp.Format("ìˆ˜ì§‘ 5ë¶„");
 	else if(stGatherInfo.nGathe_Interval == 2)
-		strTemp.Format("¼öÁý 10ºÐ");
+		strTemp.Format("ìˆ˜ì§‘ 10ë¶„");
 	else if(stGatherInfo.nGathe_Interval == 3)
-		strTemp.Format("¼öÁý 15ºÐ");
+		strTemp.Format("ìˆ˜ì§‘ 15ë¶„");
 
 	GetDlgItem(IDC_STATIC_GATHE_TIME)->SetWindowText(strTemp);
 
 	if(stGatherInfo.nDelete_Interval == 0)
-		strTemp.Format("2ÀÏ À¯Áö");
+		strTemp.Format("2ì¼ ìœ ì§€");
 	else if(stGatherInfo.nDelete_Interval == 1)
-		strTemp.Format("5ÀÏ À¯Áö");
+		strTemp.Format("5ì¼ ìœ ì§€");
 	else if(stGatherInfo.nDelete_Interval == 2)
-		strTemp.Format("1°³¿ù À¯Áö");
+		strTemp.Format("1ê°œì›” ìœ ì§€");
 	else if(stGatherInfo.nDelete_Interval == 3)
-		strTemp.Format("2°³¿ù À¯Áö");
+		strTemp.Format("2ê°œì›” ìœ ì§€");
 	GetDlgItem(IDC_STATIC_DELETE_INTERVAL)->SetWindowText(strTemp);
 
 	if(stGatherInfo.nDetailsLogCheck == 1)
-		strTemp.Format("»ç¿ë");
+		strTemp.Format("ì‚¬ìš©");
 	else
-		strTemp.Format("»ç¿ë ¾ÈÇÔ");
+		strTemp.Format("ì‚¬ìš© ì•ˆí•¨");
 
 	GetDlgItem(IDC_STATIC_LOG_USE)->SetWindowText(strTemp);
 
@@ -372,6 +372,6 @@ void CFormView_Main::ShowSettingInfo(CString strIniPath)
 
 void CFormView_Main::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
-	ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED); //--> À©µµ¿ì°¡ »ý¼ºµÇ°í ¿Ï·áµÇ°í ³­ µÚ¿¡
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED); //--> ìœˆë„ìš°ê°€ ìƒì„±ë˜ê³  ì™„ë£Œë˜ê³  ë‚œ ë’¤ì—
 }

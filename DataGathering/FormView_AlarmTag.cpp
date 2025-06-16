@@ -1,4 +1,4 @@
-// FormView_AlarmTag.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_AlarmTag.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -36,7 +36,7 @@ BEGIN_MESSAGE_MAP(CFormView_AlarmTag, CFormView)
 END_MESSAGE_MAP()
 
 
-// CFormView_AlarmTag Áø´ÜÀÔ´Ï´Ù.
+// CFormView_AlarmTag ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_AlarmTag::AssertValid() const
@@ -53,11 +53,11 @@ void CFormView_AlarmTag::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-TCHAR*	_lpszSiteTag_Column[] = {"»çÀÌÆ®¸í","µğ¹ÙÀÌ½º¸í","¾Ë¶÷ °¹¼ö","ÇöÀç »óÅÂ"};
-TCHAR*	_lpszTagAlarm_Check[] = {"¾Ë¶÷Á¤º¸","¹ß»ı½Ã°£","°üÁ¦Á¡ ¸í","UMSÃ³¸®°á°ú","¹ß»ı ¸Ş½ÃÁö"};
+TCHAR*	_lpszSiteTag_Column[] = {"ì‚¬ì´íŠ¸ëª…","ë””ë°”ì´ìŠ¤ëª…","ì•ŒëŒ ê°¯ìˆ˜","í˜„ì¬ ìƒíƒœ"};
+TCHAR*	_lpszTagAlarm_Check[] = {"ì•ŒëŒì •ë³´","ë°œìƒì‹œê°„","ê´€ì œì  ëª…","UMSì²˜ë¦¬ê²°ê³¼","ë°œìƒ ë©”ì‹œì§€"};
 
 
-// CFormView_AlarmTag ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFormView_AlarmTag ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 void CFormView_AlarmTag::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
@@ -93,24 +93,24 @@ void CFormView_AlarmTag::OnInitialUpdate()
 	GetDlgItem(IDC_BUTTON_START)->EnableWindow(FALSE);
 	if(stGatherInfo.nDemp_AutoCheck == 1)
 	{
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 		SetTimer(1,1000,0);
 		m_bThreadStart = FALSE;
-		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁı »óÅÂ : [ÀÚµ¿ ¼öÁı]");
+		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìë™ ìˆ˜ì§‘]");
 	}
 	else
 	{
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 		GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
-		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁı »óÅÂ : [¼öµ¿ ¼öÁı]");
+		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìˆ˜ë™ ìˆ˜ì§‘]");
 	}	*/
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ·¯ »ı¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬ ìƒì„±
 -BOOL ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
 */
 //////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ BOOL CFormView_AlarmTag::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nP
 
 BOOL CFormView_AlarmTag::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_F4 || pMsg->wParam == VK_CONTROL)
@@ -178,7 +178,7 @@ BOOL CFormView_AlarmTag::PreTranslateMessage(MSG* pMsg)
 
 void CFormView_AlarmTag::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 	switch(nIDEvent)
 	{
@@ -187,27 +187,27 @@ void CFormView_AlarmTag::OnTimer(UINT_PTR nIDEvent)
 			int nStartRun = m_stGatherInfo.nAutoRun_Check;
 			if(nStartRun == 1)
 			{
-				GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+				GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 				m_bStartRunCheck = FALSE;
 
 				StartThread();
 			}
 			else
 			{
-				GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+				GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 				m_bStartRunCheck = TRUE;
 				GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
 			}			
 			Invalidate(TRUE);
 		}
 		break;
-	case ID_STOP_THREAD: //¹öÆ°À¸·Î Á¤Áö
+	case ID_STOP_THREAD: //ë²„íŠ¼ìœ¼ë¡œ ì •ì§€
 		StopThread(TRUE);
 
 		GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
 
 		break;
-	case ID_AUTO_STOP_THREAD: //½Ã½ºÅÛ ÀÚµ¿ Á¤Áö
+	case ID_AUTO_STOP_THREAD: //ì‹œìŠ¤í…œ ìë™ ì •ì§€
 		StopThread(FALSE);
 
 		GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
@@ -218,44 +218,44 @@ void CFormView_AlarmTag::OnTimer(UINT_PTR nIDEvent)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : ¹öÆ° ÀÌº¥Æ® 
-- ½ÃÀÛ ¹öÆ° Å¬¸¯½Ã ÀÌº¥Æ®
+- í˜¸ì¶œ ë°©ë²• : ë²„íŠ¼ ì´ë²¤íŠ¸ 
+- ì‹œì‘ ë²„íŠ¼ í´ë¦­ì‹œ ì´ë²¤íŠ¸
 -void OnBnClickedButtonStart()
 */
 //////////////////////////////////////////////////////////////////////////
 void CFormView_AlarmTag::OnBnClickedButtonStart()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	/*CString strttext,s11;
-	char *s1 = "Œc¹æ°¢ÇÏ", *s2 = "¸Í±¸";
+	char *s1 = "ë˜ ë°©ê°í•˜", *s2 = "ë§¹êµ¬";
 	char s3[] = "foo", s4[] = "FOO";
 	s11 = "FOO";
-	// "Œc¹æ°¢ÇÏ"¿Í "¸Í±¸"¸¦ ºñ±³
+	// "ë˜ ë°©ê°í•˜"ì™€ "ë§¹êµ¬"ë¥¼ ë¹„êµ
 	if (!strcmp(s1, s2)) {
-		strttext = "°°±º¿ä";
+		strttext = "ê°™êµ°ìš”";
 	} else {
-		strttext = "´Ù¸£±º¿ä";
+		strttext = "ë‹¤ë¥´êµ°ìš”";
 	}
-	// °á°ú: ´Ù¸£±º¿ä
-	// "foo" ¿Í "FOO" ¸¦ ºñ±³
+	// ê²°ê³¼: ë‹¤ë¥´êµ°ìš”
+	// "foo" ì™€ "FOO" ë¥¼ ë¹„êµ
 	if (!strcmpi(s3, s11)) {
-		strttext = "(´ë¼Ò¹®ÀÚ ±¸ºĞ ¾øÀ» ¶§¿¡´Â) °°±º¿ä";
+		strttext = "(ëŒ€ì†Œë¬¸ì êµ¬ë¶„ ì—†ì„ ë•Œì—ëŠ”) ê°™êµ°ìš”";
 	} else {
-		strttext = "(´ë¼Ò¹®ÀÚ ±¸ºĞ ¾øÀ» ¶§¿¡´Â) ´Ù¸£±º¿ä";
+		strttext = "(ëŒ€ì†Œë¬¸ì êµ¬ë¶„ ì—†ì„ ë•Œì—ëŠ”) ë‹¤ë¥´êµ°ìš”";
 	}
-	// (´ë¼Ò¹®ÀÚ ±¸ºĞ ¾øÀ» ¶§¿¡´Â) °°±º¿ä
+	// (ëŒ€ì†Œë¬¸ì êµ¬ë¶„ ì—†ì„ ë•Œì—ëŠ”) ê°™êµ°ìš”
 	return ;*/
 	GetDlgItem(IDC_BUTTON_START)->EnableWindow(FALSE);
 
 	if(m_bStartRunCheck == TRUE)
 	{
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 		StartThread();
 		m_bStartRunCheck = FALSE;
 	}
 	else
 	{
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 		m_bStartRunCheck = TRUE;
 		SetTimer(ID_STOP_THREAD, 100, NULL);
 	}
@@ -269,27 +269,27 @@ void CFormView_AlarmTag::OnBnClickedButtonStart()
 	{
 		m_bThreadStart = FALSE;
 		StartThread();
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€");
 
-		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı ½ÃÀÛ");
-		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı ½ÃÀÛ]");
+		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì‹œì‘");
+		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì‹œì‘]");
 	}
 	else
 	{
 		m_bThreadStart = TRUE;
 		StopThread();
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘");
 		GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
 
-		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı Á¤Áö");
-		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı Á¤Áö]");
+		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€");
+		_addSystemMsg(FORM_VIEW_ID_3, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€]");
 	}	*/
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ÇÑÀü¸Á µ¥ÀÌÅÍ ¼öÁı ½ÃÀÛ ¾²·¹µå »ı¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- í•œì „ë§ ë°ì´í„° ìˆ˜ì§‘ ì‹œì‘ ì“°ë ˆë“œ ìƒì„±
 -BOOL StartThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -310,8 +310,8 @@ BOOL CFormView_AlarmTag::StartThread()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ½º·¹µå Á¾·á/¼öÁı Á¾·á
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ìŠ¤ë ˆë“œ ì¢…ë£Œ/ìˆ˜ì§‘ ì¢…ë£Œ
 -void StopThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -335,8 +335,8 @@ void CFormView_AlarmTag::StopThread(BOOL bStopType)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- µğ¹ÙÀÌ½º Á¤º¸ º¯°æµÈÁ¤º¸ ¸®½ºÆ® ÄÁÆ®·Ñ Ãâ·Â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë””ë°”ì´ìŠ¤ ì •ë³´ ë³€ê²½ëœì •ë³´ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ì¶œë ¥
 -int SetDeviceList(int nItemRow,const char *szData1,const char *szData2,const char *szData3,const char *szData4)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -356,8 +356,8 @@ int CFormView_AlarmTag::SetDeviceList(int nItemRow,const char *szData1,const cha
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ¼öÁı½ÃÀÛ½Ã µğ¹ÙÀÌ½º Á¤º¸ ¸®½ºÆ® ÄÁÆ®·Ñ Ãâ·Â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ìˆ˜ì§‘ì‹œì‘ì‹œ ë””ë°”ì´ìŠ¤ ì •ë³´ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ì¶œë ¥
 -int SetStartDeviceList(const char *szData1,const char *szData2,const char *szData3,const char *szData4)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -376,8 +376,8 @@ int CFormView_AlarmTag::SetStartDeviceList(const char *szData1,const char *szDat
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ¾Ë¶÷ ¹ß»ıÁ¤º¸ ¸®½ºÆ®ÄÁÆ®·Ñ Ãâ·Â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ì•ŒëŒ ë°œìƒì •ë³´ ë¦¬ìŠ¤íŠ¸ì»¨íŠ¸ë¡¤ ì¶œë ¥
 -int SetAlarmOccursMsg(const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -403,8 +403,8 @@ int CFormView_AlarmTag::SetAlarmOccursMsg(const char *szData1,const char *szData
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- µğ¹ÙÀÌ½º Á¤º¸ ¸®½ºÆ® ÄÁÆ®·Ñ Ãâ·ÂÁ¤º¸ »èÁ¦
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë””ë°”ì´ìŠ¤ ì •ë³´ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ì¶œë ¥ì •ë³´ ì‚­ì œ
 -void SetDeviceListRemove()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -420,8 +420,8 @@ void CFormView_AlarmTag::SetDeviceListRemove()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : ÀÌº¥Æ®
-- »ç¿ëÀÚ ÀÌº¥Æ® ¸Ş½ÃÁö 
+- í˜¸ì¶œ ë°©ë²• : ì´ë²¤íŠ¸
+- ì‚¬ìš©ì ì´ë²¤íŠ¸ ë©”ì‹œì§€ 
 -LRESULT OnUserMessage(WPARAM wParam, LPARAM lParam)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -450,5 +450,5 @@ void CFormView_AlarmTag::OnDestroy()
 	CFormView::OnDestroy();
 	StopThread(FALSE);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }

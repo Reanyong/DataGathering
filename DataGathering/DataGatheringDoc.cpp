@@ -1,20 +1,20 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦ 
-// »ç¿ëÇÏ´Â ¹æ¹ıÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿ş¾î¿¡ Æ÷ÇÔµÈ 
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ 
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.  
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.  
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº 
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤("Fluent UI")ë¥¼ 
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ 
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ì ë¬¸ì„œì— ëŒ€í•´ 
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤.  
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.  
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ìì„¸í•œ ë‚´ìš©ì€ 
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ğµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// DataGatheringDoc.cpp : CDataGatheringDoc Å¬·¡½ºÀÇ ±¸Çö
+// DataGatheringDoc.cpp : CDataGatheringDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS´Â ¹Ì¸® º¸±â, Ãà¼ÒÆÇ ±×¸² ¹× °Ë»ö ÇÊÅÍ Ã³¸®±â¸¦ ±¸ÇöÇÏ´Â ATL ÇÁ·ÎÁ§Æ®¿¡¼­ Á¤ÀÇÇÒ ¼ö ÀÖÀ¸¸ç
-// ÇØ´ç ÇÁ·ÎÁ§Æ®¿Í ¹®¼­ ÄÚµå¸¦ °øÀ¯ÇÏµµ·Ï ÇØ Áİ´Ï´Ù.
+// SHARED_HANDLERSëŠ” ë¯¸ë¦¬ ë³´ê¸°, ì¶•ì†ŒíŒ ê·¸ë¦¼ ë° ê²€ìƒ‰ í•„í„° ì²˜ë¦¬ê¸°ë¥¼ êµ¬í˜„í•˜ëŠ” ATL í”„ë¡œì íŠ¸ì—ì„œ ì •ì˜í•  ìˆ˜ ìˆìœ¼ë©°
+// í•´ë‹¹ í”„ë¡œì íŠ¸ì™€ ë¬¸ì„œ ì½”ë“œë¥¼ ê³µìœ í•˜ë„ë¡ í•´ ì¤ë‹ˆë‹¤.
 #ifndef SHARED_HANDLERS
 #include "DataGathering.h"
 #endif
@@ -35,11 +35,11 @@ BEGIN_MESSAGE_MAP(CDataGatheringDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CDataGatheringDoc »ı¼º/¼Ò¸ê
+// CDataGatheringDoc ìƒì„±/ì†Œë©¸
 
 CDataGatheringDoc::CDataGatheringDoc()
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -52,8 +52,8 @@ BOOL CDataGatheringDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ÀçÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¬ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
@@ -67,20 +67,20 @@ void CDataGatheringDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 #ifdef SHARED_HANDLERS
 
-// Ãà¼ÒÆÇ ±×¸²À» Áö¿øÇÕ´Ï´Ù.
+// ì¶•ì†ŒíŒ ê·¸ë¦¼ì„ ì§€ì›í•©ë‹ˆë‹¤.
 void CDataGatheringDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 {
-	// ¹®¼­ÀÇ µ¥ÀÌÅÍ¸¦ ±×¸®·Á¸é ÀÌ ÄÚµå¸¦ ¼öÁ¤ÇÏ½Ê½Ã¿À.
+	// ë¬¸ì„œì˜ ë°ì´í„°ë¥¼ ê·¸ë¦¬ë ¤ë©´ ì´ ì½”ë“œë¥¼ ìˆ˜ì •í•˜ì‹­ì‹œì˜¤.
 	dc.FillSolidRect(lprcBounds, RGB(255, 255, 255));
 
 	CString strText = _T("TODO: implement thumbnail drawing here");
@@ -98,14 +98,14 @@ void CDataGatheringDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 	dc.SelectObject(pOldFont);
 }
 
-// °Ë»ö Ã³¸®±â¸¦ Áö¿øÇÕ´Ï´Ù.
+// ê²€ìƒ‰ ì²˜ë¦¬ê¸°ë¥¼ ì§€ì›í•©ë‹ˆë‹¤.
 void CDataGatheringDoc::InitializeSearchContent()
 {
 	CString strSearchContent;
-	// ¹®¼­ÀÇ µ¥ÀÌÅÍ¿¡¼­ °Ë»ö ÄÜÅÙÃ÷¸¦ ¼³Á¤ÇÕ´Ï´Ù.
-	// ÄÜÅÙÃ÷ ºÎºĞÀº ";"·Î ±¸ºĞµÇ¾î¾ß ÇÕ´Ï´Ù.
+	// ë¬¸ì„œì˜ ë°ì´í„°ì—ì„œ ê²€ìƒ‰ ì½˜í…ì¸ ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+	// ì½˜í…ì¸  ë¶€ë¶„ì€ ";"ë¡œ êµ¬ë¶„ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.
 
-	// ¿¹: strSearchContent = _T("point;rectangle;circle;ole object;");
+	// ì˜ˆ: strSearchContent = _T("point;rectangle;circle;ole object;");
 	SetSearchContent(strSearchContent);
 }
 
@@ -129,7 +129,7 @@ void CDataGatheringDoc::SetSearchContent(const CString& value)
 
 #endif // SHARED_HANDLERS
 
-// CDataGatheringDoc Áø´Ü
+// CDataGatheringDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CDataGatheringDoc::AssertValid() const
@@ -144,4 +144,4 @@ void CDataGatheringDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CDataGatheringDoc ¸í·É
+// CDataGatheringDoc ëª…ë ¹

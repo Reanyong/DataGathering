@@ -1,15 +1,15 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦
-// »ç¿ëÇÏ´Â ¹æ¹ıÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿ş¾î¿¡ Æ÷ÇÔµÈ
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤("Fluent UI")ë¥¼
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ì ë¬¸ì„œì— ëŒ€í•´
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤.
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ìì„¸í•œ ë‚´ìš©ì€
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ğµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// MainFrm.cpp : CMainFrame Å¬·¡½ºÀÇ ±¸Çö
+// MainFrm.cpp : CMainFrame í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -55,11 +55,11 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
 	ON_COMMAND(ID_BT_LOG_ROOT, &CMainFrame::OnBtLogRoot)
 END_MESSAGE_MAP()
 
-// CMainFrame »ı¼º/¼Ò¸ê
+// CMainFrame ìƒì„±/ì†Œë©¸
 
 CMainFrame::CMainFrame()
 {
-	// TODO: ¿©±â¿¡ ¸â¹ö ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©¤ë²„ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_OFF_2007_BLACK);
 	theApp.m_nAppLook = ID_VIEW_APPLOOK_OFF_2007_AQUA;
 	m_bEndCheck = FALSE;
@@ -74,31 +74,31 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWndEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// º¸°üµÈ °ª¿¡ µû¶ó ºñÁÖ¾ó °ü¸®ÀÚ ¹× ½ºÅ¸ÀÏÀ» ¼³Á¤ÇÕ´Ï´Ù.
+	// ë³´ê´€ëœ ê°’ì— ë”°ë¼ ë¹„ì£¼ì–¼ ê´€ë¦¬ì ë° ìŠ¤íƒ€ì¼ì„ ì„¤ì •í•©ë‹ˆë‹¤.
 	OnApplicationLook(theApp.m_nAppLook);
 
 	CMDITabInfo mdiTabParams;
-	mdiTabParams.m_style = CMFCTabCtrl::STYLE_3D; // »ç¿ëÇÒ ¼ö ÀÖ´Â ´Ù¸¥ ½ºÅ¸ÀÏ...
-	mdiTabParams.m_bActiveTabCloseButton = FALSE;      // FALSE·Î ¼³Á¤ÇÏ¿© ÅÇ ¿µ¿ª ¿À¸¥ÂÊ¿¡ ´İ±â ´ÜÃß¸¦ ¹èÄ¡ÇÕ´Ï´Ù.
-	mdiTabParams.m_bTabIcons =  TRUE;    // TRUE·Î ¼³Á¤ÇÏ¿© MDI ÅÇÀÇ ¹®¼­ ¾ÆÀÌÄÜÀ» È°¼ºÈ­ÇÕ´Ï´Ù.
-	mdiTabParams.m_bAutoColor = FALSE;    // FALSE·Î ¼³Á¤ÇÏ¿© MDI ÅÇÀÇ ÀÚµ¿ »ö ÁöÁ¤À» ºñÈ°¼ºÈ­ÇÕ´Ï´Ù.
-	mdiTabParams.m_bDocumentMenu = FALSE; // ÅÇ ¿µ¿ªÀÇ ¿À¸¥ÂÊ °¡ÀåÀÚ¸®¿¡ ¹®¼­ ¸Ş´º¸¦ È°¼ºÈ­ÇÕ´Ï´Ù.
-	mdiTabParams.m_bTabCloseButton = FALSE; //´İ±â ¹öÆ° ºñÈ°¼ºÈ­
+	mdiTabParams.m_style = CMFCTabCtrl::STYLE_3D; // ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ë‹¤ë¥¸ ìŠ¤íƒ€ì¼...
+	mdiTabParams.m_bActiveTabCloseButton = FALSE;      // FALSEë¡œ ì„¤ì •í•˜ì—¬ íƒ­ ì˜ì—­ ì˜¤ë¥¸ìª½ì— ë‹«ê¸° ë‹¨ì¶”ë¥¼ ë°°ì¹˜í•©ë‹ˆë‹¤.
+	mdiTabParams.m_bTabIcons =  TRUE;    // TRUEë¡œ ì„¤ì •í•˜ì—¬ MDI íƒ­ì˜ ë¬¸ì„œ ì•„ì´ì½˜ì„ í™œì„±í™”í•©ë‹ˆë‹¤.
+	mdiTabParams.m_bAutoColor = FALSE;    // FALSEë¡œ ì„¤ì •í•˜ì—¬ MDI íƒ­ì˜ ìë™ ìƒ‰ ì§€ì •ì„ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤.
+	mdiTabParams.m_bDocumentMenu = FALSE; // íƒ­ ì˜ì—­ì˜ ì˜¤ë¥¸ìª½ ê°€ì¥ìë¦¬ì— ë¬¸ì„œ ë©”ë‰´ë¥¼ í™œì„±í™”í•©ë‹ˆë‹¤.
+	mdiTabParams.m_bTabCloseButton = FALSE; //ë‹«ê¸° ë²„íŠ¼ ë¹„í™œì„±í™”
 	EnableMDITabbedGroups(TRUE, mdiTabParams);
 
 	m_wndRibbonBar.Create(this);
 	m_wndRibbonBar.LoadFromResource(IDR_RIBBON_USER);
 	//m_wndRibbonBar.LoadFromResource(IDR_RIBBON);
 
-	//ÇÏ´Ü »óÅÂÇ¥½ÃÁÙ »ç¿ë½Ã ÁÖ¼® ÇØÁ¦
+	//í•˜ë‹¨ ìƒíƒœí‘œì‹œì¤„ ì‚¬ìš©ì‹œ ì£¼ì„ í•´ì œ
 	/*
 	if (!m_wndStatusBar.Create(this))
 	{
-		TRACE0("»óÅÂ Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ìƒíƒœ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}*/
 
-	//ÇÏ´Ü »óÅÂ Ç¥½ÃÁÙ
+	//í•˜ë‹¨ ìƒíƒœ í‘œì‹œì¤„
 	/*CString strTitlePane1;
 	CString strTitlePane2;
 	bNameValid = strTitlePane1.LoadString(IDS_STATUS_PANE1);
@@ -108,34 +108,34 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE1, strTitlePane1, TRUE), strTitlePane1);
 	m_wndStatusBar.AddExtendedElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE2, strTitlePane2, TRUE), strTitlePane2);*/
 
-	// Visual Studio 2005 ½ºÅ¸ÀÏ µµÅ· Ã¢ µ¿ÀÛÀ» È°¼ºÈ­ÇÕ´Ï´Ù.
-	//¿©±â 12/30
+	// Visual Studio 2005 ìŠ¤íƒ€ì¼ ë„í‚¹ ì°½ ë™ì‘ì„ í™œì„±í™”í•©ë‹ˆë‹¤.
+	//ì—¬ê¸° 12/30
 	//CDockingManager::SetDockingMode(DT_SMART);
-	// Visual Studio 2005 ½ºÅ¸ÀÏ µµÅ· Ã¢ ÀÚµ¿ ¼û±è µ¿ÀÛÀ» È°¼ºÈ­ÇÕ´Ï´Ù.
-	//¿©±â 12/30
+	// Visual Studio 2005 ìŠ¤íƒ€ì¼ ë„í‚¹ ì°½ ìë™ ìˆ¨ê¹€ ë™ì‘ì„ í™œì„±í™”í•©ë‹ˆë‹¤.
+	//ì—¬ê¸° 12/30
 	//EnableAutoHidePanes(CBRS_ALIGN_ANY);
 
-	// Å½»ö Ã¢ÀÌ ¿ŞÂÊ¿¡ ¸¸µé¾îÁö¹Ç·Î ÀÏ½ÃÀûÀ¸·Î ¿ŞÂÊ¿¡ µµÅ·À» ºñÈ°¼ºÈ­ÇÕ´Ï´Ù.
-	//¿©±â 12/30
+	// íƒìƒ‰ ì°½ì´ ì™¼ìª½ì— ë§Œë“¤ì–´ì§€ë¯€ë¡œ ì¼ì‹œì ìœ¼ë¡œ ì™¼ìª½ì— ë„í‚¹ì„ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤.
+	//ì—¬ê¸° 12/30
 	//EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_RIGHT);
 
 
-	// Ä¸¼Ç Ç¥½ÃÁÙÀ» ¸¸µì´Ï´Ù.
+	// ìº¡ì…˜ í‘œì‹œì¤„ì„ ë§Œë“­ë‹ˆë‹¤.
 	/*if (!CreateCaptionBar())
 	{
-		TRACE0("Ä¸¼Ç Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ìº¡ì…˜ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}*/
 
-	// Outlook Ç¥½ÃÁÙÀÌ ¸¸µé¾îÁö°í ¿ŞÂÊ¿¡ µµÅ·ÇÒ ¼ö ÀÖµµ·Ï Çã¿ëÇØ¾ß ÇÕ´Ï´Ù.
-	//¿©±â 12/30
+	// Outlook í‘œì‹œì¤„ì´ ë§Œë“¤ì–´ì§€ê³  ì™¼ìª½ì— ë„í‚¹í•  ìˆ˜ ìˆë„ë¡ í—ˆìš©í•´ì•¼ í•©ë‹ˆë‹¤.
+	//ì—¬ê¸° 12/30
 	//EnableDocking(CBRS_ALIGN_LEFT);
 	//EnableAutoHidePanes(CBRS_ALIGN_RIGHT);
 
-	// µµÅ· Ã¢À» ¸¸µì´Ï´Ù.
+	// ë„í‚¹ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	if (!CreateDockingWindows())
 	{
-		TRACE0("µµÅ· Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
+		TRACE0("ë„í‚¹ ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
 		return -1;
 	}
 	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
@@ -152,17 +152,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	dwStyle_Tree &=~(AFX_CBRS_CLOSE | AFX_CBRS_FLOAT);
 	m_wndTree.SetControlBarStyle(dwStyle_Tree);
 
-	// Çâ»óµÈ Ã¢ °ü¸® ´ëÈ­ »óÀÚ¸¦ È°¼ºÈ­ÇÕ´Ï´Ù.
-	//¿©±â 12/30
+	// í–¥ìƒëœ ì°½ ê´€ë¦¬ ëŒ€í™” ìƒìë¥¼ í™œì„±í™”í•©ë‹ˆë‹¤.
+	//ì—¬ê¸° 12/30
 	//EnableWindowsDialog(ID_WINDOW_MANAGER, ID_WINDOW_MANAGER, TRUE);
 
-	// Ã¢ Á¦¸ñ Ç¥½ÃÁÙ¿¡¼­ ¹®¼­ ÀÌ¸§ ¹× ÀÀ¿ë ÇÁ·Î±×·¥ ÀÌ¸§ÀÇ ¼ø¼­¸¦ ÀüÈ¯ÇÕ´Ï´Ù.
-	// ¹®¼­ ÀÌ¸§ÀÌ Ãà¼ÒÆÇ ±×¸²°ú ÇÔ²² Ç¥½ÃµÇ¹Ç·Î ÀÛ¾÷ Ç¥½ÃÁÙÀÇ ±â´É¼ºÀÌ °³¼±µË´Ï´Ù.
-	//¿©±â 12/30
+	// ì°½ ì œëª© í‘œì‹œì¤„ì—ì„œ ë¬¸ì„œ ì´ë¦„ ë° ì‘ìš© í”„ë¡œê·¸ë¨ ì´ë¦„ì˜ ìˆœì„œë¥¼ ì „í™˜í•©ë‹ˆë‹¤.
+	// ë¬¸ì„œ ì´ë¦„ì´ ì¶•ì†ŒíŒ ê·¸ë¦¼ê³¼ í•¨ê»˜ í‘œì‹œë˜ë¯€ë¡œ ì‘ì—… í‘œì‹œì¤„ì˜ ê¸°ëŠ¥ì„±ì´ ê°œì„ ë©ë‹ˆë‹¤.
+	//ì—¬ê¸° 12/30
 	//ModifyStyle(0, FWS_PREFIXTITLE);
-	//ModifyStyle(WS_CAPTION, NULL); // Å¸ÀÌÆ²¹Ù ¾ø¾Ö±â
+	//ModifyStyle(WS_CAPTION, NULL); // íƒ€ì´í‹€ë°” ì—†ì• ê¸°
 
-	//ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED); //--> À©µµ¿ì°¡ »ı¼ºµÇ°í ¿Ï·áµÇ°í ³­ µÚ¿¡
+	//ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED); //--> ìœˆë„ìš°ê°€ ìƒì„±ë˜ê³  ì™„ë£Œë˜ê³  ë‚œ ë’¤ì—
 
 	SetTimer(2, 100, NULL);
 
@@ -175,27 +175,27 @@ BOOL CMainFrame::CreateDockingWindows()
 {
 	BOOL bNameValid;
 
-	// Å¬·¡½º ºä¸¦ ¸¸µì´Ï´Ù.
+	// í´ë˜ìŠ¤ ë·°ë¥¼ ë§Œë“­ë‹ˆë‹¤.
 /*	CString strClassView;
 	bNameValid = strClassView.LoadString(IDS_CLASS_VIEW);
 	ASSERT(bNameValid);
 	if (!m_wndClassView.Create(strClassView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_CLASSVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
 	{
-		TRACE0("Å¬·¡½º ºä Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return FALSE; // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("í´ë˜ìŠ¤ ë·° ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return FALSE; // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
-	// ÆÄÀÏ ºä¸¦ ¸¸µì´Ï´Ù.
+	// íŒŒì¼ ë·°ë¥¼ ë§Œë“­ë‹ˆë‹¤.
 	CString strFileView;
 	bNameValid = strFileView.LoadString(IDS_FILE_VIEW);
 	ASSERT(bNameValid);
 	if (!m_wndFileView.Create(strFileView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_FILEVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI))
 	{
-		TRACE0("ÆÄÀÏ ºä Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return FALSE; // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("íŒŒì¼ ë·° ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return FALSE; // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}*/
-	//ID_VIEW_TREE_WND        "¸Ş´º Ç×¸ñ"
-	// Æ®¸® ¸®½ºÆ® Ã¢À» ¸¸µì´Ï´Ù.
+	//ID_VIEW_TREE_WND        "ë©”ë‰´ í•­ëª©"
+	// íŠ¸ë¦¬ ë¦¬ìŠ¤íŠ¸ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	CString strTreeWnd;
 	bNameValid = strTreeWnd.LoadString(ID_MY_VIEW_TREE_WND);
 	DWORD dwNoCloseBarStyle = AFX_DEFAULT_DOCKING_PANE_STYLE & ~AFX_CBRS_CLOSE;
@@ -204,11 +204,11 @@ BOOL CMainFrame::CreateDockingWindows()
 	if (!m_wndTree.Create(strTreeWnd, this, CRect(0, 0, 210, 120), FALSE, ID_MY_VIEW_TREE_WND, dwPaneTreeStyle, AFX_CBRS_REGULAR_TABS /*| WS_THICKFRAME*/))
 	//if (!m_wndTree.Create(strTreeWnd, this, CRect(0, 0, 210, 120), FALSE, ID_MY_VIEW_TREE_WND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI |WS_DLGFRAME  ,dwNoCloseBarStyle/*| WS_THICKFRAME*/))
 	{
-		TRACE0("Ãâ·Â Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return FALSE; // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ì¶œë ¥ ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return FALSE; // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
-	// Ãâ·Â Ã¢À» ¸¸µì´Ï´Ù.
+	// ì¶œë ¥ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	DWORD dwPaneOutputStyle = WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | CBRS_BOTTOM | WS_CLIPCHILDREN | CBRS_FLOAT_MULTI;
 	CString strOutputWnd;
 	bNameValid = strOutputWnd.LoadString(ID_MY_VIEW_OUTPUT_WND);
@@ -216,18 +216,18 @@ BOOL CMainFrame::CreateDockingWindows()
 	if (!m_wndOutput.Create(strOutputWnd, this, CRect(0, 0, 500, 270), FALSE, ID_MY_VIEW_OUTPUT_WND, dwPaneOutputStyle,AFX_CBRS_REGULAR_TABS /*| WS_THICKFRAME*/))
 	//if (!m_wndOutput.Create(strOutputWnd, this, CRect(0, 0, 500, 270), TRUE, ID_MY_VIEW_OUTPUT_WND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI  |WS_DLGFRAME /*| WS_THICKFRAME*/))
 	{
-		TRACE0("Ãâ·Â Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return FALSE; // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ì¶œë ¥ ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return FALSE; // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 	//m_wndOutput.IsResizable() = FALSE;
-	// ¼Ó¼º Ã¢À» ¸¸µì´Ï´Ù.
+	// ì†ì„± ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	/*CString strPropertiesWnd;
 	bNameValid = strPropertiesWnd.LoadString(IDS_PROPERTIES_WND);
 	ASSERT(bNameValid);
 	if (!m_wndProperties.Create(strPropertiesWnd, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_PROPERTIESWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_RIGHT | CBRS_FLOAT_MULTI))
 	{
-		TRACE0("¼Ó¼º Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return FALSE; // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ì†ì„± ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return FALSE; // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}*/
 
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
@@ -255,8 +255,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CMDIFrameWndEx::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	//  Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	//  Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	cs.x = 5;
 	cs.y = 5;
@@ -275,7 +275,7 @@ BOOL CMainFrame::CreateCaptionBar()
 {
 	if (!m_wndCaptionBar.Create(WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, this, ID_VIEW_CAPTION_BAR, -1, TRUE))
 	{
-		TRACE0("Ä¸¼Ç Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
+		TRACE0("ìº¡ì…˜ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
 		return FALSE;
 	}
 
@@ -303,7 +303,7 @@ BOOL CMainFrame::CreateCaptionBar()
 	return TRUE;
 }
 
-// CMainFrame Áø´Ü
+// CMainFrame ì§„ë‹¨
 
 #ifdef _DEBUG
 void CMainFrame::AssertValid() const
@@ -318,7 +318,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMainFrame ¸Ş½ÃÁö Ã³¸®±â
+// CMainFrame ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 void CMainFrame::OnWindowManager()
 {
@@ -431,7 +431,7 @@ void CMainFrame::OnOptions()
 
 void CMainFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	lpMMI->ptMinTrackSize.x = USER_WINDOWS_SIZE_CX;
 	lpMMI->ptMinTrackSize.y = USER_WINDOWS_SIZE_CY;
 	lpMMI->ptMaxTrackSize.x = USER_WINDOWS_SIZE_CX;
@@ -441,7 +441,7 @@ void CMainFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 }
 
 
-//20200227	³ªÁ¤È£ ¼öÁ¤	ÇöÀç »ç¿ëÇÏÁö ¾Ê´Â ±â´É º¸ÀÌÁö ¾Êµµ·Ï ¼öÁ¤
+//20200227	ë‚˜ì •í˜¸ ìˆ˜ì •	í˜„ì¬ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê¸°ëŠ¥ ë³´ì´ì§€ ì•Šë„ë¡ ìˆ˜ì •
 LRESULT CMainFrame::OnOpenChildFrame(WPARAM wParam, LPARAM lParam)
 {
 	CString strMsgTital, strMsgContent;
@@ -459,7 +459,7 @@ LRESULT CMainFrame::OnOpenChildFrame(WPARAM wParam, LPARAM lParam)
 	{
 	case IDS_MY_TREE_PROGRAM_SETTING_1:
 		strMsgTital.LoadString(IDS_MY_TREE_PROGRAM_SETTING_1);
-		strMsgTital += " ¼³Á¤ Open";
+		strMsgTital += " ì„¤ì • Open";
 		_addSystemMsg(0, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, strMsgTital);
 		//dlgProgramSetting.DoModal();
 		ShowDlgPopUp(&dlgSettingMain);
@@ -488,53 +488,53 @@ LRESULT CMainFrame::OnOpenChildFrame(WPARAM wParam, LPARAM lParam)
 		return 0;*/
 	case IDS_MY_TREE_MAIN_VIEW:
 		nActivateView = FORM_VIEW_ID_1;
-		szDocTitle.LoadString(IDS_MY_TREE_MAIN_VIEW); //¸ŞÀÎ
+		szDocTitle.LoadString(IDS_MY_TREE_MAIN_VIEW); //ë©”ì¸
 		break;
 	case IDS_MY_TREE_VIEW_1:
 		nActivateView = FORM_VIEW_ID_2;
-		szDocTitle.LoadString(IDS_MY_TREE_VIEW_1); //µ¥ÀÌÅÍ °Ô´õ¸µ
+		szDocTitle.LoadString(IDS_MY_TREE_VIEW_1); //ë°ì´í„° ê²Œë”ë§
 		break;
 				/*
 	case IDS_MY_TREE_VIEW_2:
 		nActivateView = FORM_VIEW_ID_3;
-		szDocTitle.LoadString(IDS_MY_TREE_VIEW_2); //³¯¾¾
+		szDocTitle.LoadString(IDS_MY_TREE_VIEW_2); //ë‚ ì”¨
 		break;
 
 	case IDS_MY_TREE_VIEW_4:
 		nActivateView = FORM_VIEW_ID_4;
-		szDocTitle.LoadString(IDS_MY_TREE_VIEW_4); //ÇÑÀüµ¥ÀÌÅÍ ¼öÁı
+		szDocTitle.LoadString(IDS_MY_TREE_VIEW_4); //í•œì „ë°ì´í„° ìˆ˜ì§‘
 		break;
 	case IDS_MY_TREE_VIEW_5:
 		nActivateView = FORM_VIEW_ID_5;
-		szDocTitle.LoadString(IDS_MY_TREE_VIEW_5); //¿¡³ÊÁö°ü¸®°ø´Ü µ¥ÀÌÅÍ Á¦°ø
+		szDocTitle.LoadString(IDS_MY_TREE_VIEW_5); //ì—ë„ˆì§€ê´€ë¦¬ê³µë‹¨ ë°ì´í„° ì œê³µ
 		break;
 	case IDS_MY_TREE_VIEW_6:
 		nActivateView = FORM_VIEW_ID_6;
-		szDocTitle.LoadString(IDS_MY_TREE_VIEW_6); //¼³ºñ¾Ë¶÷
+		szDocTitle.LoadString(IDS_MY_TREE_VIEW_6); //ì„¤ë¹„ì•ŒëŒ
 		break;
 	case IDS_MY_TREE_VIEW_7:
 		nActivateView = FORM_VIEW_ID_7;
-		szDocTitle.LoadString(IDS_MY_TREE_VIEW_7); //TAG¾Ë¶÷
+		szDocTitle.LoadString(IDS_MY_TREE_VIEW_7); //TAGì•ŒëŒ
 		break;
 		*/
 	}
 
 	g_nActivateDocCheck = nActivateView;
-	//ÇØ´çÀ©µµ¿ì °¡ È°¼ºÈ­ µÌ´ÂÁö ¿©ºÎ
+	//í•´ë‹¹ìœˆë„ìš° ê°€ í™œì„±í™” ë«ëŠ”ì§€ ì—¬ë¶€
 	pChildWnd = FindMDIChildWnd(szDocTitle, nActivateView);
 
 	if (pChildWnd)
 	{
 		pChildWnd->MDIActivate();
 #ifdef _DEBUG
-		TRACE("'%s' Open »óÅÂ\n",szDocTitle);
+		TRACE("'%s' Open ìƒíƒœ\n",szDocTitle);
 #endif
 		return 0;
 		//return;
 	}
 
 #ifdef _DEBUG
-	TRACE("'%s' È­¸é ÀüÈ¯\n",szDocTitle);
+	TRACE("'%s' í™”ë©´ ì „í™˜\n",szDocTitle);
 #endif
 
 	PostMessage(WM_COMMAND, ID_FILE_NEW);
@@ -615,7 +615,7 @@ void CMainFrame::OnClose()
 		_systemLog(strMsg,g_stProjectInfo.szProjectLogPath);
 	}
 
-	//WriteLog("ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+	//WriteLog("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	CMDIFrameWnd::OnClose();
 }
 
@@ -660,7 +660,7 @@ void CMainFrame::MsgWork()
 
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (nIDEvent == 1)
 	{
 		return;
@@ -672,7 +672,7 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 	}
 	if(nIDEvent == 5)
 	{
-		FlashWindow(TRUE); //ÀÛ¾÷Ç¥½ÃÁÙ ±ô¹ÚÀÌ°ÔÇÏ´Â ±â´É
+		FlashWindow(TRUE); //ì‘ì—…í‘œì‹œì¤„ ê¹œë°•ì´ê²Œí•˜ëŠ” ê¸°ëŠ¥
 		KillTimer(nIDEvent);
 		SetTimer(5,5000,NULL);
 	}
@@ -683,19 +683,19 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 
 void CMainFrame::OnBtLogfolderOpen()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	_addSystemMsg(0, USER_COLOR_BLUE, "DataGathering - Log", USER_COLOR_LIME, "Log Folder Open.");
 }
 
 
 void CMainFrame::OnBtLogview()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	_addSystemMsg(0, USER_COLOR_BLUE, "DataGathering - Log", USER_COLOR_LIME, "Log View View Open.");
 }
 
 
 void CMainFrame::OnBtLogRoot()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }

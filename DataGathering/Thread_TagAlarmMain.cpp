@@ -1,4 +1,4 @@
-// Thread_TagAlarmMain.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_TagAlarmMain.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -32,14 +32,14 @@ CThread_TagAlarmMain::~CThread_TagAlarmMain()
 
 BOOL CThread_TagAlarmMain::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_TagAlarmMain::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 
 	StopSubThread();
 
@@ -64,7 +64,7 @@ BEGIN_MESSAGE_MAP(CThread_TagAlarmMain, CWinThread)
 END_MESSAGE_MAP()
 
 
-// CThread_TagAlarmMain ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_TagAlarmMain ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 void CThread_TagAlarmMain::Com_Error(const char *szLogName,_com_error *e)
 {
 	CString strRunlog_E2 = "",strRunlog_E2Log = "";
@@ -79,7 +79,7 @@ void CThread_TagAlarmMain::Com_Error(const char *szLogName,_com_error *e)
 
 	strRunlog_E2Log.Format("Position : [%s], LogName: [%s], %s",m_strThreadName,szLogName, strRunlog_E2);
 	SetWriteLogFile("Processor-log : [DB Com Error..],",strRunlog_E2Log);
-	//_addCurrentstateMsg(0,0, m_strThreadName, "DB Ã³¸® ¿À·ù »ó¼¼·Î±× È®ÀÎ");
+	//_addCurrentstateMsg(0,0, m_strThreadName, "DB ì²˜ë¦¬ ì˜¤ë¥˜ ìƒì„¸ë¡œê·¸ í™•ì¸");
 	Sleep(500);
 }
 
@@ -93,7 +93,7 @@ void CThread_TagAlarmMain::SetWriteLogFile(const char *sTitle,const char *szLogM
 
 int CThread_TagAlarmMain::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	//m_strThreadName = "TAG Alarm Main";
 
 	CTime currentTime;// CTime::GetCurrentTime();
@@ -119,7 +119,7 @@ int CThread_TagAlarmMain::Run()
 	}
 
 
-	strLogMsg.Format("ÁÖ±â:[1]ºĞ ´ÜÀ§");
+	strLogMsg.Format("ì£¼ê¸°:[1]ë¶„ ë‹¨ìœ„");
 	//_addCurrentstateMsg(0,0, m_strThreadName, strLogMsg);
 	do
 	{
@@ -149,7 +149,7 @@ int CThread_TagAlarmMain::Run()
 
 		int nDeviceCount = GetSiteCheck(currentTime);
 
-		// <-- 20191230-Doo ¿¹¿ÜÃ³¸®
+		// <-- 20191230-Doo ì˜ˆì™¸ì²˜ë¦¬
 		if (nDeviceCount < 1)
 			nDeviceCount = 0;
 		// -->
@@ -238,11 +238,11 @@ int CThread_TagAlarmMain::GetSiteCheck(CTime currentTime)
 
 					if(m_bStartCheck == FALSE)
 					{
-						//Ã³À½ ½ÃÀÛ½Ã ¸®½ºÆ®ÄÁÆ®·Ñ¿¡ µî·Ï
+						//ì²˜ìŒ ì‹œì‘ì‹œ ë¦¬ìŠ¤íŠ¸ì»¨íŠ¸ë¡¤ì— ë“±ë¡
 
 						strRetTagTotalNumber.Format("%d",(int)dbValue);
-						strMsg.Format("[%s][¾Ë¶÷ Ã³¸® Áß..]",currentTime.Format("%Y-%m-%d %H:%M:%S"));
-						((CFormView_AlarmTag *)(m_pCtrl))->SetStartDeviceList(strRetSiteName,strRetDeviceName,strRetTagTotalNumber,"¾Ë¶÷ Ã³¸® Áß..");
+						strMsg.Format("[%s][ì•ŒëŒ ì²˜ë¦¬ ì¤‘..]",currentTime.Format("%Y-%m-%d %H:%M:%S"));
+						((CFormView_AlarmTag *)(m_pCtrl))->SetStartDeviceList(strRetSiteName,strRetDeviceName,strRetTagTotalNumber,"ì•ŒëŒ ì²˜ë¦¬ ì¤‘..");
 						strcpy_s(m_stDeviceList[nI].szSite_Id,strRetSiteid);
 						strcpy_s(m_stDeviceList[nI].szSite_Name,strRetSiteName);
 						strcpy_s(m_stDeviceList[nI].szDevice_Id,strRetDeviceID);
@@ -261,8 +261,8 @@ int CThread_TagAlarmMain::GetSiteCheck(CTime currentTime)
 									if(m_stDeviceList[nY].nTagTotalNumber != (int)dbValue)
 									{
 										strRetTagTotalNumber.Format("%d",(int)dbValue);
-										strMsg.Format("[%s][µî·Ï ¾Ë¶÷ º¯°æ]",currentTime.Format("%Y-%m-%d %H:%M:%S"));
-										((CFormView_AlarmTag *)(m_pCtrl))->SetStartDeviceList(strRetSiteName,strRetDeviceName,strRetTagTotalNumber,"µî·Ï ¾Ë¶÷ º¯°æ");
+										strMsg.Format("[%s][ë“±ë¡ ì•ŒëŒ ë³€ê²½]",currentTime.Format("%Y-%m-%d %H:%M:%S"));
+										((CFormView_AlarmTag *)(m_pCtrl))->SetStartDeviceList(strRetSiteName,strRetDeviceName,strRetTagTotalNumber,"ë“±ë¡ ì•ŒëŒ ë³€ê²½");
 									}
 									break;
 								}
@@ -291,13 +291,13 @@ int CThread_TagAlarmMain::GetSiteCheck(CTime currentTime)
 		//CString strDescription = e.Description();
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -360,7 +360,7 @@ void CThread_TagAlarmMain::StartSubThread(ST_SUBTHREAD_INFO *stSubThreadInfo,int
 
 			stSubThreadInfo[nSubIndex].bDataChangeCheck = FALSE;
 
-			strText.Format("ProcessorName : [%s], Tag Count : [%d],»óÅÂ : [Ã³¸® ½ÃÀÛ..]",stSubThreadInfo[nSubIndex].szThreadName, stSubThreadInfo[nSubIndex].stDeviceInfo.nTagTotalNumber);
+			strText.Format("ProcessorName : [%s], Tag Count : [%d],ìƒíƒœ : [ì²˜ë¦¬ ì‹œì‘..]",stSubThreadInfo[nSubIndex].szThreadName, stSubThreadInfo[nSubIndex].stDeviceInfo.nTagTotalNumber);
 			_addSystemMsg(LOG_MESSAGE_7, USER_COLOR_BLUE, "Main Processor-log : [Sub Creat..]", USER_COLOR_PINK, strText);
 #ifdef _DEBUG
 			TRACE("TagAlarm - %s\n",strText);

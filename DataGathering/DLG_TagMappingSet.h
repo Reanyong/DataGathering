@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDLG_TagMappingSet ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_TagMappingSet ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_TagMappingSet : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_TagMappingSet)
 
 public:
-	CDLG_TagMappingSet(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_TagMappingSet(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_TagMappingSet();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_ENERGYTAG_MAPPING_SETTING };
 protected:
 	CComboBox m_comboGrp;
@@ -61,7 +61,7 @@ protected:
 public:
 	
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedOk();

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "XComboList.h"
 
 #ifdef _DEBUG

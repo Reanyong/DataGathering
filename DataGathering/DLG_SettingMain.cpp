@@ -1,4 +1,4 @@
-// DLG_SettingMain.cpp : ���� �����Դϴ�.
+﻿// DLG_SettingMain.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 
 
 
-// CDLG_SettingMain ��ȭ �����Դϴ�.
+// CDLG_SettingMain 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CDLG_SettingMain, CDialog)
 
@@ -44,14 +44,14 @@ BEGIN_MESSAGE_MAP(CDLG_SettingMain, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_SettingMain �޽��� ó�����Դϴ�.
+// CDLG_SettingMain 메시지 처리기입니다.
 
 
 BOOL CDLG_SettingMain::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 	m_ButttonGatherSet.LoadBitmaps(IDB_BMP_BUTTON_GATHER_N,IDB_BMP_BUTTON_GATHER_D,IDB_BMP_BUTTON_GATHER_D,IDB_BMP_BUTTON_GATHER_D);
 	m_ButttonGatherSet.SizeToContent();
 
@@ -84,13 +84,13 @@ BOOL CDLG_SettingMain::OnInitDialog()
 	m_pDlgGatherTypeSetting->ShowWindow(SW_HIDE);
 	//*/
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 
 BOOL CDLG_SettingMain::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ���⿡ Ư��ȭ�� �ڵ带 �߰� ��/�Ǵ� �⺻ Ŭ������ ȣ���մϴ�.
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	if (WM_KEYDOWN == pMsg->message)
 	{
 		switch (pMsg->wParam)
@@ -129,13 +129,13 @@ void CDLG_SettingMain::OnDestroy()
 		m_pDlgGatherTypeSetting = NULL;
 	}
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 }
 
 
 void CDLG_SettingMain::OnBnClickedButtonSetingGather()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_pDlgProgramSetting->ShowWindow(SW_SHOW);
 	m_pDlgDataBaseSetting->ShowWindow(SW_HIDE);
 	m_pDlgGatherTypeSetting->ShowWindow(SW_HIDE);
@@ -144,7 +144,7 @@ void CDLG_SettingMain::OnBnClickedButtonSetingGather()
 
 void CDLG_SettingMain::OnBnClickedButtonSetingDb()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_pDlgProgramSetting->ShowWindow(SW_HIDE);
 	m_pDlgDataBaseSetting->ShowWindow(SW_SHOW);
 	m_pDlgGatherTypeSetting->ShowWindow(SW_HIDE);
@@ -152,7 +152,7 @@ void CDLG_SettingMain::OnBnClickedButtonSetingDb()
 
 void CDLG_SettingMain::OnBnClickedButtonSetingGathertypeSet()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_pDlgProgramSetting->ShowWindow(SW_HIDE);
 	m_pDlgDataBaseSetting->ShowWindow(SW_HIDE);
 	m_pDlgGatherTypeSetting->ShowWindow(SW_SHOW);
@@ -160,7 +160,7 @@ void CDLG_SettingMain::OnBnClickedButtonSetingGathertypeSet()
 
 void CDLG_SettingMain::OnBnClickedOk()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_pDlgProgramSetting->SetSettingSave();
 	m_pDlgDataBaseSetting->SetSettingSave();
 	m_pDlgGatherTypeSetting->SetSettingSave();
@@ -169,7 +169,7 @@ void CDLG_SettingMain::OnBnClickedOk()
 
 void CDLG_SettingMain::OnClose()
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CDialog::OnClose();
 }

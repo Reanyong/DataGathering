@@ -1,4 +1,4 @@
-// Odbc.cpp: implementation of the COdbc class.
+О╩©// Odbc.cpp: implementation of the COdbc class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -307,9 +307,9 @@ char* COdbc::lmsSqlGetError( SQLSMALLINT HandleType, SQLINTEGER * pdwErrCode)
 		SQL_MAX_MESSAGE_LENGTH-1,
 		&wErrMsgLen);
 	if( retcode== SQL_SUCCESS || retcode== SQL_SUCCESS_WITH_INFO){
-		//╦╝ео╣х_©║╥╞дз╣Е = dwErrCode;
-		//©║╥╞╩Себ_╧╝юз = szErrState;
-		//©║╥╞_╦ч╫цаЖ = szErrText;
+		//К╕╛М└╢К░°_Л≈░К÷╛Л╫■К⌠° = dwErrCode;
+		//Л≈░К÷╛Л┐│М┐°_К╛╦Л·░ = szErrState;
+		//Л≈░К÷╛_К╘■Л▀°Л╖─ = szErrText;
 		//TRACE( "Odbc Error :: %s, %s\n", szErrState, szErrText );
 	}
 

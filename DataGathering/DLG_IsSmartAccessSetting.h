@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDLG_IsSmartAccessSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_IsSmartAccessSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_IsSmartAccessSetting : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_IsSmartAccessSetting)
 
 public:
-	CDLG_IsSmartAccessSetting(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_IsSmartAccessSetting(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_IsSmartAccessSetting();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_ISMART_ACCESS_SETTING };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 };

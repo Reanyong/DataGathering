@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 #include "Control_List/ListBoxControl/XListCtrl.h"
 
-// CDLG_ISmartSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_ISmartSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_ISmartSetting : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_ISmartSetting)
 
 public:
-	CDLG_ISmartSetting(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_ISmartSetting(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_ISmartSetting();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_ISMART_SETTING };
 
 protected:
@@ -34,7 +34,7 @@ protected:
 
 	void ListInsertItem(const char *szData1,const char *szData2,const char *szData3);
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	

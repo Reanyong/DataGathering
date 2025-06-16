@@ -1,4 +1,4 @@
-
+ï»¿
 #pragma once
 
 // Thread_MinGatherMain.h : header file
@@ -38,16 +38,16 @@ public:
 	void SetProgramName(const char *szName)	{
 		m_strThreadName = szName;
 	}
-	void SetProduct(int nProduct)	{ //20210305 ksw Á¦Ç°¼±ÅÃ Ãß°¡
+	void SetProduct(int nProduct)	{ //20210305 ksw ì œí’ˆì„ íƒ ì¶”ê°€
 		m_nProduct = nProduct;
 	}
-	void SetInterval(int nInterval)	{ //20210305 ksw ¼öÁıÁÖ±â Ãß°¡
+	void SetInterval(int nInterval)	{ //20210305 ksw ìˆ˜ì§‘ì£¼ê¸° ì¶”ê°€
 		m_nInterval = nInterval;
 	}
 protected:
-	int GetTagTotalCountCheck(const char *szDeviceItem,int nDBType,const char *szDBName); //ÀüÃ¼ TAG Count Á¤º¸ È®ÀÎ
+	int GetTagTotalCountCheck(const char *szDeviceItem,int nDBType,const char *szDBName); //ì „ì²´ TAG Count ì •ë³´ í™•ì¸
 	void Release_List_ST_DB_Tag(int nMode);
-	int GetTagList(const char *szDeviceItem,int nTheradCount,int nDBType,const char *szDBName);  //µî·ÏµÈ TAG Á¤º¸
+	int GetTagList(const char *szDeviceItem,int nTheradCount,int nDBType,const char *szDBName);  //ë“±ë¡ëœ TAG ì •ë³´
 	CString Com_Error(const char *szLogName,_com_error *e);
 	void SysLogOutPut(CString strLogName,CString strMsg, COLORREF crBody);
 
@@ -73,8 +73,8 @@ protected:
 	int m_nTagListCount;
 	int m_nDBType;
 	int m_nThteadCount;
-	int m_nProduct; //20210305 ksw Á¦Ç°¼±ÅÃ º¯¼ö Ãß°¡ 0: BEMS, 1:EMS(±¸ BEMS Æ÷ÇÔ)
-	int m_nInterval; //20210831 ksw ¼öÁı ÁÖ±â ¼³Á¤
+	int m_nProduct; //20210305 ksw ì œí’ˆì„ íƒ ë³€ìˆ˜ ì¶”ê°€ 0: BEMS, 1:EMS(êµ¬ BEMS í¬í•¨)
+	int m_nInterval; //20210831 ksw ìˆ˜ì§‘ ì£¼ê¸° ì„¤ì •
 	CString m_strLogTitle;
 	CString m_strThreadName;
 

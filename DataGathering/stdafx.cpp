@@ -1,30 +1,30 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦
-// »ç¿ëÇÏ´Â ¹æ¹ıÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿ş¾î¿¡ Æ÷ÇÔµÈ
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤("Fluent UI")ë¥¼
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ì ë¬¸ì„œì— ëŒ€í•´
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤.
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ìì„¸í•œ ë‚´ìš©ì€
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ğµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// stdafx.cpp : Ç¥ÁØ Æ÷ÇÔ ÆÄÀÏ¸¸ µé¾î ÀÖ´Â ¼Ò½º ÆÄÀÏÀÔ´Ï´Ù.
-// DataGathering.pch´Â ¹Ì¸® ÄÄÆÄÀÏµÈ Çì´õ°¡ µË´Ï´Ù.
-// stdafx.obj¿¡´Â ¹Ì¸® ÄÄÆÄÀÏµÈ Çü½Ä Á¤º¸°¡ Æ÷ÇÔµË´Ï´Ù.
+// stdafx.cpp : í‘œì¤€ í¬í•¨ íŒŒì¼ë§Œ ë“¤ì–´ ìˆëŠ” ì†ŒìŠ¤ íŒŒì¼ì…ë‹ˆë‹¤.
+// DataGathering.pchëŠ” ë¯¸ë¦¬ ì»´íŒŒì¼ëœ í—¤ë”ê°€ ë©ë‹ˆë‹¤.
+// stdafx.objì—ëŠ” ë¯¸ë¦¬ ì»´íŒŒì¼ëœ í˜•ì‹ ì •ë³´ê°€ í¬í•¨ë©ë‹ˆë‹¤.
 
 #include "stdafx.h"
 
 UINT wm_EVViewStop;
 ST_PROJECT_INFO g_stProjectInfo;
 int g_nActivateDocCheck;
-int g_nCheckTagThreadRun; //20210308 ksw ¼³Á¤ - È÷½ºÅä¸®ÄÃ insert ¹öÆ° ÇÃ·¡±×
+int g_nCheckTagThreadRun; //20210308 ksw ì„¤ì • - íˆìŠ¤í† ë¦¬ì»¬ insert ë²„íŠ¼ í”Œë˜ê·¸
 CRITICAL_SECTION g_cs;
 
 int g_pList_ST_TagDivisionListCnt;
 std::list<ST_TagInfoList>** g_pList_ST_TagDivisionList;
 
-//°øÅë ÆùÆ® »ç¿ë
+//ê³µí†µ í°íŠ¸ ì‚¬ìš©
 void _CreateFont(CFont *pFont)
 {
 	/*LOGFONT iFont;
@@ -33,7 +33,7 @@ void _CreateFont(CFont *pFont)
 	iFont.lfCharSet = DEFAULT_CHARSET;
 	iFont.lfWeight = FW_MEDIUM;
 	iFont.lfPitchAndFamily = VARIABLE_PITCH;
-	strcpy_s(iFont.lfFaceName, "¸¼Àº °íµñ");
+	strcpy_s(iFont.lfFaceName, "ë§‘ì€ ê³ ë”•");
 	pFont->CreateFontIndirect(&iFont);*/
 
 	NONCLIENTMETRICS ncm;
@@ -41,7 +41,7 @@ void _CreateFont(CFont *pFont)
 	ncm.cbSize = sizeof(NONCLIENTMETRICS);
 	VERIFY(::SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
 		sizeof(NONCLIENTMETRICS), &ncm, 0));
-	_tcscpy_s( ncm.lfMessageFont.lfFaceName,12, _T("¸¼Àº °íµñ"));
+	_tcscpy_s( ncm.lfMessageFont.lfFaceName,12, _T("ë§‘ì€ ê³ ë”•"));
 	pFont->CreateFontIndirect(&ncm.lfMessageFont);
 }
 
@@ -53,7 +53,7 @@ CString _IDCreated()
 
 	SYSTEMTIME time;
 	GetLocalTime(&time);
-	CTime ATime(time.wYear,time.wMonth,time.wDay,time.wHour,time.wMinute,time.wSecond); // 1½Ã°£ Â÷ÀÌ
+	CTime ATime(time.wYear,time.wMonth,time.wDay,time.wHour,time.wMinute,time.wSecond); // 1ì‹œê°„ ì°¨ì´
 	CTimeSpan span = ATime - ct;
 	/*struct _timeb tstruct;
 	_ftime32_s( &tstruct );
@@ -104,7 +104,7 @@ CString _createFolder(const char *szBasicsPath,const char *szCreateName)
 	return strSettingFile;
 }
 
-//DB¸í Á¤º¸ ÀĞ¾î ¿Â´Ù.
+//DBëª… ì •ë³´ ì½ì–´ ì˜¨ë‹¤.
 ST_DATABASENAME _getDataBesaNameRead(const char *szIniPath)
 {
 	ST_DATABASENAME stDBName;
@@ -120,7 +120,7 @@ ST_DATABASENAME _getDataBesaNameRead(const char *szIniPath)
 	return stDBName;
 }
 
-//DB ¼öÁ¤ Á¤º¸¸¦ ¾´´Ù.
+//DB ìˆ˜ì • ì •ë³´ë¥¼ ì“´ë‹¤.
 void _setDataBesaNameWrite(ST_DATABASENAME *stDBName, const char * szIniPath)
 {
 	WritePrivateProfileString("DBName",	"HMIDB",	stDBName->szHMIDBName,szIniPath);
@@ -132,7 +132,7 @@ void _setDataBesaNameWrite(ST_DATABASENAME *stDBName, const char * szIniPath)
 }
 
 
-//DB Á¤º¸ ÀĞ¾î ¿Â´Ù.
+//DB ì •ë³´ ì½ì–´ ì˜¨ë‹¤.
 ST_DBINFO _getInfoDBRead(const char *szIniPath)
 {
 	ST_DBINFO stDbInfo;
@@ -146,7 +146,7 @@ ST_DBINFO _getInfoDBRead(const char *szIniPath)
 		stDbInfo.unDBType = DB_MSSQL;
 	else if (strcmp(szDBType,"ORACLE") == 0)
 		stDbInfo.unDBType = DB_ORACLE;
-	//20200210 jsh : Postgre Ãß°¡
+	//20200210 jsh : Postgre ì¶”ê°€
 	else if (strcmp(szDBType, "POSTGRE") == 0)
 		stDbInfo.unDBType = DB_POSTGRE;
 	else
@@ -162,7 +162,7 @@ ST_DBINFO _getInfoDBRead(const char *szIniPath)
 	return stDbInfo;
 }
 
-//DB ¼öÁ¤ Á¤º¸¸¦ ¾´´Ù.
+//DB ìˆ˜ì • ì •ë³´ë¥¼ ì“´ë‹¤.
 void _setInfoDBWrite(ST_DBINFO *stDbInfo, const char * szIniPath)
 {
 
@@ -176,7 +176,7 @@ void _setInfoDBWrite(ST_DBINFO *stDbInfo, const char * szIniPath)
 	case DB_ORACLE:
 		strcat_s(szBuffer,"ORACLE");
 		break;
-	case DB_POSTGRE: // 20200211 jsh : postgre Ãß°¡
+	case DB_POSTGRE: // 20200211 jsh : postgre ì¶”ê°€
 		strcat_s(szBuffer,"POSTGRE");
 		break;
 	case DB_MYSQL:
@@ -193,7 +193,7 @@ void _setInfoDBWrite(ST_DBINFO *stDbInfo, const char * szIniPath)
 	//WritePrivateProfileString("DBINFO","WTDB"		,stDbInfo->szWTDBName,szIniPath);
 }
 
-//¼öÁı ¹æ½Ä ¼³Á¤ Á¤º¸ ¾´´Ù.
+//ìˆ˜ì§‘ ë°©ì‹ ì„¤ì • ì •ë³´ ì“´ë‹¤.
 void _setGatherInfoType(ST_GATHERINFO_TYPE *stInfoType, const char * szIniPath)
 {
 	CString strItem = "";
@@ -267,7 +267,7 @@ ST_GATHERINFO_TYPE _getGatherInfoType(const char * szIniPath)
 	return stInfoType;
 }
 
-//°Ô´õ¸µ Á¤º¸ ÀĞ¾î ¿Â´Ù
+//ê²Œë”ë§ ì •ë³´ ì½ì–´ ì˜¨ë‹¤
 ST_GATHERINFO _getInfoGatherRead(const char *szIniPath)
 {
 	ST_GATHERINFO stGatherInfo;
@@ -281,8 +281,8 @@ ST_GATHERINFO _getInfoGatherRead(const char *szIniPath)
 	GetPrivateProfileString("DataGathering", "AutoRun_UseCheck", "0", szBuffer, sizeof(szBuffer), szIniPath);
 	stGatherInfo.nAutoRun_Check = atoi(szBuffer);
 
-	GetPrivateProfileString("DataGathering", "Product_Check", "0", szBuffer, sizeof(szBuffer), szIniPath);//20210305 ksw Á¦Ç°¼³Á¤ Ãß°¡
-	stGatherInfo.nProduct_Check = atoi(szBuffer);//20210305 ksw Á¦Ç°¼³Á¤ Ãß°¡
+	GetPrivateProfileString("DataGathering", "Product_Check", "0", szBuffer, sizeof(szBuffer), szIniPath);//20210305 ksw ì œí’ˆì„¤ì • ì¶”ê°€
+	stGatherInfo.nProduct_Check = atoi(szBuffer);//20210305 ksw ì œí’ˆì„¤ì • ì¶”ê°€
 
 	GetPrivateProfileString("DataGathering", "Gathe_interval", "1", szBuffer, sizeof(szBuffer), szIniPath);
 	stGatherInfo.nGathe_Interval = atoi(szBuffer);
@@ -314,20 +314,20 @@ ST_GATHERINFO _getInfoGatherRead(const char *szIniPath)
 	else if(nInterval == 3)
 		stGatherInfo.nDelete_Interval = 60;
 
-	GetPrivateProfileString("DataGathering", "Demp_UseCheck", "0", szBuffer, sizeof(szBuffer), szIniPath); //DB Åë½Å½Ã ¹ß»ı½Ã ¹ß»ı½Ã°£ ÀúÀå
+	GetPrivateProfileString("DataGathering", "Demp_UseCheck", "0", szBuffer, sizeof(szBuffer), szIniPath); //DB í†µì‹ ì‹œ ë°œìƒì‹œ ë°œìƒì‹œê°„ ì €ì¥
 	stGatherInfo.nDemp_Check = atoi(szBuffer);
-	GetPrivateProfileString("DataGathering", "Demp_AutoManual", "0", szBuffer, sizeof(szBuffer), szIniPath); //¹ß»ı½Ã°£ µ¥ÀÌÅÍ ÀÚµ¿ »ı¼º
+	GetPrivateProfileString("DataGathering", "Demp_AutoManual", "0", szBuffer, sizeof(szBuffer), szIniPath); //ë°œìƒì‹œê°„ ë°ì´í„° ìë™ ìƒì„±
 	stGatherInfo.nDemp_AutoCheck = atoi(szBuffer);
-	GetPrivateProfileString("DataGathering", "Weather_Gather", "2", szBuffer, sizeof(szBuffer), szIniPath); //³¯¾¾ ¼öÁı ¿¬µ¿ Å¸ÀÔ
+	GetPrivateProfileString("DataGathering", "Weather_Gather", "2", szBuffer, sizeof(szBuffer), szIniPath); //ë‚ ì”¨ ìˆ˜ì§‘ ì—°ë™ íƒ€ì…
 	stGatherInfo.nWeather_GatherType = atoi(szBuffer);
-	GetPrivateProfileString("DataGathering", "ISmart_Gather", "2", szBuffer, sizeof(szBuffer), szIniPath); //ÇÑÀüµ¥ÀÌÅÍ ¿¬µ¿ Å¸ÀÔ
+	GetPrivateProfileString("DataGathering", "ISmart_Gather", "2", szBuffer, sizeof(szBuffer), szIniPath); //í•œì „ë°ì´í„° ì—°ë™ íƒ€ì…
 	stGatherInfo.nISmart_GatherType = atoi(szBuffer);
-	GetPrivateProfileString("DataGathering", "EngMng_Gather", "2", szBuffer, sizeof(szBuffer), szIniPath); //¿¡³ÊÁö°ü¸®°ø´Ü ¿¬µ¿ Å¸ÀÔ
+	GetPrivateProfileString("DataGathering", "EngMng_Gather", "2", szBuffer, sizeof(szBuffer), szIniPath); //ì—ë„ˆì§€ê´€ë¦¬ê³µë‹¨ ì—°ë™ íƒ€ì…
 	stGatherInfo.nEngMng_GatherType = atoi(szBuffer);
 
 
-	//GetPrivateProfileString("Weather", "UrlLive", "http://", stGatherInfo.szUrlLive, sizeof(stGatherInfo.szUrlLive), szIniPath); //¶óÀÌºê ³¯¾¾ URL(ÀÎÁõÅ°,À§µµ,°æµµ ÆÄ¶÷ÀºÁ¦¿Ü)
-	//GetPrivateProfileString("Weather", "UrlForecast", "http://", stGatherInfo.szUrlForecast, sizeof(stGatherInfo.szUrlForecast), szIniPath); //¿¹º¸ ³¯¾¾ URL(À§µµ,°æµµ ÆÄ¶÷ÀºÁ¦¿Ü)
+	//GetPrivateProfileString("Weather", "UrlLive", "http://", stGatherInfo.szUrlLive, sizeof(stGatherInfo.szUrlLive), szIniPath); //ë¼ì´ë¸Œ ë‚ ì”¨ URL(ì¸ì¦í‚¤,ìœ„ë„,ê²½ë„ íŒŒëŒì€ì œì™¸)
+	//GetPrivateProfileString("Weather", "UrlForecast", "http://", stGatherInfo.szUrlForecast, sizeof(stGatherInfo.szUrlForecast), szIniPath); //ì˜ˆë³´ ë‚ ì”¨ URL(ìœ„ë„,ê²½ë„ íŒŒëŒì€ì œì™¸)
 
 	return stGatherInfo;
 }
@@ -346,8 +346,8 @@ void _setInfoGatherWrite(ST_GATHERINFO *stGatherInfo, const char * szIniPath)
 	WritePrivateProfileString("DataGathering","Demp_UseCheck",strBuffer,szIniPath);
 	strBuffer.Format("%d",stGatherInfo->nDemp_AutoCheck);
 	WritePrivateProfileString("DataGathering","Demp_AutoManual",strBuffer,szIniPath);
-	strBuffer.Format("%d",stGatherInfo->nProduct_Check); //20210305 ksw Á¦Ç°¼³Á¤ Ãß°¡
-	WritePrivateProfileString("DataGathering","Product_Check",strBuffer,szIniPath);//20210305 ksw Á¦Ç°¼³Á¤ Ãß°¡
+	strBuffer.Format("%d",stGatherInfo->nProduct_Check); //20210305 ksw ì œí’ˆì„¤ì • ì¶”ê°€
+	WritePrivateProfileString("DataGathering","Product_Check",strBuffer,szIniPath);//20210305 ksw ì œí’ˆì„¤ì • ì¶”ê°€
 
 	strBuffer.Format("%d",stGatherInfo->nWeather_GatherType);
 	WritePrivateProfileString("DataGathering","Weather_Gather",strBuffer,szIniPath);
@@ -360,7 +360,7 @@ void _setInfoGatherWrite(ST_GATHERINFO *stGatherInfo, const char * szIniPath)
 	//WritePrivateProfileString("Weather","UrlForecast",stGatherInfo->szUrlForecast,szIniPath);
 }
 
-//ISmart»ç¿ëÀÚ ¼³Á¤  ¿¬µ¿ Á¤º¸ ÀĞ¾î¿Â´Ù
+//ISmartì‚¬ìš©ì ì„¤ì •  ì—°ë™ ì •ë³´ ì½ì–´ì˜¨ë‹¤
 ST_FILE_ISMARTACCESS _getInfoFileReadISmartAccess(const char *szIniPath)
 {
 	ST_FILE_ISMARTACCESS stInfo_1;
@@ -373,7 +373,7 @@ ST_FILE_ISMARTACCESS _getInfoFileReadISmartAccess(const char *szIniPath)
 	return stInfo_1;
 }
 
-//ISmart»ç¿ëÀÚ ¼³Á¤  ¿¬µ¿ Á¤º¸ ÀúÀåÇÑ´Ù
+//ISmartì‚¬ìš©ì ì„¤ì •  ì—°ë™ ì •ë³´ ì €ì¥í•œë‹¤
 void _setInfoFileReadISmartAccess(ST_FILE_ISMARTACCESS *stInfo, const char * szIniPath)
 {
 	char szBuffer[16];
@@ -385,7 +385,7 @@ void _setInfoFileReadISmartAccess(ST_FILE_ISMARTACCESS *stInfo, const char * szI
 }
 
 
-//±â»óÃ» ¿¬µ¿ ¼³Á¤ ÀĞ¾î¿Â´Ù
+//ê¸°ìƒì²­ ì—°ë™ ì„¤ì • ì½ì–´ì˜¨ë‹¤
 ST_WEATHER_INFO _getInfoWeatherRead(const char *szIniPath)
 {
 	ST_WEATHER_INFO stWeatherInfo;
@@ -404,7 +404,7 @@ ST_WEATHER_INFO _getInfoWeatherRead(const char *szIniPath)
 	return stWeatherInfo;
 }
 
-//±â»óÃ» ¿¬µ¿ ¼³Á¤ ÀúÀå
+//ê¸°ìƒì²­ ì—°ë™ ì„¤ì • ì €ì¥
 void _setInfoWeatherWrite(ST_WEATHER_INFO *stWeatherInfo, const char * szIniPath)
 {
 	char szBuffer[16];
@@ -436,8 +436,8 @@ void _setXmlPath(const char *szXmlPath, const char * szIniPath)
 }
 
 //////////////////////////////////////////////////////////////////////////
-//LOG ÆÄÀÏ ¾²±â
-//½ÃÀÛ/Á¾·á ¹× ½Ã½ºÅÛ ·Î±×
+//LOG íŒŒì¼ ì“°ê¸°
+//ì‹œì‘/ì¢…ë£Œ ë° ì‹œìŠ¤í…œ ë¡œê·¸
 void _systemLog(const char * data, const char * szFilePath)
 {
 	CTime cTimeCheck;

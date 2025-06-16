@@ -1,4 +1,4 @@
-#if !defined(AFX_THREAD_MINDATA_H__FE94CDE3_80D8_4ED9_9DB7_1E979D5DE20E__INCLUDED_)
+ï»¿#if !defined(AFX_THREAD_MINDATA_H__FE94CDE3_80D8_4ED9_9DB7_1E979D5DE20E__INCLUDED_)
 #define AFX_THREAD_MINDATA_H__FE94CDE3_80D8_4ED9_9DB7_1E979D5DE20E__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -35,7 +35,7 @@ public:
 	void SetLPVOID(LPVOID pCtrl)	{
 		m_pCtrl = pCtrl;
 	}
-	void InitInfo(int nThreadNumber,CString strThreadID,int nProduct, int nInterval)	{ //20210308 ksw Á¦Ç°¹øÈ£ 20210831 ksw ¼öÁıÁÖ±â
+	void InitInfo(int nThreadNumber,CString strThreadID,int nProduct, int nInterval)	{ //20210308 ksw ì œí’ˆë²ˆí˜¸ 20210831 ksw ìˆ˜ì§‘ì£¼ê¸°
 		m_nThreadNumber = nThreadNumber;
 		m_strThreadName = strThreadID;
 		m_nProduct = nProduct;
@@ -61,13 +61,13 @@ protected:
 	int GetMinRegCheck(CString strTagId,CTime currentTime,const char *szDBName,int nDBType);
 	int SetTagValue(int nQueryType,int nDBType,CString strTagId,CString strTagName,CString strGroupName,int nTagTyp, CTime currentTime,CString strValue,const char *szDBName);
 
-	int SetTagValue(int nQueryType,int nDBType,ST_TagInfoList stList,CTime currentTime,CString strValue,const char *szDBName); //ÇâÈÄ º¯°æ
+	int SetTagValue(int nQueryType,int nDBType,ST_TagInfoList stList,CTime currentTime,CString strValue,const char *szDBName); //í–¥í›„ ë³€ê²½
 
 	CString GetTagValue(CString strTagName,int nTagTyp);
 
-	void LogHistory(CString strLogName,CString strMsg,int nColorType); //·ÎÃ¢ µ¥ÀÌÅÍ Ç¥½Ã
-	void SetWriteLogFile(const char *szLogMsg); //·Î±× ÆÄÀÏ »ı¼º
-	void ShowGridDataOutPut(CString strStatus,CString strMsg); //±×¸®µå »óÅÂ Ç¥½Ã
+	void LogHistory(CString strLogName,CString strMsg,int nColorType); //ë¡œì°½ ë°ì´í„° í‘œì‹œ
+	void SetWriteLogFile(const char *szLogMsg); //ë¡œê·¸ íŒŒì¼ ìƒì„±
+	void ShowGridDataOutPut(CString strStatus,CString strMsg); //ê·¸ë¦¬ë“œ ìƒíƒœ í‘œì‹œ
 
 protected:
 	CWnd* m_pOwner;
@@ -78,7 +78,7 @@ protected:
 	HWND m_WindHwnd;
 	CAdo_Control *DB_Connect;
 	int m_nDBType;
-	int m_nProduct; //20210308 ksw Á¦Ç°¹öÀü
+	int m_nProduct; //20210308 ksw ì œí’ˆë²„ì „
 	int m_nInterval;
 
 	int m_nThreadNumber;

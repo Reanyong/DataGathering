@@ -1,27 +1,27 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦
-// »ç¿ëÇÏ´Â ¹æ¹ıÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿ş¾î¿¡ Æ÷ÇÔµÈ
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤("Fluent UI")ë¥¼
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ì ë¬¸ì„œì— ëŒ€í•´
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤.
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ìì„¸í•œ ë‚´ìš©ì€
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ğµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// CDataGathering.h : CDataGathering ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁÖ Çì´õ ÆÄÀÏ
+// CDataGathering.h : CDataGathering ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì£¼ í—¤ë” íŒŒì¼
 //
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "PCH¿¡ ´ëÇØ ÀÌ ÆÄÀÏÀ» Æ÷ÇÔÇÏ±â Àü¿¡ 'stdafx.h'¸¦ Æ÷ÇÔÇÕ´Ï´Ù."
+	#error "PCHì— ëŒ€í•´ ì´ íŒŒì¼ì„ í¬í•¨í•˜ê¸° ì „ì— 'stdafx.h'ë¥¼ í¬í•¨í•©ë‹ˆë‹¤."
 #endif
 
-#include "resource.h"       // ÁÖ ±âÈ£ÀÔ´Ï´Ù.
+#include "resource.h"       // ì£¼ ê¸°í˜¸ì…ë‹ˆë‹¤.
 
 
 // CDataGatheringApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â CDataGathering.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
+// ì´ í´ë˜ìŠ¤ì˜ êµ¬í˜„ì— ëŒ€í•´ì„œëŠ” CDataGathering.cppì„ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 
 class CDataGatheringApp : public CWinAppEx
@@ -36,12 +36,12 @@ protected:
 protected:
 	BOOL EventActionCheck();
 	BOOL SetInitialize(CString strFileName);
-// ÀçÁ¤ÀÇÀÔ´Ï´Ù.
+// ì¬ì •ì˜ì…ë‹ˆë‹¤.
 public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 	UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;
 

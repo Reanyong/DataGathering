@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Thread_XmlTagValue.h"
 #include "Control_List/ListBoxControl/XListCtrl.h"
 
-// CFormView_TagMapping Æû ºäÀÔ´Ï´Ù.
+// CFormView_TagMapping í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CFormView_TagMapping : public CFormView
 {
 	DECLARE_DYNCREATE(CFormView_TagMapping)
 
 protected:
-	CFormView_TagMapping();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFormView_TagMapping();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFormView_TagMapping();
 
 public:
@@ -38,7 +38,7 @@ protected:
 	int GetAllTagInfoList();
 	void SetTagInfoList();
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual void OnInitialUpdate();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedButtonMappingSet();

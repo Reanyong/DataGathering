@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 
@@ -9,7 +9,7 @@ class CThread_IConnect : public CWinThread
 	DECLARE_DYNCREATE(CThread_IConnect)
 
 protected:
-	CThread_IConnect();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_IConnect();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_IConnect();
 
 public:

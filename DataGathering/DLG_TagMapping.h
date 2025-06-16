@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Control_List/ListBoxControl/XListCtrl.h"
 #include "Thread_TAGSearch.h"
-// CDLG_TagMapping ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_TagMapping ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_TagMapping : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_TagMapping)
 
 public:
-	CDLG_TagMapping(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_TagMapping(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_TagMapping();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_ENERGYTAG_MAPPING };
 protected:
 	CXListCtrl m_xListTagItems;
@@ -61,7 +61,7 @@ public:
 	void DataShowTemp();
 	void SetListUpdate(int nRowPos,ST_TAG_LIST *pstTagInfo);
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedRadioUnregisteredTag();

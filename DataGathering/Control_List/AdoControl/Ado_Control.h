@@ -1,4 +1,4 @@
-#if !defined(AFX_ADO_CONTROL_H__78A93A77_1DB3_457F_99AD_E13038BF8189__INCLUDED_)
+ï»¿#if !defined(AFX_ADO_CONTROL_H__78A93A77_1DB3_457F_99AD_E13038BF8189__INCLUDED_)
 #define AFX_ADO_CONTROL_H__78A93A77_1DB3_457F_99AD_E13038BF8189__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -10,7 +10,7 @@
 #define _XTP_EXCLUDE_CALENDAR
 #define _XTP_EXCLUDE_REPORTCONTROL
 
-//ADO »ç¿ë
+//ADO ì‚¬ìš©
 
 #pragma warning (disable: 4146)
 #import <msado60_Backcompat.tlb> no_namespace rename("EOF", "EndOfFile")
@@ -32,15 +32,15 @@
 #define DB_MSSQL						(WM_USER + 100)
 #define DB_ORACLE						(WM_USER + 101)
 #define DB_MYSQL						(WM_USER + 102)
-#define DB_POSTGRE						(WM_USER + 103) // 20200210 jsh -> Postgre Ãß°¡
+#define DB_POSTGRE						(WM_USER + 103) // 20200210 jsh -> Postgre ì¶”ê°€
 
 #define DB_SUCCESS						0
 #define DB_ERROR						1
 
-// Query ½ÇÆĞ½Ã 2È¸ Àç ½ÃµµÈÄ Return
+// Query ì‹¤íŒ¨ì‹œ 2íšŒ ì¬ ì‹œë„í›„ Return
 #define	EXECUTE_QUERY_RETRY_COUNT	5
 
-//DB Á¢¼Ó Á¤º¸
+//DB ì ‘ì† ì •ë³´
 typedef struct _stDBAccessInfo_ {
 
 	char szSite[64];
@@ -86,7 +86,7 @@ public:
 	_ConnectionPtr pADO_Connect;
 	_ConnectionPtr pADO_Connect_Sub;
 
-	COdbc* codbc;			//20200218 ³ªÁ¤È£ Ãß°¡ codbc ºÎºĞ Ãß°¡
+	COdbc* codbc;			//20200218 ë‚˜ì •í˜¸ ì¶”ê°€ codbc ë¶€ë¶„ ì¶”ê°€
 	COdbc* pCodbc_Sub;
 
 protected:
@@ -96,7 +96,7 @@ protected:
 	CString m_strMsgName;
 	CString m_strLogPath;
 
-	bool m_isOdbcConnected;	//20200218 ³ªÁ¤È£ Ãß°¡ codbc ¿¬°á È®ÀÎ ºÎºĞ Ãß°¡
+	bool m_isOdbcConnected;	//20200218 ë‚˜ì •í˜¸ ì¶”ê°€ codbc ì—°ê²° í™•ì¸ ë¶€ë¶„ ì¶”ê°€
 	bool m_isOdbcConnected_sub;
 
 // Operations
@@ -104,12 +104,12 @@ public:
 	void DB_ConnectionInfo(const char* szSerVer,const char* szDBName,const char* szID,const char* szPW,UINT unDBTypeID);
 	void DB_ConnectionInfo_Sub(const char* szSerVer_Sub,const char* szDBName_Sub,const char* szID_Sub,const char* szPW_Sub,UINT unDBTypeID_Sub);
 	void DB_SetReturnMsg(UINT MsgID,HWND Hwnd, const char* szMegName, const char* szLogPath);
-	BOOL DB_Connection(); //DB Á¢¼Ó
-	BOOL DB_Close(); //DB Á¢¼Ó ÇØÁ¦
+	BOOL DB_Connection(); //DB ì ‘ì†
+	BOOL DB_Close(); //DB ì ‘ì† í•´ì œ
 
-	BOOL DB_Connection_Sub(); //DB Á¢¼Ó ¼­ºê
-	BOOL DB_Close_Sub(); //DB Á¢¼Ó ¼­ºê ÇØÁ¦
-	int GetDB_ConnectionStatus(); //Á¢¼Ó »óÅÂ
+	BOOL DB_Connection_Sub(); //DB ì ‘ì† ì„œë¸Œ
+	BOOL DB_Close_Sub(); //DB ì ‘ì† ì„œë¸Œ í•´ì œ
+	int GetDB_ConnectionStatus(); //ì ‘ì† ìƒíƒœ
 
 	int DB_ReConnection();
 	int SetQueryRun(CString strQuery); //insert / Update;

@@ -1,4 +1,4 @@
-// Thread_FMSAlarmMain.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_FMSAlarmMain.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,14 +30,14 @@ CThread_FMSAlarmMain::~CThread_FMSAlarmMain()
 
 BOOL CThread_FMSAlarmMain::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_FMSAlarmMain::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	if(DB_Connect != NULL)
 	{
 		if(DB_Connect->GetDB_ConnectionStatus() == 1)
@@ -58,7 +58,7 @@ BEGIN_MESSAGE_MAP(CThread_FMSAlarmMain, CWinThread)
 END_MESSAGE_MAP()
 
 
-// CThread_FMSAlarmMain ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_FMSAlarmMain ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CThread_FMSAlarmMain::Release_ST_List(int nMode)
 {
@@ -105,7 +105,7 @@ CString CThread_FMSAlarmMain::Com_Error(const char *szLogName,_com_error *e)
 	{
 		strErrorCode.Format("%08lx",e->Error());
 	}
-	//20200212 jsh : ¿¡·¯Ãß°¡
+	//20200212 jsh : ì—ëŸ¬ì¶”ê°€
 	else if(m_nDBType == DB_POSTGRE)
 	{
 		strErrorCode.Format("%08lx",e->Error());
@@ -138,7 +138,7 @@ void CThread_FMSAlarmMain::SetWriteLogFile(const char *szLogMsg)
 
 int CThread_FMSAlarmMain::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	//m_strThreadName = "FACILITY Check";
 	m_strLogTitle = "Main Thread";
@@ -205,7 +205,7 @@ int CThread_FMSAlarmMain::Run()
 			std::list<ST_FMSAlarmList>::iterator iter = m_pstFMSAlarmList->begin();
 			while(iter != m_pstFMSAlarmList->end())
 			{	
-				CTimeSpan timeSpan(iter->nChangeAlarmDate,0,0,0); //or timeSpan = CTimeSpan(ÀÏ,½Ã,ºĞ,ÃÊ);
+				CTimeSpan timeSpan(iter->nChangeAlarmDate,0,0,0); //or timeSpan = CTimeSpan(ì¼,ì‹œ,ë¶„,ì´ˆ);
 				CTime timeCheck = iter->timeExptChangeDate - timeSpan;
 
 				ST_ALARMCHECK stAlarmCheck;
@@ -221,7 +221,7 @@ int CThread_FMSAlarmMain::Run()
 					
 					if(timeCompare == timeCheck)
 					{
-						strAlarmMsg.Format("¾Ë¶÷ Á¾·ù:[¼³ºñ±³Ã¼][%dÀÏÀü]",iter->nChangeAlarmDate);
+						strAlarmMsg.Format("ì•ŒëŒ ì¢…ë¥˜:[ì„¤ë¹„êµì²´][%dì¼ì „]",iter->nChangeAlarmDate);
 						strQuery.Format("INSERT INTO %sCM_ALARM_HISTORY "
 							"(ALARM_ID,START_TIME,ALARM_OCCURRENCE_INFO,STATION_NAME,ALARM_CHECK_USE_YN,ALARM_KIND,ALARM_TYPE,ALARM_VALUE,ALARM_MESSAGE)"
 							" VALUES "
@@ -241,7 +241,7 @@ int CThread_FMSAlarmMain::Run()
 								std::list<ST_UMSSend_UserList>::iterator iter_UMS = m_pstUMSSend_UserList->begin();
 								while(iter_UMS != m_pstUMSSend_UserList->end())
 								{
-									SetSUMSendOutput(*iter,*iter_UMS,"±³Ã¼ ¾Ë¶÷");
+									SetSUMSendOutput(*iter,*iter_UMS,"êµì²´ ì•ŒëŒ");
 									iter_UMS++;
 									Sleep(100);
 								}
@@ -265,7 +265,7 @@ int CThread_FMSAlarmMain::Run()
 			}
 		}
 
-		//_addCurrentstateMsg(0,0, m_strLogTitle, "Processor Á¤»ó Ã³¸®Áß..");
+		//_addCurrentstateMsg(0,0, m_strLogTitle, "Processor ì •ìƒ ì²˜ë¦¬ì¤‘..");
 
 	} while (!m_bEndThread);
 
@@ -313,7 +313,7 @@ int CThread_FMSAlarmMain::GetSite_ChangeFCTList()
 					DB_Connect->GetFieldValue(pRs, "SITE_NAME", strRetSiteName);
 					DB_Connect->GetFieldValue(pRs, "facCount", strFacCount);
 
-					((CFormView_AlarmFMS *)(m_pCtrl))->ListInsertItem_Site(strRetSiteName,strFacCount,"¾Ë¶÷ Ã³¸® Áß..");
+					((CFormView_AlarmFMS *)(m_pCtrl))->ListInsertItem_Site(strRetSiteName,strFacCount,"ì•ŒëŒ ì²˜ë¦¬ ì¤‘..");
 					
 					pRs->MoveNext();					
 				}
@@ -348,7 +348,7 @@ int CThread_FMSAlarmMain::GetSite_ChangeFCTList()
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMsgTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMsgTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -366,7 +366,7 @@ int CThread_FMSAlarmMain::GetSite_ChangeFCTList()
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMsgTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMsgTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 		return ERROR_DB_QUERY_FAIL1;
@@ -422,7 +422,7 @@ int CThread_FMSAlarmMain::GetFctAlarmSearch()
 					DB_Connect->GetFieldValue(pRs, "ALARM_ID", strRetAlarmId);
 					DB_Connect->GetFieldValue(pRs, "ALARM_LEVEL_ID", strRetAlarmLeveId);
 
-					//¿©±â ÇØ¾ßÇÔ
+					//ì—¬ê¸° í•´ì•¼í•¨
 					ST_FMSAlarmList stFmaAlarm;
 					memset(&stFmaAlarm,0x00,sizeof(stFmaAlarm));
 
@@ -472,7 +472,7 @@ int CThread_FMSAlarmMain::GetFctAlarmSearch()
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMsgTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMsgTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -490,7 +490,7 @@ int CThread_FMSAlarmMain::GetFctAlarmSearch()
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMsgTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMsgTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 		return ERROR_DB_QUERY_FAIL1;
@@ -640,7 +640,7 @@ int CThread_FMSAlarmMain::GetAlarmOccursFMS_DB(const char *szAlarmId,const char 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMsgTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMsgTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -658,7 +658,7 @@ int CThread_FMSAlarmMain::GetAlarmOccursFMS_DB(const char *szAlarmId,const char 
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMsgTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMsgTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 		return ERROR_DB_QUERY_FAIL1;
@@ -766,7 +766,7 @@ int CThread_FMSAlarmMain::GetAlarmUMSCheck(const char *szAlsrmLevel_ID)
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMsgTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMsgTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -784,7 +784,7 @@ int CThread_FMSAlarmMain::GetAlarmUMSCheck(const char *szAlsrmLevel_ID)
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMsgTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMsgTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 		return ERROR_DB_QUERY_FAIL1;
@@ -804,7 +804,7 @@ BOOL CThread_FMSAlarmMain::SetSUMSendOutput(ST_FMSAlarmList &stAlrmInfo,ST_UMSSe
 	LeaveCriticalSection(&g_cs);
 
 
-	strMsg.Format("¾Ë¶÷¹ß»ı:[%s/%s],[%s],Á¶°Ç:[%s],°ª:[%dÀÏÀü]",stAlrmInfo.szAlarmLevel,stUmsSend.szAlarmleveldesc,stAlrmInfo.szFCT_Name,szAlarmKind,stAlrmInfo.nChangeAlarmDate);
+	strMsg.Format("ì•ŒëŒë°œìƒ:[%s/%s],[%s],ì¡°ê±´:[%s],ê°’:[%dì¼ì „]",stAlrmInfo.szAlarmLevel,stUmsSend.szAlarmleveldesc,stAlrmInfo.szFCT_Name,szAlarmKind,stAlrmInfo.nChangeAlarmDate);
 
 	if((stUmsSend.nSMS_SendCheck == 1) && (stUmsSend.nEmail_SendCheck == 1))
 	{
@@ -834,8 +834,8 @@ BOOL CThread_FMSAlarmMain::SetSUMSendOutput(ST_FMSAlarmList &stAlrmInfo,ST_UMSSe
 		"SMS_NUMBER_LIST, SMS_TARGET_NAME_LIST,"
 		"EMAIL_ADDRESS_LIST, EMAIL_TARGET_NAME_LIST, SMS_MSG, "
 		"EMAIL_MSG, REQUIRE_RESPONSE_YN, MSG_DELETE_POLICY, UMS_READ_YN) "
-		//"VALUES (%s, 'MBMS½Ã½ºÅÛ', %s,"
-		"VALUES (%s, 'BICMS½Ã½ºÅÛ', '%s','%s',"
+		//"VALUES (%s, 'MBMSì‹œìŠ¤í…œ', %s,"
+		"VALUES (%s, 'BICMSì‹œìŠ¤í…œ', '%s','%s',"
 		"'%s', '%s','%s', '%s',"
 		"'%s', '%s', 'N', 0, 'N')",
 		//strId,strSMSEmailSend_UseYN,
@@ -845,10 +845,10 @@ BOOL CThread_FMSAlarmMain::SetSUMSendOutput(ST_FMSAlarmList &stAlrmInfo,ST_UMSSe
 
 	int nRet = SetQueryValue(strQuery,"FMS Alarm UMS Send",stAlrmInfo.szFCT_Name);
 	if(nRet == 0)
-		strAlarmMsg.Format("UMS Àü¼Û:[¼º°ø],[%s],ÅÂ±×¸í:[%s],¾Ë¶÷Å¸ÀÔ:[%s],»ç¿ëÀÚ:[%s],SMS/Email:[%s/%s],"
+		strAlarmMsg.Format("UMS ì „ì†¡:[ì„±ê³µ],[%s],íƒœê·¸ëª…:[%s],ì•ŒëŒíƒ€ì…:[%s],ì‚¬ìš©ì:[%s],SMS/Email:[%s/%s],"
 		,stAlrmInfo.szAlarmLevel,stAlrmInfo.szFCT_Name,szAlarmKind,stUmsSend.szUserName,strSMSSendUseYN,strEmailSendUseYN);
 	else	
-		strAlarmMsg.Format("UMS Àü¼Û:[½ÇÆĞ][%s],ÅÂ±×¸í:[%s],¾Ë¶÷Å¸ÀÔ:[%s],»ç¿ëÀÚ:[%s],SMS/Email:[%s/%s],"
+		strAlarmMsg.Format("UMS ì „ì†¡:[ì‹¤íŒ¨][%s],íƒœê·¸ëª…:[%s],ì•ŒëŒíƒ€ì…:[%s],ì‚¬ìš©ì:[%s],SMS/Email:[%s/%s],"
 		,stAlrmInfo.szAlarmLevel,stAlrmInfo.szFCT_Name,szAlarmKind,stUmsSend.szUserName,strSMSSendUseYN,strEmailSendUseYN);
 
 	_addSystemMsg(FORM_VIEW_ID_4, USER_COLOR_BLUE, m_strLogTitle, USER_COLOR_PINK, strAlarmMsg);

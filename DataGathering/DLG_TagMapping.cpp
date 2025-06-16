@@ -1,4 +1,4 @@
-// DLG_TagMapping.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_TagMapping.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 #include "DLG_TagMappingSet.h"
 
-// CDLG_TagMapping ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_TagMapping ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_TagMapping, CDialog)
 
@@ -81,9 +81,9 @@ CString CDLG_TagMapping::Com_Error(const char *szLogName,_com_error *e)
 }
 
 
-TCHAR*	_lpszList_Column[] = {"¹øÈ£","TAG¸í","±×·ì","À¯Çü","¹°Áú","´ÜÀ§","À§Ä¡","Àåºñ-´ë","Àåºñ-Áß","Àåºñ-¼Ò","¼¼ºÎ","°èÃøÅ¸ÀÔ"};
+TCHAR*	_lpszList_Column[] = {"ë²ˆí˜¸","TAGëª…","ê·¸ë£¹","ìœ í˜•","ë¬¼ì§ˆ","ë‹¨ìœ„","ìœ„ì¹˜","ì¥ë¹„-ëŒ€","ì¥ë¹„-ì¤‘","ì¥ë¹„-ì†Œ","ì„¸ë¶€","ê³„ì¸¡íƒ€ì…"};
 
-// CDLG_TagMapping ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_TagMapping ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CDLG_TagMapping::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -93,7 +93,7 @@ BOOL CDLG_TagMapping::OnInitDialog()
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_REGISTER_TAG);
 	btRadioCheck->SetCheck(FALSE);
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ComposeList(m_xListTagItems, USER_CONTROL_LIST, IDC_LIST_TAG_LIST,12,_lpszList_Column);
 	m_nListPageCheck = 10;
 	GetDlgItem(IDC_BUTTON_DELETE)->EnableWindow(FALSE);
@@ -101,7 +101,7 @@ BOOL CDLG_TagMapping::OnInitDialog()
 	SetTimer(ADO_CONNECTION,200,NULL);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CDLG_TagMapping::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
@@ -153,7 +153,7 @@ BOOL CDLG_TagMapping::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosL
 
 BOOL CDLG_TagMapping::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)
@@ -170,7 +170,7 @@ int CDLG_TagMapping::ADO_Connection()
 
 	m_nDBType = stDBInfo.unDBType;
 	DB_Connect = new CAdo_Control();
-	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE,m_hWnd,"TagMapping ¼³Á¤",g_stProjectInfo.szDTGatheringLogPath);	
+	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE,m_hWnd,"TagMapping ì„¤ì •",g_stProjectInfo.szDTGatheringLogPath);	
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer,stDBInfo.szDB,stDBInfo.szID,stDBInfo.szPW,stDBInfo.unDBType);
 
 	if(DB_Connect->GetDB_ConnectionStatus() != 1)
@@ -201,7 +201,7 @@ void CDLG_TagMapping::ADO_Close()
 
 void CDLG_TagMapping::OnBnClickedRadioUnregisteredTag()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ControlEnable(FALSE);
 	//SetTimer(3,50,NULL);
 	if(m_pThread_TagSearch != NULL)
@@ -212,7 +212,7 @@ void CDLG_TagMapping::OnBnClickedRadioUnregisteredTag()
 
 void CDLG_TagMapping::OnBnClickedRadioRegisterTag()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ControlEnable(FALSE);
 	//SetTimer(4,50,NULL);
 	if(m_pThread_TagSearch != NULL)
@@ -225,7 +225,7 @@ void CDLG_TagMapping::OnBnClickedRadioRegisterTag()
 
 void CDLG_TagMapping::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 	int nCount = 6;
 	switch(nIDEvent)
@@ -284,7 +284,7 @@ void CDLG_TagMapping::OnTimer(UINT_PTR nIDEvent)
 
 void CDLG_TagMapping::StartThread()
 {
-	//ºĞÅ×ÀÌÅÍ ¼öÁı ·ÎÁ÷
+	//ë¶„í…Œì´í„° ìˆ˜ì§‘ ë¡œì§
 	if(m_pThread_TagSearch == NULL)
 	{
 		m_pThread_TagSearch = (CThread_TAGSearch *)AfxBeginThread(RUNTIME_CLASS(CThread_TAGSearch),
@@ -351,7 +351,7 @@ void CDLG_TagMapping::OnDestroy()
 	StopThread();
 
 	
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 int CDLG_TagMapping::GetSearchType()
@@ -376,7 +376,7 @@ void CDLG_TagMapping::DataShowTemp()
 	SetTimer(2,500,NULL);
 }
 
-//{"¹øÈ£","TAG¸í","±×·ì","À¯Çü","¹°Áú","´ÜÀ§","À§Ä¡","Àåºñ-´ë","Àåºñ-Áß","Àåºñ-¼Ò","¼¼ºÎ","°èÃøÅ¸ÀÔ"};
+//{"ë²ˆí˜¸","TAGëª…","ê·¸ë£¹","ìœ í˜•","ë¬¼ì§ˆ","ë‹¨ìœ„","ìœ„ì¹˜","ì¥ë¹„-ëŒ€","ì¥ë¹„-ì¤‘","ì¥ë¹„-ì†Œ","ì„¸ë¶€","ê³„ì¸¡íƒ€ì…"};
 void CDLG_TagMapping::SetListRowTagItems(const char *szNum,ST_TAG_LIST *pstTagInfo)
 {
 	CString strType;
@@ -423,7 +423,7 @@ void CDLG_TagMapping::ListRowAdd_Test(const char *szData,const char *szData1)
 
 void CDLG_TagMapping::OnBnClickedButtonBackItem()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ControlEnable(FALSE);
 	if(25 >= m_nPageItemCount )
 	{
@@ -438,13 +438,13 @@ void CDLG_TagMapping::OnBnClickedButtonBackItem()
 
 void CDLG_TagMapping::OnBnClickedButtonNextItem()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ControlEnable(FALSE);
 	int nTotalTagList = m_STAllTagList->GetSize();
 	if(nTotalTagList < m_nPageItemCount)
 	{
 		ControlEnable(TRUE);
-		AfxMessageBox("´õÀÌ»ó ¾ø½À´Ï´Ù.");
+		AfxMessageBox("ë”ì´ìƒ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	m_nItemRowStart = m_nPageItemCount;
@@ -693,9 +693,9 @@ int CDLG_TagMapping::SelectCode_Count(const char *szTableName)
 	CString strCount,strCodeName;
 	int nTotalRow = 0;
 
-	//¿À¶óÅ¬ Å¸ÀÔ Äõ¸® ÇÊ¿ä
+	//ì˜¤ë¼í´ íƒ€ì… ì¿¼ë¦¬ í•„ìš”
 
-	//MSSQL Å¸ÀÔ Äõ¸®
+	//MSSQL íƒ€ì… ì¿¼ë¦¬
 	strQuery.Format("SELECT count(CODE) as RowCounr FROM [ENERGY_MANAGE].[dbo].[%s]",szTableName);
 
 	try
@@ -740,7 +740,7 @@ int CDLG_TagMapping::SelectCode_Count(const char *szTableName)
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				//				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -758,7 +758,7 @@ int CDLG_TagMapping::SelectCode_Count(const char *szTableName)
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		//		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -780,9 +780,9 @@ int CDLG_TagMapping::SelectCode(const char *szTableName,ST_CODE *stCodeList, con
 	CString strCode,strCodeName;
 	int nTotalRow = 0;
 
-	//¿À¶óÅ¬ Å¸ÀÔ Äõ¸® ÇÊ¿ä
+	//ì˜¤ë¼í´ íƒ€ì… ì¿¼ë¦¬ í•„ìš”
 
-	//MSSQL Å¸ÀÔ Äõ¸®
+	//MSSQL íƒ€ì… ì¿¼ë¦¬
 	strQuery.Format("SELECT CODE,CODE_NAME	FROM [ENERGY_MANAGE].[dbo].[%s] %s",szTableName,szOrder);
 
 	try
@@ -800,7 +800,7 @@ int CDLG_TagMapping::SelectCode(const char *szTableName,ST_CODE *stCodeList, con
 				for(int nRow = 0; nRow < nTotalRow ; nRow++)
 				{
 					DB_Connect->GetFieldValue(pRs, "CODE", strCode);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "CODE_NAME", strCodeName);			//TAG ¸í
+					DB_Connect->GetFieldValue(pRs, "CODE_NAME", strCodeName);			//TAG ëª…
 					
 					strcpy_s(stCodeList[nRow].szCode,strCode);
 					strcpy_s(stCodeList[nRow].szCodeName,strCodeName);
@@ -836,7 +836,7 @@ int CDLG_TagMapping::SelectCode(const char *szTableName,ST_CODE *stCodeList, con
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 //				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -854,7 +854,7 @@ int CDLG_TagMapping::SelectCode(const char *szTableName,ST_CODE *stCodeList, con
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 //		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -876,9 +876,9 @@ int CDLG_TagMapping::SelectSite()
 	CString strSiteName,strBEMSID,strBELID;
 	int nTotalRow = 0;
 
-	//¿À¶óÅ¬ Å¸ÀÔ Äõ¸® ÇÊ¿ä
+	//ì˜¤ë¼í´ íƒ€ì… ì¿¼ë¦¬ í•„ìš”
 
-	//MSSQL Å¸ÀÔ Äõ¸®
+	//MSSQL íƒ€ì… ì¿¼ë¦¬
 	strQuery.Format("SELECT SITE_NAME,BEMS_ID,BLD_ID FROM [ENERGY_MANAGE].[dbo].[BEMS_SITE_INFO] WHERE USE_YN = 1");
 
 	try
@@ -894,8 +894,8 @@ int CDLG_TagMapping::SelectSite()
 				for(int nRow = 0; nRow < nTotalRow ; nRow++)
 				{
 					DB_Connect->GetFieldValue(pRs, "SITE_NAME", strSiteName);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "BEMS_ID", strBEMSID);			//TAG ¸í
-					DB_Connect->GetFieldValue(pRs, "BLD_ID", strBELID);			//TAG ¸í
+					DB_Connect->GetFieldValue(pRs, "BEMS_ID", strBEMSID);			//TAG ëª…
+					DB_Connect->GetFieldValue(pRs, "BLD_ID", strBELID);			//TAG ëª…
 
 					strcpy_s(m_stSiteInfo.szSiteName,strSiteName);
 					strcpy_s(m_stSiteInfo.szBEMS_ID,strBEMSID);
@@ -932,7 +932,7 @@ int CDLG_TagMapping::SelectSite()
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				//				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -950,7 +950,7 @@ int CDLG_TagMapping::SelectSite()
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		//		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -964,17 +964,17 @@ int CDLG_TagMapping::SelectSite()
 
 void CDLG_TagMapping::OnBnClickedButtonDelete()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	int nRow = m_xListTagItems.GetCurSel();
 	
 	if(nRow < 0)
 	{
-		AfxMessageBox("TAG¸®½ºÆ®¿¡¼­ ¼±ÅÃÀÌÇÊ¿äÇÕ´Ï´Ù.");
+		AfxMessageBox("TAGë¦¬ìŠ¤íŠ¸ì—ì„œ ì„ íƒì´í•„ìš”í•©ë‹ˆë‹¤.");
 		return;
 	}
 
-	if(MessageBox("»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?", "È®ÀÎ", MB_YESNO)== IDNO)
+	if(MessageBox("ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "í™•ì¸", MB_YESNO)== IDNO)
 		return;
 	
 	DeleteRegisterTagItem(nRow);
@@ -990,7 +990,7 @@ void CDLG_TagMapping::DeleteRegisterTagItem(int nPos)
 
 	if(nResult < 1)
 	{
-		strRunlog_E2.Format("Position : [µî·ÏµÈ TAG][»èÁ¦], log : [Query Fail],[%s]",strQuery);
+		strRunlog_E2.Format("Position : [ë“±ë¡ëœ TAG][ì‚­ì œ], log : [Query Fail],[%s]",strQuery);
 		//SetWriteLogFile(": [Set Query Error..],",strRunlog_E2);
 
 #ifdef _DEBUG
@@ -999,7 +999,7 @@ void CDLG_TagMapping::DeleteRegisterTagItem(int nPos)
 		return;
 	}	
 	else
-		strRunlog_E2.Format("µî·ÏµÈ Tag:[%s] »èÁ¦..",stTag.szTAG_NAME);
+		strRunlog_E2.Format("ë“±ë¡ëœ Tag:[%s] ì‚­ì œ..",stTag.szTAG_NAME);
 	
 	_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "TagMapping", USER_COLOR_BLUE, strRunlog_E2);
 

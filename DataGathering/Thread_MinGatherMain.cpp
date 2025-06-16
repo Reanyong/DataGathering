@@ -1,4 +1,4 @@
-
+﻿
 #include "stdafx.h"
 #include "DataGathering.h"
 #include "Thread_MinGatherMain.h"

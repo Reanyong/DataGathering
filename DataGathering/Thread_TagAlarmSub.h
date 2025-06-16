@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 
@@ -9,7 +9,7 @@ class CThread_TagAlarmSub : public CWinThread
 	DECLARE_DYNCREATE(CThread_TagAlarmSub)
 
 protected:
-	CThread_TagAlarmSub();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_TagAlarmSub();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_TagAlarmSub();
 
 public:
@@ -62,8 +62,8 @@ protected:
 	int GetAlarmOccurs_DB(const char *szAlarmId, const char *szStartTime);
 	BOOL SetAlarmOccursAI_File(const char *szDeviceId, const char *szAlarmId, int nAlarmType, const char *szStartTime, float fAckValue);
 	BOOL SetAlarmOccursDI_File(const char *szDeviceId, const char *szAlarmId, int nAlarmType, const char *szStartTime, float fAckValue);
-	BOOL SetAlarmOccursAI_ClearFile(const char *szDeviceId, const char *szAlarmId); //ÇØÁ¦µÈ ¾Ë¶÷Àº »èÁ¦
-	BOOL SetAlarmOccursDI_ClearFile(const char *szDeviceId, const char *szAlarmId); //ÇØÁ¦µÈ ¾Ë¶÷Àº »èÁ¦
+	BOOL SetAlarmOccursAI_ClearFile(const char *szDeviceId, const char *szAlarmId); //í•´ì œëœ ì•ŒëŒì€ ì‚­ì œ
+	BOOL SetAlarmOccursDI_ClearFile(const char *szDeviceId, const char *szAlarmId); //í•´ì œëœ ì•ŒëŒì€ ì‚­ì œ
 	int SetQueryValue(CString strQuery, const char *szLogTitle, const char *szLogPos);
 
 	void ShowAlarmOccursMsg(const char *szData1, const char *szData2, const char *szData3, const char *szData4, const char *szData5);

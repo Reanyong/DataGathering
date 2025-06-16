@@ -1,4 +1,4 @@
-// DLG_ProgramSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_ProgramSetting.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "DLG_ISmarAccesstSetting.h"
 
 
-// CDLG_ProgramSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_ProgramSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_ProgramSetting, CDialogEx)
 
@@ -61,7 +61,7 @@ BEGIN_MESSAGE_MAP(CDLG_ProgramSetting, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CDLG_ProgramSetting ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_ProgramSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 LRESULT CDLG_ProgramSetting::OnAddList(WPARAM wParm, LPARAM lParm)
 {
@@ -94,17 +94,17 @@ BOOL CDLG_ProgramSetting::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	GetGatherSetting();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
 BOOL CDLG_ProgramSetting::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if (pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)			return TRUE;
@@ -120,14 +120,14 @@ void CDLG_ProgramSetting::GetGatherSetting()
 	CString str;
 	for(int i = 0; i< 15 ; i++)
 	{
-		str.Format("%dºĞ",i+1);
+		str.Format("%dë¶„",i+1);
 		m_Combo_GatherInterval.AddString(str);
 	}
 
-	//m_Combo_DeleteInterval.AddString("2ÀÏ À¯Áö");
-	//m_Combo_DeleteInterval.AddString("5ÀÏ À¯Áö");
-	//m_Combo_DeleteInterval.AddString("1°³¿ù À¯Áö");
-	m_Combo_DeleteInterval.AddString("3°³¿ù À¯Áö");
+	//m_Combo_DeleteInterval.AddString("2ì¼ ìœ ì§€");
+	//m_Combo_DeleteInterval.AddString("5ì¼ ìœ ì§€");
+	//m_Combo_DeleteInterval.AddString("1ê°œì›” ìœ ì§€");
+	m_Combo_DeleteInterval.AddString("3ê°œì›” ìœ ì§€");
 
 	ST_GATHERINFO stGatherInfo = _getInfoGatherRead(g_stProjectInfo.szProjectIniPath);
 
@@ -135,7 +135,7 @@ void CDLG_ProgramSetting::GetGatherSetting()
 	//m_Combo_DeleteInterval.SetCurSel(stGatherInfo.nDelete_IntervalPos);
 	m_Combo_DeleteInterval.SetCurSel(0);
 
-	// ÁÖ±â »èÁ¦ ±â´É
+	// ì£¼ê¸° ì‚­ì œ ê¸°ëŠ¥
 	/*time_t now = time(0);
 	tm* ltm = localtime(&now);
 
@@ -149,16 +149,16 @@ void CDLG_ProgramSetting::GetGatherSetting()
 
 	btRadioCheck->SetCheck(1);
 
-	//<-- 20210305 ksw Á¦Ç°¼±ÅÃ ini ÀúÀå ·ÎÁ÷ Ãß°¡
+	//<-- 20210305 ksw ì œí’ˆì„ íƒ ini ì €ì¥ ë¡œì§ ì¶”ê°€
 	if(stGatherInfo.nProduct_Check == 1)
 		btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_EMS);
 	else
 		btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_BEMS);
 
 	btRadioCheck->SetCheck(1);
-	//--> 20210305 ksw Á¦Ç°¼±ÅÃ ini ÀúÀå ·ÎÁ÷ Ãß°¡
+	//--> 20210305 ksw ì œí’ˆì„ íƒ ini ì €ì¥ ë¡œì§ ì¶”ê°€
 
-	//³¯¾¾ ¿¬µ¿ Å¸ÀÔ
+	//ë‚ ì”¨ ì—°ë™ íƒ€ì…
 	switch(stGatherInfo.nWeather_GatherType)
 	{
 	case 0:
@@ -178,7 +178,7 @@ void CDLG_ProgramSetting::GetGatherSetting()
 	}
 	btRadioCheck->SetCheck(1);
 
-	//³¯¾¾ ¿¬µ¿ Å¸ÀÔ
+	//ë‚ ì”¨ ì—°ë™ íƒ€ì…
 	switch(stGatherInfo.nISmart_GatherType)
 	{
 	case 0:
@@ -198,7 +198,7 @@ void CDLG_ProgramSetting::GetGatherSetting()
 	}
 	btRadioCheck->SetCheck(1);
 
-	//³¯¾¾ ¿¬µ¿ Å¸ÀÔ
+	//ë‚ ì”¨ ì—°ë™ íƒ€ì…
 	switch(stGatherInfo.nEngMng_GatherType)
 	{
 	case 0:
@@ -218,7 +218,7 @@ void CDLG_ProgramSetting::GetGatherSetting()
 	}
 	btRadioCheck->SetCheck(1);
 
-	//20210308 ksw TagTread È°¼ºÈ­ÀÏ¶§¸¸ ¹öÆ° »ç¿ë°¡´É
+	//20210308 ksw TagTread í™œì„±í™”ì¼ë•Œë§Œ ë²„íŠ¼ ì‚¬ìš©ê°€ëŠ¥
 	if(g_nCheckTagThreadRun == 0)
 		GetDlgItem(IDC_BUTTON_CALIBRATION)->EnableWindow(FALSE);
 	else
@@ -245,17 +245,17 @@ void CDLG_ProgramSetting::SetGatherSetting()
 	int nIsmartType = 2;
 	int nEngMngtType = 2;
 
-	//<-- 20210305 ksw Á¦Ç°¼±ÅÃ ini ÀúÀå ·ÎÁ÷ Ãß°¡
+	//<-- 20210305 ksw ì œí’ˆì„ íƒ ini ì €ì¥ ë¡œì§ ì¶”ê°€
 	CButton *btRadioProductCheck = (CButton*)GetDlgItem(IDC_RADIO_BEMS);
 	if(btRadioProductCheck->GetCheck() == 1)
 		nProductCheck = 0;
 	btRadioProductCheck = (CButton*)GetDlgItem(IDC_RADIO_EMS);
 	if(btRadioProductCheck->GetCheck() == 1)
 		nProductCheck = 1;
-	//--> 20210305 ksw Á¦Ç°¼±ÅÃ ini ÀúÀå ·ÎÁ÷ Ãß°¡
+	//--> 20210305 ksw ì œí’ˆì„ íƒ ini ì €ì¥ ë¡œì§ ì¶”ê°€
 
 
-	//20210902 ksw ¼öÁı ÁÖ±â ini ÀúÀå ·ÎÁ÷ Ãß°¡
+	//20210902 ksw ìˆ˜ì§‘ ì£¼ê¸° ini ì €ì¥ ë¡œì§ ì¶”ê°€
 
 
 	CButton *btRadioAutoRunCheck = (CButton*)GetDlgItem(IDC_RADIO_AUTORUN);
@@ -265,7 +265,7 @@ void CDLG_ProgramSetting::SetGatherSetting()
 	if(btRadioAutoRunCheck->GetCheck() == 1)
 		nAutoRunCheck = 0;
 
-	stGatherInfo.nProduct_Check = nProductCheck; // 20210305 ksw Á¦Ç°¼±ÅÃ ini ÀúÀå ·ÎÁ÷ Ãß°¡, ±¸Á¶Ã¼ º¯¼ö Ãß°¡
+	stGatherInfo.nProduct_Check = nProductCheck; // 20210305 ksw ì œí’ˆì„ íƒ ini ì €ì¥ ë¡œì§ ì¶”ê°€, êµ¬ì¡°ì²´ ë³€ìˆ˜ ì¶”ê°€
 	stGatherInfo.nGathe_IntervalPos = nGatherInterval;
 	stGatherInfo.nDelete_IntervalPos = nDeleteInterval;
 	stGatherInfo.nAutoRun_Check = nAutoRunCheck;
@@ -312,7 +312,7 @@ void CDLG_ProgramSetting::SetGatherSetting()
 
 void CDLG_ProgramSetting::OnBnClickedRadioWeatherDirect()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_WEATHER_DIRECT);
 	btRadioCheck->SetCheck(TRUE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_WEATHER_WEB);
@@ -325,7 +325,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioWeatherDirect()
 
 void CDLG_ProgramSetting::OnBnClickedRadioWeatherWeb()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_WEATHER_DIRECT);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_WEATHER_WEB);
@@ -338,7 +338,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioWeatherWeb()
 
 void CDLG_ProgramSetting::OnBnClickedRadioWeatherUseN()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_WEATHER_DIRECT);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_WEATHER_WEB);
@@ -350,7 +350,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioWeatherUseN()
 
 void CDLG_ProgramSetting::OnBnClickedButtonWeatherSet()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDLG_WeatherSeting dlg;
 	dlg.DoModal();
 }
@@ -358,7 +358,7 @@ void CDLG_ProgramSetting::OnBnClickedButtonWeatherSet()
 
 void CDLG_ProgramSetting::OnBnClickedRadioIsmartDirect()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ISMART_DIRECT);
 	btRadioCheck->SetCheck(TRUE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ISMART_WEB);
@@ -371,7 +371,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioIsmartDirect()
 
 void CDLG_ProgramSetting::OnBnClickedRadioIsmartWeb()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ISMART_DIRECT);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ISMART_WEB);
@@ -384,7 +384,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioIsmartWeb()
 
 void CDLG_ProgramSetting::OnBnClickedRadioIsmartUseN()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ISMART_DIRECT);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ISMART_WEB);
@@ -396,14 +396,14 @@ void CDLG_ProgramSetting::OnBnClickedRadioIsmartUseN()
 
 void CDLG_ProgramSetting::OnBnClickedButtonIsmartSet()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDLG_ISmarAccesstSetting dlg;
 	dlg.DoModal();
 }
 
 void CDLG_ProgramSetting::OnBnClickedRadioEngmngDirect()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ENGMNG_DIRECT);
 	btRadioCheck->SetCheck(TRUE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ENGMNG_WEB);
@@ -416,7 +416,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioEngmngDirect()
 
 void CDLG_ProgramSetting::OnBnClickedRadioEngmngWeb()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ENGMNG_DIRECT);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ENGMNG_WEB);
@@ -429,7 +429,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioEngmngWeb()
 
 void CDLG_ProgramSetting::OnBnClickedRadioEngmngUseN()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ENGMNG_DIRECT);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_ENGMNG_WEB);
@@ -441,7 +441,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioEngmngUseN()
 
 void CDLG_ProgramSetting::OnBnClickedButtonEngmngSet()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDLG_EnergyTag_InitialSet dlg;
 	dlg.DoModal();
 }
@@ -449,7 +449,7 @@ void CDLG_ProgramSetting::OnBnClickedButtonEngmngSet()
 
 void CDLG_ProgramSetting::OnBnClickedRadioAutorun()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_AUTORUN);
 	btRadioCheck->SetCheck(TRUE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_USERURN);
@@ -459,7 +459,7 @@ void CDLG_ProgramSetting::OnBnClickedRadioAutorun()
 
 void CDLG_ProgramSetting::OnBnClickedRadioUserurn()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_AUTORUN);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_USERURN);
@@ -469,18 +469,18 @@ void CDLG_ProgramSetting::OnBnClickedRadioUserurn()
 
 void CDLG_ProgramSetting::OnBnClickedButtonCalibration()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CTime ctSelTime, ctNow = CTime::GetCurrentTime();
 
-	//´Ş·Â¿¡¼­ ¼±ÅÃÇÑ ³¯Â¥ÀÇ 0½Ã0ºĞ ºÎÅÍ
+	//ë‹¬ë ¥ì—ì„œ ì„ íƒí•œ ë‚ ì§œì˜ 0ì‹œ0ë¶„ ë¶€í„°
 	m_mccCalander.GetCurSel(ctSelTime);
 	ctSelTime = CTime(ctSelTime.GetYear(), ctSelTime.GetMonth(), ctSelTime.GetDay(), 0, 0, 0);
 	ctNow = CTime(ctNow.GetYear(), ctNow.GetMonth(), ctNow.GetDay(), 0, 0, 0);
 
 	if( ctSelTime > ctNow )
 	{
-		AfxMessageBox("ÀÌÀü ³¯Â¥¸¦ ¼±ÅÃÇÏ¼¼¿ä");
+		AfxMessageBox("ì´ì „ ë‚ ì§œë¥¼ ì„ íƒí•˜ì„¸ìš”");
 		return;
 	}
 
@@ -498,14 +498,14 @@ void CDLG_ProgramSetting::StartThreadCalibration(CTime ctSelTime)
 		m_pThreadCalibration->SetOwner(this);
 		m_pThreadCalibration->SetStartTime(ctSelTime);
 		m_pThreadCalibration->ResumeThread();
-		//<-- 20210308 ksw Á¦Ç° ºĞ±â
+		//<-- 20210308 ksw ì œí’ˆ ë¶„ê¸°
 		CButton *btRadioProductCheck = (CButton*)GetDlgItem(IDC_RADIO_BEMS);
 		if(btRadioProductCheck->GetCheck() == 1)
 			m_pThreadCalibration->SetProduct(0);
 		btRadioProductCheck = (CButton*)GetDlgItem(IDC_RADIO_EMS);
 		if(btRadioProductCheck->GetCheck() == 1)
 			m_pThreadCalibration->SetProduct(1);
-		//--> 20210308 ksw Á¦Ç° ºĞ±â
+		//--> 20210308 ksw ì œí’ˆ ë¶„ê¸°
 	}
 }
 
@@ -543,9 +543,9 @@ void CDLG_ProgramSetting::StopThreadCalibration()
 
 }
 
-void CDLG_ProgramSetting::OnBnClickedRadioBems() //20210305 ksw Á¦Ç°¼±ÅÃ ¶óµğ¿À¹öÆ° ÀÌº¥Æ® Ãß°¡
+void CDLG_ProgramSetting::OnBnClickedRadioBems() //20210305 ksw ì œí’ˆì„ íƒ ë¼ë””ì˜¤ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_BEMS);
 	btRadioCheck->SetCheck(TRUE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_EMS);
@@ -553,16 +553,16 @@ void CDLG_ProgramSetting::OnBnClickedRadioBems() //20210305 ksw Á¦Ç°¼±ÅÃ ¶óµğ¿À¹
 }
 
 
-void CDLG_ProgramSetting::OnBnClickedRadioEms() //20210305 ksw Á¦Ç°¼±ÅÃ ¶óµğ¿À¹öÆ° ÀÌº¥Æ® Ãß°¡
+void CDLG_ProgramSetting::OnBnClickedRadioEms() //20210305 ksw ì œí’ˆì„ íƒ ë¼ë””ì˜¤ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_BEMS);
 	btRadioCheck->SetCheck(FALSE);
 	btRadioCheck = (CButton*)GetDlgItem(IDC_RADIO_EMS);
 	btRadioCheck->SetCheck(TRUE);
 }
 
-LRESULT CDLG_ProgramSetting::OnEnableControl(WPARAM wParm, LPARAM lParm) //20210308 ksw ÄÁÆ®·Ñ Enable Á¦¾î ÇÔ¼ö
+LRESULT CDLG_ProgramSetting::OnEnableControl(WPARAM wParm, LPARAM lParm) //20210308 ksw ì»¨íŠ¸ë¡¤ Enable ì œì–´ í•¨ìˆ˜
 {
 	GetDlgItem(wParm)->EnableWindow(lParm);
 	return 0;
@@ -578,31 +578,31 @@ void CDLG_ProgramSetting::OnTruncateTable(UINT nID)
 	CString message;
 	int result;
 
-	//DB ¿¬°á ¼ÂÆÃ
+	//DB ì—°ê²° ì…‹íŒ…
 	ST_DBINFO stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
 
 	m_nDBType = stDBInfo.unDBType;
 	DB_Connect = new CAdo_Control();
-	//DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, "TagMapping ¼³Á¤", g_stProjectInfo.szDTGatheringLogPath);
+	//DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, "TagMapping ì„¤ì •", g_stProjectInfo.szDTGatheringLogPath);
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
 
-	//Source DB Á¤º¸ ¼ÂÆÃ
+	//Source DB ì •ë³´ ì…‹íŒ…
 	CString TruncateTable;
 	ST_DATABASENAME  stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
 
 	switch (nID)
 	{
 	case IDC_BTN_TRC_MINUTE:
-		message = "ºĞ Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ÀüÃ¼ ÃÊ±âÈ­ÇÏ½Ã°Ú½À´Ï±î?";
+		message = "ë¶„ í…Œì´ë¸” ë°ì´í„°ë¥¼ ì „ì²´ ì´ˆê¸°í™”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		break;
 	case IDC_BTN_TRC_QUATER:
-		message = "15ºĞ Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ÀüÃ¼ ÃÊ±âÈ­ÇÏ½Ã°Ú½À´Ï±î?";
+		message = "15ë¶„ í…Œì´ë¸” ë°ì´í„°ë¥¼ ì „ì²´ ì´ˆê¸°í™”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		break;
 	case IDC_BTN_TRC_HOUR:
-		message = "½Ã°£ Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ÀüÃ¼ ÃÊ±âÈ­ÇÏ½Ã°Ú½À´Ï±î?";
+		message = "ì‹œê°„ í…Œì´ë¸” ë°ì´í„°ë¥¼ ì „ì²´ ì´ˆê¸°í™”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		break;
 	case IDC_BTN_TRC_MONTH:
-		message = "¿ù Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ÀüÃ¼ ÃÊ±âÈ­ÇÏ½Ã°Ú½À´Ï±î?";
+		message = "ì›” í…Œì´ë¸” ë°ì´í„°ë¥¼ ì „ì²´ ì´ˆê¸°í™”í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		break;
 	default:
 		return;
@@ -617,19 +617,19 @@ void CDLG_ProgramSetting::OnTruncateTable(UINT nID)
 			{
 			case IDC_BTN_TRC_MINUTE:
 				TruncateTable.Format("HM_MINUTE_TREND_HISTORY");
-                message = "ºĞ Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+                message = "ë¶„ í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
                 break;
             case IDC_BTN_TRC_QUATER:
 				TruncateTable.Format("%s.dbo.HM_QUATER_TREND_HISTORY", stDBName.szHMIDBName);
-                message = "15ºĞ Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+                message = "15ë¶„ í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
                 break;
             case IDC_BTN_TRC_HOUR:
 				TruncateTable.Format("%s.dbo.HM_HOUR_TREND_HISTORY", stDBName.szHMIDBName);
-                message = "½Ã°£ Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+                message = "ì‹œê°„ í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
                 break;
             case IDC_BTN_TRC_MONTH:
 				TruncateTable.Format("%s.dbo.HM_MONTH_TREND_HISTORY", stDBName.szHMIDBName);
-                message = "¿ù Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+                message = "ì›” í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
 				break;
 			default:
 				return;
@@ -639,19 +639,19 @@ void CDLG_ProgramSetting::OnTruncateTable(UINT nID)
 			switch (nID) {
 			case IDC_BTN_TRC_MINUTE:
 				TruncateTable.Format("%s.HM_MINUTE_TREND_HISTORY", stDBName.szHMIDBName);
-				message = "ºĞ Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+				message = "ë¶„ í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
 				break;
 			case IDC_BTN_TRC_QUATER:
 				TruncateTable.Format("%s.HM_QUATER_TREND_HISTORY", stDBName.szHMIDBName);
-				message = "15ºĞ Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+				message = "15ë¶„ í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
 				break;
 			case IDC_BTN_TRC_HOUR:
 				TruncateTable.Format("%s.HM_HOUR_TREND_HISTORY", stDBName.szHMIDBName);
-				message = "½Ã°£ Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+				message = "ì‹œê°„ í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
 				break;
 			case IDC_BTN_TRC_MONTH:
 				TruncateTable.Format("%s.HM_MONTH_TREND_HISTORY", stDBName.szHMIDBName);
-				message = "¿ù Å×ÀÌºíÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.";
+				message = "ì›” í…Œì´ë¸”ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.";
 				break;
 			default:
 				return;
@@ -661,7 +661,7 @@ void CDLG_ProgramSetting::OnTruncateTable(UINT nID)
 		result = DB_Connect->Truncate(TruncateTable);
 
 		if (result > 0) { AfxMessageBox(message, MB_OK); }
-		else			{ AfxMessageBox("Å×ÀÌºí ÃÊ±âÈ­¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù"); }
+		else			{ AfxMessageBox("í…Œì´ë¸” ì´ˆê¸°í™”ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤"); }
 	}
 	delete DB_Connect;
 }

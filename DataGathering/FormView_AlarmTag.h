@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include "Control_List/ListBoxControl/XListCtrl.h"
 #include "Thread_TagAlarmMain.h"
-// CFormView_AlarmTag Æû ºäÀÔ´Ï´Ù.
+// CFormView_AlarmTag í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CFormView_AlarmTag : public CFormView
 {
 	DECLARE_DYNCREATE(CFormView_AlarmTag)
 
 protected:
-	CFormView_AlarmTag();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFormView_AlarmTag();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFormView_AlarmTag();
 
 public:
@@ -42,7 +42,7 @@ public:
 	void SetDeviceListRemove();
 	int SetAlarmOccursMsg(const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5);
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual void OnInitialUpdate();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedButtonStart();

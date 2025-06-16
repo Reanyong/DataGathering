@@ -1,4 +1,4 @@
-// FormView_TAGGather.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_TAGGather.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -19,7 +19,7 @@ CFormView_TAGGather::CFormView_TAGGather()
 	m_bStartRunCheck = TRUE;
 	m_strTitle = "";
 	m_pThread_MinGatherMain = NULL;
-	m_b50Check = FALSE; // 20210308 ksw 50cÃÊ Ã¼Å© º¯¼ö ÃÊ±âÈ­
+	m_b50Check = FALSE; // 20210308 ksw 50cì´ˆ ì²´í¬ ë³€ìˆ˜ ì´ˆê¸°í™”
 	DB_Connect = NULL;
 }
 
@@ -49,7 +49,7 @@ BEGIN_MESSAGE_MAP(CFormView_TAGGather, CFormView)
 	ON_BN_CLICKED(IDC_BTN_EMSCHART, &CFormView_TAGGather::OnBnClickedBtnEmschart)
 END_MESSAGE_MAP()
 
-// CFormView_TAGGather Áø´ÜÀÔ´Ï´Ù.
+// CFormView_TAGGather ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_TAGGather::AssertValid() const
@@ -65,9 +65,9 @@ void CFormView_TAGGather::Dump(CDumpContext& dc) const
 #endif
 #endif //_DEBUG
 
-// CFormView_TAGGather ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
-TCHAR* _lpszProcessorList_Column[] = { "ID","»óÅÂ","ÇÒ´ç¼ö","Ã³¸® »óÅÂ" };
-TCHAR* _lpszTagDicList_Column[] = { "ÅÂ±× ÀÌ¸§", "ÅÂ±× ¼³¸í", "µ¥ÀÌÅÍ Å¸ÀÔ"};
+// CFormView_TAGGather ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
+TCHAR* _lpszProcessorList_Column[] = { "ID","ìƒíƒœ","í• ë‹¹ìˆ˜","ì²˜ë¦¬ ìƒíƒœ" };
+TCHAR* _lpszTagDicList_Column[] = { "íƒœê·¸ ì´ë¦„", "íƒœê·¸ ì„¤ëª…", "ë°ì´í„° íƒ€ì…"};
 
 
 void CFormView_TAGGather::OnInitialUpdate()
@@ -85,10 +85,10 @@ void CFormView_TAGGather::OnInitialUpdate()
 	pWnd->RecalcLayout();
 	pWnd->MDIRestore();
 	pWnd->SetMenu(NULL);
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
-	time_t tStartTime = time(NULL); //20210308 ksw ½ÃÀÛ ´ë±â º¯¼ö
-	struct tm *pLocalTime; //20210308 ksw ½ÃÀÛ ´ë±â º¯¼ö
-	pLocalTime = localtime(&tStartTime); // 20210308 ksw ´ë±â½Ã°£
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	time_t tStartTime = time(NULL); //20210308 ksw ì‹œì‘ ëŒ€ê¸° ë³€ìˆ˜
+	struct tm *pLocalTime; //20210308 ksw ì‹œì‘ ëŒ€ê¸° ë³€ìˆ˜
+	pLocalTime = localtime(&tStartTime); // 20210308 ksw ëŒ€ê¸°ì‹œê°„
 
 	m_nMin = pLocalTime->tm_min;
 	m_nSec = pLocalTime->tm_sec;
@@ -116,7 +116,7 @@ void CFormView_TAGGather::OnInitialUpdate()
 
 BOOL CFormView_TAGGather::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_F4 || pMsg->wParam == VK_CONTROL)
@@ -163,7 +163,7 @@ BOOL CFormView_TAGGather::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT n
 		lvcolumn.pszText = szColumn[nPos];
 		lvcolumn.iSubItem = nPos;
 
-		if (nListID == USER_CONTROL_LIST2) // TAG_DIC List ÄÁÆ®·Ñ ID È®ÀÎ
+		if (nListID == USER_CONTROL_LIST2) // TAG_DIC List ì»¨íŠ¸ë¡¤ ID í™•ì¸
 		{
 			if (nPos == 0)
 				lvcolumn.cx = 440;
@@ -192,14 +192,14 @@ BOOL CFormView_TAGGather::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT n
 
 void CFormView_TAGGather::OnBnClickedButtonGatherStart()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(FALSE);
 
 	if(m_bStartRunCheck == TRUE)
 	{
 		m_bStartRunCheck = FALSE;
-		GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("¼öÁı Á¤Áö..");
+		GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 
 		LoadTagDic();
 
@@ -211,7 +211,7 @@ void CFormView_TAGGather::OnBnClickedButtonGatherStart()
 	}
 	else
 	{
-		GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+		GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 		//GetDlgItem(IDC_BUTTON_CALIBRATION)->EnableWindow(FALSE);
 		g_nCheckTagThreadRun = 0;
 		m_bStartRunCheck = TRUE;
@@ -225,7 +225,7 @@ void CFormView_TAGGather::OnBnClickedButtonGatherStart()
 
 void CFormView_TAGGather::StartThread()
 {
-	//ºĞÅ×ÀÌÅÍ ¼öÁı ·ÎÁ÷
+	//ë¶„í…Œì´í„° ìˆ˜ì§‘ ë¡œì§
 	m_stGatherInfo = _getInfoGatherRead(g_stProjectInfo.szProjectIniPath);
 	if(m_pThread_MinGatherMain == NULL)
 	{
@@ -247,7 +247,7 @@ void CFormView_TAGGather::StartThread()
 
 void CFormView_TAGGather::StopThread(BOOL bStopType)
 {
-	ShowText_State("¼öÁı Á¤Áö");
+	ShowText_State("ìˆ˜ì§‘ ì •ì§€");
 	ShowText_Count("-");
 	ShowText_Processor("-");
 
@@ -270,7 +270,7 @@ void CFormView_TAGGather::StopThread(BOOL bStopType)
 
 void CFormView_TAGGather::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(nIDCtl==IDC_BUTTON_GATHER_START )         //checking for the button
 	{
 		COLORREF rgbBkColor,rgbTextColor;
@@ -326,7 +326,7 @@ HBRUSH CFormView_TAGGather::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	HBRUSH hbr = CFormView::OnCtlColor(pDC, pWnd, nCtlColor);
 
-	// TODO:  ¿©±â¼­ DCÀÇ Æ¯¼ºÀ» º¯°æÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì„œ DCì˜ íŠ¹ì„±ì„ ë³€ê²½í•©ë‹ˆë‹¤.
 	UINT nID = pWnd->GetDlgCtrlID();
 	COLORREF colorreStart = RGB(255,234,234);
 	COLORREF colorreStop = RGB(235,247,255);
@@ -334,7 +334,7 @@ HBRUSH CFormView_TAGGather::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 	switch(nCtlColor)
 	{
-	case CTLCOLOR_DLG:   /// ´ÙÀÌ¾ó·Î±× ¹è°æ»öÀ» white·Î.
+	case CTLCOLOR_DLG:   /// ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰ì„ whiteë¡œ.
 		{
 			if(m_bStartRunCheck == FALSE)
 				hbr = CreateSolidBrush(colorreStart);
@@ -347,16 +347,16 @@ HBRUSH CFormView_TAGGather::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 			if(nID == IDC_STATIC)
 			{
 				if(m_bStartRunCheck == FALSE)
-					pDC->SetBkColor(colorreStart);   // static text ¹è°æ»ö Åõ¸í
+					pDC->SetBkColor(colorreStart);   // static text ë°°ê²½ìƒ‰ íˆ¬ëª…
 				else
-					pDC->SetBkColor(colorreStop);   // static text ¹è°æ»ö Åõ¸í
+					pDC->SetBkColor(colorreStop);   // static text ë°°ê²½ìƒ‰ íˆ¬ëª…
 				break;
 
 				return (HBRUSH)::GetStockObject(NULL_BRUSH);
 			}
 		}
 	}
-	// TODO:  ±âº»°ªÀÌ Àû´çÇÏÁö ¾ÊÀ¸¸é ´Ù¸¥ ºê·¯½Ã¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+	// TODO:  ê¸°ë³¸ê°’ì´ ì ë‹¹í•˜ì§€ ì•Šìœ¼ë©´ ë‹¤ë¥¸ ë¸ŒëŸ¬ì‹œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	return hbr;
 }
 
@@ -383,7 +383,7 @@ LRESULT CFormView_TAGGather::OnUserMessage(WPARAM wParam, LPARAM lParam)
 
 void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 
 	switch(nIDEvent)
@@ -396,7 +396,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 			{
 				if(m_bWait == TRUE)
 				{
-					GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("¼öÁı Á¤Áö..");
+					GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 					GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(FALSE);
 					GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(FALSE);
 					m_bStartRunCheck = FALSE;
@@ -410,7 +410,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 			}
 			else
 			{
-				GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+				GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 				m_bStartRunCheck = TRUE;
 				GetDlgItem(IDC_BUTTON_GATHER_START)->EnableWindow(TRUE);
 				GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(TRUE);
@@ -419,7 +419,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 			Invalidate(TRUE);
 		}
 		break;
-	case 2: //¹öÆ°À¸·Î Á¤Áö
+	case 2: //ë²„íŠ¼ìœ¼ë¡œ ì •ì§€
 		KillTimer(nIDEvent);
 		StopThread(TRUE);
 
@@ -428,7 +428,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 		GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(TRUE);
 
 		break;
-	case 3: //½Ã½ºÅÛ ÀÚµ¿ Á¤Áö
+	case 3: //ì‹œìŠ¤í…œ ìë™ ì •ì§€
 		KillTimer(nIDEvent);
 		StopThread(FALSE);
 
@@ -436,7 +436,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 		GetDlgItem(IDC_BTN_TAGDIC_INSERT)->EnableWindow(TRUE);
 		GetDlgItem(IDC_BTN_EMSCHART)->EnableWindow(TRUE);
 		break;
-	case 4: // ÀÚµ¿½ÃÀÛ½Ã ´ÙÀ½ Á¤ºĞ±îÁö ´ë±â
+	case 4: // ìë™ì‹œì‘ì‹œ ë‹¤ìŒ ì •ë¶„ê¹Œì§€ ëŒ€ê¸°
 
 		m_bStartRunCheck = TRUE;
 		CString str;
@@ -445,9 +445,9 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 		struct tm *pCurTime = NULL;
 		pCurTime = localtime(&tCurTime);
 
-		if((m_nSec >= 55 && m_b50Check) || m_nSec < 55) //20210405 ksw 55ÃÊ ¿¡¼­ 59ÃÊ »çÀÌ¿¡ °Ô´õ¸µ ½ÃÀÛ½Ã 1ºĞ ´õ ±â´Ù¸² ex) 03ºĞ55ÃÊ¿¡ ÇÁ·Î±×·¥ ½ÃÀÛ -> 5ºĞ¿¡ ¼öÁı ½ÃÀÛ
+		if((m_nSec >= 55 && m_b50Check) || m_nSec < 55) //20210405 ksw 55ì´ˆ ì—ì„œ 59ì´ˆ ì‚¬ì´ì— ê²Œë”ë§ ì‹œì‘ì‹œ 1ë¶„ ë” ê¸°ë‹¤ë¦¼ ex) 03ë¶„55ì´ˆì— í”„ë¡œê·¸ë¨ ì‹œì‘ -> 5ë¶„ì— ìˆ˜ì§‘ ì‹œì‘
 		{
-			str.Format("¼öÁı ÁØºñ..\r\n %02d : %02d",m_nMin - pCurTime->tm_min , 59 - pCurTime->tm_sec);
+			str.Format("ìˆ˜ì§‘ ì¤€ë¹„..\r\n %02d : %02d",m_nMin - pCurTime->tm_min , 59 - pCurTime->tm_sec);
 			if(m_nMin +1 == pCurTime->tm_min)
 			{
 				m_bWait = TRUE;
@@ -475,7 +475,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 				m_nMin = 60;
 				pCurTime->tm_min = 59;
 			}
-			str.Format("¼öÁı ÁØºñ..\r\n %02d : %02d",m_nMin - pCurTime->tm_min , 59 - pCurTime->tm_sec); //59 0 ºĞ
+			str.Format("ìˆ˜ì§‘ ì¤€ë¹„..\r\n %02d : %02d",m_nMin - pCurTime->tm_min , 59 - pCurTime->tm_sec); //59 0 ë¶„
 			GetDlgItem(IDC_BUTTON_GATHER_START)->SetWindowText(str);
 		}
 		CRect rect;
@@ -491,7 +491,7 @@ void CFormView_TAGGather::OnTimer(UINT_PTR nIDEvent)
 
 void CFormView_TAGGather::ListInitialization()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_xListSiteList.DeleteAllItems();
 	m_xListSiteList.Invalidate(FALSE);
 
@@ -540,7 +540,7 @@ void CFormView_TAGGather::OnDestroy()
 	//CFormView::OnDestroy();
 		StopThread(FALSE);
 	int time = GetTickCount64();
-	while(1) //20210310 ksw ¾²·¹µå ½Ã°£¹úÀÌ
+	while(1) //20210310 ksw ì“°ë ˆë“œ ì‹œê°„ë²Œì´
 	{
 		if(GetTickCount64() - time>=1000)
 		{
@@ -550,7 +550,7 @@ void CFormView_TAGGather::OnDestroy()
 	}
 
 	CFormView::OnDestroy();
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
@@ -563,13 +563,13 @@ void CFormView_TAGGather::OnBnClickedBtnTagdicInsert()
 void CFormView_TAGGather::OnHeaderBeginTrack(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMHEADER phdr = reinterpret_cast<LPNMHEADER>(pNMHDR);
-	if (phdr->hdr.idFrom == IDC_STC_TAGDIC_LISTCTRL) // TAG_DIC List ÄÁÆ®·Ñ ID È®ÀÎ
+	if (phdr->hdr.idFrom == IDC_STC_TAGDIC_LISTCTRL) // TAG_DIC List ì»¨íŠ¸ë¡¤ ID í™•ì¸
 	{
-		*pResult = TRUE; // Å©±â Á¶Á¤ ¹æÁö
+		*pResult = TRUE; // í¬ê¸° ì¡°ì • ë°©ì§€
 	}
 	else
 	{
-		*pResult = FALSE; // ´Ù¸¥ ¸®½ºÆ® ÄÁÆ®·ÑÀÇ Å©±â Á¶Á¤ Çã¿ë
+		*pResult = FALSE; // ë‹¤ë¥¸ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì˜ í¬ê¸° ì¡°ì • í—ˆìš©
 	}
 }
 
@@ -588,7 +588,7 @@ void CFormView_TAGGather::LoadTagDic()
 	CString strQuery;
 
 	if (!DB_Connect->DB_Connection()) {
-		AfxMessageBox(_T("DB ¿¬°á ½ÇÆĞ"));
+		AfxMessageBox(_T("DB ì—°ê²° ì‹¤íŒ¨"));
 		return;
 	}
 
@@ -600,7 +600,7 @@ void CFormView_TAGGather::LoadTagDic()
 
 		_RecordsetPtr pRecordset = DB_Connect->DB_OpenRecordSet(strQuery);
 
-		// ·¹ÄÚµå¼Â¿¡¼­ µ¥ÀÌÅÍ ÀĞ±â
+		// ë ˆì½”ë“œì…‹ì—ì„œ ë°ì´í„° ì½ê¸°
 		while (!pRecordset->EndOfFile) {
 			CString strTagName = (LPCTSTR)(_bstr_t)pRecordset->Fields->Item["TAG_ID"]->Value;
 			CString strTagDesc = (LPCTSTR)(_bstr_t)pRecordset->Fields->Item["TAG_DESC"]->Value;
@@ -608,10 +608,10 @@ void CFormView_TAGGather::LoadTagDic()
 
 			CString strDataTypeDisplay;
 
-			if (strDataType == _T("0")) { strDataTypeDisplay = _T("¼ø½Ã"); }
-			else if (strDataType == _T("1")) { strDataTypeDisplay = _T("°¡µ¿Á¦¾î"); }
-			else if (strDataType == _T("3")) { strDataTypeDisplay = _T("¼¾¼­"); }
-			else if (strDataType == _T("5")) { strDataTypeDisplay = _T("Àû»ê"); }
+			if (strDataType == _T("0")) { strDataTypeDisplay = _T("ìˆœì‹œ"); }
+			else if (strDataType == _T("1")) { strDataTypeDisplay = _T("ê°€ë™ì œì–´"); }
+			else if (strDataType == _T("3")) { strDataTypeDisplay = _T("ì„¼ì„œ"); }
+			else if (strDataType == _T("5")) { strDataTypeDisplay = _T("ì ì‚°"); }
 			else { strDataTypeDisplay = _T("Unknown"); }
 
 			int nItem = m_xListTagDicList.InsertItem(m_xListTagDicList.GetItemCount(), strTagName);
@@ -632,14 +632,14 @@ void CFormView_TAGGather::LoadTagDic()
 		SQLRETURN retcode;
 		if (DB_Connect->codbc->SQLAllocStmtHandle() != SQL_SUCCESS)
 		{
-			AfxMessageBox(_T("SQLAllocStmtHandle ½ÇÆĞ"));
+			AfxMessageBox(_T("SQLAllocStmtHandle ì‹¤íŒ¨"));
 			return;
 		}
 
 		retcode = DB_Connect->codbc->SQLExecDirect(strQuery);
 		if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO)
 		{
-			AfxMessageBox(_T("SQLExecDirect ½ÇÆĞ"));
+			AfxMessageBox(_T("SQLExecDirect ì‹¤íŒ¨"));
 			return;
 		}
 
@@ -649,10 +649,10 @@ void CFormView_TAGGather::LoadTagDic()
 		{
 			retcode = DB_Connect->codbc->SQLFetch();
 			if (retcode == SQL_NO_DATA) {
-				break; // ´õ ÀÌ»ó µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é ·çÇÁ Á¾·á
+				break; // ë” ì´ìƒ ë°ì´í„°ê°€ ì—†ìœ¼ë©´ ë£¨í”„ ì¢…ë£Œ
 			}
 			else if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
-				AfxMessageBox(_T("SQLFetch ¿¡·¯"));
+				AfxMessageBox(_T("SQLFetch ì—ëŸ¬"));
 				break;
 			}
 
@@ -666,10 +666,10 @@ void CFormView_TAGGather::LoadTagDic()
 			CString strTagID(tagID), strTagDesc(tagDesc), strDataType(dataType);
 			CString strDataTypeDisplay;
 
-			if (strDataType == _T("0")) { strDataTypeDisplay = _T("¼ø½Ã"); }
-			else if (strDataType == _T("1")) { strDataTypeDisplay = _T("°¡µ¿Á¦¾î"); }
-			else if (strDataType == _T("3")) { strDataTypeDisplay = _T("¼¾¼­"); }
-			else if (strDataType == _T("5")) { strDataTypeDisplay = _T("Àû»ê"); }
+			if (strDataType == _T("0")) { strDataTypeDisplay = _T("ìˆœì‹œ"); }
+			else if (strDataType == _T("1")) { strDataTypeDisplay = _T("ê°€ë™ì œì–´"); }
+			else if (strDataType == _T("3")) { strDataTypeDisplay = _T("ì„¼ì„œ"); }
+			else if (strDataType == _T("5")) { strDataTypeDisplay = _T("ì ì‚°"); }
 			else { strDataTypeDisplay = _T("Unknown"); }
 
 			int nItem = m_xListTagDicList.InsertItem(m_xListTagDicList.GetItemCount(), strTagID);

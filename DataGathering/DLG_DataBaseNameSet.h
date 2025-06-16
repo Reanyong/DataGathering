@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDLG_DataBaseNameSet ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_DataBaseNameSet ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_DataBaseNameSet : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_DataBaseNameSet)
 
 public:
-	CDLG_DataBaseNameSet(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_DataBaseNameSet(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_DataBaseNameSet();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_DATABASE_NAME_SET };
 
 protected:
 	void ShowSettingData();
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedOk();

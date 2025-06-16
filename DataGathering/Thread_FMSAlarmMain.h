@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 
@@ -9,7 +9,7 @@ class CThread_FMSAlarmMain : public CWinThread
 	DECLARE_DYNCREATE(CThread_FMSAlarmMain)
 
 protected:
-	CThread_FMSAlarmMain();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_FMSAlarmMain();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_FMSAlarmMain();
 
 public:
@@ -28,7 +28,7 @@ public:
 		m_bButtonStop = TRUE;
 	}
 	void Stop() {
-		_addCurrentstateMsg(0,0, m_strThreadName, "Processor Á¾·á");
+		_addCurrentstateMsg(0,0, m_strThreadName, "Processor ì¢…ë£Œ");
 		m_bEndThread = TRUE;
 	}
 	void EndCheck() {
@@ -71,7 +71,7 @@ protected:
 	int GetFctAlarmSearch();
 	BOOL GetAlarmOccursFMS_File(const char *szAlarmId,ST_ALARMCHECK *stAlarmCheck);
 	BOOL SetAlarmOccursFMS_File(const char *szAlarmId, int nAlarmType ,const char *szStartTime, int nAckValue);
-	BOOL SetAlarmOccursFMS_ClearFile(const char *szAlarmId); //ÇØÁ¦µÈ ¾Ë¶÷Àº »èÁ¦
+	BOOL SetAlarmOccursFMS_ClearFile(const char *szAlarmId); //í•´ì œëœ ì•ŒëŒì€ ì‚­ì œ
 
 	int GetAlarmOccursFMS_DB(const char *szAlarmId,const char *szStartTime);
 	int GetAlarmUMSCheck(const char *szAlsrmLevel_ID);

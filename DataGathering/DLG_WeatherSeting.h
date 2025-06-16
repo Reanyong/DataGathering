@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDLG_WeatherSeting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_WeatherSeting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_WeatherSeting : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_WeatherSeting)
 
 public:
-	CDLG_WeatherSeting(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_WeatherSeting(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_WeatherSeting();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_WEATHER_SETTING };
 
 protected:
 	void ShowSettingData();
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	afx_msg void OnBnClickedOk();
 	virtual BOOL OnInitDialog();
 	DECLARE_MESSAGE_MAP()	

@@ -1,20 +1,20 @@
-
+ï»¿
 #pragma once
 
 /////////////////////////////////////////////////////////////////////////////
-// CViewTree Ã¢ÀÔ´Ï´Ù.
+// CViewTree ì°½ì…ë‹ˆë‹¤.
 
 class CViewTree : public CTreeCtrl
 {
-// »ı¼ºÀÔ´Ï´Ù.
+// ìƒì„±ì…ë‹ˆë‹¤.
 public:
 	CViewTree();
 
-// ÀçÁ¤ÀÇÀÔ´Ï´Ù.
+// ì¬ì •ì˜ì…ë‹ˆë‹¤.
 protected:
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 public:
 	virtual ~CViewTree();
 

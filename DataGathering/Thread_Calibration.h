@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 // CThread_Calibration
 
@@ -21,7 +21,7 @@ class CThread_Calibration : public CWinThread
 	DECLARE_DYNCREATE(CThread_Calibration)
 
 public:
-	CThread_Calibration();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_Calibration();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_Calibration();
 
 	void SetOwner(CWnd* hWnd) {
@@ -33,11 +33,11 @@ public:
 	void SetStartTime(CTime ctSelTime) {
 		m_ctSelTime = ctSelTime;
 	}
-	void SetProduct(int Product) //20210308 ksw Á¦Ç° ºĞ±â
+	void SetProduct(int Product) //20210308 ksw ì œí’ˆ ë¶„ê¸°
 	{
 		m_nProduct = Product;
 	}
-	//int GetTagList(const char *szDeviceItem,int nTheradCount,int nDBType,const char *szDBName);  //µî·ÏµÈ TAG Á¤º¸
+	//int GetTagList(const char *szDeviceItem,int nTheradCount,int nDBType,const char *szDBName);  //ë“±ë¡ëœ TAG ì •ë³´
 	//CString Com_Error(const char *szLogName,_com_error *e);
 	void SetWriteLogFile(const char *szLogMsg);
 
@@ -69,7 +69,7 @@ protected:
 
 	CTime m_ctSelTime;
 	CString m_strThreadName;
-	int m_nProduct; //20210308 ksw Á¦Ç° ºĞ±â º¯¼ö
+	int m_nProduct; //20210308 ksw ì œí’ˆ ë¶„ê¸° ë³€ìˆ˜
 protected:
 	virtual int Run();
 	DECLARE_MESSAGE_MAP()

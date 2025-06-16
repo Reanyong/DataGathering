@@ -1,4 +1,4 @@
-// Thread_WeatherGather.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_WeatherGather.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -31,14 +31,14 @@ CThread_WeatherGather::~CThread_WeatherGather()
 
 BOOL CThread_WeatherGather::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_WeatherGather::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	if(m_bEndCheck == FALSE)
 		((CFormView_Weather *)(m_pCtrl))->ShowRun_State(PRO_STOP);
 
@@ -62,22 +62,22 @@ END_MESSAGE_MAP()
 
 /*!
  * @fn void Release_List_ST(int nMode)
- * @brief  ÇÔ¼ö¿¡ ´ëÇÑ ¼³¸í. (ÇÑÁÙ ÀÌ»ó) ´ÙÀ½ Å°¿öµå°¡ ³ª¿Ã¶§±îÁö '///' ´ÙÀ½ÀÇ ¹®ÀåÀ» briefÀÇ ¹®ÀåÀ¸·Î ÀÎ½ÄÇÑ´Ù.
- * @details  °á°ú ¸ğ¸£Áö¸¸, Ãß°¡ ¼³¸íÀÌ ÇÊ¿äÇÏ¸é »ç¿ëÇÏ¶ó´Â Å°¿öµå. (more)¸¦ ´­·¶À»¶§ º¸¿©ÁÙ ÅØ½ºÆ®.
- * @param[in]	ÆÄ¶ó¹ÌÅÍ ÀÌ¸§	ÆÄ¶ó¹ÌÅÍ ¼³¸í, [in]Àº ÀÔ·Â¿ë ÆÄ¶ó¹ÌÅÍ¶ó´Â ¶æ.
- * @param[out]	ÆÄ¶ó¹ÌÅÍ ÀÌ¸§	ÆÄ¶ó¹ÌÅÍ ¼³¸í, [out]Àº ÀÔ·Â¿ë ÆÄ¶ó¹ÌÅÍ¶ó´Â ¶æ.
- * @return	¸®ÅÏ°ª¿¡ ´ëÇÑ ¼³¸í, ¸®ÅÏ °ªÀÌ ¿©·µÀÌ¶ó Ãß°¡ ¼³¸íÀÌ ÇÊ¿äÇÏ¸é retvalÀ» »ç¿ëÇÑ´Ù. '\returns'¿Í °°´Ù.
- * @retval	¸®ÅÏ°ª	¸®ÅÏ °ª¿¡ ´ëÇÑ ¼³¸í.
- * @bug		¾Ë°í ÀÖ´Â ¹ö±×¿¡ ´ëÇØ¼­ Àû´Â´Ù.
- * @todo		todo¿¡ ´ëÇØ¼­ Àû´Â´Ù.
- * @warning	ÁÖÀÇ »çÇ×¿¡ ´ëÇØ¼­ Àû´Â´Ù.
- * @see '´Ù¸¥ ÆÄÀÏ ÀÌ¸§'À» Àû´Â´Ù. ´Ù¸¥ °÷À» ÂüÁ¶ÇÏ¶ó°í ÇÒ¶§ ¾²´Âµ¥.. Á÷Á¢  ½áº»ÀûÀº ¾ø¾î¼­.
+ * @brief  í•¨ìˆ˜ì— ëŒ€í•œ ì„¤ëª…. (í•œì¤„ ì´ìƒ) ë‹¤ìŒ í‚¤ì›Œë“œê°€ ë‚˜ì˜¬ë•Œê¹Œì§€ '///' ë‹¤ìŒì˜ ë¬¸ì¥ì„ briefì˜ ë¬¸ì¥ìœ¼ë¡œ ì¸ì‹í•œë‹¤.
+ * @details  ê²°ê³¼ ëª¨ë¥´ì§€ë§Œ, ì¶”ê°€ ì„¤ëª…ì´ í•„ìš”í•˜ë©´ ì‚¬ìš©í•˜ë¼ëŠ” í‚¤ì›Œë“œ. (more)ë¥¼ ëˆŒë €ì„ë•Œ ë³´ì—¬ì¤„ í…ìŠ¤íŠ¸.
+ * @param[in]	íŒŒë¼ë¯¸í„° ì´ë¦„	íŒŒë¼ë¯¸í„° ì„¤ëª…, [in]ì€ ì…ë ¥ìš© íŒŒë¼ë¯¸í„°ë¼ëŠ” ëœ».
+ * @param[out]	íŒŒë¼ë¯¸í„° ì´ë¦„	íŒŒë¼ë¯¸í„° ì„¤ëª…, [out]ì€ ì…ë ¥ìš© íŒŒë¼ë¯¸í„°ë¼ëŠ” ëœ».
+ * @return	ë¦¬í„´ê°’ì— ëŒ€í•œ ì„¤ëª…, ë¦¬í„´ ê°’ì´ ì—¬ëŸ¿ì´ë¼ ì¶”ê°€ ì„¤ëª…ì´ í•„ìš”í•˜ë©´ retvalì„ ì‚¬ìš©í•œë‹¤. '\returns'ì™€ ê°™ë‹¤.
+ * @retval	ë¦¬í„´ê°’	ë¦¬í„´ ê°’ì— ëŒ€í•œ ì„¤ëª….
+ * @bug		ì•Œê³  ìˆëŠ” ë²„ê·¸ì— ëŒ€í•´ì„œ ì ëŠ”ë‹¤.
+ * @todo		todoì— ëŒ€í•´ì„œ ì ëŠ”ë‹¤.
+ * @warning	ì£¼ì˜ ì‚¬í•­ì— ëŒ€í•´ì„œ ì ëŠ”ë‹¤.
+ * @see 'ë‹¤ë¥¸ íŒŒì¼ ì´ë¦„'ì„ ì ëŠ”ë‹¤. ë‹¤ë¥¸ ê³³ì„ ì°¸ì¡°í•˜ë¼ê³  í• ë•Œ ì“°ëŠ”ë°.. ì§ì ‘  ì¨ë³¸ì ì€ ì—†ì–´ì„œ.
 */
 /*!
  * @fn void Release_List_ST(int nMode)
- * @brief ¸®½ºÆ® ±¸ÃÊÁ¦ ÃÊ±âÈ­/»èÁ¦
- * @details ±¸ÃÊÁ¦ ÃÊ±âÈ­ ¹× ¸Ş¸ğ¸® ÇØÁ¦
- * @param[in] nMode ÀÔ·Â¿ë ¼ıÀÚ°ª
+ * @brief ë¦¬ìŠ¤íŠ¸ êµ¬ì´ˆì œ ì´ˆê¸°í™”/ì‚­ì œ
+ * @details êµ¬ì´ˆì œ ì´ˆê¸°í™” ë° ë©”ëª¨ë¦¬ í•´ì œ
+ * @param[in] nMode ì…ë ¥ìš© ìˆ«ìê°’
  * @return -
  * @bug -
  * @warning -
@@ -98,14 +98,14 @@ void CThread_WeatherGather::Release_List_ST(int nMode)
 	}
 }
 
-// CThread_WeatherGather ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_WeatherGather ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Com_Error(const char *szLogName,_com_error *e)
- * @brief ¿¡·¯ ¸Ş½ÃÁö ¹ß»ı
- * @details try/catch ¿¡¼­ ¿À·ù ¹ß»ı½Ã ¿À·ù ¸Ş½ÃÁö ¹ß»ı Á¤º¸
- * @param[in] *szLogName ¸Ş½ÃÁö À§Ä¡/¹ß»ı ¸íÄª
- * @param[in] *e ¹ß»ı¸Ş½ÃÁö
+ * @brief ì—ëŸ¬ ë©”ì‹œì§€ ë°œìƒ
+ * @details try/catch ì—ì„œ ì˜¤ë¥˜ ë°œìƒì‹œ ì˜¤ë¥˜ ë©”ì‹œì§€ ë°œìƒ ì •ë³´
+ * @param[in] *szLogName ë©”ì‹œì§€ ìœ„ì¹˜/ë°œìƒ ëª…ì¹­
+ * @param[in] *e ë°œìƒë©”ì‹œì§€
  * @return -
  * @bug -
  * @warning -
@@ -127,17 +127,17 @@ void CThread_WeatherGather::Com_Error(const char *szLogName,_com_error *e)
 
 	strRunlog_E2Log.Format("Position : [%s], LogName: [%s], %s",szLogName, strRunlog_E2);
 	SetWriteLogFile("Processor-log : [DB Com Error..],",strRunlog_E2Log);
-	//_addCurrentstateMsg(1,0, m_strThreadName, "DB Ã³¸® ¿À·ù »ó¼¼·Î±× È®ÀÎ");
+	//_addCurrentstateMsg(1,0, m_strThreadName, "DB ì²˜ë¦¬ ì˜¤ë¥˜ ìƒì„¸ë¡œê·¸ í™•ì¸");
 	Sleep(500);
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn void SetWriteLogFile(const char *sTitle,const char *szLogMsg)
- * @brief ÀÌ·Â ¹× ¸Ş½ÃÁö Ãâ·Â
- * @details ¿À·ù ¹ß»ıÀÌ·Â Á¤º¸ ÆÄÀÏ·Î ÀúÀå
- * @param[in] *sTitle Ãâ·Â ¸íÄª
- * @param[in] *szLogMsg ·Î±× ¸Ş½ÃÁö
+ * @brief ì´ë ¥ ë° ë©”ì‹œì§€ ì¶œë ¥
+ * @details ì˜¤ë¥˜ ë°œìƒì´ë ¥ ì •ë³´ íŒŒì¼ë¡œ ì €ì¥
+ * @param[in] *sTitle ì¶œë ¥ ëª…ì¹­
+ * @param[in] *szLogMsg ë¡œê·¸ ë©”ì‹œì§€
  * @return -
  * @bug -
  * @warning -
@@ -155,7 +155,7 @@ void CThread_WeatherGather::SetWriteLogFile(const char *sTitle,const char *szLog
 
 int CThread_WeatherGather::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	//m_strThreadName = "WeatherGather";
 	((CFormView_Weather *)(m_pCtrl))->ShowRun_State(PRO_RUN);
@@ -176,8 +176,8 @@ int CThread_WeatherGather::Run()
 	if(stGatherInfo.nWeather_GatherType == 0)
 	{
 		stWeatherInfo[0] = _getInfoWeatherRead(g_stProjectInfo.szProjectIniPath);
-		sprintf_s(stWeatherInfo[0].szSite_ID,"Çö´ëÆÄ¿öÅØ");
-		sprintf_s(stWeatherInfo[0].szSite_Name,"Çö´ëÆÄ¿öÅØ");
+		sprintf_s(stWeatherInfo[0].szSite_ID,"í˜„ëŒ€íŒŒì›Œí…");
+		sprintf_s(stWeatherInfo[0].szSite_Name,"í˜„ëŒ€íŒŒì›Œí…");
 		nSiteCount = 1;
 	}
 
@@ -187,7 +187,7 @@ int CThread_WeatherGather::Run()
 	DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE,m_WindHwnd,m_strThreadName,g_stProjectInfo.szProjectLogPath);
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer,stDBInfo.szDB,stDBInfo.szID,stDBInfo.szPW,stDBInfo.unDBType);
 
-	strLogMsg.Format("ÁÖ±â ½ÇÈ²:[30]ºĞ,¿¹º¸:[Á¤½Ã]");
+	strLogMsg.Format("ì£¼ê¸° ì‹¤í™©:[30]ë¶„,ì˜ˆë³´:[ì •ì‹œ]");
 	//_addCurrentstateMsg(0,0, m_strThreadName, strLogMsg);
 	//_addCurrentstateMsg(1,0, m_strThreadName, strLogMsg);
 	do
@@ -264,7 +264,7 @@ int CThread_WeatherGather::Run()
 				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE,"Processor-log : [Weather Gather]" , USER_COLOR_BLUE, strLogMsg);
 			}*/
 
-			//_addCurrentstateMsg(0,0, m_strThreadName, "Processor Á¤»ó Ã³¸®Áß..");
+			//_addCurrentstateMsg(0,0, m_strThreadName, "Processor ì •ìƒ ì²˜ë¦¬ì¤‘..");
 		}
 		catch (...)
 		{
@@ -287,15 +287,15 @@ int CThread_WeatherGather::Run()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- »çÀÌÆ®º° ³¯¾¾¼öÁı »ç¿ë¿©ºÎ Á¶È¸
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ì‚¬ì´íŠ¸ë³„ ë‚ ì”¨ìˆ˜ì§‘ ì‚¬ìš©ì—¬ë¶€ ì¡°íšŒ
 -int GetWeatherList(int nQueryType)
 /*!
  * @fn int GetWeatherList(int nQueryType)
- * @brief ³¯¾¾¿¬µ¿ Á¤º¸ Á¶È¸
- * @details ½ÇÈ²/¿¹º¸ ¼öÁı »ç¿ëÀ¯¹« Á¶È¸
- * @param[in] *nQueryType 0: ½ÇÈ² Á¤º¸ Á¶È¸, 1: ¿¹º¸ Á¤º¸ Á¶È¸
- * @return - Á¶È¸µÈ Count
+ * @brief ë‚ ì”¨ì—°ë™ ì •ë³´ ì¡°íšŒ
+ * @details ì‹¤í™©/ì˜ˆë³´ ìˆ˜ì§‘ ì‚¬ìš©ìœ ë¬´ ì¡°íšŒ
+ * @param[in] *nQueryType 0: ì‹¤í™© ì •ë³´ ì¡°íšŒ, 1: ì˜ˆë³´ ì •ë³´ ì¡°íšŒ
+ * @return - ì¡°íšŒëœ Count
  * @bug -
  * @warning -
  * @see -
@@ -363,7 +363,7 @@ int CThread_WeatherGather::GetWeatherList(int nQueryType)
 					pRs->MoveNext();
 				}
 			}
-			// ·¹ÄÚµå Get ÈÄ Á¾·áÇÑ´Ù.
+			// ë ˆì½”ë“œ Get í›„ ì¢…ë£Œí•œë‹¤.
 			if(pRs != NULL)
 			{
 				pRs->Close();
@@ -379,13 +379,13 @@ int CThread_WeatherGather::GetWeatherList(int nQueryType)
 		//CString strDescription = e.Description();
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -413,13 +413,13 @@ int CThread_WeatherGather::GetWeatherList(int nQueryType)
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn int GetWeatherLiveGather(CTime currentTime,const char *szSavePath,ST_DBINFO *stDBInfo,ST_GATHERINFO *stGatherInfo,BOOL bStartCheck)
- * @brief ½ÇÈ² ³¯¾¾ Á¤º¸ Äõ¸® µ¥ÀÌÅÍ Á¶ÇÕ
- * @details ³¯¾¾Á¤º¸ µ¥ÀÌÅÍ Äõ¸® Á¤º¸ Á¶ÇÕ
- * @param[in] currentTime ÇöÀç ½Ã°£
- * @param[in] szSavePath Á¶È¸µÈ µ¥ÀÌÅÍ ÀÓ½Ã ÀúÀå À§Ä¡
- * @param[in] stDBInfo Á¢¼ÓµÈ DB Á¤º¸
- * @param[in] bStartCheck »ç¿ë¾ÈÇÔ
- * @return 1: ¼º°ø ,THREAD_END: ¾²·¹µå Á¾·á
+ * @brief ì‹¤í™© ë‚ ì”¨ ì •ë³´ ì¿¼ë¦¬ ë°ì´í„° ì¡°í•©
+ * @details ë‚ ì”¨ì •ë³´ ë°ì´í„° ì¿¼ë¦¬ ì •ë³´ ì¡°í•©
+ * @param[in] currentTime í˜„ì¬ ì‹œê°„
+ * @param[in] szSavePath ì¡°íšŒëœ ë°ì´í„° ì„ì‹œ ì €ì¥ ìœ„ì¹˜
+ * @param[in] stDBInfo ì ‘ì†ëœ DB ì •ë³´
+ * @param[in] bStartCheck ì‚¬ìš©ì•ˆí•¨
+ * @return 1: ì„±ê³µ ,THREAD_END: ì“°ë ˆë“œ ì¢…ë£Œ
  * @bug -
  * @warning -
  * @see -
@@ -441,11 +441,11 @@ int CThread_WeatherGather::GetWeatherLiveGather(CTime currentTime,const char *sz
 
 	m_nWeatherLiveMinuteCheck = currentTime.GetMinute();
 	CString strLogMsg = "";
-	//±â»ó Á¤º¸ live Á¤º¸ ¼öÁı ºÎºĞ
+	//ê¸°ìƒ ì •ë³´ live ì •ë³´ ìˆ˜ì§‘ ë¶€ë¶„
 	//ST_GATHERINFO stGatherInfo = _getInfoGatherRead(g_stProjectInfo.szProjectIniPath);
 
-	//00ºĞ ºÎÅÍ 20ºĞ±îÁö ´Â µ¥ÀÌÅÍ °¡ ¾ø´Ù.
-	CTimeSpan timeSpan(0,1,0,0); //or timeSpan = CTimeSpan(ÀÏ,½Ã,ºĞ,ÃÊ);
+	//00ë¶„ ë¶€í„° 20ë¶„ê¹Œì§€ ëŠ” ë°ì´í„° ê°€ ì—†ë‹¤.
+	CTimeSpan timeSpan(0,1,0,0); //or timeSpan = CTimeSpan(ì¼,ì‹œ,ë¶„,ì´ˆ);
 	CTime CheckTime;
 	int nMinuteCheck = currentTime.GetMinute();
 	if(nMinuteCheck <= 20)
@@ -458,7 +458,7 @@ int CThread_WeatherGather::GetWeatherLiveGather(CTime currentTime,const char *sz
 	{
 		for(int nI = 0; nI < nLiveList; nI++)
 		{
-			//strLogMsg.Format("%s - ½ÇÈ²³¯¾¾ Ã³¸®",m_stWeatherList[nI].szSiteName);
+			//strLogMsg.Format("%s - ì‹¤í™©ë‚ ì”¨ ì²˜ë¦¬",m_stWeatherList[nI].szSiteName);
 			//_addCurrentstateMsg(1,0, m_strThreadName, strLogMsg);
 
 			if(m_bEndThread == TRUE)
@@ -480,7 +480,7 @@ int CThread_WeatherGather::GetWeatherLiveGather(CTime currentTime,const char *sz
 						strValue.Format(" VALUES ('%s',TO_DATE('%s','YYYY-MM-DD HH24:MI'),",m_stWeatherList[nI].szSiteId,currentTime.Format("%Y-%m-%d %H:00"));
 					else
 					{
-						_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Live]", USER_COLOR_RED, "log : [MY-SQL Äõ¸® ¹ÌÁöÁ¤À¸·Î ÀÎÇÑ ¼öÁ¢ Á¾·ù!]");
+						_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Live]", USER_COLOR_RED, "log : [MY-SQL ì¿¼ë¦¬ ë¯¸ì§€ì •ìœ¼ë¡œ ì¸í•œ ìˆ˜ì ‘ ì¢…ë¥˜!]");
 						m_bEndThread = TRUE;
 						if (m_bEndThread == TRUE)
 							break;
@@ -538,7 +538,7 @@ int CThread_WeatherGather::GetWeatherLiveGather(CTime currentTime,const char *sz
 	}
 	else
 	{
-		strLogMsg.Format("Position : [Weather Live],log : [SetQuery Success][¼öÁıÇÒ »çÀÌÆ®Á¤º¸°¡ ¾ø½À´Ï´Ù.]");
+		strLogMsg.Format("Position : [Weather Live],log : [SetQuery Success][ìˆ˜ì§‘í•  ì‚¬ì´íŠ¸ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.]");
 		_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Live]", USER_COLOR_BLACK, strLogMsg);
 
 		//_addCurrentstateMsg(1,0, m_strThreadName, strLogMsg);
@@ -622,7 +622,7 @@ int CThread_WeatherGather::GetWeatherInfo(ST_DBINFO *stDBInfo,ST_WEATHER_INFO *s
 					pRs->MoveNext();
 				}
 			}
-			// ·¹ÄÚµå Get ÈÄ Á¾·áÇÑ´Ù.
+			// ë ˆì½”ë“œ Get í›„ ì¢…ë£Œí•œë‹¤.
 			if(pRs != NULL)
 			{
 				pRs->Close();
@@ -638,13 +638,13 @@ int CThread_WeatherGather::GetWeatherInfo(ST_DBINFO *stDBInfo,ST_WEATHER_INFO *s
 		//CString strDescription = e.Description();
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -686,9 +686,9 @@ int CThread_WeatherGather::GetWeatherLiveGather_2(CTime currentTime,const char *
 	CString strLogMsg = "",strDBName;
 	CString strSiteId = stWeatherInfo->szSite_Name;
 
-	//±â»ó Á¤º¸ live Á¤º¸ ¼öÁı ºÎºĞ
-	//00ºĞ ºÎÅÍ 20ºĞ±îÁö ´Â µ¥ÀÌÅÍ °¡ ¾ø´Ù.
-	CTimeSpan timeSpan(0,1,0,0); //or timeSpan = CTimeSpan(ÀÏ,½Ã,ºĞ,ÃÊ);
+	//ê¸°ìƒ ì •ë³´ live ì •ë³´ ìˆ˜ì§‘ ë¶€ë¶„
+	//00ë¶„ ë¶€í„° 20ë¶„ê¹Œì§€ ëŠ” ë°ì´í„° ê°€ ì—†ë‹¤.
+	CTimeSpan timeSpan(0,1,0,0); //or timeSpan = CTimeSpan(ì¼,ì‹œ,ë¶„,ì´ˆ);
 	CTime CheckTime;
 	int nMinuteCheck = currentTime.GetMinute();
 	if(nMinuteCheck <= 30)
@@ -728,12 +728,12 @@ int CThread_WeatherGather::GetWeatherLiveGather_2(CTime currentTime,const char *
 				strValue.Format(" VALUES ('%s','%s',",stWeatherInfo->szSite_ID,currentTime.Format("%Y-%m-%d %H:00"));
 			else if(stDBInfo->unDBType == DB_ORACLE)
 			{
-				// -> Çö´ëÆÄ¿öÅØ¿¡¼­ »ç¿ë SITE ID »ç¿ë¾ÈÇÔ //strValue.Format(" VALUES (TO_DATE('%s','YYYY-MM-DD HH24:MI'),",currentTime.Format("%Y-%m-%d %H:%M"));
+				// -> í˜„ëŒ€íŒŒì›Œí…ì—ì„œ ì‚¬ìš© SITE ID ì‚¬ìš©ì•ˆí•¨ //strValue.Format(" VALUES (TO_DATE('%s','YYYY-MM-DD HH24:MI'),",currentTime.Format("%Y-%m-%d %H:%M"));
 				strValue.Format(" VALUES ('%s',TO_DATE('%s','YYYY-MM-DD HH24:MI'),",stWeatherInfo->szSite_ID,currentTime.Format("%Y-%m-%d %H:00"));
 			}
 			else
 			{
-				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Live]", USER_COLOR_RED, "log : [My-SQL Äõ¸® ¹ÌÁöÁ¤À¸·Î ÀÎÇÑ ¼öÁ¢ Á¾·ù!]");
+				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Live]", USER_COLOR_RED, "log : [My-SQL ì¿¼ë¦¬ ë¯¸ì§€ì •ìœ¼ë¡œ ì¸í•œ ìˆ˜ì ‘ ì¢…ë¥˜!]");
 				m_bEndThread = TRUE;
 				if(m_bEndThread == TRUE)
 					return THREAD_END;
@@ -765,7 +765,7 @@ int CThread_WeatherGather::GetWeatherLiveGather_2(CTime currentTime,const char *
 
 			strValue += ")";
 			strQuery.Format("INSERT INTO %sCM_WEATHER_LIVE_HISTORY (SITE_ID,REGISTER_DATE,%s)%s",strDBName,strColumn,strValue);
-			//-> Çö´ëÆÄ¿öÅØ ¿¡¼­ »ç¿ëÇÑ Äõ¸®¹®//strQuery.Format("INSERT INTO %sCM_WEATHER_LIVE_HISTORY (REGISTER_DATE,%s)%s",strDBName,strColumn,strValue);
+			//-> í˜„ëŒ€íŒŒì›Œí… ì—ì„œ ì‚¬ìš©í•œ ì¿¼ë¦¬ë¬¸//strQuery.Format("INSERT INTO %sCM_WEATHER_LIVE_HISTORY (REGISTER_DATE,%s)%s",strDBName,strColumn,strValue);
 #ifdef _DEBUG
 			TRACE("Weather live insert Query - %s) \n",strQuery);
 #endif
@@ -789,7 +789,7 @@ int CThread_WeatherGather::GetWeatherLiveGather_2(CTime currentTime,const char *
 
 	/*else
 	{
-		strLogMsg.Format("Position : [Weather Live],log : [SetQuery Success][¼öÁıÇÒ »çÀÌÆ®Á¤º¸°¡ ¾ø½À´Ï´Ù.]");
+		strLogMsg.Format("Position : [Weather Live],log : [SetQuery Success][ìˆ˜ì§‘í•  ì‚¬ì´íŠ¸ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.]");
 		_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Live]", USER_COLOR_BLACK, strLogMsg);
 
 		//_addCurrentstateMsg(1,0, m_strThreadName, strLogMsg);
@@ -802,13 +802,13 @@ int CThread_WeatherGather::GetWeatherLiveGather_2(CTime currentTime,const char *
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn BOOL GetWeatherLive_URL(CTime time,const char *szUrl,ST_WEATHER_LIST stWeatherInfoList,const char *szSavePath)
- * @brief µ¥ÀÌÅÍ È£Ãâ ¹× µ¥ÀÌÅÍ ÆÄ½Ì
- * @details ½ÇÈ² µ¥ÀÌÅÍ URL Á¢¼Ó Á¶È¸µÈ µ¥ÀÌÅÍ ÆÄ½Ì
- * @param[in] time Á¶È¸ÇÒ ½Ã°£
- * @param[in] szUrl Á¢¼Ó URL
- * @param[in] stWeatherInfoList ½ÇÈ² µ¥ÀÌÅÍ À§Ä¡ Á¤º¸
- * @param[in] szSavePath ÀÓ½Ã ÆÄÀÏ ÀúÀåÀ§Ä¡
- * @return TRUE: ¼º°ø ,FALSE: ½ÇÆĞ
+ * @brief ë°ì´í„° í˜¸ì¶œ ë° ë°ì´í„° íŒŒì‹±
+ * @details ì‹¤í™© ë°ì´í„° URL ì ‘ì† ì¡°íšŒëœ ë°ì´í„° íŒŒì‹±
+ * @param[in] time ì¡°íšŒí•  ì‹œê°„
+ * @param[in] szUrl ì ‘ì† URL
+ * @param[in] stWeatherInfoList ì‹¤í™© ë°ì´í„° ìœ„ì¹˜ ì •ë³´
+ * @param[in] szSavePath ì„ì‹œ íŒŒì¼ ì €ì¥ìœ„ì¹˜
+ * @return TRUE: ì„±ê³µ ,FALSE: ì‹¤íŒ¨
  * @bug -
  * @warning -
  * @see -
@@ -838,14 +838,14 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL(CTime time,const char *szUrl,ST_W
 #endif
 
 	//////////////////////////////////////////////////////////////////////////
-	//RUL Á¢¼Ó XML Load
+	//RUL ì ‘ì† XML Load
 #ifdef	_TEST_MODE
 	strXmlSavePath.Format("%s\\WeatherLive-2016-02-19 1145.xml",szSavePath);
 	_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather XmlLoad]", USER_COLOR_BLACK, "Log : [_TEST_MODE Load]");
 #else
 	if(xmlDocW.Load(strUrl) == FALSE)
 	{
-		strMsgTemp.Format("Position : [%s][%s], log : [Á¢¼Ó Fail][%s]",strMsgTitle,strSiteName,strUrl);
+		strMsgTemp.Format("Position : [%s][%s], log : [ì ‘ì† Fail][%s]",strMsgTitle,strSiteName,strUrl);
 		SetWriteLogFile("Processor-log : [Weather UrlXmlLoad Error..],",strRunlog_E2);
 #ifdef _DEBUG
 		TRACE("WeatherLive Xml Url Load Error.. (%s) \n",strMsgTemp);
@@ -859,7 +859,7 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL(CTime time,const char *szUrl,ST_W
 #endif
 
 	//////////////////////////////////////////////////////////////////////////
-	//XML ÆÄÀÏ Load
+	//XML íŒŒì¼ Load
 	TiXmlDocument ToiXmlDoc;
 	ToiXmlDoc.Clear();
 	if(ToiXmlDoc.LoadFile(strXmlSavePath) == FALSE)
@@ -882,9 +882,9 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL(CTime time,const char *szUrl,ST_W
 
 	while(pNode)
 	{
-		pNode->ToElement()->Attribute("item"); // Ã¹¹øÂ° ³ëµåÀÇ nameÀ» ÀĞ½À´Ï´Ù
+		pNode->ToElement()->Attribute("item"); // ì²«ë²ˆì§¸ ë…¸ë“œì˜ nameì„ ì½ìŠµë‹ˆë‹¤
 
-		pNode = pNode->NextSibling();  // µÎ¹øÂ°·Î ÀÌµ¿ÇÕ´Ï´Ù.
+		pNode = pNode->NextSibling();  // ë‘ë²ˆì§¸ë¡œ ì´ë™í•©ë‹ˆë‹¤.
 		nDataCnt++;
 	}
 
@@ -893,21 +893,21 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL(CTime time,const char *szUrl,ST_W
 	CString strObsrValue ="";
 	CString strValBuff ="";
 
-	//TCHAR*	_lpszLiveGrid[] = {"Site","¿Âµµ","°­¼ö·®","ÇÏ´ÃÄÚµå","½Àµµ","°­¼öÄÚµå","Ç³¼Ó"};
+	//TCHAR*	_lpszLiveGrid[] = {"Site","ì˜¨ë„","ê°•ìˆ˜ëŸ‰","í•˜ëŠ˜ì½”ë“œ","ìŠµë„","ê°•ìˆ˜ì½”ë“œ","í’ì†"};
 	CString strT1H,strRN1,strSKY,strREH,strPTY,strWSD;
 
 	for(int nI = 0; nI < nDataCnt; nI++)
 	{
 		try
 		{
-			strCategory = GetElementText(pNode,"category",strMsgTitle,strSiteName); //Ç×¸ñ°ª
-			//strColumnName = GetColumnName(strCategory); //Ç×¸ñ°ª°ú ÀÏÄ¡ÇÏ´Â ÄÃ·³ ¸í °¡Á®¿Â´Ù.
-			strColumnName = strCategory; //XML ÄÃ·³ µ¥ÀÌÅÍ ±×´ë·Î Å×ÀÌºí ÄÃ·³ »ç¿ë
+			strCategory = GetElementText(pNode,"category",strMsgTitle,strSiteName); //í•­ëª©ê°’
+			//strColumnName = GetColumnName(strCategory); //í•­ëª©ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ì»¬ëŸ¼ ëª… ê°€ì ¸ì˜¨ë‹¤.
+			strColumnName = strCategory; //XML ì»¬ëŸ¼ ë°ì´í„° ê·¸ëŒ€ë¡œ í…Œì´ë¸” ì»¬ëŸ¼ ì‚¬ìš©
 			strObsrValue = GetElementText(pNode,"obsrValue",strMsgTitle,strSiteName); //Missing
 			strValBuff = stWeatherUrl.GetForecastGrib_TYP(strCategory,strObsrValue);
 			if(strValBuff == "Error")
 			{
-				pNode = pNode->NextSibling();  // ´ÙÀ½ Item ÀÌµ¿ ÇÕ´Ï´Ù.
+				pNode = pNode->NextSibling();  // ë‹¤ìŒ Item ì´ë™ í•©ë‹ˆë‹¤.
 				continue;
 			}
 
@@ -941,7 +941,7 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL(CTime time,const char *szUrl,ST_W
 			TRACE("WeatherLive Xml File Load category : [%s], obsrValue : [%s]) \n",strCategory,strObsrValue);
 #endif
 
-			pNode = pNode->NextSibling();  // ´ÙÀ½ Item ÀÌµ¿ ÇÕ´Ï´Ù.
+			pNode = pNode->NextSibling();  // ë‹¤ìŒ Item ì´ë™ í•©ë‹ˆë‹¤.
 		}
 		catch (_com_error &e)
 		{
@@ -1006,11 +1006,11 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 #endif
 
 	//////////////////////////////////////////////////////////////////////////
-	//RUL Á¢¼Ó XML Load
+	//RUL ì ‘ì† XML Load
 
 	if(xmlDocW.Load(strUrl) == FALSE)
 	{
-		strMsgTemp.Format("Position : [%s][%s], log : [Á¢¼Ó Fail][%s]",strMsgTitle,strSiteName,strUrl);
+		strMsgTemp.Format("Position : [%s][%s], log : [ì ‘ì† Fail][%s]",strMsgTitle,strSiteName,strUrl);
 		SetWriteLogFile("Processor-log : [Weather UrlXmlLoad Error..],",strRunlog_E2);
 #ifdef _DEBUG
 		TRACE("WeatherLive Xml Url Load Error.. (%s) \n",strMsgTemp);
@@ -1019,19 +1019,19 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 	}
 	_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather UrlXmlLoad]", USER_COLOR_BLACK, "log : [Url Xml Load Success]");
 
-	//--»ç¿ë¾ÈÇÔ
+	//--ì‚¬ìš©ì•ˆí•¨
 	//strXmlPath.Format("%s\\%s-%04d-%02d-%02d %02d%02d.xml",szSavePath,strSiteName,time.GetYear(),time.GetMonth(),time.GetDay(),time.GetHour(),time.GetMinute());
 
 	strXmlFileName.Format("%s-%04d-%02d-%02d %02d%02d.xml",strSiteName,time.GetYear(),time.GetMonth(),time.GetDay(),time.GetHour(),time.GetMinute());
 	strXmlPath.Format("%s\\%s",szSavePath,strXmlFileName);
 	xmlDocW.Save(strXmlPath);
 
-	//Å×½ºÆ®ÇÒ¶§¸¸ »ç¿ë
+	//í…ŒìŠ¤íŠ¸í• ë•Œë§Œ ì‚¬ìš©
 	//strXmlPath.Format("%s\\Error-TestXML.xml",szSavePath);
 
 
 	//////////////////////////////////////////////////////////////////////////
-	//XML ÆÄÀÏ Load
+	//XML íŒŒì¼ Load
 	TiXmlDocument ToiXmlDoc;
 	ToiXmlDoc.Clear();
 	if(ToiXmlDoc.LoadFile(strXmlPath) == FALSE)
@@ -1055,15 +1055,15 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 	CString strHeaderCheck = "";
 	try
 	{
-		strHeaderCheck = GetElementText(pNodeHeaderCheck,"resultMsg",strMsgTitle,strSiteName); //Ç×¸ñ°ª
+		strHeaderCheck = GetElementText(pNodeHeaderCheck,"resultMsg",strMsgTitle,strSiteName); //í•­ëª©ê°’
 
 		if(strHeaderCheck != "OK")
 		{
 			ToiXmlDoc.Clear();
-			//strXmlPath.Format("%s\\Çö´ëÆÄ¿öÅØ-2017-01-17 1650.xml",szSavePath);
+			//strXmlPath.Format("%s\\í˜„ëŒ€íŒŒì›Œí…-2017-01-17 1650.xml",szSavePath);
 			if(m_strXmlOldFileName.IsEmpty() == TRUE)
 			{
-				strRunlog_E2.Format("Position : [%s][%s], log : [±â»óÃ» Á¤º¸ È®ÀÎ ¹× XML ÆÄÀÏ È®ÀÎ ÇÊ¿ä][%s]",strMsgTitle,strSiteName,strXmlPath);
+				strRunlog_E2.Format("Position : [%s][%s], log : [ê¸°ìƒì²­ ì •ë³´ í™•ì¸ ë° XML íŒŒì¼ í™•ì¸ í•„ìš”][%s]",strMsgTitle,strSiteName,strXmlPath);
 				SetWriteLogFile("Processor-log : [Weather XmlLoad Error..Sub],",strRunlog_E2);
 
 				ToiXmlDoc.Clear();
@@ -1081,7 +1081,7 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 				return FALSE;
 			}
 
-			strRunlog_E2.Format("Position : [%s][%s], log : [±â»óÃ»ÀÀ´ä ¼¼¼Ç ¹®Á¦(´©¶ô¹æÁö Àüµ¥ÀÌÅÍ(%s)·Î ¾÷µ¥ÀÌÆ®)][%s]",strMsgTitle,strSiteName,m_strXmlOldFileName,strXmlPath);
+			strRunlog_E2.Format("Position : [%s][%s], log : [ê¸°ìƒì²­ì‘ë‹µ ì„¸ì…˜ ë¬¸ì œ(ëˆ„ë½ë°©ì§€ ì „ë°ì´í„°(%s)ë¡œ ì—…ë°ì´íŠ¸)][%s]",strMsgTitle,strSiteName,m_strXmlOldFileName,strXmlPath);
 			SetWriteLogFile("Processor-log : [Weather Server Error..Sub],",strRunlog_E2);
 		}
 	}
@@ -1102,9 +1102,9 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 
 	while(pNode)
 	{
-		pNode->ToElement()->Attribute("item"); // Ã¹¹øÂ° ³ëµåÀÇ nameÀ» ÀĞ½À´Ï´Ù
+		pNode->ToElement()->Attribute("item"); // ì²«ë²ˆì§¸ ë…¸ë“œì˜ nameì„ ì½ìŠµë‹ˆë‹¤
 
-		pNode = pNode->NextSibling();  // µÎ¹øÂ°·Î ÀÌµ¿ÇÕ´Ï´Ù.
+		pNode = pNode->NextSibling();  // ë‘ë²ˆì§¸ë¡œ ì´ë™í•©ë‹ˆë‹¤.
 		nDataCnt++;
 	}
 
@@ -1113,21 +1113,21 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 	CString strObsrValue ="";
 	CString strValBuff ="";
 
-	//TCHAR*	_lpszLiveGrid[] = {"Site","¿Âµµ","°­¼ö·®","ÇÏ´ÃÄÚµå","½Àµµ","°­¼öÄÚµå","Ç³¼Ó"};
+	//TCHAR*	_lpszLiveGrid[] = {"Site","ì˜¨ë„","ê°•ìˆ˜ëŸ‰","í•˜ëŠ˜ì½”ë“œ","ìŠµë„","ê°•ìˆ˜ì½”ë“œ","í’ì†"};
 	CString strT1H,strRN1,strSKY,strREH,strPTY,strWSD;
 
 	for(int nI = 0; nI < nDataCnt; nI++)
 	{
 		try
 		{
-			strCategory = GetElementText(pNode,"category",strMsgTitle,strSiteName); //Ç×¸ñ°ª
-			//strColumnName = GetColumnName(strCategory); //Ç×¸ñ°ª°ú ÀÏÄ¡ÇÏ´Â ÄÃ·³ ¸í °¡Á®¿Â´Ù.
-			strColumnName = strCategory; //XML ÄÃ·³ µ¥ÀÌÅÍ ±×´ë·Î Å×ÀÌºí ÄÃ·³ »ç¿ë
+			strCategory = GetElementText(pNode,"category",strMsgTitle,strSiteName); //í•­ëª©ê°’
+			//strColumnName = GetColumnName(strCategory); //í•­ëª©ê°’ê³¼ ì¼ì¹˜í•˜ëŠ” ì»¬ëŸ¼ ëª… ê°€ì ¸ì˜¨ë‹¤.
+			strColumnName = strCategory; //XML ì»¬ëŸ¼ ë°ì´í„° ê·¸ëŒ€ë¡œ í…Œì´ë¸” ì»¬ëŸ¼ ì‚¬ìš©
 			strObsrValue = GetElementText(pNode,"obsrValue",strMsgTitle,strSiteName); //Missing
 			strValBuff = stWeatherUrl.GetForecastGrib_TYP(strCategory,strObsrValue);
 			if(strValBuff == "Error")
 			{
-				pNode = pNode->NextSibling();  // ´ÙÀ½ Item ÀÌµ¿ ÇÕ´Ï´Ù.
+				pNode = pNode->NextSibling();  // ë‹¤ìŒ Item ì´ë™ í•©ë‹ˆë‹¤.
 				continue;
 			}
 
@@ -1161,7 +1161,7 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 			TRACE("WeatherLive Xml File Load category : [%s], obsrValue : [%s]) \n",strCategory,strObsrValue);
 #endif
 
-			pNode = pNode->NextSibling();  // ´ÙÀ½ Item ÀÌµ¿ ÇÕ´Ï´Ù.
+			pNode = pNode->NextSibling();  // ë‹¤ìŒ Item ì´ë™ í•©ë‹ˆë‹¤.
 		}
 		catch (_com_error &e)
 		{
@@ -1198,14 +1198,14 @@ BOOL CThread_WeatherGather::GetWeatherLive_URL_2(CTime time,const char *szUrl,ST
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn int GetWeatherForecastGather(CTime currentTime,const char *szSavePath,ST_DBINFO *stDBInfo,ST_GATHERINFO *stGatherInfo,BOOL bStartCheck)
- * @brief ¿¹º¸µ¥ÀÌÅÍ ¼öÁı
- * @details 48½Ã°£ ¿¹º¸µ¥ÀÌÅÍ ¼öÁı
- * @param[in] currentTime ÇöÀç½Ã°£
- * @param[in] szSavePath ÀÓ½Ã ÆÄÀÏ ÀúÀåÀ§Ä¡
- * @param[in] stDBInfo DB Á¢¼Ó Á¤º¸
- * @param[in] stGatherInfo ¿¹º¸Á¤º¸ À§Ä¡ Á¤º¸
- * @param[in] bStartCheck »ç¿ë¾ÈÇÔ
- * @return TRUE: ¼º°ø ,THREAD_END: ¾²·¹µå Á¾·á
+ * @brief ì˜ˆë³´ë°ì´í„° ìˆ˜ì§‘
+ * @details 48ì‹œê°„ ì˜ˆë³´ë°ì´í„° ìˆ˜ì§‘
+ * @param[in] currentTime í˜„ì¬ì‹œê°„
+ * @param[in] szSavePath ì„ì‹œ íŒŒì¼ ì €ì¥ìœ„ì¹˜
+ * @param[in] stDBInfo DB ì ‘ì† ì •ë³´
+ * @param[in] stGatherInfo ì˜ˆë³´ì •ë³´ ìœ„ì¹˜ ì •ë³´
+ * @param[in] bStartCheck ì‚¬ìš©ì•ˆí•¨
+ * @return TRUE: ì„±ê³µ ,THREAD_END: ì“°ë ˆë“œ ì¢…ë£Œ
  * @bug -
  * @warning -
  * @see -
@@ -1231,7 +1231,7 @@ int CThread_WeatherGather::GetWeatherForecastGather(CTime currentTime,const char
 			{
 				for(int nI = 0; nI < nForecastList; nI++)
 				{
-					strLogMsg.Format("%s - 48½Ã°£ ³¯¾¾¿¹º¸ Ã³¸®",m_stWeatherList[nI].szSiteName);
+					strLogMsg.Format("%s - 48ì‹œê°„ ë‚ ì”¨ì˜ˆë³´ ì²˜ë¦¬",m_stWeatherList[nI].szSiteName);
 					//_addCurrentstateMsg(1,0, m_strThreadName, strLogMsg);
 
 					if(m_bEndCheck == TRUE)
@@ -1260,7 +1260,7 @@ int CThread_WeatherGather::GetWeatherForecastGather(CTime currentTime,const char
 			}
 			else
 			{
-				strLogMsg.Format("Position : [Weather Forecast],log : [SetQuery Success][¼öÁıÇÒ »çÀÌÆ®Á¤º¸°¡ ¾ø½À´Ï´Ù.]");
+				strLogMsg.Format("Position : [Weather Forecast],log : [SetQuery Success][ìˆ˜ì§‘í•  ì‚¬ì´íŠ¸ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.]");
 				_addSystemMsg(LOG_MESSAGE_3, USER_COLOR_BLUE, "Processor-log : [Weather Forecast]", USER_COLOR_BLACK, strLogMsg);
 				//_addCurrentstateMsg(1,0, m_strThreadName, strLogMsg);
 			}
@@ -1276,14 +1276,14 @@ int CThread_WeatherGather::GetWeatherForecastGather(CTime currentTime,const char
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn BOOL GetWeatherForecast_URL(CTime time,const char *szUrl,ST_WEATHER_LIST stWeatherInfoList,const char *szSavePath)
- * @brief ¿¹º¸µ¥ÀÌÅÍ ¼öÁı
- * @details ¿¹º¸ ³¯¾¾ XML µ¥ÀÌÅÍ È£Ãâ ¹× µ¥ÀÌÅÍ ÆÄ½Ì
- * @param[in] time Á¶È¸ÇÒ ½Ã°£
- * @param[in] szUrl Á¢¼Ó URL
- * @param[in] stDBInfo DB Á¢¼Ó Á¤º¸
- * @param[in] stWeatherInfoList Á¶È¸ÇÒ À§Ä¡¹× ÁÂÇ¥
- * @param[in] szSavePath ÀÓ½Ã ÀúÀÚÀ§Ä¡
- * @return TRUE: ¼º°ø ,FLASE: Á¶È¸ ½ÇÆĞ
+ * @brief ì˜ˆë³´ë°ì´í„° ìˆ˜ì§‘
+ * @details ì˜ˆë³´ ë‚ ì”¨ XML ë°ì´í„° í˜¸ì¶œ ë° ë°ì´í„° íŒŒì‹±
+ * @param[in] time ì¡°íšŒí•  ì‹œê°„
+ * @param[in] szUrl ì ‘ì† URL
+ * @param[in] stDBInfo DB ì ‘ì† ì •ë³´
+ * @param[in] stWeatherInfoList ì¡°íšŒí•  ìœ„ì¹˜ë° ì¢Œí‘œ
+ * @param[in] szSavePath ì„ì‹œ ì €ììœ„ì¹˜
+ * @return TRUE: ì„±ê³µ ,FLASE: ì¡°íšŒ ì‹¤íŒ¨
  * @bug -
  * @warning -
  * @see -
@@ -1311,10 +1311,10 @@ BOOL CThread_WeatherGather::GetWeatherForecast_URL(CTime time,const char *szUrl,
 #endif
 
 	//////////////////////////////////////////////////////////////////////////
-	//RUL Á¢¼Ó XML Load
+	//RUL ì ‘ì† XML Load
 	if(xmlDocW.Load(strUrl) == FALSE)
 	{
-		strMsgTemp.Format("Position : [%s][%s], log : [Á¢¼Ó Fail][%s]",strMsgTitle,strSiteName,strUrl);
+		strMsgTemp.Format("Position : [%s][%s], log : [ì ‘ì† Fail][%s]",strMsgTitle,strSiteName,strUrl);
 		SetWriteLogFile("Processor-log : [Weather UrlXmlLoad Error..],",strRunlog_E2);
 #ifdef _DEBUG
 		TRACE("WeatherLive Xml Url Load Error.. (%s) \n",strMsgTemp);
@@ -1328,7 +1328,7 @@ BOOL CThread_WeatherGather::GetWeatherForecast_URL(CTime time,const char *szUrl,
 
 
 	//////////////////////////////////////////////////////////////////////////
-	//XML ÆÄÀÏ Load
+	//XML íŒŒì¼ Load
 	TiXmlDocument ToiXmlDoc;
 	ToiXmlDoc.Clear();
 	if(ToiXmlDoc.LoadFile(strXmlSavePath) == FALSE)
@@ -1351,14 +1351,14 @@ BOOL CThread_WeatherGather::GetWeatherForecast_URL(CTime time,const char *szUrl,
 
 	while(pNode)
 	{
-		pNode->ToElement()->Attribute("seq"); // Ã¹¹øÂ° ³ëµåÀÇ name ÀĞ´Â´Ù
+		pNode->ToElement()->Attribute("seq"); // ì²«ë²ˆì§¸ ë…¸ë“œì˜ name ì½ëŠ”ë‹¤
 
-		pNode = pNode->NextSibling();  // µÎ¹øÂ°·Î ÀÌµ¿
+		pNode = pNode->NextSibling();  // ë‘ë²ˆì§¸ë¡œ ì´ë™
 		nDataCnt++;
 	}
 
 	pNode = ToiXmlDoc.FirstChild("wid")->FirstChild("header");
-	CString strTM = GetElementText(pNode,"tm",strMsgTitle,strSiteName); //1¹øÂ°³¯(¿À´Ã/³»ÀÏ/¸ğ·¹ Áß ?)
+	CString strTM = GetElementText(pNode,"tm",strMsgTitle,strSiteName); //1ë²ˆì§¸ë‚ (ì˜¤ëŠ˜/ë‚´ì¼/ëª¨ë ˆ ì¤‘ ?)
 
 	m_stWeatherForecast.nTotalCnt = nDataCnt;
 	m_stWeatherForecast.init(strTM);
@@ -1373,64 +1373,64 @@ BOOL CThread_WeatherGather::GetWeatherForecast_URL(CTime time,const char *szUrl,
 		try
 		{
 			int nReadHour = -1;
-			strGetText = GetElementText(pNode,"day",strMsgTitle,strSiteName); //1¹øÂ°³¯(¿À´Ã/³»ÀÏ/¸ğ·¹ Áß ?)
+			strGetText = GetElementText(pNode,"day",strMsgTitle,strSiteName); //1ë²ˆì§¸ë‚ (ì˜¤ëŠ˜/ë‚´ì¼/ëª¨ë ˆ ì¤‘ ?)
 			m_stWeatherForecast.pStWTData[nI].nDay = atoi(strGetText);
 			if(atoi(strGetText) == 0)
-				strTextTemp = "±İÀÏ";
+				strTextTemp = "ê¸ˆì¼";
 			else if(atoi(strGetText) == 1)
-				strTextTemp = "³»ÀÏ";
+				strTextTemp = "ë‚´ì¼";
 			else if(atoi(strGetText) == 2)
-				strTextTemp = "¸ğ·¹";
+				strTextTemp = "ëª¨ë ˆ";
 
-			strGetText = GetElementText(pNode,"hour",strMsgTitle,strSiteName); //¿¹º¸½Ã°£
+			strGetText = GetElementText(pNode,"hour",strMsgTitle,strSiteName); //ì˜ˆë³´ì‹œê°„
 			nReadHour = atoi(strGetText);
 			m_stWeatherForecast.pStWTData[nI].nHour = atoi(strGetText);
 
-			strGetText = GetElementText(pNode,"temp",strMsgTitle,strSiteName); //ÇöÀç ½Ã°¢ ¿Âµµ
+			strGetText = GetElementText(pNode,"temp",strMsgTitle,strSiteName); //í˜„ì¬ ì‹œê° ì˜¨ë„
 			m_stWeatherForecast.pStWTData[nI].fTemp = (float)atof(strGetText);
 
-			strGetText = GetElementText(pNode,"tmx",strMsgTitle,strSiteName); //ÃÖ°í¿Âµµ (-999.0 : °ªÀÌ ¾øÀ» °æ¿ì)
+			strGetText = GetElementText(pNode,"tmx",strMsgTitle,strSiteName); //ìµœê³ ì˜¨ë„ (-999.0 : ê°’ì´ ì—†ì„ ê²½ìš°)
 			m_stWeatherForecast.pStWTData[nI].fTempMx = (float)atof(strGetText);
 
-			strGetText = GetElementText(pNode,"tmn",strMsgTitle,strSiteName); //ÃÖÀú ¿Âµµ (-999.0 : °ªÀÌ ¾øÀ» °æ¿ì)
+			strGetText = GetElementText(pNode,"tmn",strMsgTitle,strSiteName); //ìµœì € ì˜¨ë„ (-999.0 : ê°’ì´ ì—†ì„ ê²½ìš°)
 			m_stWeatherForecast.pStWTData[nI].fTempMn = (float)atof(strGetText);
 
-			strGetText = GetElementText(pNode,"sky",strMsgTitle,strSiteName); //ÇÏ´Ã»óÅÂ ÄÚµå 1:¸¼À½,2:±¸¸§Á¶±İ,3:±¸¸§¸¹À½,4:Èå¸²
+			strGetText = GetElementText(pNode,"sky",strMsgTitle,strSiteName); //í•˜ëŠ˜ìƒíƒœ ì½”ë“œ 1:ë§‘ìŒ,2:êµ¬ë¦„ì¡°ê¸ˆ,3:êµ¬ë¦„ë§ìŒ,4:íë¦¼
 			m_stWeatherForecast.pStWTData[nI].nSky = atoi(strGetText);
 
-			strGetText = GetElementText(pNode,"pty",strMsgTitle,strSiteName); //°­¼ö»óÅÂ ÄÚµå 0:¾øÀ½,1ºñ,2:ºñ/´«,3:´«/ºñ,4:´«
+			strGetText = GetElementText(pNode,"pty",strMsgTitle,strSiteName); //ê°•ìˆ˜ìƒíƒœ ì½”ë“œ 0:ì—†ìŒ,1ë¹„,2:ë¹„/ëˆˆ,3:ëˆˆ/ë¹„,4:ëˆˆ
 			m_stWeatherForecast.pStWTData[nI].nPty = atoi(strGetText);
 
-			CString strRetBuff = GetElementText(pNode,"wfKor",strMsgTitle,strSiteName); //³¯¾¾ÇÑ±¹¾î ¸¼À½,±¸¸§Á¶±İ,±¸¸§¸¹À½,Èå¸²,ºñ,´«/ºñ,´«
-			//ÇÊ¿äÇÏ¸é À¯´ÏÄÚµå¸¦ ´Ù½Ã ¾È½Ã(MBCS)·Î
+			CString strRetBuff = GetElementText(pNode,"wfKor",strMsgTitle,strSiteName); //ë‚ ì”¨í•œêµ­ì–´ ë§‘ìŒ,êµ¬ë¦„ì¡°ê¸ˆ,êµ¬ë¦„ë§ìŒ,íë¦¼,ë¹„,ëˆˆ/ë¹„,ëˆˆ
+			//í•„ìš”í•˜ë©´ ìœ ë‹ˆì½”ë“œë¥¼ ë‹¤ì‹œ ì•ˆì‹œ(MBCS)ë¡œ
 			wchar_t utf8[64] = {0,};
 			char ansi[64] = {0,};
-			//À¯´ÏÄÚµå·Î
+			//ìœ ë‹ˆì½”ë“œë¡œ
 			int re1 = MultiByteToWideChar(CP_UTF8,0,(LPCTSTR)strRetBuff,strRetBuff.GetLength()+1,utf8,1000);
 			int re2 = WideCharToMultiByte(CP_ACP,0,utf8,wcslen(utf8)+1,ansi,1000,0,NULL);
 			sprintf_s(m_stWeatherForecast.pStWTData[nI].szWfkor,"%s",ansi);
 
-			strGetText = GetElementText(pNode,"pop",strMsgTitle,strSiteName); //°­¼ö·® %
+			strGetText = GetElementText(pNode,"pop",strMsgTitle,strSiteName); //ê°•ìˆ˜ëŸ‰ %
 			m_stWeatherForecast.pStWTData[nI].nPop = atoi(strGetText);
 
-			strGetText = GetElementText(pNode,"ws",strMsgTitle,strSiteName); //Ç³¼Ó(m/s)
+			strGetText = GetElementText(pNode,"ws",strMsgTitle,strSiteName); //í’ì†(m/s)
 			m_stWeatherForecast.pStWTData[nI].nWs = atoi(strGetText);
 
-			strGetText = GetElementText(pNode,"wd",strMsgTitle,strSiteName); //Ç³·® ÄÚµå (0:ºÏ,1:ºÏµ¿,2:µ¿,3:³²µ¿,4:³²,5:³²¼­,6:¼­,7:ºÏ¼­
+			strGetText = GetElementText(pNode,"wd",strMsgTitle,strSiteName); //í’ëŸ‰ ì½”ë“œ (0:ë¶,1:ë¶ë™,2:ë™,3:ë‚¨ë™,4:ë‚¨,5:ë‚¨ì„œ,6:ì„œ,7:ë¶ì„œ
 			m_stWeatherForecast.pStWTData[nI].nWd = atoi(strGetText);
 
-			strRetBuff = GetElementText(pNode,"wdKor",strMsgTitle,strSiteName); //Ç³·® ÇÑ±¹¾î
+			strRetBuff = GetElementText(pNode,"wdKor",strMsgTitle,strSiteName); //í’ëŸ‰ í•œêµ­ì–´
 			memset(utf8,0x00,sizeof(utf8));
 			memset(ansi,0x00,sizeof(ansi));
-			//À¯´ÏÄÚµå·Î
+			//ìœ ë‹ˆì½”ë“œë¡œ
 			re1 = MultiByteToWideChar(CP_UTF8,0,(LPCTSTR)strRetBuff,strRetBuff.GetLength() + 1, utf8, 1000);
 			re2 = WideCharToMultiByte(CP_ACP,0,utf8,wcslen(utf8)+1,ansi,1000,0,NULL);
 			sprintf_s(m_stWeatherForecast.pStWTData[nI].szWdkor, "%s", ansi);
 
-			strGetText = GetElementText(pNode,"reh",strMsgTitle,strSiteName); //½Àµµ(%)
+			strGetText = GetElementText(pNode,"reh",strMsgTitle,strSiteName); //ìŠµë„(%)
 			m_stWeatherForecast.pStWTData[nI].nReh = atoi(strGetText);
 
-			pNode = pNode->NextSibling();  // ´ÙÀ½ Item ÀÌµ¿ ÇÕ´Ï´Ù.
+			pNode = pNode->NextSibling();  // ë‹¤ìŒ Item ì´ë™ í•©ë‹ˆë‹¤.
 
 			CString strTime = "";
 			strTime.Format("%s/%d",strTextTemp,nReadHour);
@@ -1478,14 +1478,14 @@ BOOL CThread_WeatherGather::GetWeatherForecast_URL(CTime time,const char *szUrl,
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn CString GetElementText(TiXmlNode* pNode, const char* szChildName,const char *szLogTitle,const char *szLogPos)
- * @brief XML µ¥ÀÌÅÍº° ÃßÃâ
- * @details XML µ¥ÀÌÅÍ ÆÄ½Ì
- * @param[in] pNode XML µ¥ÀÌÅÍ ³ëÆ®
- * @param[in] szChildName Á¶È¸ÇÒ µ¥ÀÌÅÍ¸í
- * @param[in] stDBInfo DB Á¢¼Ó Á¤º¸
- * @param[in] szLogTitle ·Î±×ÀúÀå½Ã ¸íÄª
- * @param[in] szLogPos ·Î±× À§Ä¡
- * @return Text Á¶È¸µÈ µ¥ÀÌÅÍ °á°ú
+ * @brief XML ë°ì´í„°ë³„ ì¶”ì¶œ
+ * @details XML ë°ì´í„° íŒŒì‹±
+ * @param[in] pNode XML ë°ì´í„° ë…¸íŠ¸
+ * @param[in] szChildName ì¡°íšŒí•  ë°ì´í„°ëª…
+ * @param[in] stDBInfo DB ì ‘ì† ì •ë³´
+ * @param[in] szLogTitle ë¡œê·¸ì €ì¥ì‹œ ëª…ì¹­
+ * @param[in] szLogPos ë¡œê·¸ ìœ„ì¹˜
+ * @return Text ì¡°íšŒëœ ë°ì´í„° ê²°ê³¼
  * @bug -
  * @warning -
  * @see -
@@ -1528,12 +1528,12 @@ CString CThread_WeatherGather::GetElementText(TiXmlNode* pNode, const char* szCh
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn int SetQueryValue(CString strQuery,const char *szLogTitle,const char *szLogPos)
- * @brief DB Äõ¸® ½ÇÇà
- * @details (Insert/Update) Äõ¸® ¹® ½ÇÇà
- * @param[in] strQuery Äõ¸®¹® ¹®ÀÚ¿­
- * @param[in] szLogTitle ·Î±× ¸íÄª
- * @param[in] szLogPos ·Î±× À§Ä¡
- * @return 1: ¼º°ø,-1:½ÇÆĞ
+ * @brief DB ì¿¼ë¦¬ ì‹¤í–‰
+ * @details (Insert/Update) ì¿¼ë¦¬ ë¬¸ ì‹¤í–‰
+ * @param[in] strQuery ì¿¼ë¦¬ë¬¸ ë¬¸ìì—´
+ * @param[in] szLogTitle ë¡œê·¸ ëª…ì¹­
+ * @param[in] szLogPos ë¡œê·¸ ìœ„ì¹˜
+ * @return 1: ì„±ê³µ,-1:ì‹¤íŒ¨
  * @bug -
  * @warning -
  * @see -
@@ -1567,11 +1567,11 @@ int CThread_WeatherGather::SetQueryValue(CString strQuery,const char *szLogTitle
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn void SetWeatherForecastSpaceData(CTime time, int nIndex,const char *szSiteId,ST_DBINFO *stDBInfo)
- * @brief ¿¹º¸ µ¥ÀÌÅÍ DBÄõ¸®¹® »ı¼º
- * @details (Insert/Update) Äõ¸®¹® »ı¼º
- * @param[in] time ±â·ÏÇÒ ½Ã°£
- * @param[in] szSiteId »çÀÌÆ®(°Ç¹°) ID
- * @param[in] stDBInfo DB Á¢¼Ó Á¤º¸
+ * @brief ì˜ˆë³´ ë°ì´í„° DBì¿¼ë¦¬ë¬¸ ìƒì„±
+ * @details (Insert/Update) ì¿¼ë¦¬ë¬¸ ìƒì„±
+ * @param[in] time ê¸°ë¡í•  ì‹œê°„
+ * @param[in] szSiteId ì‚¬ì´íŠ¸(ê±´ë¬¼) ID
+ * @param[in] stDBInfo DB ì ‘ì† ì •ë³´
  * @return -
  * @bug -
  * @warning -
@@ -1606,7 +1606,7 @@ void CThread_WeatherGather::SetWeatherForecastSpaceData(CTime time, int nIndex,c
 
 		if(nCheck == 0)
 		{
-																						//¿Âµµ,½Àµµ, ÃÖ°í, ÃÖ¼Ò,ÇÏ´Ã, ³¯¾¾, °­¼ö,°­¼ö, Ç³¼Ó,Ç³·®, Ç³·®ÇÑ±¹
+																						//ì˜¨ë„,ìŠµë„, ìµœê³ , ìµœì†Œ,í•˜ëŠ˜, ë‚ ì”¨, ê°•ìˆ˜,ê°•ìˆ˜, í’ì†,í’ëŸ‰, í’ëŸ‰í•œêµ­
 			strQuery.Format("INSERT INTO CM_WEATHER_FORECAST_HISTORY(SITE_ID,REGISTER_DATE,TEMP,REH,TMX,TMN,SKY,WFKOR,PTY,POP,WS,WD,WDKOR) VALUES ("
 				"'%s', '%s', %0.1f, %d, %0.1f, %0.1f, %d, '%s', %d, %d, %d, %d, '%s')",
 				szSiteId,strMsr_Tim,m_stWeatherForecast.pStWTData[nI].fTemp,m_stWeatherForecast.pStWTData[nI].nReh,
@@ -1641,10 +1641,10 @@ void CThread_WeatherGather::SetWeatherForecastSpaceData(CTime time, int nIndex,c
 //////////////////////////////////////////////////////////////////////////
 /*!
  * @fn int GetWeatherForecast_UseCheck(const char *szSiteid, const char *szMsrTime)
- * @brief ¿¹º¸ Á¤º¸ DB ÀúÀå¿©ºÎ Ã¼Å©
- * @details ¿¹º¸ Á¤º¸ DB ÀúÀå¿©ºÎ Ã¼Å©
- * @param[in] szSiteId »çÀÌÆ®(°Ç¹°) ID
- * @param[in] szMsrTime Á¶È¸µÈ ³¯Â¥½Ã°£ colum data Format : xxxx-xx-xx xx:xx
+ * @brief ì˜ˆë³´ ì •ë³´ DB ì €ì¥ì—¬ë¶€ ì²´í¬
+ * @details ì˜ˆë³´ ì •ë³´ DB ì €ì¥ì—¬ë¶€ ì²´í¬
+ * @param[in] szSiteId ì‚¬ì´íŠ¸(ê±´ë¬¼) ID
+ * @param[in] szMsrTime ì¡°íšŒëœ ë‚ ì§œì‹œê°„ colum data Format : xxxx-xx-xx xx:xx
  * @return -
  * @bug -
  * @warning -
@@ -1694,13 +1694,13 @@ int CThread_WeatherGather::GetWeatherForecast_UseCheck(const char *szSiteid, con
 		//CString strDescription = e.Description();
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;

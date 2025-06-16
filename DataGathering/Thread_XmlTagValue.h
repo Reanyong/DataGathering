@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Control_List/XMLCtrl/tinyxml.h"
 #include "Control_List/XMLCtrl/XmlNodeWrapper.h"
@@ -10,7 +10,7 @@ class CThread_XmlTagValue : public CWinThread
 	DECLARE_DYNCREATE(CThread_XmlTagValue)
 
 protected:
-	CThread_XmlTagValue();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_XmlTagValue();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_XmlTagValue();
 
 

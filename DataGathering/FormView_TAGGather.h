@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Control_List/ListBoxControl/XListCtrl.h"
 #include "Thread_MinGatherMain.h"
 
-// CFormView_TAGGather Æû ºäÀÔ´Ï´Ù.
+// CFormView_TAGGather í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CFormView_TAGGather : public CFormView
 {
 	DECLARE_DYNCREATE(CFormView_TAGGather)
 
 protected:
-	CFormView_TAGGather();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFormView_TAGGather();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFormView_TAGGather();
 
 public:
@@ -32,8 +32,8 @@ protected:
 	CXListCtrl m_xListTagDicList;	// TAG_DIC List Ctrl
 
 	CFont m_Font;
-	BOOL m_bWait; //20210308 ksw ½ÃÀÛ ´ë±â
-	BOOL m_b50Check; //20210308 ksw ½ÃÀÛ ´ë±â 50ÃÊ Ã¼Å© º¯¼ö
+	BOOL m_bWait; //20210308 ksw ì‹œì‘ ëŒ€ê¸°
+	BOOL m_b50Check; //20210308 ksw ì‹œì‘ ëŒ€ê¸° 50ì´ˆ ì²´í¬ ë³€ìˆ˜
 	int m_nMin;
 	int m_nSec;
 
@@ -60,7 +60,7 @@ protected:
 	void StopThread(BOOL bStopType);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual void OnInitialUpdate();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedButtonGatherStart();

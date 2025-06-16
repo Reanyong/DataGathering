@@ -1,4 +1,4 @@
-// TreeViewPane.cpp : implementation file
+ï»¿// TreeViewPane.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -67,32 +67,32 @@ int CTreeViewPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_wndClassView.SetImageList( &m_ilClassView, TVSIL_NORMAL );
 		
 		// Add the parent item
-		HTREEITEM htItem = m_wndClassView.InsertItem(_T("¼³Á¤"));
+		HTREEITEM htItem = m_wndClassView.InsertItem(_T("ì„¤ì •"));
 		
 		
 		m_wndClassView.SetItemState( htItem, TVIS_BOLD, TVIS_BOLD );
 		
 		// Add children
-		HTREEITEM hti = m_wndClassView.InsertItem(_T("µ¥ÀÌÅÍº£ÀÌ½º ¼³Á¤"), 3, 3, htItem);
+		HTREEITEM hti = m_wndClassView.InsertItem(_T("ë°ì´í„°ë² ì´ìŠ¤ ì„¤ì •"), 3, 3, htItem);
 		
 		
-		hti = m_wndClassView.InsertItem(_T("ÅÂ±× »ı¼º ¼³Á¤"), 3, 3, htItem);
+		hti = m_wndClassView.InsertItem(_T("íƒœê·¸ ìƒì„± ì„¤ì •"), 3, 3, htItem);
 		
 		
-		hti = m_wndClassView.InsertItem(_T("Raw µ¥ÀÌÅÍ ¼öÁı¼³Á¤"), 3, 3, htItem);
+		hti = m_wndClassView.InsertItem(_T("Raw ë°ì´í„° ìˆ˜ì§‘ì„¤ì •"), 3, 3, htItem);
 		
 		
-		hti = m_wndClassView.InsertItem(_T("ÇÁ·ÎÁ§Æ® »ı¼º"), 3, 3, htItem);
+		hti = m_wndClassView.InsertItem(_T("í”„ë¡œì íŠ¸ ìƒì„±"), 3, 3, htItem);
 		
-		hti = m_wndClassView.InsertItem(_T("Raw Column ¼³Á¤"), 3, 3, htItem);
+		hti = m_wndClassView.InsertItem(_T("Raw Column ì„¤ì •"), 3, 3, htItem);
 		
-		HTREEITEM htItem2 = m_wndClassView.InsertItem(_T("»óÅÂ"));
+		HTREEITEM htItem2 = m_wndClassView.InsertItem(_T("ìƒíƒœ"));
 		m_wndClassView.SetItemState( htItem2, TVIS_BOLD, TVIS_BOLD );
 		
-		hti = m_wndClassView.InsertItem(_T("ÅÂ±× »óÅÂ"), 3, 3, htItem2);
+		hti = m_wndClassView.InsertItem(_T("íƒœê·¸ ìƒíƒœ"), 3, 3, htItem2);
 		
 		
-		hti = m_wndClassView.InsertItem(_T("Raw µ¥ÀÌÅÍ »óÅÂ"), 3, 3, htItem2);
+		hti = m_wndClassView.InsertItem(_T("Raw ë°ì´í„° ìƒíƒœ"), 3, 3, htItem2);
 	
 		m_wndClassView.Expand(htItem, TVE_EXPAND);
 
@@ -154,26 +154,26 @@ void CTreeViewPane::OnDblclk(NMHDR* pNMHDR, LRESULT* pResult)
 	CString str  = m_wndClassView.GetItemText(hSelected);
 	DWORD  wParam = m_wndClassView.GetItemData(hSelected);
 	
-	//¿ŞÂÊ Æ®¸® Ãß°¡
-	//Æ®¸® ¿©±â2
+	//ì™¼ìª½ íŠ¸ë¦¬ ì¶”ê°€
+	//íŠ¸ë¦¬ ì—¬ê¸°2
 	
 	
-	if(m_wndClassView.GetItemText(hSelected) == "ÅÂ±× »óÅÂ")
+	if(m_wndClassView.GetItemText(hSelected) == "íƒœê·¸ ìƒíƒœ")
 		lParam = VIEW_TAG;
-	else if(m_wndClassView.GetItemText(hSelected) == "Raw µ¥ÀÌÅÍ »óÅÂ")
+	else if(m_wndClassView.GetItemText(hSelected) == "Raw ë°ì´í„° ìƒíƒœ")
 		lParam = VIEW_ROWDATA;
-	else if(m_wndClassView.GetItemText(hSelected) == "ÅÂ±× »ı¼º ¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "íƒœê·¸ ìƒì„± ì„¤ì •")
 		lParam = DLG_SETTING_TAG;
-	else if(m_wndClassView.GetItemText(hSelected) == "Raw µ¥ÀÌÅÍ ¼öÁı¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "Raw ë°ì´í„° ìˆ˜ì§‘ì„¤ì •")
 		lParam = DLG_SETTING_RAW;
-	else if(m_wndClassView.GetItemText(hSelected) == "µ¥ÀÌÅÍº£ÀÌ½º ¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "ë°ì´í„°ë² ì´ìŠ¤ ì„¤ì •")
 		lParam = DLG_SETTING_DB;
-	else if(m_wndClassView.GetItemText(hSelected) == "ÇÁ·ÎÁ§Æ® »ı¼º")
+	else if(m_wndClassView.GetItemText(hSelected) == "í”„ë¡œì íŠ¸ ìƒì„±")
 		lParam = DLG_SETTING_PROJECT;
 	
 	if(lParam == 0)
 	{
-		AfxMessageBox("»ç¿ëÇÏÁö ¾Ê´Â ÇÁ·Î±×·¥ ÀÔ´Ï´Ù.");
+		AfxMessageBox("ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í”„ë¡œê·¸ë¨ ì…ë‹ˆë‹¤.");
 		return;
 	}
 	//UpdateImage(hSelected, TRUE);
@@ -206,28 +206,28 @@ void CTreeViewPane::OnDblclk(NMHDR* pNMHDR, LRESULT* pResult)
 	CString str  = m_wndClassView.GetItemText(hSelected);
 	DWORD  wParam = m_wndClassView.GetItemData(hSelected);
 	
-	//¿ŞÂÊ Æ®¸® Ãß°¡
-	//Æ®¸® ¿©±â2
+	//ì™¼ìª½ íŠ¸ë¦¬ ì¶”ê°€
+	//íŠ¸ë¦¬ ì—¬ê¸°2
 	
 	
-	if(m_wndClassView.GetItemText(hSelected) == "ÅÂ±× »óÅÂ")
+	if(m_wndClassView.GetItemText(hSelected) == "íƒœê·¸ ìƒíƒœ")
 		lParam = VIEW_TAG;
-	/*else if(m_wndClassView.GetItemText(hSelected) == "Raw µ¥ÀÌÅÍ »óÅÂ")
+	/*else if(m_wndClassView.GetItemText(hSelected) == "Raw ë°ì´í„° ìƒíƒœ")
 		lParam = VIEW_ROWDATA;
-	else if(m_wndClassView.GetItemText(hSelected) == "ÅÂ±× »ı¼º ¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "íƒœê·¸ ìƒì„± ì„¤ì •")
 		lParam = DLG_SETTING_TAG;
-	else if(m_wndClassView.GetItemText(hSelected) == "Raw µ¥ÀÌÅÍ ¼öÁı¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "Raw ë°ì´í„° ìˆ˜ì§‘ì„¤ì •")
 		lParam = DLG_SETTING_RAW;
-	else if(m_wndClassView.GetItemText(hSelected) == "µ¥ÀÌÅÍº£ÀÌ½º ¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "ë°ì´í„°ë² ì´ìŠ¤ ì„¤ì •")
 		lParam = DLG_SETTING_DB;
-	else if(m_wndClassView.GetItemText(hSelected) == "ÇÁ·ÎÁ§Æ® »ı¼º")
+	else if(m_wndClassView.GetItemText(hSelected) == "í”„ë¡œì íŠ¸ ìƒì„±")
 		lParam = DLG_SETTING_PROJECT;
-	else if(m_wndClassView.GetItemText(hSelected) == "Raw Column ¼³Á¤")
+	else if(m_wndClassView.GetItemText(hSelected) == "Raw Column ì„¤ì •")
 		lParam = DLG_SETTING_COLUMN;
 	*/
 	if(lParam == 0)
 	{
-		AfxMessageBox("»ç¿ëÇÏÁö ¾Ê´Â ÇÁ·Î±×·¥ ÀÔ´Ï´Ù.");
+		AfxMessageBox("ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í”„ë¡œê·¸ë¨ ì…ë‹ˆë‹¤.");
 		return;
 	}
 	//UpdateImage(hSelected, TRUE);

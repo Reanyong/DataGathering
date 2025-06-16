@@ -1,4 +1,4 @@
-#ifndef XCOMBOLIST_H
+﻿#ifndef XCOMBOLIST_H
 #define XCOMBOLIST_H
 
 

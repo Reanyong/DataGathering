@@ -1,4 +1,4 @@
-// Thread_IConnect.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_IConnect.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -26,14 +26,14 @@ CThread_IConnect::~CThread_IConnect()
 
 BOOL CThread_IConnect::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
-	::CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+	::CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_IConnect::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	if(DB_Connect != NULL)
 	{
 		if(DB_Connect->GetDB_ConnectionStatus() == 1)
@@ -52,11 +52,11 @@ BEGIN_MESSAGE_MAP(CThread_IConnect, CWinThread)
 END_MESSAGE_MAP()
 
 
-// CThread_IConnect ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_IConnect ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- Ã³¸® °úÁ¤Áß ¿À·ù ¹ß»ı½Ã ¿À·ù ¸Ş½ÃÁö ¹ß»ı Á¤º¸
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ì²˜ë¦¬ ê³¼ì •ì¤‘ ì˜¤ë¥˜ ë°œìƒì‹œ ì˜¤ë¥˜ ë©”ì‹œì§€ ë°œìƒ ì •ë³´
 -void Com_Error(const char *szLogName,_com_error *e)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -74,14 +74,14 @@ void CThread_IConnect::Com_Error(const char *szLogName,_com_error *e)
 
 	strRunlog_E2Log.Format("Position : [%s], LogName: [%s], %s",m_strThreadName,szLogName, strRunlog_E2);
 	SetWriteLogFile("Processor-log : [DB Com Error..],",strRunlog_E2Log);
-	//_addCurrentstateMsg(1,0, m_strThreadName, "DB Ã³¸® ¿À·ù »ó¼¼·Î±× È®ÀÎ");
+	//_addCurrentstateMsg(1,0, m_strThreadName, "DB ì²˜ë¦¬ ì˜¤ë¥˜ ìƒì„¸ë¡œê·¸ í™•ì¸");
 	Sleep(500);
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ¹ß»ıÀÌ·Â Á¤º¸ ÆÄÀÏ·Î ÀúÀå
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë°œìƒì´ë ¥ ì •ë³´ íŒŒì¼ë¡œ ì €ì¥
 -void SetWriteLogFile(const char *sTitle,const char *szLogMsg)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -95,14 +95,14 @@ void CThread_IConnect::SetWriteLogFile(const char *sTitle,const char *szLogMsg)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : ÀÌº¥Æ®
-- ¾²·¹µå ½ÃÀÛ
+- í˜¸ì¶œ ë°©ë²• : ì´ë²¤íŠ¸
+- ì“°ë ˆë“œ ì‹œì‘
 -int Run()
 */
 //////////////////////////////////////////////////////////////////////////
 int CThread_IConnect::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	//m_strThreadName = "IConnect Main";
 
 	CTime currentTime;// CTime::GetCurrentTime();
@@ -125,11 +125,11 @@ int CThread_IConnect::Run()
 	m_bThreadRunState = TRUE;
 	int nSiteCount = 0;
 
-	int nTestMode = 0; //0 : Á¤»ó ¿î¿µ,1 : Å×½ºÆ® 
+	int nTestMode = 0; //0 : ì •ìƒ ìš´ì˜,1 : í…ŒìŠ¤íŠ¸ 
 	int nInterval = 15;
 	DWORD dw = GetTickCount() - ((nInterval * 60) * 1000);
 
-	strLogMsg.Format("¼öÁı ÁÖ±â:[%d]ºĞ ÁÖ±â",nInterval);
+	strLogMsg.Format("ìˆ˜ì§‘ ì£¼ê¸°:[%d]ë¶„ ì£¼ê¸°",nInterval);
 	//_addCurrentstateMsg(0,0, m_strThreadName, strLogMsg);
 
 	
@@ -161,7 +161,7 @@ int CThread_IConnect::Run()
 
 			if(nTestMode != 1)
 			{
-				if(stGatherInfo.nISmart_GatherType == 0) //»ç¿ëÀÚ Á÷Á¢ Á¢¼Ó Á¤º¸ ÀÔ·Â
+				if(stGatherInfo.nISmart_GatherType == 0) //ì‚¬ìš©ì ì§ì ‘ ì ‘ì† ì •ë³´ ì…ë ¥
 				{
 					if(bStartCheck == FALSE)
 					{
@@ -173,11 +173,11 @@ int CThread_IConnect::Run()
 						strcpy_s(m_stSiteInterlock[m_nSiteCount].szSiteName,stISmartAccess.szSiteName);
 						m_nSiteCount = 1;
 						bStartCheck = TRUE;
-						((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Site(stISmartAccess.szSiteName,stISmartAccess.szID,"»ç¿ëÀÚ Á÷Á¢ ¼³Á¤ ¿¬µ¿");
+						((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Site(stISmartAccess.szSiteName,stISmartAccess.szID,"ì‚¬ìš©ì ì§ì ‘ ì„¤ì • ì—°ë™");
 					}
 
 				}
-				else if(stGatherInfo.nISmart_GatherType == 1)//Web Á¢¼Ó Á¤º¸ È®ÀÎ
+				else if(stGatherInfo.nISmart_GatherType == 1)//Web ì ‘ì† ì •ë³´ í™•ì¸
 				{
 					if(bStartCheck == FALSE)
 					{
@@ -188,7 +188,7 @@ int CThread_IConnect::Run()
 				}
 				else
 				{
-					((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Site("Á¤º¸ ¾øÀ½","°­Á¦ ÁßÁö","È¯°æ¼³Á¤ ¼³Á¤ ¼öÁı ¼³Á¤ ÇÊ¿ä!");
+					((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Site("ì •ë³´ ì—†ìŒ","ê°•ì œ ì¤‘ì§€","í™˜ê²½ì„¤ì • ì„¤ì • ìˆ˜ì§‘ ì„¤ì • í•„ìš”!");
 					m_bEndThread = TRUE;
 					break;
 				}
@@ -200,7 +200,7 @@ int CThread_IConnect::Run()
 					{
 						if(currentTime.GetHour() == 15)
 						{
-							CTimeSpan timeSpan(1,0,0,0); //or timeSpan = CTimeSpan(ÀÏ,½Ã,ºĞ,ÃÊ);
+							CTimeSpan timeSpan(1,0,0,0); //or timeSpan = CTimeSpan(ì¼,ì‹œ,ë¶„,ì´ˆ);
 							currentTime = currentTime - timeSpan;
 						}
 					}
@@ -209,8 +209,8 @@ int CThread_IConnect::Run()
 				}
 				else
 				{
-					strLogMsg.Format("%s : ¼öÁıÇÒ »çÀÌÆ®°¡ ¼³Á¤ÀÌ ÇÊ¿äÇÕ´Ï´Ù.",currentTime.Format("%Y-%m-%d %H:%M"));
-					((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Item("¼öÁı FAIL",strLogMsg,TRUE);
+					strLogMsg.Format("%s : ìˆ˜ì§‘í•  ì‚¬ì´íŠ¸ê°€ ì„¤ì •ì´ í•„ìš”í•©ë‹ˆë‹¤.",currentTime.Format("%Y-%m-%d %H:%M"));
+					((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Item("ìˆ˜ì§‘ FAIL",strLogMsg,TRUE);
 					//_addCurrentstateMsg(0,0, m_strThreadName, strLogMsg);
 				}
 				if(nRet == THREAD_END)
@@ -224,7 +224,7 @@ int CThread_IConnect::Run()
 			}
 			dw = GetTickCount();
 
-			//_addCurrentstateMsg(0,0, m_strThreadName, "Processor Á¤»ó Ã³¸®Áß..");
+			//_addCurrentstateMsg(0,0, m_strThreadName, "Processor ì •ìƒ ì²˜ë¦¬ì¤‘..");
 		}
 		else
 			Sleep(500);
@@ -239,8 +239,8 @@ int CThread_IConnect::Run()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ÀÓ½Ã ÆÄÀÏ·Î ÀĞ¾î¼­ Ã³¸®
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ì„ì‹œ íŒŒì¼ë¡œ ì½ì–´ì„œ ì²˜ë¦¬
 -void TestModData(int nCount, CTime currentDay)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -256,7 +256,7 @@ void CThread_IConnect::TestModData(int nCount, CTime currentDay,int nDBType)
 	if(!Rfile.Open(strTestPath, CFile::modeRead|CFile::shareDenyWrite))
 
 	{
-		AfxMessageBox( " ÁöÁ¤ µÈ ÆÄÀÏÀ» ¿­¼ö ¾ø½À ´Ï´Ù." );
+		AfxMessageBox( " ì§€ì • ëœ íŒŒì¼ì„ ì—´ìˆ˜ ì—†ìŠµ ë‹ˆë‹¤." );
 		Rfile.Close();
 		return;
 	}
@@ -276,8 +276,8 @@ void CThread_IConnect::TestModData(int nCount, CTime currentDay,int nDBType)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ¼öÁıÇÒ »çÀÌÆ® Á¤º¸ Á¶È¸
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ìˆ˜ì§‘í•  ì‚¬ì´íŠ¸ ì •ë³´ ì¡°íšŒ
 -int GetSiteSearch()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -334,7 +334,7 @@ int CThread_IConnect::GetSiteSearch(int nDBType)
 					strcpy_s(m_stSiteInterlock[m_nSiteCount].szPW,strAccessPw);
 					strcpy_s(m_stSiteInterlock[m_nSiteCount].szSiteId,strRetSiteid);
 					strcpy_s(m_stSiteInterlock[m_nSiteCount].szSiteName,strRetSiteName);
-					((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Site(strRetSiteName,m_stSiteInterlock[m_nSiteCount].szID,"Web ¼³Á¤ Á¤º¸ »ç¿ë");
+					((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Site(strRetSiteName,m_stSiteInterlock[m_nSiteCount].szID,"Web ì„¤ì • ì •ë³´ ì‚¬ìš©");
 					m_nSiteCount++;
 				
 					pRs->MoveNext();					
@@ -355,13 +355,13 @@ int CThread_IConnect::GetSiteSearch(int nDBType)
 		//CString strDescription = e.Description();
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -387,8 +387,8 @@ int CThread_IConnect::GetSiteSearch(int nDBType)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- »çÀÌÆ®º° ÇÑÀü¸Á Á¢¼Ó Á¤º¸ ÀĞ¾î¿À±â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ì‚¬ì´íŠ¸ë³„ í•œì „ë§ ì ‘ì† ì •ë³´ ì½ì–´ì˜¤ê¸°
 -CString GetSiteSettingInfo(const char *szSiteID)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -405,8 +405,8 @@ CString CThread_IConnect::GetSiteSettingInfo(const char *szSiteID)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- ismart À¥ÆäÀÌÁö Á¢±Ù Url Á¢¼Ó ¹× À¥ÆäÀÌÁö µ¥ÀÌÅÍ ÀĞ¾î¿À±â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ismart ì›¹í˜ì´ì§€ ì ‘ê·¼ Url ì ‘ì† ë° ì›¹í˜ì´ì§€ ë°ì´í„° ì½ì–´ì˜¤ê¸°
 -int ISmartConnect(int nSiteCount,CTime currentDay)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -469,7 +469,7 @@ int CThread_IConnect::ISmartConnect(int nSiteCount,CTime currentDay,int nDBType)
 		strSite_Id = m_stSiteInterlock[nSitePos].szSiteId;
 		strUser_Id = m_stSiteInterlock[nSitePos].szID;
 		strUser_Pw = m_stSiteInterlock[nSitePos].szPW;
-		strOutMsg.Format("%s ÇÑÀü¸Á µ¥ÀÌÅÍ ¼öÁı Áß...",strSite_Name);
+		strOutMsg.Format("%s í•œì „ë§ ë°ì´í„° ìˆ˜ì§‘ ì¤‘...",strSite_Name);
 		//_addCurrentstateMsg(1,0, m_strThreadName, strOutMsg);
 
 		Sleep(1000);
@@ -608,7 +608,7 @@ int CThread_IConnect::ISmartConnect(int nSiteCount,CTime currentDay,int nDBType)
 			
 			strContent = "";
 			strContent.Format(_T("%s"),buff);
-			if(strContent.Find("·Î±×ÀÎ") > 0)
+			if(strContent.Find("ë¡œê·¸ì¸") > 0)
 			{
 				strOutMsg.Format("[Object3],Site:[%s][%s],ID:[%s],PW:[%s] I-Smart LogIn Failed.",strSite_Name,strSite_Id,strUser_Id,strUser_Pw);
 				SetWriteLogFile("IConnect LogIn Failed",strOutMsg);
@@ -716,8 +716,8 @@ int CThread_IConnect::ISmartConnect(int nSiteCount,CTime currentDay,int nDBType)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- À¥ÆäÀÌÁö¿¡¼­ ÀĞ¾î¿Â µ¥ÀÌÅÍ ÆÄ½Ì ¹× ÇÑÀü µ¥Ÿæ °ü¸® Å×ÀÌºí¿¡ ÀúÀå
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ì›¹í˜ì´ì§€ì—ì„œ ì½ì–´ì˜¨ ë°ì´í„° íŒŒì‹± ë° í•œì „ ë°ì ê´€ë¦¬ í…Œì´ë¸”ì— ì €ì¥
 -BOOL GetDataParsing(CString strContent,const char *szSiteName,const char *szSiteId,CTime currentDay)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -847,18 +847,18 @@ BOOL CThread_IConnect::GetDataParsing(CString strContent,const char *szSiteName,
 		for(int nPos = 0; nPos < 7 ; nPos ++)
 		{
 			strInsertQuery.Format("IF EXISTS( "
-										" SELECT RECORD_TIME FROM %s " //Å×ÀÌºí ¸í
+										" SELECT RECORD_TIME FROM %s " //í…Œì´ë¸” ëª…
 										" WHERE SITE_ID = '%s' "
 											" AND DATA_COLUMN_TYPE = %d AND RECORD_DATE = '%s' AND RECORD_TIME = %d "
 								" ) "
-								" BEGIN "  //--SELECT¹®ÀÇ °á°ú°ªÀÌ Á¸ÀçÇÒ  °æ¿ì ½ÇÇà
-										" UPDATE %s "//Å×ÀÌºí ¸í
+								" BEGIN "  //--SELECTë¬¸ì˜ ê²°ê³¼ê°’ì´ ì¡´ì¬í•   ê²½ìš° ì‹¤í–‰
+										" UPDATE %s "//í…Œì´ë¸” ëª…
 											" SET T00= %f,T15 = %f,T30=%f,T45=%f "
 										" WHERE SITE_ID = '%s'  "
 											" AND DATA_COLUMN_TYPE = %d AND RECORD_DATE = '%s' AND RECORD_TIME = %d  "
 									" END "
 								" ELSE "
-									" BEGIN " // --SELECT¹®ÀÇ °á°ú°ªÀÌ ¾øÀ» °æ¿ì ½ÇÇà
+									" BEGIN " // --SELECTë¬¸ì˜ ê²°ê³¼ê°’ì´ ì—†ì„ ê²½ìš° ì‹¤í–‰
 										" INSERT INTO %s(SITE_ID,DATA_COLUMN_TYPE,RECORD_DATE,RECORD_TIME,T00,T15,T30,T45) "
 										" VALUES('%s',%d,'%s',%d,%f,%f,%f,%f) "
 								" END",
@@ -877,7 +877,7 @@ BOOL CThread_IConnect::GetDataParsing(CString strContent,const char *szSiteName,
 			
 			SetQueryValue(strInsertQuery,stIConnectdata.szSiteId,strOutMsg);
 
-			strOutMsg.Format("Á¤»ó-%s,%s %d,[T0=%f,T15=%f,T30=%f,T45=%f]",stIConnectdata.szSiteId,strDay,nHour,stIConnectdata.fParsingValue[nPos][0],stIConnectdata.fParsingValue[nPos][1],stIConnectdata.fParsingValue[nPos][2],stIConnectdata.fParsingValue[nPos][3]);
+			strOutMsg.Format("ì •ìƒ-%s,%s %d,[T0=%f,T15=%f,T30=%f,T45=%f]",stIConnectdata.szSiteId,strDay,nHour,stIConnectdata.fParsingValue[nPos][0],stIConnectdata.fParsingValue[nPos][1],stIConnectdata.fParsingValue[nPos][2],stIConnectdata.fParsingValue[nPos][3]);
 			((CFormView_IConnect *)(m_pCtrl))->ListInsertItem_Item(szSiteName,strOutMsg,FALSE);
 		}
 		Sleep(20);
@@ -888,8 +888,8 @@ BOOL CThread_IConnect::GetDataParsing(CString strContent,const char *szSiteName,
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : È£Ãâ
-- DB Äõ¸® ½ÇÇà(Insert/Update)
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- DB ì¿¼ë¦¬ ì‹¤í–‰(Insert/Update)
 -int SetQueryValue(CString strQuery,const char *szLogTitle,const char *szLogPos);
 */
 //////////////////////////////////////////////////////////////////////////

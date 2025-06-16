@@ -1,4 +1,4 @@
-// InPlaceEdit.cpp : implementation file
+﻿// InPlaceEdit.cpp : implementation file
 //
 // Adapted by Chris Maunder <cmaunder@mail.com>
 // Copyright (c) 1998-2002. All Rights Reserved.

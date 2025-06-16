@@ -1,4 +1,4 @@
-// DLG_TagMappingSet.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_TagMappingSet.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "DLG_TagMapping.h"
 
 
-// CDLG_TagMappingSet ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_TagMappingSet ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_TagMappingSet, CDialog)
 
@@ -81,22 +81,22 @@ CString CDLG_TagMappingSet::Com_Error(const char *szLogName,_com_error *e)
 }
 
 
-// CDLG_TagMappingSet ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_TagMappingSet ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CDLG_TagMappingSet::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ComposeCompose();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
 BOOL CDLG_TagMappingSet::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::PreTranslateMessage(pMsg);
 }
@@ -104,7 +104,7 @@ BOOL CDLG_TagMappingSet::PreTranslateMessage(MSG* pMsg)
 
 void CDLG_TagMappingSet::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DataAdd();
 	
 	CDialog::OnOK();
@@ -243,7 +243,7 @@ void CDLG_TagMappingSet::ComposeCompose()
 
 void CDLG_TagMappingSet::OnCbnSelchangeCombo1()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nPos = m_comboGrp.GetCurSel();
 	ST_CODE stCode;
 	memset(&stCode,0x00,sizeof(ST_CODE));
@@ -269,9 +269,9 @@ int CDLG_TagMappingSet::SelectCode(const char *szkeyCode)
 	CString strCode,strCodeName;
 	int nTotalRow = 0;
 
-	//¿À¶óÅ¬ Å¸ÀÔ Äõ¸® ÇÊ¿ä
+	//ì˜¤ë¼í´ íƒ€ì… ì¿¼ë¦¬ í•„ìš”
 
-	//MSSQL Å¸ÀÔ Äõ¸®
+	//MSSQL íƒ€ì… ì¿¼ë¦¬
 	strQuery.Format("SELECT CODE,CODE_NAME	FROM [ENERGY_MANAGE].[dbo].[02_NEW_TAG_TP] WHERE GRP_CODE = '%s'",szkeyCode);
 
 	try
@@ -290,7 +290,7 @@ int CDLG_TagMappingSet::SelectCode(const char *szkeyCode)
 				for(int nRow = 0; nRow < nTotalRow ; nRow++)
 				{
 					DB_Connect->GetFieldValue(pRs, "CODE", strCode);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "CODE_NAME", strCodeName);			//TAG ¸í
+					DB_Connect->GetFieldValue(pRs, "CODE_NAME", strCodeName);			//TAG ëª…
 					m_comboGrpTagType.AddString(strCodeName);
 
 					ST_CODE stCode;
@@ -331,7 +331,7 @@ int CDLG_TagMappingSet::SelectCode(const char *szkeyCode)
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				//				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -349,7 +349,7 @@ int CDLG_TagMappingSet::SelectCode(const char *szkeyCode)
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆĞ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		//		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -455,7 +455,7 @@ void CDLG_TagMappingSet::InsertData(ST_TAG_LIST *stTagInfo)
 
 	if(nResult < 1)
 	{
-		strRunlog_E2.Format("Position : [°øÈŞÀÏ][¼³Á¤], log : [Query Fail],[%s]",strQuery);
+		strRunlog_E2.Format("Position : [ê³µíœ´ì¼][ì„¤ì •], log : [Query Fail],[%s]",strQuery);
 		//SetWriteLogFile(": [Set Query Error..],",strRunlog_E2);
 
 #ifdef _DEBUG

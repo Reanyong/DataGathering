@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 
@@ -9,7 +9,7 @@ class CThread_TAGSearch : public CWinThread
 	DECLARE_DYNCREATE(CThread_TAGSearch)
 
 protected:
-	CThread_TAGSearch();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CThread_TAGSearch();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CThread_TAGSearch();
 
 public:

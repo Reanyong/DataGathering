@@ -1,9 +1,9 @@
-# .editorconfig for VS2019 - C++ UTF-8 with BOM 저장용
+# .editorconfig for VS2019 - C++ UTF-8 저장용
 
 root = true
 
 [*.{cpp,h,hpp,cxx,cc}]
-charset = utf-8-bom
+charset = utf-8
 end_of_line = crlf
 insert_final_newline = true
 trim_trailing_whitespace = true

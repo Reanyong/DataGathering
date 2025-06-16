@@ -1,4 +1,4 @@
-// FormView_TagMapping.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_TagMapping.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -39,7 +39,7 @@ BEGIN_MESSAGE_MAP(CFormView_TagMapping, CFormView)
 END_MESSAGE_MAP()
 
 
-// CFormView_TagMapping Áø´ÜÀÔ´Ï´Ù.
+// CFormView_TagMapping ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_TagMapping::AssertValid() const
@@ -56,9 +56,9 @@ void CFormView_TagMapping::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-TCHAR*	_lpszList_History[] = {"½Ã°£","°á°ú"};
+TCHAR*	_lpszList_History[] = {"ì‹œê°„","ê²°ê³¼"};
 
-// CFormView_TagMapping ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFormView_TagMapping ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 void CFormView_TagMapping::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
@@ -86,28 +86,28 @@ void CFormView_TagMapping::OnInitialUpdate()
 
 	if(stGatherInfo.nEngMng_GatherType == 0)
 	{
-		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "Auto start", USER_COLOR_RED, "¼öÁı Çã¿ë »óÅÂÀÔ´Ï´Ù.");
+		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "Auto start", USER_COLOR_RED, "ìˆ˜ì§‘ í—ˆìš© ìƒíƒœì…ë‹ˆë‹¤.");
 		if(stGatherInfo.nAutoRun_Check == 1)
 		{
-			GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+			GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 			SetTimer(1,500,NULL);
 			m_bThreadStart = FALSE;
-			_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁı »óÅÂ : [ÀÚµ¿ ¼öÁı]");
-			//_addCurrentstateMsg(0,0, m_strTitle, "ÀÚµ¿ ¼öÁı");
+			_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìë™ ìˆ˜ì§‘]");
+			//_addCurrentstateMsg(0,0, m_strTitle, "ìë™ ìˆ˜ì§‘");
 		}
 		else
 		{
-			GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ..");
+			GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘..");
 			GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
-			_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁı »óÅÂ : [¼öµ¿ ¼öÁı]");
-			//_addCurrentstateMsg(0,0, m_strTitle, "¼öµ¿ ¼öÁı");
+			_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìˆ˜ë™ ìˆ˜ì§‘]");
+			//_addCurrentstateMsg(0,0, m_strTitle, "ìˆ˜ë™ ìˆ˜ì§‘");
 		}
 	}
 	else
-		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "»ç¿ë ºñÇã¿ë", USER_COLOR_RED, "¼öÁı ¹ÌÇã¿ë »óÅÂÀÔ´Ï´Ù.");
+		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "ì‚¬ìš© ë¹„í—ˆìš©", USER_COLOR_RED, "ìˆ˜ì§‘ ë¯¸í—ˆìš© ìƒíƒœì…ë‹ˆë‹¤.");
 
 	//SetTimer(1, 500 , NULL);
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 }
 
 BOOL CFormView_TagMapping::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
@@ -158,7 +158,7 @@ BOOL CFormView_TagMapping::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT 
 
 BOOL CFormView_TagMapping::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_F4 || pMsg->wParam == VK_CONTROL)
@@ -170,7 +170,7 @@ BOOL CFormView_TagMapping::PreTranslateMessage(MSG* pMsg)
 
 void CFormView_TagMapping::OnBnClickedButtonMappingSet()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDLG_TagMapping dlg;
 	dlg.DoModal();
 }
@@ -179,7 +179,7 @@ void CFormView_TagMapping::OnDestroy()
 {
 	CFormView::OnDestroy();
 	StopThread();
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
@@ -242,13 +242,13 @@ void CFormView_TagMapping::StopThread()
 
 void CFormView_TagMapping::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 
 	switch(nIDEvent)
 	{
 	case 1:
-		//GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö..");
+		//GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 		StartThread();
 		SetTimer(2,50,NULL);
 		break;
@@ -273,7 +273,7 @@ void CFormView_TagMapping::OnTimer(UINT_PTR nIDEvent)
 
 void CFormView_TagMapping::OnBnClickedButtonTaglistSet()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//GetDlgItem(IDC_BUTTON_TAGLIST_SET)->EnableWindow(FALSE);
 	if(m_pThreadXmlTagValue != NULL)
 	{
@@ -289,7 +289,7 @@ void CFormView_TagMapping::SetTagInfoList()
 
 void CFormView_TagMapping::OnBnClickedButtonStart()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strProcessorTitle = "";
 	GetDlgItem(IDC_BUTTON_START)->EnableWindow(FALSE);
 	strProcessorTitle.LoadString(IDS_MY_TREE_VIEW_1);
@@ -299,20 +299,20 @@ void CFormView_TagMapping::OnBnClickedButtonStart()
 		m_bThreadStart = FALSE;
 		//StartThread();
 		SetTimer(1,200,NULL);
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı Á¤Áö");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€");
 
-		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı ½ÃÀÛ");
-		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı ½ÃÀÛ]");
+		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì‹œì‘");
+		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì‹œì‘]");
 	}
 	else
 	{
 		m_bThreadStart = TRUE;
 		StopThread();
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁı ½ÃÀÛ");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œì‘");
 		GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
 
-		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı Á¤Áö");
-		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁı Á¤Áö]");
+		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€");
+		_addSystemMsg(LOG_MESSAGE_4, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€]");
 	}
 
 }
@@ -320,8 +320,8 @@ void CFormView_TagMapping::OnBnClickedButtonStart()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ı : ÀÌº¥Æ®
-- »ç¿ëÀÚ ÀÌº¥Æ® ¸Ş½ÃÁö
+- í˜¸ì¶œ ë°©ë²• : ì´ë²¤íŠ¸
+- ì‚¬ìš©ì ì´ë²¤íŠ¸ ë©”ì‹œì§€
 -LRESULT OnUserMessage(WPARAM wParam, LPARAM lParam)
 */
 //////////////////////////////////////////////////////////////////////////

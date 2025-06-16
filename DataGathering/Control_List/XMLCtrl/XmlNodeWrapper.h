@@ -1,4 +1,4 @@
-// XmlNodeWrapper.h: interface for the CXmlNodeWrapper class.
+﻿// XmlNodeWrapper.h: interface for the CXmlNodeWrapper class.
 //
 //////////////////////////////////////////////////////////////////////
 

@@ -1,22 +1,22 @@
-#pragma once
+ï»¿#pragma once
 #include "Control_List/ListBoxControl/XListCtrl.h"
 
-// CDLG_GatherInfoSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_GatherInfoSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_GatherInfoSetting : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_GatherInfoSetting)
 
 public:
-	CDLG_GatherInfoSetting(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_GatherInfoSetting(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_GatherInfoSetting();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_GATHERINFO_SETTING };
 
 protected:
-	// »çÀÌÆ® Á¤º¸ ¸®½ºÆ®
-	// µğ¹ÙÀÌ½º ¸®½ºÆ®
+	// ì‚¬ì´íŠ¸ ì •ë³´ ë¦¬ìŠ¤íŠ¸
+	// ë””ë°”ì´ìŠ¤ ë¦¬ìŠ¤íŠ¸
 	CComboBox m_ComboDeicevList;
 	CXListCtrl m_xListSiteList;
 	CFont m_Font;
@@ -41,7 +41,7 @@ protected:
 public:
 	void SetSettingSave() {SetGatherSetting();}
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedRadioGatherType1();
 	afx_msg void OnBnClickedRadioGatherType2();

@@ -1,4 +1,4 @@
-// XmlNodeWrapper.cpp: implementation of the CXmlNodeWrapper class.
+﻿// XmlNodeWrapper.cpp: implementation of the CXmlNodeWrapper class.
 //
 //////////////////////////////////////////////////////////////////////
 

@@ -1,15 +1,15 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦
-// »ç¿ëÇÏ´Â ¹æ¹ıÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿ş¾î¿¡ Æ÷ÇÔµÈ
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤("Fluent UI")ë¥¼
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ì ë¬¸ì„œì— ëŒ€í•´
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤.
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ìì„¸í•œ ë‚´ìš©ì€
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ğµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// DataGathering.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
+// DataGathering.cpp : ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ í´ë˜ìŠ¤ ë™ì‘ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -39,74 +39,74 @@
 BEGIN_MESSAGE_MAP(CDataGatheringApp, CWinAppEx)
 	ON_COMMAND(ID_APP_ABOUT, &CDataGatheringApp::OnAppAbout)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
-	// Ç¥ÁØ ÆÄÀÏÀ» ±âÃÊ·Î ÇÏ´Â ¹®¼­ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ íŒŒì¼ì„ ê¸°ì´ˆë¡œ í•˜ëŠ” ë¬¸ì„œ ëª…ë ¹ì…ë‹ˆë‹¤.
 	//ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
-	// Ç¥ÁØ ÀÎ¼â ¼³Á¤ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ì„¤ì • ëª…ë ¹ì…ë‹ˆë‹¤.
 	//ON_COMMAND(ID_USER_NEW_VIEW_OPEN, &CWinAppEx::OnFileNew)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinAppEx::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 
-// CDataGatheringApp »ı¼º
+// CDataGatheringApp ìƒì„±
 
 CDataGatheringApp::CDataGatheringApp()
 {
 	m_bHiColorIcons = TRUE;
 
-	// ´Ù½Ã ½ÃÀÛ °ü¸®ÀÚ Áö¿ø
+	// ë‹¤ì‹œ ì‹œì‘ ê´€ë¦¬ì ì§€ì›
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_ALL_ASPECTS;
 #ifdef _MANAGED
-	// ÀÀ¿ë ÇÁ·Î±×·¥À» °ø¿ë ¾ğ¾î ·±Å¸ÀÓ Áö¿øÀ» »ç¿ëÇÏ¿© ºôµåÇÑ °æ¿ì(/clr):
-	//     1) ÀÌ Ãß°¡ ¼³Á¤Àº ´Ù½Ã ½ÃÀÛ °ü¸®ÀÚ Áö¿øÀÌ Á¦´ë·Î ÀÛµ¿ÇÏ´Â µ¥ ÇÊ¿äÇÕ´Ï´Ù.
-	//     2) ÇÁ·ÎÁ§Æ®¿¡¼­ ºôµåÇÏ·Á¸é System.Windows.Forms¿¡ ´ëÇÑ ÂüÁ¶¸¦ Ãß°¡ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì„ ê³µìš© ì–¸ì–´ ëŸ°íƒ€ì„ ì§€ì›ì„ ì‚¬ìš©í•˜ì—¬ ë¹Œë“œí•œ ê²½ìš°(/clr):
+	//     1) ì´ ì¶”ê°€ ì„¤ì •ì€ ë‹¤ì‹œ ì‹œì‘ ê´€ë¦¬ì ì§€ì›ì´ ì œëŒ€ë¡œ ì‘ë™í•˜ëŠ” ë° í•„ìš”í•©ë‹ˆë‹¤.
+	//     2) í”„ë¡œì íŠ¸ì—ì„œ ë¹Œë“œí•˜ë ¤ë©´ System.Windows.Formsì— ëŒ€í•œ ì°¸ì¡°ë¥¼ ì¶”ê°€í•´ì•¼ í•©ë‹ˆë‹¤.
 	System::Windows::Forms::Application::SetUnhandledExceptionMode(System::Windows::Forms::UnhandledExceptionMode::ThrowException);
 #endif
 
-	// TODO: ¾Æ·¡ ÀÀ¿ë ÇÁ·Î±×·¥ ID ¹®ÀÚ¿­À» °íÀ¯ ID ¹®ÀÚ¿­·Î ¹Ù²Ù½Ê½Ã¿À(±ÇÀå).
-	// ¹®ÀÚ¿­¿¡ ´ëÇÑ ¼­½Ä: CompanyName.ProductName.SubProduct.VersionInformation
+	// TODO: ì•„ë˜ ì‘ìš© í”„ë¡œê·¸ë¨ ID ë¬¸ìì—´ì„ ê³ ìœ  ID ë¬¸ìì—´ë¡œ ë°”ê¾¸ì‹­ì‹œì˜¤(ê¶Œì¥).
+	// ë¬¸ìì—´ì— ëŒ€í•œ ì„œì‹: CompanyName.ProductName.SubProduct.VersionInformation
 	SetAppID(_T("DataGathering.AppID.NoVersion"));
 
-	// TODO: ¿©±â¿¡ »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ğµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// InitInstanceì— ëª¨ë“  ì¤‘ìš”í•œ ì´ˆê¸°í™” ì‘ì—…ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
 }
 
-// À¯ÀÏÇÑ CDataGatheringApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CDataGatheringApp ê°œì²´ì…ë‹ˆë‹¤.
 
 CDataGatheringApp theApp;
 
 
-// CDataGatheringApp ÃÊ±âÈ­
+// CDataGatheringApp ì´ˆê¸°í™”
 
 BOOL CDataGatheringApp::InitInstance()
 {
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹İµå½Ã InitCommonControlsEx()°¡ ÇÊ¿äÇÕ´Ï´Ù.
-	// InitCommonControlsEx()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ ë§¤ë‹ˆí˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControlsEx()ê°€ í•„ìš”í•©ë‹ˆë‹¤.
+	// InitCommonControlsEx()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	INITCOMMONCONTROLSEX InitCtrls;
 	InitCtrls.dwSize = sizeof(InitCtrls);
-	// ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­ »ç¿ëÇÒ ¸ğµç °ø¿ë ÄÁÆ®·Ñ Å¬·¡½º¸¦ Æ÷ÇÔÇÏµµ·Ï
-	// ÀÌ Ç×¸ñÀ» ¼³Á¤ÇÏ½Ê½Ã¿À.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì—ì„œ ì‚¬ìš©í•  ëª¨ë“  ê³µìš© ì»¨íŠ¸ë¡¤ í´ë˜ìŠ¤ë¥¼ í¬í•¨í•˜ë„ë¡
+	// ì´ í•­ëª©ì„ ì„¤ì •í•˜ì‹­ì‹œì˜¤.
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
-	//½ÇÇàÁßÀÎ ÇÁ·Î±×·¥ °Ë»ç
-	BOOL bEventCheck = EventActionCheck(); //ÇöÀç ½ÇÇàÁßÀÎ Ã¼Å©
+	//ì‹¤í–‰ì¤‘ì¸ í”„ë¡œê·¸ë¨ ê²€ì‚¬
+	BOOL bEventCheck = EventActionCheck(); //í˜„ì¬ ì‹¤í–‰ì¤‘ì¸ ì²´í¬
 	if(bEventCheck == TRUE)
 		return FALSE;
 
-	//Å×½ºÆ® ÇÒ¶§¸¸
+	//í…ŒìŠ¤íŠ¸ í• ë•Œë§Œ
 	/*HANDLE hEvent;
 	hEvent = CreateEvent(NULL,FALSE,TRUE,"EVDataGathering-D");
 	if(GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		//AfxMessageBox("ÀÌ¹Ì ½ÇÇàÁß ÀÔ´Ï´Ù");
+		//AfxMessageBox("ì´ë¯¸ ì‹¤í–‰ì¤‘ ì…ë‹ˆë‹¤");
 		return FALSE;
 	}*/
 
 	CWinAppEx::InitInstance();
 
-	// OLE ¶óÀÌºê·¯¸®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+	// OLE ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDP_OLE_INIT_FAILED);
@@ -116,24 +116,24 @@ BOOL CDataGatheringApp::InitInstance()
 	AfxEnableControlContainer();
 
 	//////////////////////////////////////////////////////////////////////////
-	//2017-03-24 false : ÀÛ¾÷Ç¥½ÃÁÙ¿¡ ´ÜÀÏ·Î Ç¥½Ã, true : Ãâ·Â ¸ÖÆ¼·Î Ç¥½Ã
-	EnableTaskbarInteraction(FALSE); //ÀÛ¾÷ Ç¥½ÃÁÙ
+	//2017-03-24 false : ì‘ì—…í‘œì‹œì¤„ì— ë‹¨ì¼ë¡œ í‘œì‹œ, true : ì¶œë ¥ ë©€í‹°ë¡œ í‘œì‹œ
+	EnableTaskbarInteraction(FALSE); //ì‘ì—… í‘œì‹œì¤„
 
 	CoInitialize(NULL);
 
-	// RichEdit ÄÁÆ®·ÑÀ» »ç¿ëÇÏ·Á¸é  AfxInitRichEdit2()°¡ ÀÖ¾î¾ß ÇÕ´Ï´Ù.
+	// RichEdit ì»¨íŠ¸ë¡¤ì„ ì‚¬ìš©í•˜ë ¤ë©´  AfxInitRichEdit2()ê°€ ìˆì–´ì•¼ í•©ë‹ˆë‹¤.
 	// AfxInitRichEdit2();
 
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­
-	// ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀıÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-	SetRegistryKey(_T("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ı»ç¿¡¼­ »ı¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
-	//LoadStdProfileSettings(4);  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
-	LoadStdProfileSettings();  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
+	// í‘œì¤€ ì´ˆê¸°í™”
+	// ì´ë“¤ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìµœì¢… ì‹¤í–‰ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë ¤ë©´
+	// ì•„ë˜ì—ì„œ í•„ìš” ì—†ëŠ” íŠ¹ì • ì´ˆê¸°í™”
+	// ë£¨í‹´ì„ ì œê±°í•´ì•¼ í•©ë‹ˆë‹¤.
+	// í•´ë‹¹ ì„¤ì •ì´ ì €ì¥ëœ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë³€ê²½í•˜ì‹­ì‹œì˜¤.
+	// TODO: ì´ ë¬¸ìì—´ì„ íšŒì‚¬ ë˜ëŠ” ì¡°ì§ì˜ ì´ë¦„ê³¼ ê°™ì€
+	// ì ì ˆí•œ ë‚´ìš©ìœ¼ë¡œ ìˆ˜ì •í•´ì•¼ í•©ë‹ˆë‹¤.
+	SetRegistryKey(_T("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ë¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ë¨"));
+	//LoadStdProfileSettings(4);  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
+	LoadStdProfileSettings();  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
 
 
 	InitContextMenuManager();
@@ -147,12 +147,12 @@ BOOL CDataGatheringApp::InitInstance()
 	theApp.GetTooltipManager()->SetTooltipParams(AFX_TOOLTIP_TYPE_ALL,
 		RUNTIME_CLASS(CMFCToolTipCtrl), &ttParams);
 
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¹®¼­ ÅÛÇÃ¸´À» µî·ÏÇÕ´Ï´Ù. ¹®¼­ ÅÛÇÃ¸´Àº
-	//  ¹®¼­, ÇÁ·¹ÀÓ Ã¢ ¹× ºä »çÀÌÀÇ ¿¬°á ¿ªÇÒÀ» ÇÕ´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì˜ ë¬¸ì„œ í…œí”Œë¦¿ì„ ë“±ë¡í•©ë‹ˆë‹¤. ë¬¸ì„œ í…œí”Œë¦¿ì€
+	//  ë¬¸ì„œ, í”„ë ˆì„ ì°½ ë° ë·° ì‚¬ì´ì˜ ì—°ê²° ì—­í• ì„ í•©ë‹ˆë‹¤.
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_Main));
 	if (!pDocTemplate)
 		return FALSE;
@@ -160,7 +160,7 @@ BOOL CDataGatheringApp::InitInstance()
 
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_TAGGather));
 	if (!pDocTemplate)
 		return FALSE;
@@ -169,7 +169,7 @@ BOOL CDataGatheringApp::InitInstance()
 	/* test
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_Weather));
 	if (!pDocTemplate)
 		return FALSE;
@@ -177,7 +177,7 @@ BOOL CDataGatheringApp::InitInstance()
 
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_IConnect));
 	if (!pDocTemplate)
 		return FALSE;
@@ -185,7 +185,7 @@ BOOL CDataGatheringApp::InitInstance()
 
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_TagMapping));
 	if (!pDocTemplate)
 		return FALSE;
@@ -193,7 +193,7 @@ BOOL CDataGatheringApp::InitInstance()
 
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_AlarmFMS));
 	if (!pDocTemplate)
 		return FALSE;
@@ -201,18 +201,18 @@ BOOL CDataGatheringApp::InitInstance()
 
 	pDocTemplate = new CMultiDocTemplate(IDR_DATAGATHERINGTYPE,
 		RUNTIME_CLASS(CDataGatheringDoc),
-		RUNTIME_CLASS(CChildFrame), // »ç¿ëÀÚ ÁöÁ¤ MDI ÀÚ½Ä ÇÁ·¹ÀÓÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CChildFrame), // ì‚¬ìš©ì ì§€ì • MDI ìì‹ í”„ë ˆì„ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CFormView_AlarmTag));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
 	*/
 
-	//2015-10 Ãß°¡
-	//µµÅ· Á¤º¸ ¼öÁ¤ »çÇ× ·¹Áö½ºÆ®¸®¿¡ Á¤º¸ ÃÊ±âÈ­ ÇÑ´Ù.
+	//2015-10 ì¶”ê°€
+	//ë„í‚¹ ì •ë³´ ìˆ˜ì • ì‚¬í•­ ë ˆì§€ìŠ¤íŠ¸ë¦¬ì— ì •ë³´ ì´ˆê¸°í™” í•œë‹¤.
 	CWinAppEx::CleanState();
 
-	// ÁÖ MDI ÇÁ·¹ÀÓ Ã¢À» ¸¸µì´Ï´Ù.
+	// ì£¼ MDI í”„ë ˆì„ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame || !pMainFrame->LoadFrame(IDR_MAINFRAME))
 	{
@@ -220,28 +220,28 @@ BOOL CDataGatheringApp::InitInstance()
 		return FALSE;
 	}
 	m_pMainWnd = pMainFrame;
-	// Á¢¹Ì»ç°¡ ÀÖÀ» °æ¿ì¿¡¸¸ DragAcceptFiles¸¦ È£ÃâÇÕ´Ï´Ù.
-	//  MDI ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­´Â m_pMainWnd¸¦ ¼³Á¤ÇÑ ÈÄ ¹Ù·Î ÀÌ·¯ÇÑ È£ÃâÀÌ ¹ß»ıÇØ¾ß ÇÕ´Ï´Ù.
+	// ì ‘ë¯¸ì‚¬ê°€ ìˆì„ ê²½ìš°ì—ë§Œ DragAcceptFilesë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	//  MDI ì‘ìš© í”„ë¡œê·¸ë¨ì—ì„œëŠ” m_pMainWndë¥¼ ì„¤ì •í•œ í›„ ë°”ë¡œ ì´ëŸ¬í•œ í˜¸ì¶œì´ ë°œìƒí•´ì•¼ í•©ë‹ˆë‹¤.
 
-	// Ç¥ÁØ ¼Ğ ¸í·É, DDE, ÆÄÀÏ ¿­±â¿¡ ´ëÇÑ ¸í·ÉÁÙÀ» ±¸¹® ºĞ¼®ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì…¸ ëª…ë ¹, DDE, íŒŒì¼ ì—´ê¸°ì— ëŒ€í•œ ëª…ë ¹ì¤„ì„ êµ¬ë¬¸ ë¶„ì„í•©ë‹ˆë‹¤.
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
 
-	//2016-10 Ãß°¡
+	//2016-10 ì¶”ê°€
 
-	//Project Á¤º¸ Read
+	//Project ì •ë³´ Read
 	BOOL bEVOpenCheck = GetEVInfoRead(cmdInfo.m_strFileName);
 	if(bEVOpenCheck == FALSE)
 		return FALSE;
 
 
-	// ¸í·ÉÁÙ¿¡ ÁöÁ¤µÈ ¸í·ÉÀ» µğ½ºÆĞÄ¡ÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÌ /RegServer, /Register, /Unregserver ¶Ç´Â /Unregister·Î ½ÃÀÛµÈ °æ¿ì FALSE¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+	// ëª…ë ¹ì¤„ì— ì§€ì •ëœ ëª…ë ¹ì„ ë””ìŠ¤íŒ¨ì¹˜í•©ë‹ˆë‹¤.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì´ /RegServer, /Register, /Unregserver ë˜ëŠ” /Unregisterë¡œ ì‹œì‘ëœ ê²½ìš° FALSEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	//if (!ProcessShellCommand(cmdInfo))
 	//	return FALSE;
 
 	//AfxMessageBox(cmdInfo.m_strFileName);
-	// ÁÖ Ã¢ÀÌ ÃÊ±âÈ­µÇ¾úÀ¸¹Ç·Î ÀÌ¸¦ Ç¥½ÃÇÏ°í ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+	// ì£¼ ì°½ì´ ì´ˆê¸°í™”ë˜ì—ˆìœ¼ë¯€ë¡œ ì´ë¥¼ í‘œì‹œí•˜ê³  ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
@@ -249,7 +249,7 @@ BOOL CDataGatheringApp::InitInstance()
 	CMainFrame *pMain=(CMainFrame*)AfxGetMainWnd();
 	pMain->SetMenu(NULL);
 
-	_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Start", USER_COLOR_BLACK, "ÇÁ·Î±×·¥ ½ÃÀÛ ÇÏ¿´½À´Ï´Ù.");
+	_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Start", USER_COLOR_BLACK, "í”„ë¡œê·¸ë¨ ì‹œì‘ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 
 
 	CWnd *pWnd = AfxGetMainWnd();
@@ -260,32 +260,32 @@ BOOL CDataGatheringApp::InitInstance()
 
 int CDataGatheringApp::ExitInstance()
 {
-	//TODO: Ãß°¡ÇÑ Ãß°¡ ¸®¼Ò½º¸¦ Ã³¸®ÇÕ´Ï´Ù.
+	//TODO: ì¶”ê°€í•œ ì¶”ê°€ ë¦¬ì†ŒìŠ¤ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤.
 
 	AfxOleTerm(FALSE);
 
-	DeleteCriticalSection(&g_cs); //µ¿±âÈ­ Á¾·á
+	DeleteCriticalSection(&g_cs); //ë™ê¸°í™” ì¢…ë£Œ
 
 	return CWinAppEx::ExitInstance();
 }
 
-// CDataGatheringApp ¸Ş½ÃÁö Ã³¸®±â
+// CDataGatheringApp ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// ì‘ìš© í”„ë¡œê·¸ë¨ ì •ë³´ì— ì‚¬ìš©ë˜ëŠ” CAboutDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -305,14 +305,14 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CAboutDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
-// ´ëÈ­ »óÀÚ¸¦ ½ÇÇàÇÏ±â À§ÇÑ ÀÀ¿ë ÇÁ·Î±×·¥ ¸í·ÉÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒìë¥¼ ì‹¤í–‰í•˜ê¸° ìœ„í•œ ì‘ìš© í”„ë¡œê·¸ë¨ ëª…ë ¹ì…ë‹ˆë‹¤.
 void CDataGatheringApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.DoModal();
 }
 
-// CDataGatheringApp »ç¿ëÀÚ ÁöÁ¤ ·Îµå/ÀúÀå ¸Ş¼­µå
+// CDataGatheringApp ì‚¬ìš©ì ì§€ì • ë¡œë“œ/ì €ì¥ ë©”ì„œë“œ
 
 void CDataGatheringApp::PreLoadState()
 {
@@ -339,12 +339,12 @@ BOOL CDataGatheringApp::EventActionCheck()
 	hEvent = CreateEvent(NULL,FALSE,TRUE,PRO_TITLE_NAME);
 	if(GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		//AfxMessageBox("ÀÌ¹Ì ½ÇÇàÁß ÀÔ´Ï´Ù");
+		//AfxMessageBox("ì´ë¯¸ ì‹¤í–‰ì¤‘ ì…ë‹ˆë‹¤");
 		CWnd*  pWnd = NULL;
 		for(int nCount = 0; nCount < 2 ; nCount++)
 		{
 			if(nCount == 0)
-				strCaptionName.Format("%s - ¸ŞÀÎ Á¤º¸",PRO_TITLE_NAME);
+				strCaptionName.Format("%s - ë©”ì¸ ì •ë³´",PRO_TITLE_NAME);
 			else if(nCount == 1)
 				strCaptionName.Format("%s - ",PRO_TITLE_NAME);
 
@@ -365,15 +365,15 @@ BOOL CDataGatheringApp::EventActionCheck()
 	return FALSE;
 }
 
-// CDataGatheringApp ¸Ş½ÃÁö Ã³¸®±â
+// CDataGatheringApp ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 BOOL CDataGatheringApp::GetEVInfoRead(CString strFileName)
 {
-	InitializeCriticalSection(&g_cs); //µ¿±âÈ­ ÃÊ±âÈ­
+	InitializeCriticalSection(&g_cs); //ë™ê¸°í™” ì´ˆê¸°í™”
 
 	char path[256],buf[128];
 	CString strMsg = "",strCreatePath;
 
-	// <-- 20191230-Doo EasyEMS.iniµµ Àû¿ëµÇµµ·Ï ¼öÁ¤
+	// <-- 20191230-Doo EasyEMS.inië„ ì ìš©ë˜ë„ë¡ ìˆ˜ì •
 	//GetCurrentDirectory(sizeof(path),path);
 	//strcpy_s(g_stProjectInfo.szProjectPath, path);
 	//strcat_s(path, "\\EasyView.INI");
@@ -422,7 +422,7 @@ BOOL CDataGatheringApp::GetEVInfoRead(CString strFileName)
 	else
 	{
 #ifdef _DEBUG
-		TRACE( "ÇÁ·ÎÁ§Æ® : [%s] °øÀ¯ ¸Ş¸ğ¸® : [Open] ¼º°ø : [CODE(%d)]", g_stProjectInfo.szProjectName, retVal );
+		TRACE( "í”„ë¡œì íŠ¸ : [%s] ê³µìœ  ë©”ëª¨ë¦¬ : [Open] ì„±ê³µ : [CODE(%d)]", g_stProjectInfo.szProjectName, retVal );
 #endif
 		memset(buf,0x00,sizeof(buf));
 		sprintf_s(buf, "GM_EVVIEW_END_%s", g_stProjectInfo.szProjectName);
@@ -434,7 +434,7 @@ BOOL CDataGatheringApp::GetEVInfoRead(CString strFileName)
 	strMsg.Format("Start!");
 	_systemLog(strMsg,g_stProjectInfo.szProjectLogPath);
 
-	strMsg.Format("ÇÁ·ÎÁ§Æ® : [%s] °øÀ¯ ¸Ş¸ğ¸® : [Open] ¼º°ø : [CODE(%d)]",g_stProjectInfo.szProjectName, retVal);
+	strMsg.Format("í”„ë¡œì íŠ¸ : [%s] ê³µìœ  ë©”ëª¨ë¦¬ : [Open] ì„±ê³µ : [CODE(%d)]",g_stProjectInfo.szProjectName, retVal);
 	_addSystemMsg(0, USER_COLOR_BLUE, "DataGathering Start", USER_COLOR_BLACK, strMsg);
 	_systemLog(strMsg,g_stProjectInfo.szProjectLogPath);
 
@@ -444,7 +444,7 @@ BOOL CDataGatheringApp::GetEVInfoRead(CString strFileName)
 }
 
 
-// CDataGatheringApp ¸Ş½ÃÁö Ã³¸®±â
+// CDataGatheringApp ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 BOOL CDataGatheringApp::SetInitialize(CString strFileName)
 {
 //	char path[256];
@@ -472,9 +472,9 @@ BOOL CDataGatheringApp::SetInitialize(CString strFileName)
 	sprintf_s(g_stProjectInfo.szWeatherForecastPath,"%s",strCreatePath);*/
 
 #ifdef _DEBUG
-	TRACE( "ÇÊ¿äÇÑ Æú´õ Ç×¸ñ Ã¼Å© : [%s]", strCreatePath);
+	TRACE( "í•„ìš”í•œ í´ë” í•­ëª© ì²´í¬ : [%s]", strCreatePath);
 #endif
-	strMsg.Format("À§Ä¡ : [%s]",strCreatePath);
+	strMsg.Format("ìœ„ì¹˜ : [%s]",strCreatePath);
 	_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "Folder Check", USER_COLOR_BLACK, strMsg);
 
 	//_getDataGatheringInfo(g_stProjectInfo.szProjectPath,PRO_TITLE_NAME);
@@ -502,6 +502,6 @@ void CDataGatheringApp::OnFileNew()
 
 void CAboutDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDialogEx::OnOK();
 }

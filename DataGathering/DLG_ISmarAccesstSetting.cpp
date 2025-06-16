@@ -1,4 +1,4 @@
-// DLG_ISmarAccesstSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_ISmarAccesstSetting.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// CDLG_ISmarAccesstSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_ISmarAccesstSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_ISmarAccesstSetting, CDialog)
 
@@ -32,14 +32,14 @@ BEGIN_MESSAGE_MAP(CDLG_ISmarAccesstSetting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_ISmarAccesstSetting ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_ISmarAccesstSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 BOOL CDLG_ISmarAccesstSetting::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_stISmartAccess = _getInfoFileReadISmartAccess(g_stProjectInfo.szProjectIniPath);
 	
 	GetDlgItem(IDC_EDIT_SITE_NAME)->SetWindowText(m_stISmartAccess.szSiteName);
@@ -47,13 +47,13 @@ BOOL CDLG_ISmarAccesstSetting::OnInitDialog()
 	GetDlgItem(IDC_EDIT_PW)->SetWindowText(m_stISmartAccess.szPW);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
 BOOL CDLG_ISmarAccesstSetting::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)
@@ -65,7 +65,7 @@ BOOL CDLG_ISmarAccesstSetting::PreTranslateMessage(MSG* pMsg)
 
 void CDLG_ISmarAccesstSetting::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strBuffer,strBufferCheck;
 	BOOL bTextCheck = FALSE;
 	ST_FILE_ISMARTACCESS stInfo;
@@ -91,7 +91,7 @@ void CDLG_ISmarAccesstSetting::OnBnClickedOk()
 
 	if(bTextCheck == TRUE)
 	{
-		if(MessageBox(" º¯°æµÈ Á¤º¸°¡ ÀÖ½À´Ï´Ù?\n ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?", "ÀúÀå È®ÀÎ", MB_YESNO)== IDNO)
+		if(MessageBox(" ë³€ê²½ëœ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤?\n ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ì €ì¥ í™•ì¸", MB_YESNO)== IDNO)
 			return;
 	}
 

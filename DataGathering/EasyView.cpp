@@ -1,4 +1,4 @@
-// EasyView.cpp : implementation file
+ï»¿// EasyView.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -36,16 +36,16 @@ bool CEasyView::Initialize( LPCTSTR szEvPrjNm )
 		sprintf( szEvEndMsg, "GM_EVVIEW_END_%s", g_szProjectPath );
 		g_uiEvStop = RegisterWindowMessage( szEvEndMsg );
 
-		// ÇöÀç Open µÈ ÇÁ·ÎÁ§Æ®ÀÇ ÀÌ¸§À¸·Î EasyView °øÀ¯ ¸Ş¸ğ¸®¸¦ ¿¬´Ù.
+		// í˜„ì¬ Open ëœ í”„ë¡œì íŠ¸ì˜ ì´ë¦„ìœ¼ë¡œ EasyView ê³µìœ  ë©”ëª¨ë¦¬ë¥¼ ì—°ë‹¤.
 		if( EV_OpenMem( g_szProjectPath ) < 0 )
 		{
 			MessageBox(NULL, EV_ERR_MSGE_0001002, EV_ERR_CODE_0001002, EV_ERR_TYPE_0001002 | MB_SYSTEMMODAL);
 
-			TRACE("°øÀ¯ ¸Ş¸ğ¸® Open ½ÇÆĞ \r\n");
+			TRACE("ê³µìœ  ë©”ëª¨ë¦¬ Open ì‹¤íŒ¨ \r\n");
 			return false;
 		}
 
-		TRACE("°øÀ¯ ¸Ş¸ğ¸® Open ¼º°ø \r\n");
+		TRACE("ê³µìœ  ë©”ëª¨ë¦¬ Open ì„±ê³µ \r\n");
 	}
 	catch( CException* e )
 	{
@@ -60,14 +60,14 @@ bool CEasyView::Uninitialize()
 {
 	try
 	{
-		// ÇöÀç Open µÈ ÇÁ·ÎÁ§Æ®ÀÇ ÀÌ¸§À¸·Î °øÀ¯µÈ °øÀ¯ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù.
+		// í˜„ì¬ Open ëœ í”„ë¡œì íŠ¸ì˜ ì´ë¦„ìœ¼ë¡œ ê³µìœ ëœ ê³µìœ  ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
 		if( EV_FreeMem( g_szProjectPath ) == -1 )
 		{
-			TRACE("°øÀ¯ ¸Ş¸ğ¸® ÇØÁ¦ ½ÇÆĞ \r\n");
+			TRACE("ê³µìœ  ë©”ëª¨ë¦¬ í•´ì œ ì‹¤íŒ¨ \r\n");
 			return false;
 		}
 
-		TRACE("°øÀ¯ ¸Ş¸ğ¸® ÇØÁ¦ ¼º°ø \r\n");
+		TRACE("ê³µìœ  ë©”ëª¨ë¦¬ í•´ì œ ì„±ê³µ \r\n");
 	}
 	catch( CException* e )
 	{
@@ -84,13 +84,13 @@ bool CEasyView::SetTagValue( LPCTSTR szTagNm, CString sVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_STRING_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "SI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "SI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
 	if ( EV_SetSiValue( stTagInfo.nStnPos, stTagInfo.nTagPos, sVal, sVal.GetLength() ) != TRUE )
 	{
-		TRACE( "SI ÅÂ±×°ª ¼³Á¤ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "SI íƒœê·¸ê°’ ì„¤ì • ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -103,13 +103,13 @@ bool CEasyView::SetTagValue( LPCTSTR szTagNm, double dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
 	if ( EV_SetAiValue( stTagInfo.nStnPos, stTagInfo.nTagPos, dbVal ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±×°ª ¼³Á¤ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ê°’ ì„¤ì • ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -122,7 +122,7 @@ bool CEasyView::SetTagValue( LPCTSTR szTagNm, bool bFlag )
 
 	if ( EV_GetTagInfo2( EV_TYPE_DIGITAL_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "DI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "DI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -130,7 +130,7 @@ bool CEasyView::SetTagValue( LPCTSTR szTagNm, bool bFlag )
 
 	if ( EV_SetDiValue( stTagInfo.nStnPos, stTagInfo.nTagPos, bVal ) != TRUE )
 	{
-		TRACE( "DI ÅÂ±×°ª ¼³Á¤ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "DI íƒœê·¸ê°’ ì„¤ì • ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -143,7 +143,7 @@ bool CEasyView::GetTagValue( LPCTSTR szTagNm, CString &sVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_STRING_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "SI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "SI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -152,7 +152,7 @@ bool CEasyView::GetTagValue( LPCTSTR szTagNm, CString &sVal )
 
 	if ( EV_GetSiData( stTagInfo.nStnPos, stTagInfo.nTagPos, szTemp, sizeof(szTemp), &dbVal ) != TRUE )
 	{
-		TRACE( "SI ÅÂ±×°ª È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "SI íƒœê·¸ê°’ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -167,13 +167,13 @@ bool CEasyView::GetTagValue( LPCTSTR szTagNm, double &dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
 	if ( EV_GetAiData( stTagInfo.nStnPos, stTagInfo.nTagPos, &dbVal) != TRUE )
 	{
-		TRACE( "AI ÅÂ±×°ª È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ê°’ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -186,7 +186,7 @@ bool CEasyView::GetTagValue( LPCTSTR szTagNm, bool &bFlag )
 
 	if ( EV_GetTagInfo2( EV_TYPE_DIGITAL_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "DI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "DI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -194,7 +194,7 @@ bool CEasyView::GetTagValue( LPCTSTR szTagNm, bool &bFlag )
 
 	if ( EV_GetDiData( stTagInfo.nStnPos, stTagInfo.nTagPos, &bVal ) != TRUE )
 	{
-		TRACE( "DI ÅÂ±×°ª È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "DI íƒœê·¸ê°’ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -210,7 +210,7 @@ bool CEasyView::GetEngMin( LPCTSTR szTagNm, double &dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -220,7 +220,7 @@ bool CEasyView::GetEngMin( LPCTSTR szTagNm, double &dbVal )
 
 	if ( pAI == NULL )
 	{
-		TRACE( "AI ÅÂ±× Á¤º¸ È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ì •ë³´ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -235,7 +235,7 @@ bool CEasyView::GetEngMax( LPCTSTR szTagNm, double &dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -245,7 +245,7 @@ bool CEasyView::GetEngMax( LPCTSTR szTagNm, double &dbVal )
 
 	if ( pAI == NULL )
 	{
-		TRACE( "AI ÅÂ±× Á¤º¸ È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ì •ë³´ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -260,7 +260,7 @@ bool CEasyView::GetAdMin( LPCTSTR szTagNm, double &dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -270,7 +270,7 @@ bool CEasyView::GetAdMin( LPCTSTR szTagNm, double &dbVal )
 
 	if ( pAI == NULL )
 	{
-		TRACE( "AI ÅÂ±× Á¤º¸ È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ì •ë³´ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -285,7 +285,7 @@ bool CEasyView::GetAdMax( LPCTSTR szTagNm, double &dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -295,7 +295,7 @@ bool CEasyView::GetAdMax( LPCTSTR szTagNm, double &dbVal )
 
 	if ( pAI == NULL )
 	{
-		TRACE( "AI ÅÂ±× Á¤º¸ È¹µæ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AI íƒœê·¸ ì •ë³´ íšë“ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -394,13 +394,13 @@ bool CEasyView::PutBufferValue( LPCTSTR szTagNm, CString sVal)
 
 	if ( EV_GetTagInfo2( EV_TYPE_STRING_INPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "SI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "SI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
 	if ( EV_PutTagString( stTagInfo.nStnPos, stTagInfo.nTagPos, sVal, sVal.GetLength() ) != TRUE )
 	{
-		TRACE( "EV_PutTagString ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "EV_PutTagString ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -413,13 +413,13 @@ bool CEasyView::OutPutValue( LPCTSTR szTagNm, double dbVal )
 
 	if ( EV_GetTagInfo2( EV_TYPE_ANALOG_OUTPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "AO ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AO íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
 	if ( EV_SetAoValue( stTagInfo.nStnPos, stTagInfo.nTagPos, dbVal ) != TRUE )
 	{
-		TRACE( "AO ÅÂ±×°ª ¼³Á¤ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "AO íƒœê·¸ê°’ ì„¤ì • ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -432,7 +432,7 @@ bool CEasyView::OutPutValue( LPCTSTR szTagNm, bool bFlag )
 
 	if ( EV_GetTagInfo2( EV_TYPE_DIGITAL_OUTPUT, szTagNm, &stTagInfo ) != TRUE )
 	{
-		TRACE( "DO ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "DO íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -440,7 +440,7 @@ bool CEasyView::OutPutValue( LPCTSTR szTagNm, bool bFlag )
 
 	if ( EV_SetDoValue( stTagInfo.nStnPos, stTagInfo.nTagPos, bVal ) != TRUE )
 	{
-		TRACE( "DO ÅÂ±×°ª ¼³Á¤ ½ÇÆĞ [%s] \r\n", szTagNm );
+		TRACE( "DO íƒœê·¸ê°’ ì„¤ì • ì‹¤íŒ¨ [%s] \r\n", szTagNm );
 		return false;
 	}
 
@@ -454,7 +454,7 @@ int CEasyView::OutPutValue(LPCTSTR szTag, CString sVal)
 
 	if(EV_GetTagInfo(szTag, &stTagInfo) < 0)
 	{
-		TRACE( "SI ÅÂ±× °Ë»ö ½ÇÆĞ [%s] \r\n", szTag );
+		TRACE( "SI íƒœê·¸ ê²€ìƒ‰ ì‹¤íŒ¨ [%s] \r\n", szTag );
 		return -1;
 	}
 
@@ -464,7 +464,7 @@ int CEasyView::OutPutValue(LPCTSTR szTag, CString sVal)
 
 	memset(&stCtrl, 0, sizeof(stCtrl));
 	pCtrlCommon->nTagType = TYPE_SI;
-	pCtrlCommon->nProcessingMode = 0;			// ¿©±â¼­ ¹ß¼ÛÇÏ´Â Á¤º¸¸¦ ÀÌ¿ëÇÒ °Í...
+	pCtrlCommon->nProcessingMode = 0;			// ì—¬ê¸°ì„œ ë°œì†¡í•˜ëŠ” ì •ë³´ë¥¼ ì´ìš©í•  ê²ƒ...
 	pCtrlCommon->nStnPos = stTagInfo.nStnPos;
 	pCtrlCommon->nTagPos = stTagInfo.nTagPos;
 	time(&pCtrlCommon->tStart);
@@ -487,19 +487,19 @@ int CEasyView::OutPutValue(LPCTSTR szTag, CString sVal)
 	}
 	else if (nStnPos > -1 && nStnPos < g_nStation)
 	{
-		// ½ºÆ®¸µ ÅÂ±×°¡ ÂüÁ¶ÇÏ´Â ½ºÄµ¹öÆÛ¿Í ½ºÆ®¸µ ÅÂ±×ÀÇ ÇöÀç°ªÀ» ¹Ù²ãÁØ´Ù
+		// ìŠ¤íŠ¸ë§ íƒœê·¸ê°€ ì°¸ì¡°í•˜ëŠ” ìŠ¤ìº”ë²„í¼ì™€ ìŠ¤íŠ¸ë§ íƒœê·¸ì˜ í˜„ì¬ê°’ì„ ë°”ê¿”ì¤€ë‹¤
 		//_PutStringTag2(nStnPos, pSi->nTagPos, szVal, strlen(szVal));
 		return -3;
 	}
 
 	EV_GetOutputDeviceName(pSi->nStnPos, pCtrlCommon->szDevice);
 
-	if(pSi->nIOMode)												// ¸¸¾à Ãâ·Â °â¿ëÀÌ°í
+	if(pSi->nIOMode)												// ë§Œì•½ ì¶œë ¥ ê²¸ìš©ì´ê³ 
 	{
-		if(strlen(pSi->szIOAddr) > 0)								// Á÷Á¢ ÁÖ¼Ò°¡ µî·ÏµÇ¾î ÀÖÀ¸¸é
-			strcpy(pCtrlCommon->szAddr, pSi->szIOAddr);				// Á÷Á¢ ÁÖ¼Ò¸¦ »ç¿ëÇÏ°í
+		if(strlen(pSi->szIOAddr) > 0)								// ì§ì ‘ ì£¼ì†Œê°€ ë“±ë¡ë˜ì–´ ìˆìœ¼ë©´
+			strcpy(pCtrlCommon->szAddr, pSi->szIOAddr);				// ì§ì ‘ ì£¼ì†Œë¥¼ ì‚¬ìš©í•˜ê³ 
 		else
-			strcpy(pCtrlCommon->szAddr, pSi->szAddr);				// ±×·¸Áö ¾ÊÀ¸¸é Ãâ·Â ÁÖ¼Ò¸¦ »ç¿ëÇÑ´Ù
+			strcpy(pCtrlCommon->szAddr, pSi->szAddr);				// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ì¶œë ¥ ì£¼ì†Œë¥¼ ì‚¬ìš©í•œë‹¤
 	}
 	else
 		strcpy(pCtrlCommon->szAddr, pSi->szAddr);

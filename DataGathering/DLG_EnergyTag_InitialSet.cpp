@@ -1,4 +1,4 @@
-// DLG_EnergyTag_InitialSet.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_EnergyTag_InitialSet.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// CDLG_EnergyTag_InitialSet ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_EnergyTag_InitialSet ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_EnergyTag_InitialSet, CDialog)
 
@@ -33,32 +33,32 @@ BEGIN_MESSAGE_MAP(CDLG_EnergyTag_InitialSet, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_EnergyTag_InitialSet ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_EnergyTag_InitialSet ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 BOOL CDLG_EnergyTag_InitialSet::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strPath = _getXmlPath(g_stProjectInfo.szProjectIniPath);
 	GetDlgItem(IDC_EDIT_PATH)->SetWindowText(strPath);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
 BOOL CDLG_EnergyTag_InitialSet::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
 void CDLG_EnergyTag_InitialSet::OnBnClickedButtonPath()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	/*CString strPath = "";
 	CFileDialog fDlg(TRUE,"xml",NULL,OFN_HIDEREADONLY,"Xml Files (*.xml)|*.xml||");
 	if (fDlg.DoModal() == IDOK)
@@ -75,10 +75,10 @@ void CDLG_EnergyTag_InitialSet::OnBnClickedButtonPath()
 
 	memset( &BrInfo, 0, sizeof(BrInfo) );
 	BrInfo.pszDisplayName = buffer;
-	BrInfo.lpszTitle = "ÀúÀåÇÒ Æú´õ¸¦ ¼±ÅÃÇØ ÁÖ½Ê½Ã¿À.";
+	BrInfo.lpszTitle = "ì €ì¥í•  í´ë”ë¥¼ ì„ íƒí•´ ì£¼ì‹­ì‹œì˜¤.";
 	BrInfo.ulFlags = BIF_RETURNONLYFSDIRS;
 
-	// ´ÙÀÌ¾ó·Î±× ¶ç¿ì±â
+	// ë‹¤ì´ì–¼ë¡œê·¸ ë„ìš°ê¸°
 	pidlBrowse = SHBrowseForFolder(&BrInfo);
 
 	if( pidlBrowse != NULL )
@@ -87,7 +87,7 @@ void CDLG_EnergyTag_InitialSet::OnBnClickedButtonPath()
 
 		if(!bSuccess)
 		{
-			MessageBox( _T("Àß¸øµÈ Æú´õ¸í ÀÔ´Ï´Ù."), _T(""), MB_OKCANCEL|MB_ICONASTERISK );
+			MessageBox( _T("ì˜ëª»ëœ í´ë”ëª… ì…ë‹ˆë‹¤."), _T(""), MB_OKCANCEL|MB_ICONASTERISK );
 			return;
 		}
 		else
@@ -100,12 +100,12 @@ void CDLG_EnergyTag_InitialSet::OnBnClickedButtonPath()
 
 void CDLG_EnergyTag_InitialSet::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strPath;
 	GetDlgItem(IDC_EDIT_PATH)->GetWindowText(strPath);
 	if(strPath.IsEmpty() == TRUE)
 	{
-		AfxMessageBox("°æ·ÎÁöÁ¤ÀÌ ÇÊ¿äÇÕ´Ï´Ù");
+		AfxMessageBox("ê²½ë¡œì§€ì •ì´ í•„ìš”í•©ë‹ˆë‹¤");
 		return;
 	}
 	else

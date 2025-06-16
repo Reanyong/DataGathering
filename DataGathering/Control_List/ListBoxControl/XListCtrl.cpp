@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "XListCtrl.h"
 #include "CtrlButton.h"
 
@@ -97,7 +97,7 @@ void CXListCtrl::SubclassHeaderControl()
 	// if the list control has a header control window, then
 	// subclass it
 
-	// Thanks to Alberto Gattegno and Alon Peleg  and their article
+	// Thanks to Alberto Gattegno and Alon Pelegì ¨and their article
 	// "A Multiline Header Control Inside a CListCtrl" for easy way
 	// to determine if the header control exists.
 

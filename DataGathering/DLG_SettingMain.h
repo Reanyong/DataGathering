@@ -1,20 +1,20 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DLG_ProgramSetting.h"
 #include "DLG_DataBaseSetting.h"
 #include "DLG_GatherInfoSetting.h"
 
-// CDLG_SettingMain ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_SettingMain ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDLG_SettingMain : public CDialog
 {
 	DECLARE_DYNAMIC(CDLG_SettingMain)
 
 public:
-	CDLG_SettingMain(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_SettingMain(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_SettingMain();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_SETTING_MAIN };
 protected:
 	CBitmapButton m_ButttonGatherSet;
@@ -25,7 +25,7 @@ protected:
 	 CDLG_DataBaseSetting *m_pDlgDataBaseSetting;
 	 CDLG_GatherInfoSetting *m_pDlgGatherTypeSetting;
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnDestroy();

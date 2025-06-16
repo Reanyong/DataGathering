@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 
 //#include "Control_List/GridCtrl/GridCtrl.h"
 #include "Control_List/ListBoxControl/XListCtrl.h"
 #include "Thread_WeatherGather.h"
-// CFormView_Weather Æû ºäÀÔ´Ï´Ù.
+// CFormView_Weather í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CFormView_Weather : public CFormView
 {
 	DECLARE_DYNCREATE(CFormView_Weather)
 
 protected:
-	CFormView_Weather();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFormView_Weather();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFormView_Weather();
 
 public:
@@ -22,7 +22,7 @@ public:
 #endif
 #endif
 protected:
-	//¸â¹ö º¯¼ö ¼±¾ğ
+	//ë©¤ë²„ ë³€ìˆ˜ ì„ ì–¸
 protected:
 	//CGridCtrl m_gridForecastGrib;
 	CFont m_Font;
@@ -43,7 +43,7 @@ public:
 	void OutputWeatherLiveHistory(const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5,const char *szData6,const char *szData7,const char *szData8);
 	void OutputWeatherForecastHistory(const char *szData1,const char *szData2,const char *szData3,const char *szData4,const char *szData5,const char *szData6,const char *szData7,const char *szData8);
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual void OnInitialUpdate();
 	afx_msg void OnDestroy();

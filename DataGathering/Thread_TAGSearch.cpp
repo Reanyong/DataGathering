@@ -1,4 +1,4 @@
-// Thread_TAGSearch.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// Thread_TAGSearch.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,14 +30,14 @@ CThread_TAGSearch::~CThread_TAGSearch()
 
 BOOL CThread_TAGSearch::InitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ ÃÊ±âÈ­¸¦ ¼öÇàÇÕ´Ï´Ù.
-	//CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+	//CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	return TRUE;
 }
 
 int CThread_TAGSearch::ExitInstance()
 {
-	// TODO: ¿©±â¿¡¼­ °¢ ½º·¹µå¿¡ ´ëÇÑ Á¤¸®¸¦ ¼öÇàÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì—ì„œ ê° ìŠ¤ë ˆë“œì— ëŒ€í•œ ì •ë¦¬ë¥¼ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 	/*	if(DB_Connect != NULL)
 	{
 	if(DB_Connect->GetDB_ConnectionStatus() == 1)
@@ -99,10 +99,10 @@ void CThread_TAGSearch::SysLogOutPut(CString strLogName,CString strMsg, COLORREF
 }
 
 
-// CThread_TAGSearch ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CThread_TAGSearch ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 int CThread_TAGSearch::Run()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	int nTimeTemp = -1;
 	CTime currentTime;
 	CString strDeviceItem,strDBName;
@@ -175,7 +175,7 @@ int CThread_TAGSearch::Run()
 		catch (...)
 		{
 #ifdef _DEBUG
-			TRACE("¸ÞÀÎ ½º·¹µå catch ....\n");
+			TRACE("ë©”ì¸ ìŠ¤ë ˆë“œ catch ....\n");
 #endif
 		}
 
@@ -232,7 +232,7 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 	" and (HMTagDic.GATHER_USE_YN = 0 or HMTagDic.GATHER_USE_YN is null) "
 	,strDBName);*/
 
-	//20200212 jsh : postgre »ç¿ëÇÒ ¶§ Äõ¸® ÂÊ ¿¡·¯³ª´Â°Å °°À¸´Ï ¼öÁ¤ ÇÊ¿ä
+	//20200212 jsh : postgre ì‚¬ìš©í•  ë•Œ ì¿¼ë¦¬ ìª½ ì—ëŸ¬ë‚˜ëŠ”ê±° ê°™ìœ¼ë‹ˆ ìˆ˜ì • í•„ìš”
 	if(nDBType == DB_POSTGRE)
 	{
 		if(strlen(szDBName) > 1)
@@ -251,7 +251,7 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 	}
 
 
-	//20200221 ³ªÁ¤È£ ¼öÁ¤ POSTGRE ºÎºÐ¿¡ ODBC Àû¿ë
+	//20200221 ë‚˜ì •í˜¸ ìˆ˜ì • POSTGRE ë¶€ë¶„ì— ODBC ì ìš©
 	if(nDBType == DB_POSTGRE)
 	{
 		try
@@ -342,7 +342,7 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 				int nResult = DB_Connect->DB_ReConnection();
 				if(nResult == 0)
 				{
-					strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!",strMSGTitle);
+					strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 					SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -360,7 +360,7 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 				pRs->Close();
 				pRs = NULL;
 			}
-			strRunlog_E2.Format("SELECT ½ÇÆÐ Event Error : %s",strMSGTitle);
+			strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 			SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -392,10 +392,10 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 				for(int nSTListCnt = 0; nSTListCnt < nCountRow ; nSTListCnt++)
 				{
 					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ¸í
-					DB_Connect->GetFieldValue(pRs, "GROUP_NAME", strGroupName);		//TAG ±×·ì¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG Å¸ÀÔ
-					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ¼³¸í
+					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ëª…
+					DB_Connect->GetFieldValue(pRs, "GROUP_NAME", strGroupName);		//TAG ê·¸ë£¹ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG íƒ€ìž…
+					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ì„¤ëª…
 
 					ST_TAG_LIST stTagInfo;
 					memset(&stTagInfo,0x00,sizeof(ST_TAG_LIST));
@@ -436,7 +436,7 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -454,7 +454,7 @@ int CThread_TAGSearch::GetUnregisteredTag(int nDBType,const char *szDeviceItem,c
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆÐ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG
@@ -528,8 +528,8 @@ int CThread_TAGSearch::GetRegisterTag(int nDBType,const char *szDeviceItem,const
 				for(int nSTListCnt = 0; nSTListCnt < nCountRow ; nSTListCnt++)
 				{
 					DB_Connect->GetFieldValue(pRs, "HMI_TAG_ID", strHmiTagId);				//TAG id
-					DB_Connect->GetFieldValue(pRs, "DV_ID", strDvId);			//TAG ¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);		//TAG ±×·ì¸í
+					DB_Connect->GetFieldValue(pRs, "DV_ID", strDvId);			//TAG ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_ID", strTagId);		//TAG ê·¸ë£¹ëª…
 					DB_Connect->GetFieldValue(pRs, "NEW_TAG_TP_GRP_Code", strNEW_TAG_TP_GRP_Code);
 					DB_Connect->GetFieldValue(pRs, "NEW_TAG_TP_GRP_Name", strNEW_TAG_TP_GRP_Name);
 					DB_Connect->GetFieldValue(pRs, "NEW_TAG_TP_Code", strNEW_TAG_TP_Code);
@@ -555,9 +555,9 @@ int CThread_TAGSearch::GetRegisterTag(int nDBType,const char *szDeviceItem,const
 					DB_Connect->GetFieldValue(pRs, "NEW_MEAU_CYCLE_UNIT_Code", strNEW_MEAU_CYCLE_UNIT_Code);
 					DB_Connect->GetFieldValue(pRs, "NEW_MEAU_CYCLE_UNIT_Name", strNEW_MEAU_CYCLE_UNIT_Name);
 					DB_Connect->GetFieldValue(pRs, "NEW_BLD_BUND", strBld_Bund);
-					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ¼³¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ¼³¸í
-					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG ¼³¸í
+					DB_Connect->GetFieldValue(pRs, "TAG_NAME", strTagName);			//TAG ì„¤ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_DESC", strTagDESC);			//TAG ì„¤ëª…
+					DB_Connect->GetFieldValue(pRs, "TAG_TYPE", strTagType);			//TAG ì„¤ëª…
 
 					ST_TAG_LIST stTagInfo;
 					memset(&stTagInfo,0x00,sizeof(ST_TAG_LIST));
@@ -626,7 +626,7 @@ int CThread_TAGSearch::GetRegisterTag(int nDBType,const char *szDeviceItem,const
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆÐ!",strMSGTitle);
+				strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 				SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 				TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -644,7 +644,7 @@ int CThread_TAGSearch::GetRegisterTag(int nDBType,const char *szDeviceItem,const
 			pRs->Close();
 			pRs = NULL;
 		}
-		strRunlog_E2.Format("SELECT ½ÇÆÐ Event Error : %s",strMSGTitle);
+		strRunlog_E2.Format("SELECT ì‹¤íŒ¨ Event Error : %s",strMSGTitle);
 		SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 
 #ifdef _DEBUG

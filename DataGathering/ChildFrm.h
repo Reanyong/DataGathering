@@ -1,15 +1,15 @@
-// ÀÌ MFC »ùÇÃ ¼Ò½º ÄÚµå´Â MFC Microsoft Office Fluent »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º("Fluent UI")¸¦ 
-// »ç¿ëÇÏ´Â ¹æ¹ýÀ» º¸¿© ÁÖ¸ç, MFC C++ ¶óÀÌºê·¯¸® ¼ÒÇÁÆ®¿þ¾î¿¡ Æ÷ÇÔµÈ 
-// Microsoft Foundation Classes Reference ¹× °ü·Ã ÀüÀÚ ¹®¼­¿¡ ´ëÇØ 
-// Ãß°¡ÀûÀ¸·Î Á¦°øµÇ´Â ³»¿ëÀÔ´Ï´Ù.  
-// Fluent UI¸¦ º¹»ç, »ç¿ë ¶Ç´Â ¹èÆ÷ÇÏ´Â µ¥ ´ëÇÑ »ç¿ë ¾à°üÀº º°µµ·Î Á¦°øµË´Ï´Ù.  
-// Fluent UI ¶óÀÌ¼±½Ì ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÀÚ¼¼ÇÑ ³»¿ëÀº 
-// http://msdn.microsoft.com/officeui¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À.
+ï»¿// ì´ MFC ìƒ˜í”Œ ì†ŒìŠ¤ ì½”ë“œëŠ” MFC Microsoft Office Fluent ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤("Fluent UI")ë¥¼ 
+// ì‚¬ìš©í•˜ëŠ” ë°©ë²•ì„ ë³´ì—¬ ì£¼ë©°, MFC C++ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì†Œí”„íŠ¸ì›¨ì–´ì— í¬í•¨ëœ 
+// Microsoft Foundation Classes Reference ë° ê´€ë ¨ ì „ìž ë¬¸ì„œì— ëŒ€í•´ 
+// ì¶”ê°€ì ìœ¼ë¡œ ì œê³µë˜ëŠ” ë‚´ìš©ìž…ë‹ˆë‹¤.  
+// Fluent UIë¥¼ ë³µì‚¬, ì‚¬ìš© ë˜ëŠ” ë°°í¬í•˜ëŠ” ë° ëŒ€í•œ ì‚¬ìš© ì•½ê´€ì€ ë³„ë„ë¡œ ì œê³µë©ë‹ˆë‹¤.  
+// Fluent UI ë¼ì´ì„ ì‹± í”„ë¡œê·¸ëž¨ì— ëŒ€í•œ ìžì„¸í•œ ë‚´ìš©ì€ 
+// http://msdn.microsoft.com/officeuië¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 // Copyright (C) Microsoft Corporation
-// ¸ðµç ±Ç¸® º¸À¯.
+// ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .
 
-// ChildFrm.h : CChildFrame Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// ChildFrm.h : CChildFrame í´ëž˜ìŠ¤ì˜ ì¸í„°íŽ˜ì´ìŠ¤
 //
 
 #pragma once
@@ -20,16 +20,16 @@ class CChildFrame : public CMDIChildWndEx
 public:
 	CChildFrame();
 
-// Æ¯¼ºÀÔ´Ï´Ù.
+// íŠ¹ì„±ìž…ë‹ˆë‹¤.
 public:
 
-// ÀÛ¾÷ÀÔ´Ï´Ù.
+// ìž‘ì—…ìž…ë‹ˆë‹¤.
 public:
 
-// ÀçÁ¤ÀÇÀÔ´Ï´Ù.
+// ìž¬ì •ì˜ìž…ë‹ˆë‹¤.
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ìž…ë‹ˆë‹¤.
 public:
 	virtual ~CChildFrame();
 #ifdef _DEBUG
@@ -37,7 +37,7 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-// »ý¼ºµÈ ¸Þ½ÃÁö ¸Ê ÇÔ¼ö
+// ìƒì„±ëœ ë©”ì‹œì§€ ë§µ í•¨ìˆ˜
 protected:
 	afx_msg void OnFilePrint();
 	afx_msg void OnFilePrintPreview();

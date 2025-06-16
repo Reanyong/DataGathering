@@ -1,4 +1,4 @@
-// DLG_GatherInfoSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_GatherInfoSetting.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,14 +7,14 @@
 #include "afxdialogex.h"
 
 
-// CDLG_GatherInfoSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_GatherInfoSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_GatherInfoSetting, CDialog)
 
 CDLG_GatherInfoSetting::CDLG_GatherInfoSetting(CWnd* pParent /*=NULL*/)
 	: CDialog(CDLG_GatherInfoSetting::IDD, pParent)
 {
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 
 	DB_Connect = NULL;
 	m_nItemTotalCount = 0;
@@ -51,15 +51,15 @@ BEGIN_MESSAGE_MAP(CDLG_GatherInfoSetting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_GatherInfoSetting ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_GatherInfoSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
-TCHAR*	_lpszSiteList_Column[] = {"»çÀÌÆ®¸í","µğ¹ÙÀÌ½º¸í","»óÅÂ"};
+TCHAR*	_lpszSiteList_Column[] = {"ì‚¬ì´íŠ¸ëª…","ë””ë°”ì´ìŠ¤ëª…","ìƒíƒœ"};
 
 BOOL CDLG_GatherInfoSetting::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	//_CreateFont(&m_Font);
 
@@ -73,7 +73,7 @@ BOOL CDLG_GatherInfoSetting::OnInitDialog()
 
 	for (int nIndex = 0; nIndex < m_stInfoType.nCount; nIndex++)
 	{
-		ListInsertItem(m_stInfoType.stGatherUseList[nIndex].szSiteName,m_stInfoType.stGatherUseList[nIndex].szDeviceName,"»ç¿ë");
+		ListInsertItem(m_stInfoType.stGatherUseList[nIndex].szSiteName,m_stInfoType.stGatherUseList[nIndex].szDeviceName,"ì‚¬ìš©");
 	}
 
 	if(m_stInfoType.nGatherType == 2)
@@ -86,7 +86,7 @@ BOOL CDLG_GatherInfoSetting::OnInitDialog()
 		btRadioDBType->SetCheck(TRUE);
 
 		if(bRet == FALSE)
-			AfxMessageBox("Á¢¼Ó Á¤º¸°¡ ´Ù¸£°Å³ª Á¢¼Ó Á¤º¸µî·ÏÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+			AfxMessageBox("ì ‘ì† ì •ë³´ê°€ ë‹¤ë¥´ê±°ë‚˜ ì ‘ì† ì •ë³´ë“±ë¡ì´ í•„ìš”í•©ë‹ˆë‹¤.");
 		else
 			GetDeviceInfo();
 			//GetSiteInfo();
@@ -106,7 +106,7 @@ BOOL CDLG_GatherInfoSetting::OnInitDialog()
 
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CDLG_GatherInfoSetting::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
@@ -169,12 +169,12 @@ BOOL CDLG_GatherInfoSetting::SetDBConnect()
 	if(DB_Connect->DB_Connection() == TRUE)
 	{
 		bRet = TRUE;
-		_addSystemMsg(0, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, "DBConnect - ¼º°ø");
+		_addSystemMsg(0, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, "DBConnect - ì„±ê³µ");
 	}
 	else
 	{
 		bRet = FALSE;
-		_addSystemMsg(0, USER_COLOR_RED, "DataGathering - Setting", USER_COLOR_RED, "DBConnect - ½ÇÆĞ");
+		_addSystemMsg(0, USER_COLOR_RED, "DataGathering - Setting", USER_COLOR_RED, "DBConnect - ì‹¤íŒ¨");
 	}
 
 	return bRet;
@@ -233,7 +233,7 @@ void CDLG_GatherInfoSetting::GetDeviceInfo()
 			}
 			else
 			{
-				m_ComboDeicevList.AddString("¾øÀ½");
+				m_ComboDeicevList.AddString("ì—†ìŒ");
 				m_ComboDeicevList.SetCurSel(0);
 				m_ComboDeicevList.EnableWindow(FALSE);
 				GetDlgItem(IDC_BT_ITEM_ADD)->EnableWindow(FALSE);
@@ -267,7 +267,7 @@ void CDLG_GatherInfoSetting::GetDeviceInfo()
 				int nResult = DB_Connect->DB_ReConnection();
 				if(nResult == 0)
 				{
-					//strRunlog_E2.Format("%s - DB Á¢¼Ó ½ÇÆĞ!",strMSGTitle);
+					//strRunlog_E2.Format("%s - DB ì ‘ì† ì‹¤íŒ¨!",strMSGTitle);
 					//SysLogOutPut(m_strLogTitle,strRunlog_E2,LOG_COLOR_RED);
 #ifdef _DEBUG
 					TRACE("GetTagList()/catch com error - %s\n",strRunlog_E2);
@@ -296,7 +296,7 @@ void CDLG_GatherInfoSetting::GetDeviceInfo()
 
 void CDLG_GatherInfoSetting::OnBnClickedRadioGatherType1()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	GetDlgItem(IDC_COMBO_DEICEV_LIST)->EnableWindow(FALSE);
 	GetDlgItem(IDC_BT_ITEM_ADD)->EnableWindow(FALSE);
 	GetDlgItem(IDC_BT_ITEM_DELETE)->EnableWindow(FALSE);
@@ -306,7 +306,7 @@ void CDLG_GatherInfoSetting::OnBnClickedRadioGatherType1()
 
 void CDLG_GatherInfoSetting::OnBnClickedRadioGatherType2()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	BOOL bRet = SetDBConnect();
 	if(bRet == FALSE)
 	{
@@ -378,7 +378,7 @@ int CDLG_GatherInfoSetting::Com_Error(const char *szLogName,_com_error *e)
 
 void CDLG_GatherInfoSetting::OnBnClickedBtItemAdd()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strMainBuffer = "",strSubBuffer = "";
 	int nItem = m_xListSiteList.GetItemCount();
 	int nComboPos = m_ComboDeicevList.GetCurSel();
@@ -400,12 +400,12 @@ void CDLG_GatherInfoSetting::OnBnClickedBtItemAdd()
 					strcat_s(m_stInfoType.stGatherUseList[nItemIndex].szDeviceId,m_stDBGatherList[nComboPos].szDeviceId);
 					strcat_s(m_stInfoType.stGatherUseList[nItemIndex].szDeviceName,m_stDBGatherList[nComboPos].szDeviceName);
 					m_stInfoType.stGatherUseList[nItemIndex].nUse_YN = 1;
-					ListInsertItem(m_stDBGatherList[nComboPos].szSiteName,m_stDBGatherList[nComboPos].szDeviceName,"»ç¿ë");
+					ListInsertItem(m_stDBGatherList[nComboPos].szSiteName,m_stDBGatherList[nComboPos].szDeviceName,"ì‚¬ìš©");
 					m_stInfoType.nCount++;
 				}
 				else
 				{
-					AfxMessageBox("ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ½À´Ï´Ù.");
+					AfxMessageBox("ì´ë¯¸ ë“±ë¡ë˜ì–´ ìˆìŠµë‹ˆë‹¤.");
 					nCheck = TRUE;
 					break;
 				}
@@ -418,7 +418,7 @@ void CDLG_GatherInfoSetting::OnBnClickedBtItemAdd()
 			strcat_s(m_stInfoType.stGatherUseList[0].szDeviceId,m_stDBGatherList[nComboPos].szDeviceId);
 			strcat_s(m_stInfoType.stGatherUseList[0].szDeviceName,m_stDBGatherList[nComboPos].szDeviceName);
 			m_stInfoType.stGatherUseList[0].nUse_YN = 1;
-			ListInsertItem(m_stDBGatherList[nComboPos].szSiteName,m_stDBGatherList[nComboPos].szDeviceName,"»ç¿ë");
+			ListInsertItem(m_stDBGatherList[nComboPos].szSiteName,m_stDBGatherList[nComboPos].szDeviceName,"ì‚¬ìš©");
 			m_stInfoType.nCount++;
 		}
 	}
@@ -430,7 +430,7 @@ void CDLG_GatherInfoSetting::OnBnClickedBtItemAdd()
 
 		if(strMainBuffer == strSubBuffer)
 		{
-			AfxMessageBox("ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ½À´Ï´Ù.");
+			AfxMessageBox("ì´ë¯¸ ë“±ë¡ë˜ì–´ ìˆìŠµë‹ˆë‹¤.");
 			break;
 		}
 		else
@@ -440,7 +440,7 @@ void CDLG_GatherInfoSetting::OnBnClickedBtItemAdd()
 			strcat_s(m_stInfoType.stGatherUseList[nIndex].szDeviceId,m_stDBGatherList[nIndex].szDeviceId);
 			strcat_s(m_stInfoType.stGatherUseList[nIndex].szDeviceName,m_stDBGatherList[nIndex].szDeviceName);
 			m_stInfoType.stGatherUseList[nIndex].nUse_YN = 1;
-			ListInsertItem(m_stDBGatherList[m_ComboDeicevList.GetCurSel()].szSiteName,m_stDBGatherList[m_ComboDeicevList.GetCurSel()].szDeviceName,"»ç¿ë");
+			ListInsertItem(m_stDBGatherList[m_ComboDeicevList.GetCurSel()].szSiteName,m_stDBGatherList[m_ComboDeicevList.GetCurSel()].szDeviceName,"ì‚¬ìš©");
 			m_stInfoType.nCount++;
 		}
 	}	*/
@@ -461,7 +461,7 @@ int CDLG_GatherInfoSetting::ListInsertItem(const char *szData1,const char *szDat
 
 void CDLG_GatherInfoSetting::OnBnClickedBtItemDelete()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	POSITION pos = m_xListSiteList.GetFirstSelectedItemPosition();
 	if (NULL == pos)
 		return;
@@ -469,7 +469,7 @@ void CDLG_GatherInfoSetting::OnBnClickedBtItemDelete()
 
 	char szBuffer[48];
 	memset(szBuffer,0x00,sizeof(szBuffer));
-	m_xListSiteList.SetItemText(nItem, 2, "»èÁ¦");
+	m_xListSiteList.SetItemText(nItem, 2, "ì‚­ì œ");
 	m_stInfoType.stGatherUseList[nItem].nUse_YN = 0;
 	m_xListSiteList.Invalidate(FALSE);
 }
@@ -477,7 +477,7 @@ void CDLG_GatherInfoSetting::OnBnClickedBtItemDelete()
 
 void CDLG_GatherInfoSetting::OnClose()
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnClose();
 }

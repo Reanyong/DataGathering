@@ -1,4 +1,4 @@
-// GridDropTarget.cpp : implementation file
+﻿// GridDropTarget.cpp : implementation file
 //
 // MFC Grid Control - Drag/Drop target implementation
 //

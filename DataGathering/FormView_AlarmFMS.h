@@ -1,15 +1,15 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Control_List/ListBoxControl/XListCtrl.h"
 #include "Thread_FMSAlarmMain.h"
-// CFormView_AlarmFMS Æû ºäÀÔ´Ï´Ù.
+// CFormView_AlarmFMS í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CFormView_AlarmFMS : public CFormView
 {
 	DECLARE_DYNCREATE(CFormView_AlarmFMS)
 
 protected:
-	CFormView_AlarmFMS();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFormView_AlarmFMS();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFormView_AlarmFMS();
 
 public:
@@ -39,7 +39,7 @@ public:
 
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual void OnInitialUpdate();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);

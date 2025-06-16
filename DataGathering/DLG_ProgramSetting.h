@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDLG_ProgramSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_ProgramSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "Thread_Calibration.h"
 
@@ -10,10 +10,10 @@ class CDLG_ProgramSetting : public CDialogEx
 	DECLARE_DYNAMIC(CDLG_ProgramSetting)
 
 public:
-	CDLG_ProgramSetting(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDLG_ProgramSetting(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDLG_ProgramSetting();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DLG_PROGRAMSETTING };
 protected:
 	CComboBox m_Combo_GatherInterval;
@@ -29,7 +29,7 @@ public:
 
 	CThread_Calibration *m_pThreadCalibration;
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedRadioWeatherDirect();
@@ -50,12 +50,12 @@ public:
 	afx_msg void OnBnClickedRadioUserurn();
 	afx_msg void OnBnClickedButtonCalibration();
 	afx_msg LRESULT OnAddList(WPARAM wParm, LPARAM lParm);
-	afx_msg LRESULT OnEnableControl(WPARAM wParm, LPARAM lParm); //20210308 ksw ÄÁÆ®·Ñ Enable Á¦¾î ÇÔ¼ö
+	afx_msg LRESULT OnEnableControl(WPARAM wParm, LPARAM lParm); //20210308 ksw ì»¨íŠ¸ë¡¤ Enable ì œì–´ í•¨ìˆ˜
 	CMonthCalCtrl m_mccCalander;
 	afx_msg void OnBnClickedRadioBems();
 	afx_msg void OnBnClickedRadioEms();
 
-	// ÃÊ±âÈ­ SET
+	// ì´ˆê¸°í™” SET
 	afx_msg void OnBnClickedBtnTrcMinute();
 	afx_msg void OnBnClickedBtnTrcQuater();
 	afx_msg void OnBnClickedBtnTrcHour();

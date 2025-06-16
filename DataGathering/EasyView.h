@@ -1,4 +1,4 @@
-// EasyView.h : header file
+﻿// EasyView.h : header file
 //
 
 #if !defined(AFX_EASYVIEW_H__0991CB50_5EB5_4BA1_9A50_C9C20D26AC70__INCLUDED_)

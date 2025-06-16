@@ -1,4 +1,4 @@
-// DLG_ISmartSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_ISmartSetting.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,14 +7,14 @@
 #include "afxdialogex.h"
 
 
-// CDLG_ISmartSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_ISmartSetting ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_ISmartSetting, CDialog)
 
 CDLG_ISmartSetting::CDLG_ISmartSetting(CWnd* pParent /*=NULL*/)
 	: CDialog(CDLG_ISmartSetting::IDD, pParent)
 {
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	DB_Connect = NULL;
 
 	m_bDbClkCheck = NULL;
@@ -50,14 +50,14 @@ BEGIN_MESSAGE_MAP(CDLG_ISmartSetting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_ISmartSetting ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_ISmartSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
-TCHAR*	_lpszSiteColumn[] = {"»çÀÌÆ®¸í","Á¢¼ÓID","»ç¿ëÀ¯¹«"};
+TCHAR*	_lpszSiteColumn[] = {"ì‚¬ì´íŠ¸ëª…","ì ‘ì†ID","ì‚¬ìš©ìœ ë¬´"};
 BOOL CDLG_ISmartSetting::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	_CreateFont(&m_Font);
 
 	ComposeList(m_xListSiteList, USER_CONTROL_LIST, IDC_LIST_SITE,3,_lpszSiteColumn);
@@ -72,14 +72,14 @@ BOOL CDLG_ISmartSetting::OnInitDialog()
 
 	if(GetSiteSearch() != TRUE)
 	{
-		AfxMessageBox("DB Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.");
+		AfxMessageBox("DB ì ‘ì†í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		return FALSE;
 	}
 
 
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CDLG_ISmartSetting::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
@@ -138,7 +138,7 @@ BOOL CDLG_ISmartSetting::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nP
 
 BOOL CDLG_ISmartSetting::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)
@@ -158,13 +158,13 @@ BOOL CDLG_ISmartSetting::GetSiteSearch()
 	DB_Connect->DB_ConnectionInfo(stDBInfo.szServer,stDBInfo.szDB,stDBInfo.szID,stDBInfo.szPW,stDBInfo.unDBType);
 	if(DB_Connect->DB_Connection() == TRUE)
 	{
-		_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, "Á¢¼Ó ¼º°ø");
+		_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, "ì ‘ì† ì„±ê³µ");
 		m_nSiteCount = GetSiteList();
 		return TRUE;
 	}
 	else
 	{
-		_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, "µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.");
+		_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_LIME, "ë°ì´í„° ë² ì´ìŠ¤ì— ì ‘ì†í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		return FALSE;
 	}
 }
@@ -204,7 +204,7 @@ int CDLG_ISmartSetting::GetSiteList()
 					m_stSiteInterlock[nI].nRowIndex = nI + 1;
 
 					if(strRetInfo == "-")
-						ListInsertItem(strRetSiteName,"¹Ì¼³Á¤","¹ÌÁöÁ¤");
+						ListInsertItem(strRetSiteName,"ë¯¸ì„¤ì •","ë¯¸ì§€ì •");
 					else
 					{
 						CString strTempBuff = "";
@@ -223,9 +223,9 @@ int CDLG_ISmartSetting::GetSiteList()
 						m_stSiteInterlock[nI].nUSE_YN = atoi(strRetInfo);
 						
 						if(m_stSiteInterlock[nI].nUSE_YN == 1)
-							strUseYNMsg = "»ç¿ë";
+							strUseYNMsg = "ì‚¬ìš©";
 						else
-							strUseYNMsg = "¹Ì»ç¿ë";
+							strUseYNMsg = "ë¯¸ì‚¬ìš©";
 												
 						ListInsertItem(strRetSiteName,m_stSiteInterlock[nI].szID,strUseYNMsg);
 					}
@@ -248,13 +248,13 @@ int CDLG_ISmartSetting::GetSiteList()
 		//CString strDescription = e.Description();
 		if(0x80004005 == e.Error())
 		{
-			strRunlog_E2.Format("Position : [%s], log : [DB Á¢¼Ó Á¢¼Ó ½Ãµµ..]",strMsgTitle);
+			strRunlog_E2.Format("Position : [%s], log : [DB ì ‘ì† ì ‘ì† ì‹œë„..]",strMsgTitle);
 			SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 			int nResult = DB_Connect->DB_ReConnection();
 			if(nResult == 0)
 			{
-				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB Á¢¼Ó ½ÇÆĞ!]",strMsgTitle);
+				strRunlog_E2.Format("Position : [%s], log :[ReConnection][DB ì ‘ì† ì‹¤íŒ¨!]",strMsgTitle);
 				SetWriteLogFile("Processor-log : [_com_error..],",strRunlog_E2);
 
 				return ERROR_DB_RECONNECTION;
@@ -287,10 +287,10 @@ void CDLG_ISmartSetting::Com_Error(const char *szLogName,_com_error *e)
 		e->Error(), e->ErrorMessage(), (LPCTSTR)bstrSource, (LPCTSTR)bstrDescription);
 
 #ifdef _DEBUG
-	TRACE("ProcessorName : [ISmart ¼³Á¤],Position : [%s][%s]\r\n",szLogName,strRunlog_E2);
+	TRACE("ProcessorName : [ISmart ì„¤ì •],Position : [%s][%s]\r\n",szLogName,strRunlog_E2);
 #endif
 
-	strRunlog_E2Log.Format("Position : [ISmart ¼³Á¤], LogName: [%s], %s",szLogName, strRunlog_E2);
+	strRunlog_E2Log.Format("Position : [ISmart ì„¤ì •], LogName: [%s], %s",szLogName, strRunlog_E2);
 	SetWriteLogFile("Processor-log : [DB Com Error..],",strRunlog_E2Log);
 	Sleep(500);
 }
@@ -357,7 +357,7 @@ void CDLG_ISmartSetting::OnClickedList(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CDLG_ISmartSetting::OnBnClickedButtonRegister()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CString strID,strPW,strUseYNMsg;
 	int nRadioCheck_USE_YN = 0;
@@ -380,13 +380,13 @@ void CDLG_ISmartSetting::OnBnClickedButtonRegister()
 		if(btRadioCheck_USE_Y->GetCheck() == 1)
 		{
 			nRadioCheck_USE_YN = 1;
-			strUseYNMsg = "»ç¿ë";
+			strUseYNMsg = "ì‚¬ìš©";
 		}
 		CButton *btRadioCheck_USE_N = (CButton*)GetDlgItem(IDC_RADIO_N);
 		if(btRadioCheck_USE_N->GetCheck() == 1)
 		{
 			nRadioCheck_USE_YN = 0;
-			strUseYNMsg = "¹Ì»ç¿ë";
+			strUseYNMsg = "ë¯¸ì‚¬ìš©";
 		}
 
 		m_xListSiteList.SetItemText(nListRow, 1, strID);
@@ -404,7 +404,7 @@ void CDLG_ISmartSetting::OnBnClickedButtonRegister()
 		m_bDbClkCheck = FALSE;
 	}
 	else
-		AfxMessageBox("»çÀÌÆ® Á¤º¸¸¦ ¼±ÅÃÇÏ½Ê½Ã¿À");
+		AfxMessageBox("ì‚¬ì´íŠ¸ ì •ë³´ë¥¼ ì„ íƒí•˜ì‹­ì‹œì˜¤");
 
 
 	GetDlgItem(IDC_BUTTON_REGISTER)->EnableWindow(FALSE);
@@ -412,7 +412,7 @@ void CDLG_ISmartSetting::OnBnClickedButtonRegister()
 
 void CDLG_ISmartSetting::OnBnClickedRadioY()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck_USE_Y = (CButton*)GetDlgItem(IDC_RADIO_Y);
 	btRadioCheck_USE_Y->SetCheck(1);
 	CButton *btRadioCheck_USE_N = (CButton*)GetDlgItem(IDC_RADIO_N);
@@ -421,7 +421,7 @@ void CDLG_ISmartSetting::OnBnClickedRadioY()
 
 void CDLG_ISmartSetting::OnBnClickedRadioN()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CButton *btRadioCheck_USE_Y = (CButton*)GetDlgItem(IDC_RADIO_Y);
 	btRadioCheck_USE_Y->SetCheck(0);
 	CButton *btRadioCheck_USE_N = (CButton*)GetDlgItem(IDC_RADIO_N);
@@ -430,7 +430,7 @@ void CDLG_ISmartSetting::OnBnClickedRadioN()
 
 void CDLG_ISmartSetting::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	for(int nI = 0; nI < m_nSiteCount ; nI++)
 	{
@@ -442,7 +442,7 @@ void CDLG_ISmartSetting::OnBnClickedOk()
 			strBuffer.Format("%s,%s,%d",m_stSiteInterlock[nI].szID,m_stSiteInterlock[nI].szPW,m_stSiteInterlock[nI].nUSE_YN);
 			WritePrivateProfileString("SiteList",m_stSiteInterlock[nI].szSiteId,strBuffer,strSettingPath);
 			
-			strBuffer.Format("%s µî·Ï µÇ¾ú½À´Ï´Ù.",m_stSiteInterlock[nI].szSiteName);
+			strBuffer.Format("%s ë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤.",m_stSiteInterlock[nI].szSiteName);
 			_addSystemMsg(FORM_VIEW_ID_SYSTEM, USER_COLOR_BLUE, "DataGathering - Setting", USER_COLOR_PINK, strBuffer);
 		}
 	}

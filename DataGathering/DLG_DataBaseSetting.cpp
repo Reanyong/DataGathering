@@ -1,4 +1,4 @@
-// DLG_DataBaseSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_DataBaseSetting.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 
 #define WM_USER_MSG_DBSETTING	(WM_USER+2000)
 
-// CDLG_DataBaseSetting ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_DataBaseSetting ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_DataBaseSetting, CDialog)
 
@@ -18,7 +18,7 @@ CDLG_DataBaseSetting::CDLG_DataBaseSetting(CWnd* pParent /*=NULL*/)
 	: CDialog(CDLG_DataBaseSetting::IDD, pParent)
 {
 
-	CoInitialize(NULL); //DB-ADO ÄÁÆ®·Ñ »ç¿ë½Ã
+	CoInitialize(NULL); //DB-ADO ì»¨íŠ¸ë¡¤ ì‚¬ìš©ì‹œ
 	DB_Connect = NULL;
 }
 
@@ -52,13 +52,13 @@ BEGIN_MESSAGE_MAP(CDLG_DataBaseSetting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_DataBaseSetting ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_DataBaseSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CDLG_DataBaseSetting::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 
 	DB_Connect = new CAdo_Control();
@@ -75,12 +75,12 @@ BOOL CDLG_DataBaseSetting::OnInitDialog()
 		*/
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹ÝÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± íŽ˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CDLG_DataBaseSetting::OnBnClickedBtConnectionTest()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ShowControlEnable(FALSE);
 
 
@@ -97,7 +97,7 @@ void CDLG_DataBaseSetting::OnBnClickedBtConnectionTest()
 	if(btRadioDBType->GetCheck())
 		unMSGID = DB_MYSQL;
 
-	//20200210 jhs : postgre ¶óµð¿À ¹öÆ° Ãß°¡
+	//20200210 jhs : postgre ë¼ë””ì˜¤ ë²„íŠ¼ ì¶”ê°€
 	btRadioDBType = (CButton*)GetDlgItem(IDC_RADIO_POSTGRE);
 	if(btRadioDBType->GetCheck())
 		unMSGID = DB_POSTGRE;
@@ -109,9 +109,9 @@ void CDLG_DataBaseSetting::OnBnClickedBtConnectionTest()
 
 	DB_Connect->DB_ConnectionInfo(strServer,strDBName,strUserId,strUserPw,unMSGID);
 	if(DB_Connect->DB_Connection() == TRUE)
-		AfxMessageBox("Á¢¼Ó ¼º°ø");
+		AfxMessageBox("ì ‘ì† ì„±ê³µ");
 	else
-		AfxMessageBox("Á¢¼Ó ½ÇÆÐ");
+		AfxMessageBox("ì ‘ì† ì‹¤íŒ¨");
 
 	DB_Connect->DB_Close();
 	ShowControlEnable(TRUE);
@@ -153,7 +153,7 @@ void CDLG_DataBaseSetting::ShowSettingData()
 	CButton *btRadioMsSql = (CButton*)GetDlgItem(IDC_RADIO_MSSQL);
 	CButton *btRadioOracle = (CButton*)GetDlgItem(IDC_RADIO_ORACLE);
 	CButton *btRadioMySql = (CButton*)GetDlgItem(IDC_RADIO_MYSQL);
-	CButton *btRadioPostgre = (CButton*)GetDlgItem(IDC_RADIO_POSTGRE); // 20200210 jsh -> postgre ¶óµð¿À ¹öÆ° ¼³Á¤
+	CButton *btRadioPostgre = (CButton*)GetDlgItem(IDC_RADIO_POSTGRE); // 20200210 jsh -> postgre ë¼ë””ì˜¤ ë²„íŠ¼ ì„¤ì •
 	stDbInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
 	switch(stDbInfo.unDBType)
 	{
@@ -247,7 +247,7 @@ void CDLG_DataBaseSetting::SetDBInfoSetting()
 
 BOOL CDLG_DataBaseSetting::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_tooltop.RelayEvent(pMsg);
 	if(pMsg->message == WM_KEYDOWN)
 	{
@@ -260,11 +260,11 @@ BOOL CDLG_DataBaseSetting::PreTranslateMessage(MSG* pMsg)
 void CDLG_DataBaseSetting::ShowToolTip()
 {
 	m_tooltop.Create(this);
-	m_tooltop.AddTool(GetDlgItem(IDC_RADIO_MSSQL),"MS-SQL »ç¿ë");
-	m_tooltop.AddTool(GetDlgItem(IDC_RADIO_ORACLE),"Oracle »ç¿ë½Ã Oracle Å¬¶óÀÌ¾ðÆ® ¼³Ä¡ ÇÊ¿ä");
-	m_tooltop.AddTool(GetDlgItem(IDC_RADIO_MYSQL),"My SQL »ç¿ë");
+	m_tooltop.AddTool(GetDlgItem(IDC_RADIO_MSSQL),"MS-SQL ì‚¬ìš©");
+	m_tooltop.AddTool(GetDlgItem(IDC_RADIO_ORACLE),"Oracle ì‚¬ìš©ì‹œ Oracle í´ë¼ì´ì–¸íŠ¸ ì„¤ì¹˜ í•„ìš”");
+	m_tooltop.AddTool(GetDlgItem(IDC_RADIO_MYSQL),"My SQL ì‚¬ìš©");
 
-	m_tooltop.AddTool(GetDlgItem(IDC_BT_CONNECTION_TEST),"¸ÞÀÎ DB Á¢¼Ó Test");
+	m_tooltop.AddTool(GetDlgItem(IDC_BT_CONNECTION_TEST),"ë©”ì¸ DB ì ‘ì† Test");
 
 	m_tooltop.SetTipBkColor(RGB(255,255,0));
 	m_tooltop.SetTipTextColor(RGB(255,0,0));
@@ -272,7 +272,7 @@ void CDLG_DataBaseSetting::ShowToolTip()
 
 void CDLG_DataBaseSetting::OnBnClickedRadioMssql()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	GetDlgItem(IDC_STATIC_DB_SVERVER)->SetWindowText("DB Server : ");
 	GetDlgItem(IDC_STATIC_DB_NAME)->SetWindowText("DB Name : ");
 	GetDlgItem(IDC_EDIT_DB_SERVER)->EnableWindow(TRUE);
@@ -280,7 +280,7 @@ void CDLG_DataBaseSetting::OnBnClickedRadioMssql()
 
 void CDLG_DataBaseSetting::OnBnClickedRadioOracle()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	GetDlgItem(IDC_STATIC_DB_SVERVER)->SetWindowText("DB Server : ");
 	GetDlgItem(IDC_STATIC_DB_NAME)->SetWindowText("TnsNames : ");
 
@@ -289,15 +289,15 @@ void CDLG_DataBaseSetting::OnBnClickedRadioOracle()
 
 void CDLG_DataBaseSetting::OnBnClickedButtonDbnameSet()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDLG_DataBaseNameSet dlg;
 	dlg.DoModal();
 }
 
-//20200210 jsh -> postgre Ãß°¡
+//20200210 jsh -> postgre ì¶”ê°€
 void CDLG_DataBaseSetting::OnBnClickedRadioPostgre()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	GetDlgItem(IDC_STATIC_DB_SVERVER)->SetWindowText("DB Server : ");
 	GetDlgItem(IDC_STATIC_DB_NAME)->SetWindowText("DB Name : ");
 	GetDlgItem(IDC_EDIT_DB_SERVER)->EnableWindow(TRUE);

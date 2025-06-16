@@ -1,4 +1,4 @@
-// DLG_DataBaseNameSet.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// DLG_DataBaseNameSet.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "afxdialogex.h"
 
 
-// CDLG_DataBaseNameSet ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDLG_DataBaseNameSet ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDLG_DataBaseNameSet, CDialog)
 
@@ -32,23 +32,23 @@ BEGIN_MESSAGE_MAP(CDLG_DataBaseNameSet, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDLG_DataBaseNameSet ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDLG_DataBaseNameSet ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 BOOL CDLG_DataBaseNameSet::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	ShowSettingData();
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
 BOOL CDLG_DataBaseNameSet::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_SPACE || pMsg->wParam == VK_RETURN)
@@ -60,7 +60,7 @@ BOOL CDLG_DataBaseNameSet::PreTranslateMessage(MSG* pMsg)
 
 void CDLG_DataBaseNameSet::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strDataBuffer,strCheck;
 	ST_DATABASENAME stDBName;	
 	memset(&stDBName,0x00,sizeof(stDBName));
@@ -69,7 +69,7 @@ void CDLG_DataBaseNameSet::OnBnClickedOk()
 	GetDlgItem(IDC_EDIT_WEATHER_DBNAME)->GetWindowText(strDataBuffer);
 	strcat_s(stDBName.szWTDBName,strDataBuffer);
 
-	if(MessageBox("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?", "ÀúÀå È®ÀÎ", MB_YESNO)== IDNO)
+	if(MessageBox("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ì €ì¥ í™•ì¸", MB_YESNO)== IDNO)
 		return;
 
 	_setDataBesaNameWrite(&stDBName, g_stProjectInfo.szProjectIniPath);

@@ -1,4 +1,4 @@
-// FormView_IConnect.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// FormView_IConnect.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CFormView_IConnect, CFormView)
 END_MESSAGE_MAP()
 
 
-// CFormView_IConnect Áø´ÜÀÔ´Ï´Ù.
+// CFormView_IConnect ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CFormView_IConnect::AssertValid() const
@@ -52,10 +52,10 @@ void CFormView_IConnect::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CFormView_IConnect ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFormView_IConnect ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
-TCHAR*	_lpszSiteConnect_Column[] = {"»çÀÌÆ®¸í","ID","ÇöÀç »óÅÂ"};
-TCHAR* _lpszCurrent_ST[] = {"¹øÈ£","»çÀÌÆ®¸í","Ã³¸®³»¿ë"};
+TCHAR*	_lpszSiteConnect_Column[] = {"ì‚¬ì´íŠ¸ëª…","ID","í˜„ìž¬ ìƒíƒœ"};
+TCHAR* _lpszCurrent_ST[] = {"ë²ˆí˜¸","ì‚¬ì´íŠ¸ëª…","ì²˜ë¦¬ë‚´ìš©"};
 void CFormView_IConnect::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
@@ -88,28 +88,28 @@ void CFormView_IConnect::OnInitialUpdate()
 	{
 		if(stGatherInfo.nAutoRun_Check == 1)
 		{
-			GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý Á¤Áö..");
+			GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€..");
 			SetTimer(1,500, NULL);
 			m_bThreadStart = FALSE;
-			_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁý »óÅÂ : [ÀÚµ¿ ¼öÁý]");
+			_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìžë™ ìˆ˜ì§‘]");
 
-			//_addCurrentstateMsg(0,0, m_strTitle, "ÀÚµ¿ ¼öÁý");
+			//_addCurrentstateMsg(0,0, m_strTitle, "ìžë™ ìˆ˜ì§‘");
 		}
 		else
 		{
-			GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý ½ÃÀÛ..");
+			GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œìž‘..");
 			GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);
-			_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "¼öÁý »óÅÂ : [¼öµ¿ ¼öÁý]");
-			//_addCurrentstateMsg(0,0, m_strTitle, "¼öµ¿ ¼öÁý");
+			_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]", USER_COLOR_BLACK, "ìˆ˜ì§‘ ìƒíƒœ : [ìˆ˜ë™ ìˆ˜ì§‘]");
+			//_addCurrentstateMsg(0,0, m_strTitle, "ìˆ˜ë™ ìˆ˜ì§‘");
 		}
 	}
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 }
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
--¸®½ºÆ® ÄÁÆ®·Ñ·¯ »ý¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+-ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬ ìƒì„±
 -BOOL ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nPosListId,int nColumns,char *szColumn[])
 */
 //////////////////////////////////////////////////////////////////////////
@@ -175,8 +175,8 @@ BOOL CFormView_IConnect::ComposeList(CXListCtrl &listCtrl, UINT nListID, UINT nP
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : ÀÌº¥Æ®
-- »ç¿ëÀÚ ÀÌº¥Æ® ¸Þ½ÃÁö 
+- í˜¸ì¶œ ë°©ë²• : ì´ë²¤íŠ¸
+- ì‚¬ìš©ìž ì´ë²¤íŠ¸ ë©”ì‹œì§€ 
 -LRESULT OnUserMessage(WPARAM wParam, LPARAM lParam)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -202,8 +202,8 @@ LRESULT CFormView_IConnect::OnUserMessage(WPARAM wParam, LPARAM lParam)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ¸®½ºÆ® ÄÁÆ®·Ñ Ãâ·ÂµÈ Á¦°Å
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ì¶œë ¥ëœ ì œê±°
 -void ListRemoveItem_Site()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -219,8 +219,8 @@ void CFormView_IConnect::ListRemoveItem_Site()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ¸®½ºÆ® ÄÁÆ®·Ñ µ¥ÀÌÅÍ Ãâ·Â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ë°ì´í„° ì¶œë ¥
 -int ListInsertItem_Site(const char *szData1,const char *szData2,const char *szData3)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -253,8 +253,8 @@ int CFormView_IConnect::ListInsertItem_Site(const char *szData1,const char *szDa
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ¸®½ºÆ® ÄÁÆ®·Ñ µ¥ÀÌÅÍ Ãâ·Â
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ë°ì´í„° ì¶œë ¥
 -void ListInsertItem_Item(const char *szData1,const char *szData2,BOOL bType)
 */
 //////////////////////////////////////////////////////////////////////////
@@ -286,8 +286,8 @@ void CFormView_IConnect::ListInsertItem_Item(const char *szData1,const char *szD
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ÇÑÀü¸Á µ¥ÀÌÅÍ ¼öÁý ½ÃÀÛ ¾²·¹µå »ý¼º
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- í•œì „ë§ ë°ì´í„° ìˆ˜ì§‘ ì‹œìž‘ ì“°ë ˆë“œ ìƒì„±
 -BOOL StartThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -308,8 +308,8 @@ BOOL CFormView_IConnect::StartThread()
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : È£Ãâ
-- ½º·¹µå Á¾·á/¼öÁý Á¾·á
+- í˜¸ì¶œ ë°©ë²• : í˜¸ì¶œ
+- ìŠ¤ë ˆë“œ ì¢…ë£Œ/ìˆ˜ì§‘ ì¢…ë£Œ
 -void StopThread()
 */
 //////////////////////////////////////////////////////////////////////////
@@ -332,7 +332,7 @@ void CFormView_IConnect::StopThread()
 
 void CFormView_IConnect::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 	switch(nIDEvent)
 	{
@@ -359,14 +359,14 @@ void CFormView_IConnect::OnTimer(UINT_PTR nIDEvent)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-- È£Ãâ ¹æ¹ý : ¹öÆ° ÀÌº¥Æ® 
-- ½ÃÀÛ ¹öÆ° Å¬¸¯½Ã ÀÌº¥Æ®
+- í˜¸ì¶œ ë°©ë²• : ë²„íŠ¼ ì´ë²¤íŠ¸ 
+- ì‹œìž‘ ë²„íŠ¼ í´ë¦­ì‹œ ì´ë²¤íŠ¸
 -void OnBnClickedButtonStart()
 */
 //////////////////////////////////////////////////////////////////////////
 void CFormView_IConnect::OnBnClickedButtonStart()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strProcessorTitle = "";
 	GetDlgItem(IDC_BUTTON_START)->EnableWindow(FALSE);
 	strProcessorTitle.LoadString(IDS_MY_TREE_VIEW_4);
@@ -377,27 +377,27 @@ void CFormView_IConnect::OnBnClickedButtonStart()
 	{
 		m_bThreadStart = FALSE;
 		StartThread();
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý Á¤Áö");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì •ì§€");
 
-		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý ½ÃÀÛ");
-		_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý ½ÃÀÛ]");
+		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì‹œìž‘");
+		_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì‹œìž‘]");
 	}
 	else
 	{
 		m_bThreadStart = TRUE;
 		StopThread();
-		GetDlgItem(IDC_BUTTON_START)->SetWindowText("¼öÁý ½ÃÀÛ");
+		GetDlgItem(IDC_BUTTON_START)->SetWindowText("ìˆ˜ì§‘ ì‹œìž‘");
 		GetDlgItem(IDC_BUTTON_START)->EnableWindow(TRUE);		
 
-		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý Á¤Áö");
-		_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "»óÅÂ : [°ü¸®ÀÚ¿¡ ÀÇÇØ ¼öÁý Á¤Áö]");
+		_WriteLogFile(g_stProjectInfo.szProjectLogPath,strProcessorTitle,"ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€");
+		_addSystemMsg(FORM_VIEW_ID_5, USER_COLOR_BLUE, "View log : [Processor..]" , USER_COLOR_PINK, "ìƒíƒœ : [ê´€ë¦¬ìžì— ì˜í•´ ìˆ˜ì§‘ ì •ì§€]");
 	}
 }
 
 
 BOOL CFormView_IConnect::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(pMsg->message == WM_KEYDOWN)
 	{
 		if(pMsg->wParam == VK_F4 || pMsg->wParam == VK_CONTROL)

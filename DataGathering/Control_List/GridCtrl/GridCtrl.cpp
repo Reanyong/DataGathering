@@ -1,4 +1,4 @@
-// GridCtrl.cpp : implementation file
+﻿// GridCtrl.cpp : implementation file
 //
 // MFC Grid Control v2.24
 //

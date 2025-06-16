@@ -1,4 +1,4 @@
-// WndMenubar.cpp : implementation file
+ï»¿// WndMenubar.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@ IMPLEMENT_DYNCREATE(CWndMenubar, CWnd)
 CWndMenubar::CWndMenubar()
 {
 	m_nToolbarId = IDR_CUSTOM_TOOLBAR;
-	m_szRoot.Format("%s","¸Ş´º");
+	m_szRoot.Format("%s","ë©”ë‰´");
 	
 }
 
@@ -113,7 +113,7 @@ void CWndMenubar::OnPaint()
 
 /////////////////////////////////////////////////////////////////////////////
 // CWndMenubar drawing
-// ON_NOTIFY_REFLECT¸¦ ÀÌ¿ëÇÏ¿© WM_NOTIFY¸¦ ÆÄ»ıµÈ ÄÁÆ®·ÑÅ¬·¡½º¿¡°Ô µÇµ¹·Á º¸³¾¼ö ÀÖ´Ù.
+// ON_NOTIFY_REFLECTë¥¼ ì´ìš©í•˜ì—¬ WM_NOTIFYë¥¼ íŒŒìƒëœ ì»¨íŠ¸ë¡¤í´ë˜ìŠ¤ì—ê²Œ ë˜ëŒë ¤ ë³´ë‚¼ìˆ˜ ìˆë‹¤.
 
 // Your function must return TRUE if the notification message has been completely handled 
 // or FALSE if other objects in the command routing should have a chance to handle the message
@@ -141,17 +141,17 @@ BOOL CWndMenubar::OnNotifyDblclk(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 
 	s1 = m_TreeCtrl.GetItemText(hSelected);
 	
-	if(s1 == "ÁÂ¼®À§Ä¡ µî·Ï")
+	if(s1 == "ì¢Œì„ìœ„ì¹˜ ë“±ë¡")
 		lParam = 1;
-	else if(s1 == "±¸¼º¿ø µî·Ï")
+	else if(s1 == "êµ¬ì„±ì› ë“±ë¡")
 		lParam = 2;
-	else if(s1 == "½ºÄÉÁÙ µî·Ï")
+	else if(s1 == "ìŠ¤ì¼€ì¤„ ë“±ë¡")
 		lParam = 9;
-	else if(s1 == "New ½ºÄÉÁÙ µî·Ï")
+	else if(s1 == "New ìŠ¤ì¼€ì¤„ ë“±ë¡")
 		lParam = 3;
-	else if(s1 == "°øÁ¶±â¿¬µ¿ µî·Ï")
+	else if(s1 == "ê³µì¡°ê¸°ì—°ë™ ë“±ë¡")
 		lParam = 5;
-	else if(s1 == "Àü·Â¿ä±İ¿¬µ¿ µî·Ï")
+	else if(s1 == "ì „ë ¥ìš”ê¸ˆì—°ë™ ë“±ë¡")
 		lParam = 6;
 
 	if(wParam<1)
@@ -293,29 +293,29 @@ void CWndMenubar::OnInitialUpdate()
 /*	if(g_bProjectExclude == FALSE )
 	{
 		tvInsert.item.lParam = lParam++;
-		tvInsert.item.pszText = _T("±¸¼º¿ø µî·Ï");
+		tvInsert.item.pszText = _T("êµ¬ì„±ì› ë“±ë¡");
 		m_hBranch1 = m_TreeCtrl.InsertItem(&tvInsert);
 		
-		tvInsert.item.pszText =  _T("ÁÂ¼®À§Ä¡ µî·Ï");
+		tvInsert.item.pszText =  _T("ì¢Œì„ìœ„ì¹˜ ë“±ë¡");
 		m_hBranch2 = m_TreeCtrl.InsertItem(&tvInsert);
 
 		if(_bAdminCheck == TRUE)
 		{
-		//	tvInsert.item.pszText =  _T("½ºÄÉÁÙ µî·Ï");
+		//	tvInsert.item.pszText =  _T("ìŠ¤ì¼€ì¤„ ë“±ë¡");
 		//	m_hBranch3 = m_TreeCtrl.InsertItem(&tvInsert);
 
-			tvInsert.item.pszText =  _T("New ½ºÄÉÁÙ µî·Ï");
+			tvInsert.item.pszText =  _T("New ìŠ¤ì¼€ì¤„ ë“±ë¡");
 			m_hBranch3 = m_TreeCtrl.InsertItem(&tvInsert);
 
 
 			if(g_bVacExclude == FALSE)
 			{
-				tvInsert.item.pszText =  _T("°øÁ¶±â¿¬µ¿ µî·Ï");
+				tvInsert.item.pszText =  _T("ê³µì¡°ê¸°ì—°ë™ ë“±ë¡");
 				m_hBranch4 = m_TreeCtrl.InsertItem(&tvInsert);
 			}
 			if(g_bElecExclude == FALSE)
 			{
-				tvInsert.item.pszText =  _T("Àü·Â¿ä±İ¿¬µ¿ µî·Ï");
+				tvInsert.item.pszText =  _T("ì „ë ¥ìš”ê¸ˆì—°ë™ ë“±ë¡");
 				m_hBranch5 = m_TreeCtrl.InsertItem(&tvInsert);
 			}
 		}
@@ -324,7 +324,7 @@ void CWndMenubar::OnInitialUpdate()
 	{*/
 	
 	
-		tvInsert.item.pszText =  _T("New ½ºÄÉÁÙ µî·Ï");
+		tvInsert.item.pszText =  _T("New ìŠ¤ì¼€ì¤„ ë“±ë¡");
 		m_hBranch3 = m_TreeCtrl.InsertItem(&tvInsert);
 		lParam = 3;
 //	}
@@ -364,8 +364,8 @@ void CWndMenubar::OnSize(UINT nType, int cx, int cy)
 	Invalidate(FALSE);
 }
 
-//WS_CLIPCHILDREN  -  Â÷ÀÏµå°¡ À§Ä¡ÇÑ ¿µ¿ªÀº ±×¸®±â ¿µ¿ª¿¡¼­ Á¦¿ÜµÈ´Ù.
-//WS_CLIPSIBLINGS  -  Â÷ÀÏµå³¢¸® »óÈ£ °ãÄ£ ¿µ¿ªÀº ±×¸®±â ¿µ¿ª¿¡¼­ Á¦¿ÜµÈ´Ù.
+//WS_CLIPCHILDREN  -  ì°¨ì¼ë“œê°€ ìœ„ì¹˜í•œ ì˜ì—­ì€ ê·¸ë¦¬ê¸° ì˜ì—­ì—ì„œ ì œì™¸ëœë‹¤.
+//WS_CLIPSIBLINGS  -  ì°¨ì¼ë“œë¼ë¦¬ ìƒí˜¸ ê²¹ì¹œ ì˜ì—­ì€ ê·¸ë¦¬ê¸° ì˜ì—­ì—ì„œ ì œì™¸ëœë‹¤.
 BOOL CWndMenubar::PreCreateWindow(CREATESTRUCT& cs)
 {
 	BOOL b = CWnd::PreCreateWindow(cs);

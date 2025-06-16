@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stdafx.h"
 
 #include "OutputWnd.h"
@@ -17,12 +17,12 @@ static char THIS_FILE[] = __FILE__;
 static CString strTabs[] =
 {
 	"System",
-	"Tag¼³Á¤",
-	"Row µ¥ÀÌÅÍ ¼öÁı",
-	"Row Á¤º¸ »èÁ¦ Ã³¸®"
+	"Tagì„¤ì •",
+	"Row ë°ì´í„° ìˆ˜ì§‘",
+	"Row ì •ë³´ ì‚­ì œ ì²˜ë¦¬"
 };
 
-TCHAR*	_lpszHeaders[] = { _T("¹ß»ı½Ã°£"),	_T("±¸ºĞ"),	_T("³»¿ë")};
+TCHAR*	_lpszHeaders[] = { _T("ë°œìƒì‹œê°„"),	_T("êµ¬ë¶„"),	_T("ë‚´ìš©")};
 int		_pnHeaders[] = 	{ 128,	200, 1800};
 
 
@@ -33,7 +33,7 @@ COutputWnd::COutputWnd()
 	ncm.cbSize = sizeof(NONCLIENTMETRICS);
 	VERIFY(::SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
 		sizeof(NONCLIENTMETRICS), &ncm, 0));
-	_tcscpy_s( ncm.lfMessageFont.lfFaceName,12, _T("¸¼Àº °íµñ"));
+	_tcscpy_s( ncm.lfMessageFont.lfFaceName,12, _T("ë§‘ì€ ê³ ë”•"));
 	m_Font.CreateFontIndirect(&ncm.lfMessageFont);
 }
 
@@ -55,14 +55,14 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
 
-	// ÅÇ Ã¢À» ¸¸µì´Ï´Ù.
+	// íƒ­ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	if (!m_wndTabs.Create(CMFCTabCtrl::STYLE_3D_VS2005, rectDummy, this, 1))
 	{
-		TRACE0("Ãâ·Â ÅÇ Ã¢À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ì¶œë ¥ íƒ­ ì°½ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
-	// Ãâ·Â Ã¢À» ¸¸µì´Ï´Ù.
+	// ì¶œë ¥ ì°½ì„ ë§Œë“­ë‹ˆë‹¤.
 	const DWORD dwStyle = WS_CHILD | WS_VISIBLE | LVS_REPORT | LVS_SINGLESEL | LVS_NOSORTHEADER | WS_VSCROLL ;
 
 	CString strTabName;
@@ -78,7 +78,7 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		}
 		m_OutputList[iList].SetFont(&m_Font);
 
-		//ÇÏ´Ü Outputbar ¿©±â2 (ÅÇ ÄÁÆ®·Ñ·¯ »ı¼º)
+		//í•˜ë‹¨ Outputbar ì—¬ê¸°2 (íƒ­ ì»¨íŠ¸ë¡¤ëŸ¬ ìƒì„±)
 		if (iList == FORM_VIEW_ID_SYSTEM)
 		{
 			strTabName.Format("System Log");
@@ -266,7 +266,7 @@ void COutputWnd::OnSize(UINT nType, int cx, int cy)
 {
 	CDockablePane::OnSize(nType, cx, cy);
 
-	// Tab ÄÁÆ®·ÑÀº ÀüÃ¼ Å¬¶óÀÌ¾ğÆ® ¿µ¿ªÀ» Ã³¸®ÇØ¾ß ÇÕ´Ï´Ù.
+	// Tab ì»¨íŠ¸ë¡¤ì€ ì „ì²´ í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì„ ì²˜ë¦¬í•´ì•¼ í•©ë‹ˆë‹¤.
 	m_wndTabs.SetWindowPos (NULL, -1, -1, cx, cy, SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
 }
 
@@ -310,8 +310,8 @@ void COutputWnd::SelectTabView(int nTab)
 void COutputWnd::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CDockablePane::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CDockablePane::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 	CRect rc;
 	GetClientRect(&rc);
 	CRect rect;
@@ -340,7 +340,7 @@ BEGIN_MESSAGE_MAP(COutputList, CListBox)
 	ON_WM_WINDOWPOSCHANGING()
 END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
-// COutputList ¸Ş½ÃÁö Ã³¸®±â
+// COutputList ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 void COutputList::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
@@ -366,12 +366,12 @@ void COutputList::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void COutputList::OnEditCopy()
 {
-	MessageBox(_T("Ãâ·Â º¹»ç"));
+	MessageBox(_T("ì¶œë ¥ ë³µì‚¬"));
 }
 
 void COutputList::OnEditClear()
 {
-	MessageBox(_T("Ãâ·Â Áö¿ì±â"));
+	MessageBox(_T("ì¶œë ¥ ì§€ìš°ê¸°"));
 }
 
 void COutputList::OnViewOutput()

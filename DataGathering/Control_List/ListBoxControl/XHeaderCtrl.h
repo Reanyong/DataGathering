@@ -1,4 +1,4 @@
-#ifndef XHEADERCTRL_H
+﻿#ifndef XHEADERCTRL_H
 #define XHEADERCTRL_H
 
 #include <afxtempl.h>

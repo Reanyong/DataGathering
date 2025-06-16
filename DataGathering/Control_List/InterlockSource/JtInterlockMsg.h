@@ -1,37 +1,37 @@
+ï»¿
 
-
-//ÇÁ·Î±×·¥ »óÅÂ ¸Þ½ÃÁö
-#define JT_INTERLOCK_MSG_01			"º» ÇÁ·Î±×·¥À» Á¾·áÇÏ°íÀÖ´Â ½Ã°£µ¿¾È\nµ¥ÀÌÅÍ°¡ »ý¼ºµÇÁö ¾Ê½À´Ï´Ù.\n\n±×·¡µµ Á¾·á ÇÏ½Ã°Ú½À´Ï±î?\n"
+//í”„ë¡œê·¸ëž¨ ìƒíƒœ ë©”ì‹œì§€
+#define JT_INTERLOCK_MSG_01			"ë³¸ í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•˜ê³ ìžˆëŠ” ì‹œê°„ë™ì•ˆ\në°ì´í„°ê°€ ìƒì„±ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\nê·¸ëž˜ë„ ì¢…ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n"
 #define JT_INTERLOCK_CODE_01		"INTERLOCK-01"
 
-//#define JT_INTERLOCK_MSG_01			"ÇÁ·Î±×·¥ Á¤»óÀ¸·Î ½ÃÀÛ ÇÏ¿´½À´Ï´Ù."
+//#define JT_INTERLOCK_MSG_01			"í”„ë¡œê·¸ëž¨ ì •ìƒìœ¼ë¡œ ì‹œìž‘ í•˜ì˜€ìŠµë‹ˆë‹¤."
 //#define JT_INTERLOCK_CODE_01		"DataGathering - Start"
 
 
 
-//DataGathering Ã³À½ ½ÃÀÛ½Ã ini ÆÄÀÏ Á¤º¸ »ý¼º
+//DataGathering ì²˜ìŒ ì‹œìž‘ì‹œ ini íŒŒì¼ ì •ë³´ ìƒì„±
 
-// 20200211 JSH : DB_TYPE : or POSTRGRE Ãß°¡
+// 20200211 JSH : DB_TYPE : or POSTRGRE ì¶”ê°€
 #define START_SETTING_LIST_1			"#DataAgentini\r\n"\
 									"#[#DataAgent#]\r\n"\
-									"#Max_Processor : Ã³¸®ÇÒ ÇÁ·Î¼¼¼­ ÃÖ´ë 10±îÁö »ç¿ë°¡´É \r\n"\
-									"#InPutFileType : InPutFileType 1:ini,2:csv »ç¿ë ¼±ÅÃ\r\n"\
-									"#Gathe_interval : ¼öÁý °£°Ý 0:1ºÐ,1:5ºÐ,2:10ºÐ,3:15ºÐ \r\n"\
-									"#Delete_interval : µ¥ÀÌÅÍ »èÁ¦ °£°Ý 0:1´Þ,1:2´Þ \r\n"\
-									"#DEMP_USECheck : DB Åë½Å ÀÌ»ó½Ã ¹ß»ý½Ã°£ »ý¼º ¿©ºÎ 0:¹Ì»ç¿ë,1:»ç¿ë\r\n"\
-									"#Demp_AutoManual : ÀÌ»ó ¹ß»ý ½Ã°£ ÀÚµ¿ ¼öÁý ¿©ºÎ 0:¹Ì»ç¿ë,1:»ç¿ë\r\n"\
-									"#LOG_USECheck : ¼¼ºÎ ·Î±× »ý¼º ¿©ºÎ 0:¹Ì»ç¿ë,1:»ç¿ë\r\n"\
-									"#AutoRun_UseCheck : ÀÚµ¿ ¼öÁý ¿©ºÎ 0:¹Ì»ç¿ë,1:»ç¿ë\r\n"\
-									"#SUBDB_USECheck : Sub DB »ç¿ë¿©ºÎ 0:¹Ì»ç¿ë,1:»ç¿ë\r\n"\
-									"#LogPath : ·Î±×ÆÄÀÏ »ý¼º °æ·Î\r\n"\
-									"#[#DBINFO#] : DataBase Á¢¼Ó Á¤º¸\r\n"\
-									"#Server : Data Base Á¢¼Ó ÁÖ¼Ò\r\n"\
+									"#Max_Processor : ì²˜ë¦¬í•  í”„ë¡œì„¸ì„œ ìµœëŒ€ 10ê¹Œì§€ ì‚¬ìš©ê°€ëŠ¥ \r\n"\
+									"#InPutFileType : InPutFileType 1:ini,2:csv ì‚¬ìš© ì„ íƒ\r\n"\
+									"#Gathe_interval : ìˆ˜ì§‘ ê°„ê²© 0:1ë¶„,1:5ë¶„,2:10ë¶„,3:15ë¶„ \r\n"\
+									"#Delete_interval : ë°ì´í„° ì‚­ì œ ê°„ê²© 0:1ë‹¬,1:2ë‹¬ \r\n"\
+									"#DEMP_USECheck : DB í†µì‹  ì´ìƒì‹œ ë°œìƒì‹œê°„ ìƒì„± ì—¬ë¶€ 0:ë¯¸ì‚¬ìš©,1:ì‚¬ìš©\r\n"\
+									"#Demp_AutoManual : ì´ìƒ ë°œìƒ ì‹œê°„ ìžë™ ìˆ˜ì§‘ ì—¬ë¶€ 0:ë¯¸ì‚¬ìš©,1:ì‚¬ìš©\r\n"\
+									"#LOG_USECheck : ì„¸ë¶€ ë¡œê·¸ ìƒì„± ì—¬ë¶€ 0:ë¯¸ì‚¬ìš©,1:ì‚¬ìš©\r\n"\
+									"#AutoRun_UseCheck : ìžë™ ìˆ˜ì§‘ ì—¬ë¶€ 0:ë¯¸ì‚¬ìš©,1:ì‚¬ìš©\r\n"\
+									"#SUBDB_USECheck : Sub DB ì‚¬ìš©ì—¬ë¶€ 0:ë¯¸ì‚¬ìš©,1:ì‚¬ìš©\r\n"\
+									"#LogPath : ë¡œê·¸íŒŒì¼ ìƒì„± ê²½ë¡œ\r\n"\
+									"#[#DBINFO#] : DataBase ì ‘ì† ì •ë³´\r\n"\
+									"#Server : Data Base ì ‘ì† ì£¼ì†Œ\r\n"\
 									"#DB_TYPE : Data Base Type : MSSQL or ORACLE or MySql or POSTRGRE \r\n"\
 									"#DB : Data Base Name\r\n"\
 									"#ID : Data Base ID\r\n"\
 									"#PW : Data Base Password\r\n\r\n"\
-									"#[EngMng] : ¿¡³ÊÁö°ü¸®°ø´Ü XML µ¥ÀÌÅÍ ¿¬µ¿ °ü·Ã\r\n"\
-									"#XMLPath : XML »ý¼º °æ·Î ÁöÁ¤\r\n"\
+									"#[EngMng] : ì—ë„ˆì§€ê´€ë¦¬ê³µë‹¨ XML ë°ì´í„° ì—°ë™ ê´€ë ¨\r\n"\
+									"#XMLPath : XML ìƒì„± ê²½ë¡œ ì§€ì •\r\n"\
 									"[DataAgent]\r\n"\
 									"Max_Processor=1\r\n"\
 									"Gathe_interval=1\r\n"\
