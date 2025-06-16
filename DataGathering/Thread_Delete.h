@@ -15,7 +15,6 @@ public:
 	// 스레드 제어 함수들
 	void StopThread();														// 스레드 중지 명령
 	void RequestDeleteData(int daysToKeep = 90);							// 특정 일수 이전 데이터 삭제 요청
-	bool IsDeleteInProgress() const { return m_bDeleting; }					// 현재 삭제 작업 진행 여부
 	void SysLogOutPut(CString strLogName, CString strMsg, COLORREF crBody);
 
 	// 속성
@@ -36,11 +35,11 @@ private:
 	DWORD m_lastDBCheckTime;   // 마지막 DB 연결 확인 시간
 
 	// 내부 헬퍼 메서드
-	bool EnsureDBConnection();                // DB 연결 상태 확인 및 재연결
-	bool PerformBatchDelete(int batchSize);   // 배치 삭제 수행
-	CString GetDeleteQuery(int batchSize);    // 삭제 쿼리 생성
-	CString GetRecordCountQuery();            // 카운트 쿼리 생성
-	void WriteLog(const CString& message);    // 로그 기록
+	bool EnsureDBConnection();													// DB 연결 확인 및 재연결
+	bool PerformBatchDelete(int batchSize, const COleDateTime& cutoffDate);		// 배치 삭제 수행
+	CString GetDeleteQuery(int batchSize, const COleDateTime& cutoffDate);		// 삭제 쿼리 생성
+	CString GetRecordCountQuery(const COleDateTime& cutoffDate);				// 레코드 카운트 쿼리 생성
+	void WriteLog(const CString& message);										// 로그 파일 기록
 
 protected:
 	DECLARE_MESSAGE_MAP()

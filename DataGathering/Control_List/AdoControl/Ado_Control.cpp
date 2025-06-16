@@ -1,4 +1,4 @@
-// Ado_Control.cpp : implementation file
+ï»¿// Ado_Control.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -27,7 +27,7 @@ CAdo_Control::CAdo_Control()
 	memset(&m_stDBInfo,0x00,sizeof(m_stDBInfo));
 	m_strLogPath = "";
 	m_nLogFlag = 0;
-	//20200225 ³ªÁ¤È£ Ãß°¡ ODBC±¸µ¿¿¡ ÇÊ¿äÇÑ º¯¼ö ÃÊ±âÈ­
+	//20200225 ë‚˜ì •í˜¸ ì¶”ê°€ ODBCêµ¬ë™ì— í•„ìš”í•œ ë³€ìˆ˜ ì´ˆê¸°í™”
 	m_isOdbcConnected = false;
 	m_isOdbcConnected_sub = false;
 	codbc = NULL;
@@ -36,7 +36,7 @@ CAdo_Control::CAdo_Control()
 
 CAdo_Control::~CAdo_Control()
 {
-	//20200224 ³ªÁ¤È£ ODBC ÇØÁ¦ Ãß°¡
+	//20200224 ë‚˜ì •í˜¸ ODBC í•´ì œ ì¶”ê°€
 	if(m_stDBInfo.unDBTypeID == DB_POSTGRE)
 	{
 		if( codbc != NULL )
@@ -92,11 +92,11 @@ int	CAdo_Control::GetDB_ConnectionStatus()
 	{
 		if(pADO_Connect->State == adStateOpen)
 		{
-			return 1; //Á¤»ó Á¢¼ÓÁß
+			return 1; //ì •ìƒ ì ‘ì†ì¤‘
 		}
 		else
 		{
-			return -1; //ºñÁ¤»ó
+			return -1; //ë¹„ì •ìƒ
 		}
 	}
 	return 0;
@@ -192,10 +192,10 @@ BOOL CAdo_Control::DB_Connection()
 				";Password=" + (_bstr_t)m_stDBInfo.szPW + ";Data Source="+ (_bstr_t)m_stDBInfo.szDB;
 			strDBType = "ORACLE";
 		}
-		//20200210 jsh -> postgre Ãß°¡·Î ÀÎÇÑ provide Ãß°¡
+		//20200210 jsh -> postgre ì¶”ê°€ë¡œ ì¸í•œ provide ì¶”ê°€
 		else if(m_stDBInfo.unDBTypeID == DB_POSTGRE)
 		{
-			/*¼öÁ¤ÇØ¾ßÇÔ*/
+			/*ìˆ˜ì •í•´ì•¼í•¨*/
 			//soracle = "Provider=PGNP.1;Password=ver30;Persist Security Info=True;User ID=postgres;Initial Catalog=postgres;Data Source=192.168.123.75;Extended Properties=\"SSL=prefer;\"";
 			/*
 			soracle = "Provider=PGNP.1;Password="+(_bstr_t)m_stDBInfo.szPW +";Persist Security Info=True;User ID=" + (_bstr_t)m_stDBInfo.szID +
@@ -226,10 +226,10 @@ BOOL CAdo_Control::DB_Connection()
 
 			if(pADO_Connect->State == adStateOpen)
 			{
-				strRunlog_E2.Format("Call Class Name : [%s], DataBase Type : [%s], DBName : [%s], Á¢¼Ó »óÅÂ : [Á¤»ó]",m_strMsgName,strDBType,m_stDBInfo.szDB);
+				strRunlog_E2.Format("Call Class Name : [%s], DataBase Type : [%s], DBName : [%s], ì ‘ì† ìƒíƒœ : [ì •ìƒ]",m_strMsgName,strDBType,m_stDBInfo.szDB);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 #ifdef _DEBUG
-				TRACE("Ado-Control(%s) - DB Á¢¼Ó¼º°ø. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control(%s) - DB ì ‘ì†ì„±ê³µ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				//WriteLog(strRunlog_E2);
 				_WriteLog(m_strLogPath,strRunlog_E2,m_nLogFlag);
@@ -241,10 +241,10 @@ BOOL CAdo_Control::DB_Connection()
 			}
 			else
 			{
-				strRunlog_E2.Format("DataBase Type:[%s], DBName:[%s], Á¢¼Ó »óÅÂ:[½ÇÆĞ], Call Class Name:[%s]",strDBType,m_stDBInfo.szDB,m_strMsgName);
+				strRunlog_E2.Format("DataBase Type:[%s], DBName:[%s], ì ‘ì† ìƒíƒœ:[ì‹¤íŒ¨], Call Class Name:[%s]",strDBType,m_stDBInfo.szDB,m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-				TRACE("Ado-Control(%s) - DB Á¢¼Ó½ÇÆĞ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control(%s) - DB ì ‘ì†ì‹¤íŒ¨. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 
 				//WriteLog(strRunlog_E2);
@@ -259,10 +259,10 @@ BOOL CAdo_Control::DB_Connection()
 
 			if(nResultADO_DB == 1 )
 			{
-				strRunlog_E2.Format("Call Class Name : [%s], DataBase Type : [%s], DBName : [%s], Á¢¼Ó »óÅÂ : [Á¤»ó]",m_strMsgName,strDBType,m_stDBInfo.szDB);
+				strRunlog_E2.Format("Call Class Name : [%s], DataBase Type : [%s], DBName : [%s], ì ‘ì† ìƒíƒœ : [ì •ìƒ]",m_strMsgName,strDBType,m_stDBInfo.szDB);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 #ifdef _DEBUG
-				TRACE("ODBC-Control(%s) - DB Á¢¼Ó¼º°ø. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("ODBC-Control(%s) - DB ì ‘ì†ì„±ê³µ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				//WriteLog(strRunlog_E2);
 				_WriteLog(m_strLogPath,strRunlog_E2,m_nLogFlag);
@@ -273,10 +273,10 @@ BOOL CAdo_Control::DB_Connection()
 			}
 			else
 			{
-				strRunlog_E2.Format("DataBase Type:[%s], DBName:[%s], Á¢¼Ó »óÅÂ:[½ÇÆĞ], Call Class Name:[%s]",strDBType,m_stDBInfo.szDB,m_strMsgName);
+				strRunlog_E2.Format("DataBase Type:[%s], DBName:[%s], ì ‘ì† ìƒíƒœ:[ì‹¤íŒ¨], Call Class Name:[%s]",strDBType,m_stDBInfo.szDB,m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-				TRACE("ODBC-Control(%s) - DB Á¢¼Ó½ÇÆĞ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("ODBC-Control(%s) - DB ì ‘ì†ì‹¤íŒ¨. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 
 				//WriteLog(strRunlog_E2);
@@ -442,7 +442,7 @@ BOOL CAdo_Control::DB_Close()
 				{
 					pADO_Connect->Close();
 #ifdef _DEBUG
-					TRACE("Ado-Control(%s) - ADO Á¢¼Ó ÇØÁ¦ ¹× ¼Ò¸ê \n",m_strMsgName);
+					TRACE("Ado-Control(%s) - ADO ì ‘ì† í•´ì œ ë° ì†Œë©¸ \n",m_strMsgName);
 #endif
 				}
 
@@ -492,7 +492,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 		}
 		else if(m_stDBInfo.unDBTypeID_sub == DB_POSTGRE)
 		{
-			/*¼öÁ¤ÇØ¾ßÇÔ*/
+			/*ìˆ˜ì •í•´ì•¼í•¨*/
 			//soracle = "Provider=PGNP.1;Password=ver30;Persist Security Info=True;User ID=postgres;Initial Catalog=postgres;Data Source=192.168.123.75;Extended Properties=\"SSL=prefer;\"";
 			//soracle = "Provider=PGNP.1;Password="+(_bstr_t)m_stDBInfo.szPW +";Persist Security Info=True;User ID=" + (_bstr_t)m_stDBInfo.szID +
 			//	";Initial Catalog=" + (_bstr_t)m_stDBInfo.szDB+ ";Data Source=" +(_bstr_t)m_stDBInfo.szServer+ ";Extended Properties=\"SSL=prefer;\"";
@@ -519,21 +519,21 @@ BOOL CAdo_Control::DB_Connection_Sub()
 
 			if(pADO_Connect->State == adStateOpen)
 			{
-				strRunlog_E2.Format("DB-Sub Á¢¼Ó¼º°ø. Call Class Name : %s",m_strMsgName);
+				strRunlog_E2.Format("DB-Sub ì ‘ì†ì„±ê³µ. Call Class Name : %s",m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 				//WriteLog(strRunlog_E2);
 #ifdef _DEBUG
-				TRACE("Ado-Control-Sub(%s) - DB Á¢¼Ó¼º°ø. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control-Sub(%s) - DB ì ‘ì†ì„±ê³µ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				return TRUE;
 			}
 			else
 			{
 
-				strRunlog_E2.Format("DB-Sub Á¢¼Ó½ÇÆĞ. Call Class Name : %s",m_strMsgName);
+				strRunlog_E2.Format("DB-Sub ì ‘ì†ì‹¤íŒ¨. Call Class Name : %s",m_strMsgName);
 				::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-				TRACE("Ado-Control-Sub(%s) - DB Á¢¼Ó½ÇÆĞ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+				TRACE("Ado-Control-Sub(%s) - DB ì ‘ì†ì‹¤íŒ¨. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 				return FALSE;
 			}
@@ -544,11 +544,11 @@ BOOL CAdo_Control::DB_Connection_Sub()
 			{
 				if(nResultADO_DB == 1 )
 				{
-					strRunlog_E2.Format("DB-Sub Á¢¼Ó¼º°ø. Call Class Name : %s",m_strMsgName);
+					strRunlog_E2.Format("DB-Sub ì ‘ì†ì„±ê³µ. Call Class Name : %s",m_strMsgName);
 					::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_SUCCESS);
 					//WriteLog(strRunlog_E2);
 #ifdef _DEBUG
-					TRACE("ODBC-Control-Sub(%s) - DB Á¢¼Ó¼º°ø. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+					TRACE("ODBC-Control-Sub(%s) - DB ì ‘ì†ì„±ê³µ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 					m_isOdbcConnected_sub = true;
 					return TRUE;
@@ -556,10 +556,10 @@ BOOL CAdo_Control::DB_Connection_Sub()
 				}
 				else
 				{
-					strRunlog_E2.Format("DB-Sub Á¢¼Ó½ÇÆĞ. Call Class Name : %s",m_strMsgName);
+					strRunlog_E2.Format("DB-Sub ì ‘ì†ì‹¤íŒ¨. Call Class Name : %s",m_strMsgName);
 					::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 #ifdef _DEBUG
-					TRACE("ODBC-Control-Sub(%s) - DB Á¢¼Ó½ÇÆĞ. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
+					TRACE("ODBC-Control-Sub(%s) - DB ì ‘ì†ì‹¤íŒ¨. Call Class Name : %s \n",m_strMsgName,strRunlog_E2);
 #endif
 					return FALSE;
 
@@ -735,7 +735,7 @@ BOOL CAdo_Control::DB_Connection_Sub()
 BOOL CAdo_Control::DB_Close_Sub()
 {
 
-	//20200220 ³ªÁ¤È£ ¼öÁ¤
+	//20200220 ë‚˜ì •í˜¸ ìˆ˜ì •
 	if(m_stDBInfo.unDBTypeID_sub == DB_POSTGRE)
 	{
 		try
@@ -771,7 +771,7 @@ BOOL CAdo_Control::DB_Close_Sub()
 				{
 					pADO_Connect->Close();
 #ifdef _DEBUG
-					TRACE("Ado-Control_Sub(%s) - ADO Á¢¼Ó ÇØÁ¦ ¹× ¼Ò¸ê \n",m_strMsgName);
+					TRACE("Ado-Control_Sub(%s) - ADO ì ‘ì† í•´ì œ ë° ì†Œë©¸ \n",m_strMsgName);
 #endif
 				}
 
@@ -799,7 +799,7 @@ int CAdo_Control::DB_ReConnection()
 
 	for(int nCount = 0; nCount < EXECUTE_QUERY_RETRY_COUNT ; nCount++)
 	{
-		strRunlog_E2.Format("ReConnection : [½ÃµµÁß...],Ã³¸®È½¼ö : [%d]", nCount + 1);
+		strRunlog_E2.Format("ReConnection : [ì‹œë„ì¤‘...],ì²˜ë¦¬íšŸìˆ˜ : [%d]", nCount + 1);
 		::SendMessage(m_MsgHwnd,m_Message,(long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()),DB_ERROR);
 		if(DB_Connection())
 		{
@@ -977,7 +977,7 @@ BOOL CAdo_Control::GetFieldValue(_RecordsetPtr pRecordSet,LPCTSTR lpFieldName, C
 	}
 }
 
-int CAdo_Control::SetQueryRun(CString strQuery)  //insert / Update ½Ã¸¸ »ç¿ë
+int CAdo_Control::SetQueryRun(CString strQuery)  //insert / Update ì‹œë§Œ ì‚¬ìš©
 {
 	VARIANT RecordsAffected;
 	::VariantInit (&RecordsAffected);
@@ -1013,7 +1013,7 @@ int CAdo_Control::SetQueryRun(CString strQuery)  //insert / Update ½Ã¸¸ »ç¿ë
 		catch (_com_error &e)
 		{
 			int nResult = Com_Error("",e);
-			return nResult; //Äõ¸® »ı¼º ½ÇÆĞ
+			return nResult; //ì¿¼ë¦¬ ìƒì„± ì‹¤íŒ¨
 		}
 		catch(...)
 		{
@@ -1040,11 +1040,11 @@ int CAdo_Control::SetQueryRun(CString strQuery)  //insert / Update ½Ã¸¸ »ç¿ë
 				long count = pVerifyRs->Fields->Item["cnt"]->Value;
 				if (count > 0)
 				{
-					return 1; // ¾÷µ¥ÀÌÆ®°¡ ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁü
+					return 1; // ì—…ë°ì´íŠ¸ê°€ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì§
 				}
 				else
 				{
-					return -1; // ¾÷µ¥ÀÌÆ®°¡ ½ÇÆĞÇÔ
+					return -1; // ì—…ë°ì´íŠ¸ê°€ ì‹¤íŒ¨í•¨
 				}
 			}
 		}
@@ -1056,7 +1056,7 @@ int CAdo_Control::SetQueryRun(CString strQuery)  //insert / Update ½Ã¸¸ »ç¿ë
 	catch (_com_error &e)
 	{
 		int nResult = Com_Error("",e);
-		return nResult; //Äõ¸® »ı¼º ½ÇÆĞ
+		return nResult; //ì¿¼ë¦¬ ìƒì„± ì‹¤íŒ¨
 	}
 	catch (...)
 	{
@@ -1145,7 +1145,7 @@ void _WriteLog(CString strLogPath, CString sMsg, int nLogFlag)
 	SetFilePointer(hFile, 0L, NULL, FILE_END);
 	WriteFile(hFile, s_msg, s_msg.GetLength(), &dwBytesWritten, NULL);
 
-	if (GetFileSize(hFile, NULL) > 1024*1024*50)  // 50 MByte Á¦ÇÑ.
+	if (GetFileSize(hFile, NULL) > 1024*1024*50)  // 50 MByte ì œí•œ.
 		bDelFlag = TRUE;
 	else
 		bDelFlag = FALSE;
@@ -1163,7 +1163,7 @@ BOOL CAdo_Control::GetRecordCount(const CString& sql, long* count)
 		if (!pRs->EndOfFile)
 		{
 			_variant_t varCount = pRs->Fields->Item[(long)0]->Value;
-			varCount.ChangeType(VT_I4); // °ªÀ» `long`À¸·Î º¯È¯ ½Ãµµ
+			varCount.ChangeType(VT_I4); // ê°’ì„ `long`ìœ¼ë¡œ ë³€í™˜ ì‹œë„
 			*count = varCount.lVal;
 		}
 		pRs->Close();
@@ -1185,9 +1185,9 @@ BOOL CAdo_Control::BeginTrans()
 	{
 		if (pADO_Connect != NULL && pADO_Connect->State == adStateOpen)
 		{
-			pADO_Connect->BeginTrans(); // Æ®·£Àè¼Ç ½ÃÀÛ
+			pADO_Connect->BeginTrans(); // íŠ¸ëœì­ì…˜ ì‹œì‘
 #ifdef _DEBUG
-			TRACE("Ado-Control(%s) - Æ®·£Àè¼Ç ½ÃÀÛ\n", m_strMsgName);
+			TRACE("Ado-Control(%s) - íŠ¸ëœì­ì…˜ ì‹œì‘\n", m_strMsgName);
 #endif
 			return TRUE;
 		}
@@ -1205,9 +1205,9 @@ BOOL CAdo_Control::CommitTrans()
 	{
 		if (pADO_Connect != NULL && pADO_Connect->State == adStateOpen)
 		{
-			pADO_Connect->CommitTrans(); // Æ®·£Àè¼Ç Ä¿¹Ô
+			pADO_Connect->CommitTrans(); // íŠ¸ëœì­ì…˜ ì»¤ë°‹
 #ifdef _DEBUG
-			TRACE("Ado-Control(%s) - Æ®·£Àè¼Ç Ä¿¹Ô\n", m_strMsgName);
+			TRACE("Ado-Control(%s) - íŠ¸ëœì­ì…˜ ì»¤ë°‹\n", m_strMsgName);
 #endif
 			return TRUE;
 		}
@@ -1225,9 +1225,9 @@ BOOL CAdo_Control::RollbackTrans()
 	{
 		if (pADO_Connect != NULL && pADO_Connect->State == adStateOpen)
 		{
-			pADO_Connect->RollbackTrans(); // Æ®·£Àè¼Ç ·Ñ¹é
+			pADO_Connect->RollbackTrans(); // íŠ¸ëœì­ì…˜ ë¡¤ë°±
 #ifdef _DEBUG
-			TRACE("Ado-Control(%s) - Æ®·£Àè¼Ç ·Ñ¹é\n", m_strMsgName);
+			TRACE("Ado-Control(%s) - íŠ¸ëœì­ì…˜ ë¡¤ë°±\n", m_strMsgName);
 #endif
 			return TRUE;
 		}
@@ -1265,9 +1265,9 @@ int CAdo_Control::Truncate(CString tableName)
 
 	if (pADO_Connect == NULL || pADO_Connect->State != adStateOpen)
 	{
-		if (!DB_Connection())  // ¿¬°á ½Ãµµ
+		if (!DB_Connection())  // ì—°ê²° ì‹œë„
 		{
-			AfxMessageBox("µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ½ÇÆĞ");
+			AfxMessageBox("ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ì‹¤íŒ¨");
 			return -1;
 		}
 	}
@@ -1275,50 +1275,50 @@ int CAdo_Control::Truncate(CString tableName)
 
 	try
 	{
-		// Command °´Ã¼ »ı¼º
+		// Command ê°ì²´ ìƒì„±
 		HRESULT hr = pCommand.CreateInstance(__uuidof(Command));
 		if (FAILED(hr))
 		{
-			AfxMessageBox("Command °´Ã¼ »ı¼º ½ÇÆĞ");
+			AfxMessageBox("Command ê°ì²´ ìƒì„± ì‹¤íŒ¨");
 			return -1;
 		}
 
-		// Connection ¼³Á¤
+		// Connection ì„¤ì •
 		pCommand->ActiveConnection = pADO_Connect;
 
-		// Æ®·£Àè¼Ç ½ÃÀÛ
+		// íŠ¸ëœì­ì…˜ ì‹œì‘
 		if (!BeginTrans())
 		{
-			AfxMessageBox("Æ®·£Àè¼Ç ½ÃÀÛ ½ÇÆĞ");
+			AfxMessageBox("íŠ¸ëœì­ì…˜ ì‹œì‘ ì‹¤íŒ¨");
 			return -1;
 		}
 
-		// TRUNCATE TABLE Äõ¸® ¼³Á¤
+		// TRUNCATE TABLE ì¿¼ë¦¬ ì„¤ì •
 		CString truncateQuery;
 		truncateQuery.Format("TRUNCATE TABLE %s", tableName);
 		pCommand->CommandText = (_bstr_t)truncateQuery;
 		pCommand->CommandType = adCmdText;
 
-		// Äõ¸® ½ÇÇà
+		// ì¿¼ë¦¬ ì‹¤í–‰
 		pCommand->Execute(NULL, NULL, adExecuteNoRecords);
 
-		// Æ®·£Àè¼Ç Ä¿¹Ô
+		// íŠ¸ëœì­ì…˜ ì»¤ë°‹
 		if (!CommitTrans())
 		{
-			AfxMessageBox("Æ®·£Àè¼Ç Ä¿¹Ô ½ÇÆĞ");
+			AfxMessageBox("íŠ¸ëœì­ì…˜ ì»¤ë°‹ ì‹¤íŒ¨");
 			return -1;
 		}
 
-		return 1;  // ¼º°ø ½Ã 1 ¹İÈ¯
+		return 1;  // ì„±ê³µ ì‹œ 1 ë°˜í™˜
 	}
 	catch (_com_error& e)
 	{
-		RollbackTrans();  // ¿À·ù ½Ã Æ®·£Àè¼Ç ·Ñ¹é
+		RollbackTrans();  // ì˜¤ë¥˜ ì‹œ íŠ¸ëœì­ì…˜ ë¡¤ë°±
 		return Com_Error("TruncateTable", e);
 	}
 	catch (...)
 	{
-		RollbackTrans();  // ¿À·ù ½Ã Æ®·£Àè¼Ç ·Ñ¹é
+		RollbackTrans();  // ì˜¤ë¥˜ ì‹œ íŠ¸ëœì­ì…˜ ë¡¤ë°±
 		strRunlog_E2.Format("TRUNCATE TABLE Event Error : %s", tableName);
 		::SendMessage(m_MsgHwnd, m_Message, (long)strRunlog_E2.GetBuffer(strRunlog_E2.GetLength()), DB_ERROR);
 		return -1;

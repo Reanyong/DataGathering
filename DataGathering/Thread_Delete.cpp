@@ -1,12 +1,38 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "DataGathering.h"
 #include "FormView_TAGGather.h"
 #include "Thread_Delete.h"
 
-// Àü¿ª ÀÌº¥Æ® °´Ã¼ - »èÁ¦ ÀÛ¾÷ ÁøÇà Áß ¾Ë¸²¿ë
+// ì „ì—­ ì´ë²¤íŠ¸ ê°ì²´ - ì‚­ì œ ì‘ì—… ì§„í–‰ ì¤‘ ì•Œë¦¼ìš©
 CEvent g_DeleteInProgressEvent(FALSE, TRUE);
 
 IMPLEMENT_DYNCREATE(Thread_Delete, CWinThread)
+
+bool EnsureEventSignaledState()
+{
+    DWORD eventStatus = WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0);
+
+    // ì´ë²¤íŠ¸ê°€ ì‹ í˜¸ ì—†ìŒ ìƒíƒœì¸ ê²½ìš° ë¡œê·¸ ê¸°ë¡ ë° ì‹ í˜¸ ìƒíƒœë¡œ ë³€ê²½
+    if (eventStatus == WAIT_TIMEOUT) {
+        g_DeleteInProgressEvent.SetEvent();
+
+        // ë¡œê·¸ ê¸°ë¡
+        CString logMsg = _T("ì´ë²¤íŠ¸ê°€ ì‹ í˜¸ ì—†ìŒ ìƒíƒœ ë°œê²¬ - ì‹ í˜¸ ìƒíƒœë¡œ êµì •ë¨");
+        _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "EventLog", logMsg);
+        return false;  // ì´ë²¤íŠ¸ê°€ ë¹„ì •ìƒ ìƒíƒœì˜€ìŒ
+    }
+
+    return true;  // ì´ë²¤íŠ¸ê°€ ì •ìƒ ìƒíƒœì˜€ìŒ
+}
+
+void ForceResetEvent()
+{
+    g_DeleteInProgressEvent.ResetEvent();
+
+    // ë¡œê·¸ ê¸°ë¡
+    CString logMsg = _T("ë””ë²„ê¹…: ì´ë²¤íŠ¸ê°€ ê°•ì œë¡œ ì‹ í˜¸ ì—†ìŒ ìƒíƒœë¡œ ì„¤ì •ë¨");
+    _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "EventLog", logMsg);
+}
 
 Thread_Delete::Thread_Delete()
 {
@@ -17,22 +43,25 @@ Thread_Delete::Thread_Delete()
     b_ThreadTry = true;
     m_bDeleting = false;
     m_bRequestDelete = false;
-    m_nDaysToKeep = 90;       // ±âº»°ª 90ÀÏ
+    m_nDaysToKeep = 90;       // ê¸°ë³¸ê°’ 90ì¼
     m_lastDBCheckTime = 0;
 }
 
 Thread_Delete::~Thread_Delete()
 {
-    // ¼Ò¸êÀÚ¿¡¼­´Â ¸í½ÃÀû ¸®¼Ò½º Á¤¸®°¡ ÇÊ¿äÇÏÁö ¾ÊÀ½
-    // ExitInstance¿¡¼­ Á¤¸®µÊ
+    // ì†Œë©¸ìì—ì„œëŠ” ëª…ì‹œì  ë¦¬ì†ŒìŠ¤ ì •ë¦¬ê°€ í•„ìš”í•˜ì§€ ì•ŠìŒ
+    // ExitInstanceì—ì„œ ì •ë¦¬ë¨
 }
 
 BOOL Thread_Delete::InitInstance()
 {
     CoInitialize(NULL);
-    // ·Î±× ÃÊ±âÈ­
-    CString logMessage = _T("Delete Thread ÃÊ±âÈ­µÊ");
+    // ë¡œê·¸ ì´ˆê¸°í™”
+    CString logMessage = _T("Delete Thread ì´ˆê¸°í™”ë¨");
     _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "DeleteLog", logMessage);
+
+    g_DeleteInProgressEvent.SetEvent();
+
     return TRUE;
 }
 
@@ -47,8 +76,8 @@ int Thread_Delete::ExitInstance()
         DB_Connect = NULL;
     }
 
-    // ·Î±× ³²±â±â
-    CString logMessage = _T("Delete Thread Á¾·áµÊ");
+    // ë¡œê·¸ ë‚¨ê¸°ê¸°
+    CString logMessage = _T("Delete Thread ì¢…ë£Œë¨");
     _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "DeleteLog", logMessage);
 
     CoUninitialize();
@@ -60,57 +89,69 @@ END_MESSAGE_MAP()
 
 int Thread_Delete::Run()
 {
-    // ÃÊ±â ÀÌº¥Æ® »óÅÂ´Â ½ÅÈ£ »óÅÂ·Î ¼³Á¤ (´Ù¸¥ ½º·¹µå°¡ ´ë±âÇÏÁö ¾Êµµ·Ï)
-    g_DeleteInProgressEvent.SetEvent();
+    // ì´ˆê¸° ì´ë²¤íŠ¸ ìƒíƒœëŠ” ì‹ í˜¸ ìƒíƒœë¡œ ì„¤ì • (ë‹¤ë¥¸ ìŠ¤ë ˆë“œê°€ ëŒ€ê¸°í•˜ì§€ ì•Šë„ë¡)
+    SysLogOutPut(m_strLogTitle, _T("ì •ê¸° ë°ì´í„° ì‚­ì œ ìŠ¤ë ˆë“œ ì‹œì‘ë¨"), LOG_COLOR_BLUE);
 
-    // DB ¿¬°á Á¤º¸ ¹Ì¸® ÁØºñ
+    // DB ì—°ê²° ì •ë³´ ë¯¸ë¦¬ ì¤€ë¹„
     ST_DBINFO stDBInfo;
     ST_DATABASENAME stDBName;
     bool dbInfoInitialized = false;
 
-    DWORD checkInterval = 3600000; // 1½Ã°£¸¶´Ù Á¤±â °Ë»ç
+    int lastCheckedDay = -1;  // ë§ˆì§€ë§‰ìœ¼ë¡œ í™•ì¸í•œ ë‚ ì§œ (ì´ˆê¸°ê°’ -1)
+    int targetDeleteDay = 1;  // ë§¤ì›” 20ì¼ì— ì‚­ì œ ì‹¤í–‰
+
+    DWORD checkInterval = 60000; // 1ë¶„ë§ˆë‹¤ ì •ê¸° ê²€ì‚¬
     DWORD lastPeriodicCheck = GetTickCount();
 
     while (!m_bEndThread)
     {
-        Sleep(1000); // 1ÃÊ ´ë±â
+        Sleep(1000); // 1ì´ˆ ëŒ€ê¸°
 
         DWORD currentTime = GetTickCount();
 
-        // ÁÖ±âÀûÀÎ DB »óÅÂ È®ÀÎ (1½Ã°£¸¶´Ù)
+        // ì£¼ê¸°ì ì¸ DB ìƒíƒœ í™•ì¸ (1ë¶„ë§ˆë‹¤)
         if (currentTime - lastPeriodicCheck > checkInterval) {
             lastPeriodicCheck = currentTime;
 
-            // DB ¿¬°á Á¤º¸ ÃÊ±âÈ­°¡ ÇÊ¿äÇÏ¸é ½ÇÇà
-            if (!dbInfoInitialized) {
-                stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
-                stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
-                m_nDBType = stDBInfo.unDBType;
-                dbInfoInitialized = true;
-            }
-
-            /*
-            // ÇöÀç ³¯Â¥ È®ÀÎ
+            // í˜„ì¬ ë‚ ì§œ í™•ì¸
             time_t now = time(0);
             tm* ltm = localtime(&now);
 
-            // ¸Å¿ù 1ÀÏÀÌ¸é ÀÚµ¿ »èÁ¦ ÇÃ·¡±× ¼³Á¤
-            if (ltm->tm_mday == 7 && !m_bDeleting && b_ThreadTry) {
-                m_bRequestDelete = true;
-                SysLogOutPut(m_strLogTitle, _T("¸Å¿ù Á¤±â µ¥ÀÌÅÍ Á¤¸® ¿¹¾àµÊ"), LOG_COLOR_BLUE);
+            // ë¡œê·¸ ë‚¨ê¸°ê¸° - ë§¤ì¼ í•œ ë²ˆë§Œ ê¸°ë¡
+            if (lastCheckedDay != ltm->tm_mday) {
+                CString dayCheckMsg;
+                dayCheckMsg.Format(_T("í˜„ì¬ ë‚ ì§œ: %dì¼, ì‚­ì œ ì˜ˆì •ì¼: %dì¼, ì´ë²¤íŠ¸ ìƒíƒœ: %s"),
+                    ltm->tm_mday, targetDeleteDay,
+                    (WaitForSingleObject(g_DeleteInProgressEvent.m_hObject, 0) == WAIT_OBJECT_0) ? _T("ì‹ í˜¸ ìƒíƒœ") : _T("ì‹ í˜¸ ì—†ìŒ ìƒíƒœ"));
+                _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "DeleteLog", dayCheckMsg);
+                lastCheckedDay = ltm->tm_mday;
             }
-            */
+
+            // ë§¤ì›” ì§€ì •ëœ ë‚ ì§œì´ë©´ ìë™ ì‚­ì œ í”Œë˜ê·¸ ì„¤ì •
+            if (ltm->tm_mday == targetDeleteDay && !m_bDeleting && b_ThreadTry) {
+                m_bRequestDelete = true;
+                SysLogOutPut(m_strLogTitle, _T("ë§¤ì›” ì •ê¸° ë°ì´í„° ì •ë¦¬ ì˜ˆì•½ë¨"), LOG_COLOR_BLUE);
+
+                CString logMsg;
+                logMsg.Format(_T("ì‚­ì œ ì‘ì—… ìš”ì²­ - í˜„ì¬ì¼: %d, ëª©í‘œì¼: %d, ì‚­ì œ ì§„í–‰ì¤‘: %s, ì‹¤í–‰ ê°€ëŠ¥: %s"),
+                    ltm->tm_mday, targetDeleteDay,
+                    m_bDeleting ? _T("ì˜ˆ") : _T("ì•„ë‹ˆì˜¤"),
+                    b_ThreadTry ? _T("ì˜ˆ") : _T("ì•„ë‹ˆì˜¤"));
+                WriteLog(logMsg);
+            }
         }
 
-        // »èÁ¦ ÀÛ¾÷ ¿äÃ»ÀÌ ÀÖ°Å³ª ÀÚµ¿ ½ÇÇà Á¶°ÇÀÌ ÃæÁ·µÇ¸é ½ÇÇà
+        // ì‚­ì œ ì‘ì—… ìš”ì²­ì´ ìˆê±°ë‚˜ ìë™ ì‹¤í–‰ ì¡°ê±´ì´ ì¶©ì¡±ë˜ë©´ ì‹¤í–‰
         if (m_bRequestDelete && !m_bDeleting) {
-            m_bRequestDelete = false;  // ¿äÃ» ÇÃ·¡±× ÃÊ±âÈ­
-            m_bDeleting = true;        // »èÁ¦ ÀÛ¾÷ ÁøÇà Áß ¼³Á¤
+            m_bRequestDelete = false;  // ìš”ì²­ í”Œë˜ê·¸ ì´ˆê¸°í™”
+            m_bDeleting = true;        // ì‚­ì œ ì‘ì—… ì§„í–‰ ì¤‘ ì„¤ì •
 
-            // »èÁ¦ ÀÛ¾÷ ½ÃÀÛÀ» ´Ù¸¥ ½º·¹µå¿¡°Ô ¾Ë¸²
+            // ì‚­ì œ ì‘ì—… ì‹œì‘ì„ ë‹¤ë¥¸ ìŠ¤ë ˆë“œì—ê²Œ ì•Œë¦¼
+            CString statusMsg = _T("RAW í…Œì´ë¸” ë°ì´í„° ì •ë¦¬ ì‹œì‘ - ë‹¤ë¥¸ ìŠ¤ë ˆë“œ ì¼ì‹œ ì •ì§€");
+            WriteLog(statusMsg);
             g_DeleteInProgressEvent.ResetEvent();
 
-            // DB ¿¬°á Á¤º¸ ·Îµå (ÇÊ¿ä½Ã)
+            // DB ì—°ê²° ì •ë³´ ë¡œë“œ (í•„ìš”ì‹œ)
             if (!dbInfoInitialized) {
                 stDBInfo = _getInfoDBRead(g_stProjectInfo.szProjectIniPath);
                 stDBName = _getDataBesaNameRead(g_stProjectInfo.szProjectIniPath);
@@ -118,79 +159,79 @@ int Thread_Delete::Run()
                 dbInfoInitialized = true;
             }
 
-            // DB ¿¬°á °´Ã¼ »ı¼º (¾øÀ¸¸é)
+            // DB ì—°ê²° ê°ì²´ ìƒì„± (ì—†ìœ¼ë©´)
             if (DB_Connect == NULL) {
                 DB_Connect = new CAdo_Control();
                 DB_Connect->DB_SetReturnMsg(WM_USER_LOG_MESSAGE, m_WindHwnd, m_strLogTitle, g_stProjectInfo.szDTGatheringLogPath);
                 DB_Connect->DB_ConnectionInfo(stDBInfo.szServer, stDBInfo.szDB, stDBInfo.szID, stDBInfo.szPW, stDBInfo.unDBType);
             }
 
-            // DB ¿¬°á
+            // DB ì—°ê²°
             if (EnsureDBConnection()) {
                 try {
-                    // ±âÁØ ³¯Â¥ °è»ê
+                    // ê¸°ì¤€ ë‚ ì§œ ê³„ì‚°
                     COleDateTime today = COleDateTime::GetCurrentTime();
                     COleDateTime cutoffDate = today - COleDateTimeSpan(m_nDaysToKeep, 0, 0, 0);
 
-                    // ÃÑ ·¹ÄÚµå ¼ö È®ÀÎ
-                    CString countSQL = GetRecordCountQuery();
+                    // ì´ ë ˆì½”ë“œ ìˆ˜ í™•ì¸
+                    CString countSQL = GetRecordCountQuery(cutoffDate);
 
                     long totalRecordCount = 0;
-                    BOOL result = DB_Connect->GetRecordCount(countSQL, &totalRecordCount);
+                    DB_Connect->GetRecordCount(countSQL, &totalRecordCount);
 
-                    if (result && totalRecordCount > 0) {
+                    if (totalRecordCount > 0) {
                         CString logMessage;
-                        logMessage.Format(_T("»èÁ¦ ´ë»ó ·¹ÄÚµå ¼ö: %ld"), totalRecordCount);
+                        logMessage.Format(_T("ì‚­ì œ ëŒ€ìƒ ë ˆì½”ë“œ ìˆ˜: %ld"), totalRecordCount);
                         WriteLog(logMessage);
                         SysLogOutPut(m_strLogTitle, logMessage, LOG_COLOR_BLUE);
 
-                        // ¹èÄ¡ Å©±â 10000°Ç¾¿ »èÁ¦ ÁøÇà
+                        // ë°°ì¹˜ í¬ê¸° 10000ê°œì”© ì‚­ì œ ì§„í–‰
                         int batchSize = 10000;
                         int successfulBatches = 0;
                         bool continueDelete = true;
 
                         while (totalRecordCount > 0 && !m_bEndThread && continueDelete) {
-                            // ÁÖ±âÀûÀ¸·Î DB ¿¬°á È®ÀÎ
+                            // ì£¼ê¸°ì ìœ¼ë¡œ DB ì—°ê²° í™•ì¸
                             if (!EnsureDBConnection()) {
-                                WriteLog(_T("DB ¿¬°á ½ÇÆĞ·Î »èÁ¦ ÀÛ¾÷ Áß´Ü"));
+                                WriteLog(_T("DB ì—°ê²° ì‹¤íŒ¨ë¡œ ì‚­ì œ ì‘ì—… ì¤‘ë‹¨"));
                                 break;
                             }
 
-                            // ¹èÄ¡ »èÁ¦ ½ÇÇà
-                            if (PerformBatchDelete(batchSize)) {
+                            // ë°°ì¹˜ ì‚­ì œ ì‹¤í–‰
+                            if (PerformBatchDelete(batchSize, cutoffDate)) {
                                 successfulBatches++;
                                 totalRecordCount -= batchSize;
                                 if (totalRecordCount < 0) totalRecordCount = 0;
 
-                                // ÁøÇà »óÈ² ·Î±×
+                                // ì§„í–‰ ìƒí™© ë¡œê·¸
                                 CString progressMsg;
-                                progressMsg.Format(_T("»èÁ¦ ÁøÇà Áß: ³²Àº ·¹ÄÚµå [%ld]"), totalRecordCount);
+                                progressMsg.Format(_T("ì‚­ì œ ì§„í–‰ ì¤‘: ë‚¨ì€ ë ˆì½”ë“œ [%ld]"), totalRecordCount);
                                 SysLogOutPut(m_strLogTitle, progressMsg, LOG_COLOR_BLUE);
                             }
                             else {
-                                WriteLog(_T("¹èÄ¡ »èÁ¦ ½ÇÆĞ, ´ÙÀ½ ¹èÄ¡ ½Ãµµ"));
-                                // ¿À·ù ¹ß»ı ½Ã Áö¿¬ ÈÄ Àç½Ãµµ
+                                WriteLog(_T("ë°°ì¹˜ ì‚­ì œ ì‹¤íŒ¨, ë‹¤ìŒ ë°°ì¹˜ ì‹œë„"));
+                                // ì˜¤ë¥˜ ë°œìƒ ì‹œ ì§€ì—° í›„ ì¬ì‹œë„
                                 Sleep(2000);
                             }
 
-                            // °úµµÇÑ ºÎÇÏ ¹æÁö¸¦ À§ÇÑ Áö¿¬
+                            // ê³¼ë„í•œ ë¶€í•˜ ë°©ì§€ë¥¼ ìœ„í•œ ì§€ì—°
                             Sleep(500);
                         }
 
-                        // »èÁ¦ ÀÛ¾÷ ¿Ï·á ¸Ş½ÃÁö
+                        // ì‚­ì œ ì‘ì—… ì™„ë£Œ ë©”ì‹œì§€
                         CString completionMsg;
                         if (totalRecordCount <= 0) {
-                            completionMsg.Format(_T("µ¥ÀÌÅÍ »èÁ¦ ¿Ï·á. ÃÑ %d ¹èÄ¡ ¼º°øÀûÀ¸·Î Ã³¸®µÊ"), successfulBatches);
+                            completionMsg.Format(_T("ë°ì´í„° ì‚­ì œ ì™„ë£Œ. ì´ %d ë°°ì¹˜ ì„±ê³µì ìœ¼ë¡œ ì²˜ë¦¬ë¨"), successfulBatches);
                             SysLogOutPut(m_strLogTitle, completionMsg, LOG_COLOR_BLUE);
                         }
                         else {
-                            completionMsg.Format(_T("µ¥ÀÌÅÍ »èÁ¦ Áß´ÜµÊ. %ld ·¹ÄÚµå ³²À½"), totalRecordCount);
+                            completionMsg.Format(_T("ë°ì´í„° ì‚­ì œ ì¤‘ë‹¨ë¨. %ld ë ˆì½”ë“œ ë‚¨ìŒ"), totalRecordCount);
                             SysLogOutPut(m_strLogTitle, completionMsg, LOG_COLOR_RED);
                         }
                         WriteLog(completionMsg);
                     }
                     else {
-                        SysLogOutPut(m_strLogTitle, _T("»èÁ¦ÇÒ µ¥ÀÌÅÍ°¡ ¾ø°Å³ª Ä«¿îÆ® Äõ¸® ½ÇÆĞ"), LOG_COLOR_BLUE);
+                        SysLogOutPut(m_strLogTitle, _T("ì‚­ì œí•  ë°ì´í„°ê°€ ì—†ê±°ë‚˜ ì¹´ìš´íŠ¸ ì¿¼ë¦¬ ì‹¤íŒ¨"), LOG_COLOR_BLUE);
                     }
                 }
                 catch (CDBException* e) {
@@ -199,78 +240,87 @@ int Thread_Delete::Run()
                     e->Delete();
 
                     CString errorMsg;
-                    errorMsg.Format(_T("DB ¿¹¿Ü ¹ß»ı: %s"), strError);
+                    errorMsg.Format(_T("DB ì˜ˆì™¸ ë°œìƒ: %s"), strError);
                     WriteLog(errorMsg);
                     SysLogOutPut(m_strLogTitle, errorMsg, LOG_COLOR_RED);
                 }
                 catch (...) {
-                    WriteLog(_T("¾Ë ¼ö ¾ø´Â ¿¹¿Ü ¹ß»ı"));
-                    SysLogOutPut(m_strLogTitle, _T("¾Ë ¼ö ¾ø´Â ¿¹¿Ü ¹ß»ı"), LOG_COLOR_RED);
+                    WriteLog(_T("ì•Œ ìˆ˜ ì—†ëŠ” ì˜ˆì™¸ ë°œìƒ"));
+                    SysLogOutPut(m_strLogTitle, _T("ì•Œ ìˆ˜ ì—†ëŠ” ì˜ˆì™¸ ë°œìƒ"), LOG_COLOR_RED);
                 }
 
-                // DB ¿¬°á ´İ±â (¸®¼Ò½º Àı¾à)
+                // DB ì—°ê²° ë‹«ê¸° (ë¦¬ì†ŒìŠ¤ ì ˆì•½)
                 if (DB_Connect != NULL) {
                     DB_Connect->DB_Close();
+                    delete DB_Connect;
+                    DB_Connect = NULL;
                 }
             }
 
-            // »èÁ¦ ÀÛ¾÷ ¿Ï·á »óÅÂ ¼³Á¤
+            // ì‚­ì œ ì‘ì—… ì™„ë£Œ ìƒíƒœ ì„¤ì •
             m_bDeleting = false;
-            b_ThreadTry = false;  // ´ÙÀ½ 1ÀÏ±îÁö ÀÚµ¿ ½ÇÇà ¹æÁö
+            b_ThreadTry = false;  // ë‹¤ìŒ ë‚ ì— ë‹¤ì‹œ ìë™ ì‹¤í–‰ ë°©ì§€
 
-            // ´Ù¸¥ ½º·¹µå¿¡°Ô »èÁ¦ ÀÛ¾÷ ¿Ï·á ¾Ë¸²
+            // ë‹¤ë¥¸ ìŠ¤ë ˆë“œì—ê²Œ ì‚­ì œ ì‘ì—… ì™„ë£Œ ì•Œë¦¼
+            CString resumeMsg = _T("ë°ì´í„° ì •ë¦¬ ì™„ë£Œ - ë¶„ ìˆ˜ì§‘ ìŠ¤ë ˆë“œ ì¬ê°œ");
+            WriteLog(resumeMsg);
             g_DeleteInProgressEvent.SetEvent();
 
-            SysLogOutPut(m_strLogTitle, _T("Delete Thread ÀÛ¾÷ ¿Ï·á"), LOG_COLOR_BLUE);
+            SysLogOutPut(m_strLogTitle, _T("Delete Thread ì‘ì—… ì™„ë£Œ"), LOG_COLOR_BLUE);
         }
 
-        // ½º·¹µå Á¾·á È®ÀÎ
         if (m_bEndThread) {
             break;
         }
     }
 
-    // ¸Ş½ÃÁö Å¥ Á¾·á
+    // ìŠ¤ë ˆë“œ ì¢…ë£Œ ì‹œ ì´ë²¤íŠ¸ ì‹ í˜¸ ìƒíƒœë¡œ ì„¤ì •í•˜ì—¬ ë‹¤ë¥¸ ìŠ¤ë ˆë“œê°€ ê³„ì† ì‘ë™í•˜ë„ë¡ í•¨
+    if (!g_DeleteInProgressEvent.Lock(0)) {
+        g_DeleteInProgressEvent.SetEvent();
+        WriteLog(_T("ìŠ¤ë ˆë“œ ì¢…ë£Œ ì‹œ ì´ë²¤íŠ¸ ì‹ í˜¸ ìƒíƒœë¡œ ì„¤ì •"));
+    }
+
+    // ë©”ì‹œì§€ í ì¢…ë£Œ
     PostThreadMessage(WM_QUIT, 0, 0);
     return CWinThread::Run();
 }
 
-// DB ¿¬°á »óÅÂ È®ÀÎ ¹× Àç¿¬°á
+// DB ì—°ê²° ìƒíƒœ í™•ì¸ ë° ì¬ì—°ê²°
 bool Thread_Delete::EnsureDBConnection()
 {
     if (DB_Connect == NULL) {
         return false;
     }
 
-    // ÇöÀç ½Ã°£
+    // í˜„ì¬ ì‹œê°„
     DWORD currentTime = GetTickCount();
 
-    // ¿¬°á È®ÀÎ °£°İ (10ÃÊ)
+    // ì—°ê²° í™•ì¸ ê°„ê²© (10ì´ˆ)
     if (currentTime - m_lastDBCheckTime < 10000 && DB_Connect->GetDB_ConnectionStatus() == 1) {
         return true;
     }
 
     m_lastDBCheckTime = currentTime;
 
-    // ¿¬°áÀÌ ²÷¾îÁ® ÀÖÀ¸¸é Àç¿¬°á ½Ãµµ
+    // ì—°ê²°ì´ ëŠì–´ì ¸ ìˆìœ¼ë©´ ì¬ì—°ê²° ì‹œë„
     if (DB_Connect->GetDB_ConnectionStatus() != 1) {
-        SysLogOutPut(m_strLogTitle, _T("DB ¿¬°á È®ÀÎ Áß..."), LOG_COLOR_BLUE);
+        SysLogOutPut(m_strLogTitle, _T("DB ì—°ê²° í™•ì¸ ì¤‘..."), LOG_COLOR_BLUE);
         BOOL bConnectCheck = DB_Connect->DB_Connection();
         if (bConnectCheck != TRUE) {
-            SysLogOutPut(m_strLogTitle, _T("DB ¿¬°á ½ÇÆĞ"), LOG_COLOR_RED);
+            SysLogOutPut(m_strLogTitle, _T("DB ì—°ê²° ì‹¤íŒ¨"), LOG_COLOR_RED);
             return false;
         }
-        SysLogOutPut(m_strLogTitle, _T("DB ¿¬°á ¼º°ø"), LOG_COLOR_BLUE);
+        SysLogOutPut(m_strLogTitle, _T("DB ì—°ê²° ì„±ê³µ"), LOG_COLOR_BLUE);
     }
 
     return true;
 }
 
-// ¹èÄ¡ »èÁ¦ ¼öÇà
-bool Thread_Delete::PerformBatchDelete(int batchSize)
+// ë°°ì¹˜ ì‚­ì œ ìˆ˜í–‰
+bool Thread_Delete::PerformBatchDelete(int batchSize, const COleDateTime& cutoffDate)
 {
-    CString deleteSQL = GetDeleteQuery(batchSize);
-    TRACE("SQL Delete ÀÛ¾÷ ½ÃÀÛ: %s\n", (LPCTSTR)deleteSQL);
+    CString deleteSQL = GetDeleteQuery(batchSize, cutoffDate);
+    TRACE("SQL Delete ì‘ì—… ì‹œì‘: %s\n", (LPCTSTR)deleteSQL);
 
     SQLRETURN retcode = DB_Connect->SetQueryRun(deleteSQL);
 
@@ -287,11 +337,9 @@ bool Thread_Delete::PerformBatchDelete(int batchSize)
     }
 }
 
-// »èÁ¦ Äõ¸® »ı¼º
-CString Thread_Delete::GetDeleteQuery(int batchSize)
+// ì‚­ì œ ì¿¼ë¦¬ ìƒì„±
+CString Thread_Delete::GetDeleteQuery(int batchSize, const COleDateTime& cutoffDate)
 {
-    COleDateTime today = COleDateTime::GetCurrentTime();
-    COleDateTime cutoffDate = today - COleDateTimeSpan(m_nDaysToKeep, 0, 0, 0);
     CString deleteSQL;
 
     if (m_nDBType == DB_MSSQL) {
@@ -314,11 +362,9 @@ CString Thread_Delete::GetDeleteQuery(int batchSize)
     return deleteSQL;
 }
 
-// ·¹ÄÚµå Ä«¿îÆ® Äõ¸® »ı¼º
-CString Thread_Delete::GetRecordCountQuery()
+// ë ˆì½”ë“œ ì¹´ìš´íŠ¸ ì¿¼ë¦¬ ìƒì„±
+CString Thread_Delete::GetRecordCountQuery(const COleDateTime& cutoffDate)
 {
-    COleDateTime today = COleDateTime::GetCurrentTime();
-    COleDateTime cutoffDate = today - COleDateTimeSpan(m_nDaysToKeep, 0, 0, 0);
     CString countSQL;
 
     if (m_nDBType == DB_MSSQL) {
@@ -341,18 +387,7 @@ CString Thread_Delete::GetRecordCountQuery()
     return countSQL;
 }
 
-// ½º·¹µå ÁßÁö ¸í·É
-void Thread_Delete::StopThread()
-{
-    m_bEndThread = TRUE;
-
-    // »èÁ¦ ÀÛ¾÷ ÁßÀÌ¾ú´Ù¸é ÀÌº¥Æ® ½ÅÈ£ »óÅÂ·Î ¼³Á¤
-    if (m_bDeleting) {
-        g_DeleteInProgressEvent.SetEvent();
-    }
-}
-
-// Æ¯Á¤ ÀÏ¼ö ÀÌÀü µ¥ÀÌÅÍ »èÁ¦ ¿äÃ»
+// íŠ¹ì • ì¼ìˆ˜ ì´ì „ ë°ì´í„° ì‚­ì œ ìš”ì²­
 void Thread_Delete::RequestDeleteData(int daysToKeep)
 {
     if (daysToKeep > 0) {
@@ -362,17 +397,28 @@ void Thread_Delete::RequestDeleteData(int daysToKeep)
     m_bRequestDelete = true;
 
     CString logMessage;
-    logMessage.Format(_T("µ¥ÀÌÅÍ »èÁ¦ ¿äÃ»µÊ. º¸Á¸ ±â°£: %dÀÏ"), m_nDaysToKeep);
+    logMessage.Format(_T("ë°ì´í„° ì‚­ì œ ìš”ì²­ë¨. ë³´ì¡´ ê¸°ê°„: %dì¼"), m_nDaysToKeep);
     SysLogOutPut(m_strLogTitle, logMessage, LOG_COLOR_BLUE);
 }
 
-// ·Î±× Ãâ·Â
+// ìŠ¤ë ˆë“œ ì¤‘ì§€ ëª…ë ¹
+void Thread_Delete::StopThread()
+{
+    m_bEndThread = TRUE;
+
+    // ì‚­ì œ ì‘ì—… ì¤‘ì´ì—ˆë‹¤ë©´ ì´ë²¤íŠ¸ ì‹ í˜¸ ìƒíƒœë¡œ ì„¤ì •
+    if (m_bDeleting) {
+        g_DeleteInProgressEvent.SetEvent();
+    }
+}
+
+// ë¡œê·¸ ì¶œë ¥
 void Thread_Delete::SysLogOutPut(CString strLogName, CString strMsg, COLORREF crBody)
 {
     _addSystemMsg(LOG_MESSAGE_2, USER_COLOR_BLUE, m_strLogTitle, crBody, strMsg);
 }
 
-// ·Î±× ÆÄÀÏ ±â·Ï
+// ë¡œê·¸ íŒŒì¼ ê¸°ë¡
 void Thread_Delete::WriteLog(const CString& message)
 {
     _WriteLogFile(g_stProjectInfo.szDTGatheringLogPath, "DeleteLog", message);
